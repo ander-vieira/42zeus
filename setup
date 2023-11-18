@@ -15,6 +15,10 @@ fi
 echo "Cloning git repository into directory ~/42zeus"
 git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
 
+# Build binaries
+echo "Building necessary binaries"
+make -s -C ~/42zeus
+
 # Add aliases
 echo "Adding alias for zeus command"
 if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]

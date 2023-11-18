@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -f repo/Makefile ]
+then
+	if [ $(cat repo/Makefile | grep "bonus\s*:" | wc -l) -eq 1 ]
+	then
+		echo yes
+		exit
+	fi
+fi
+
+echo no

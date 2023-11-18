@@ -1,15 +1,22 @@
 #!/bin/bash
 
+util/bin/print_title "libft: Mandatory part"
+
+echo "Building project..."
 make -s -C repo/ all clean
 
-list_t=$(nm repo/libft.a | grep " T " | awk '{print $3}' | sort -u)
-list_u=$(nm repo/libft.a | grep " U " | awk '{print $2}' | sort -u)
-list_d=
-for x in $list_u; do
-	if [ $(echo "$list_t" | grep -Fx "$x" | wc -l) -eq 0 ]
-	then
-		list_d="$list_d $x"
-	fi
-done
+echo "Checking symbols..."
+util/check_symbols repo/libft.a libft/expected_funs libft/expected_refs | util/indent
 
-echo $list_d | util/indent
+if [ $(util/detect_bonus) == yes ]
+then
+	util/bin/print_title "libft: Bonus part"
+
+	echo "Building bonus..."
+	make -s -C repo/ bonus clean
+
+	echo "Checking bonus symbols..."
+	util/check_symbols repo/libft.a libft/expected_funs_bonus libft/expected_refs | util/indent
+else
+	echo "Project doesn't have bonus rule"
+fi

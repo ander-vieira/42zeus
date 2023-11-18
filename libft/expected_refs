@@ -1,0 +1,4 @@
+free
+malloc
+__stack_chk_fail
+write
