@@ -1,5 +1,15 @@
 #!/bin/bash
 
-make -C repo/ all clean
+make -s -C repo/ all clean
 
-nm repo/libft.a | grep " U " | awk '{print $2}' | util/indent
+list_t=$(nm repo/libft.a | grep " T " | awk '{print $3}' | sort -u)
+list_u=$(nm repo/libft.a | grep " U " | awk '{print $2}' | sort -u)
+list_d=
+for x in $list_u; do
+	if [ $(echo "$list_t" | grep -Fx "$x" | wc -l) -eq 0 ]
+	then
+		list_d="$list_d $x"
+	fi
+done
+
+echo $list_d | util/indent
