@@ -1,0 +1,5 @@
+#!/bin/bash
+
+make -C repo/ all clean
+
+nm repo/libft.a | grep " U " | awk '{print $2}' | util/indent

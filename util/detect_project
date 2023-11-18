@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -f repo/Makefile ]
+then
+	name=$(cat repo/Makefile | grep "NAME" | awk -F '=' '{print $2}')
+	if [ $name == libft.a ]
+	then
+		echo libft
+		exit
+	fi
+fi
+
+echo none

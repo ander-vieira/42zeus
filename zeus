@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Check the testable directory is passed
+if [ $# -ne 1 ]
+then
+	echo "Usage: $0 <directory>"
+	exit
+fi
+
+if [ ! -d $1 ]
+then
+	echo "Directory $1 does not exist, stopping..."
+	exit
+fi
+
+# The directory the script is in
+zeus_dir=$(dirname $(realpath $0))
+
+echo "Running 42Zeus on directory $1"
+
+# Copy the testable directory into Zeus's local files
+rm -rf $zeus_dir/repo/
+cp -RT $1 $zeus_dir/repo/
+
+# Move to the script's directory
+cd $zeus_dir
+
+project=$(util/detect_project)
+
+if [ $project != none ]
+then
+	echo "Detected project $project"
+	$project/tester
+else
+	echo "Couldn't automatically detect project, stopping..."
+fi
