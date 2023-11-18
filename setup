@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "------------------------------------------------"
+echo "---  Running setup script for tester 42Zeus  ---"
+echo "------------------------------------------------"
+
+# Don't mess with existing directories :)
+if [ -e ~/42zeus ]
+then
+	echo "Can't clone 42Zeus because the directory ~/42zeus already exists; please rename/remove it first."
+	exit
+fi
+
+# Clone the tester
+echo "Cloning git repository into directory ~/42zeus"
+git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
+
+# Add aliases
+echo "Adding alias for zeus command"
+if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]
+then
+	echo "alias zeus=/home/$USER/42zeus" >> ~/.bashrc
+	echo "Alias added successfully"
+else
+	echo "Alias already exists"
+fi
+
+echo "------------------------"
+echo "---  Setup complete  ---"
+echo "------------------------"
