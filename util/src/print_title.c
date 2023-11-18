@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:12:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/18 17:02:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:30:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static char	*av_repeatchr(char c, size_t len)
+static char	*repeatchar(char c, size_t len)
 {
 	char	*result;
 	size_t	i;
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	hyph = av_repeatchr('-', strlen(argv[1]));
+	hyph = repeatchar('-', strlen(argv[1]));
 	if (hyph == NULL)
 		return (0);
 	printf("+---%s---+\n|   %s   |\n+---%s---+\n", hyph, argv[1], hyph);

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 15:30:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/18 16:21:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:31:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include <ctype.h>
 
-static char	*av_strdup(char *src, size_t len)
+static char	*copystring(char *src, size_t len)
 {
 	char	*result;
 
@@ -27,7 +27,7 @@ static char	*av_strdup(char *src, size_t len)
 	return (result);
 }
 
-static char	av_findinlist(char mode, char *elem1, char *lst2)
+static char	findinlist(char mode, char *elem1, char *lst2)
 {
 	size_t	i;
 	size_t	len;
@@ -41,7 +41,7 @@ static char	av_findinlist(char mode, char *elem1, char *lst2)
 		len = 0;
 		while (lst2[i + len] != '\0' && !isspace(lst2[i + len]))
 			len++;
-		elem2 = av_strdup(lst2 + i, len);
+		elem2 = copystring(lst2 + i, len);
 		if (elem2 == NULL)
 			break ;
 		if (!strcmp(elem1, elem2))
@@ -54,7 +54,7 @@ static char	av_findinlist(char mode, char *elem1, char *lst2)
 	return (mode == '-');
 }
 
-static void	av_loop(char mode, char *lst1, char *lst2)
+static void	mainloop(char mode, char *lst1, char *lst2)
 {
 	size_t	i;
 	size_t	len;
@@ -68,10 +68,10 @@ static void	av_loop(char mode, char *lst1, char *lst2)
 		len = 0;
 		while (lst1[i + len] != '\0' && !isspace(lst1[i + len]))
 			len++;
-		elem1 = av_strdup(lst1 + i, len);
+		elem1 = copystring(lst1 + i, len);
 		if (elem1 == NULL)
 			break ;
-		if (av_findinlist(mode, elem1, lst2))
+		if (findinlist(mode, elem1, lst2))
 			printf("%s\n", elem1);
 		free(elem1);
 		i += len;
@@ -85,6 +85,6 @@ int	main(int argc, char **argv)
 	if (argc < 4 || strlen(argv[1]) != 1
 		|| (argv[1][0] != '+' && argv[1][0] != '-'))
 		return (0);
-	av_loop(argv[1][0], argv[2], argv[3]);
+	mainloop(argv[1][0], argv[2], argv[3]);
 	return (0);
 }
