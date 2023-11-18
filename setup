@@ -19,7 +19,7 @@ git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
 echo "Adding alias for zeus command"
 if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
-	echo "alias zeus=/home/$USER/42zeus" >> ~/.bashrc
+	echo "alias zeus=/home/$USER/42zeus/zeus" >> ~/.bashrc
 	echo "Alias added successfully"
 else
 	echo "Alias already exists"
