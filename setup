@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "------------------------------------------------"
-echo "---  Running setup script for tester 42Zeus  ---"
-echo "------------------------------------------------"
+echo "+----------------+"
+echo "| 42ZEUS (SETUP) |"
+echo "+----------------+"
 
 # Don't mess with existing directories :)
 if [ -e ~/42zeus ]
@@ -36,6 +36,6 @@ else
 	echo "Alias already exists (zsh)"
 fi
 
-echo "------------------------"
-echo "---  Setup complete  ---"
-echo "------------------------"
+echo "+----------------+"
+echo "| SETUP COMPLETE |"
+echo "+----------------+"
