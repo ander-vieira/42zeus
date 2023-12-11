@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:12:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/18 17:30:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:46:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	main(int argc, char **argv)
 	if (hyph == NULL)
 		return (0);
 	printf("+---%s---+\n|   %s   |\n+---%s---+\n", hyph, argv[1], hyph);
+	free(hyph);
 	return (0);
 }
