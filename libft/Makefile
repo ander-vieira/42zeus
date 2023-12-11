@@ -5,22 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/18 14:19:30 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/11 17:32:20 by andeviei         ###   ########.fr        #
+#    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
+#    Updated: 2023/12/11 17:49:13 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all: bin/filter_list bin/testutils.a
+CFLAGS = -Wall -Werror -Wextra
 
-bin/filter_list: bin/ src/filter_list.c
-	gcc src/filter_list.c -o bin/filter_list
+NAME = bin/test
+LIBFT = bin/libft.a
+TESTUTILS = ../util/bin/testutils.a
 
-bin/testutils.a: src/testutils.c src/testutils.h
-	gcc -c src/testutils.c
-	ar rcs bin/testutils.a testutils.o
-	rm -f testutils.o
+SRCS = test.c test_is.c
+HDRS = test.h
+OBJS = $(SRCS:.c=.o)
 
-bin/:
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(TESTUTILS) $(OBJS)
+	ar rcs $(LIBFT) $(OBJS)
+	gcc $(CFLAGS) $(LIBFT) $(TESTUTILS) -o $(NAME)
+
+$(LIBFT):
 	mkdir bin/
+	cp -f ../repo/libft.a bin/
 
-.PHONY: all
+$(OBJS): $(SRCS) $(HDRS)
+	gcc $(CFLAGS) -c $(SRCS)
+
+clean:
+	rm -f $(OBJS) $(LIBFT)
+
+fclean: clean
+	rm -f $(NAME)
+	rmdir bin/
+
+re: fclean all
+
+.PHONY: all clean fclean re

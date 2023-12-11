@@ -1,41 +1,44 @@
 #!/bin/bash
 
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
+
 # Check the testable directory is passed
 if [ $# -ne 1 ]
 then
-	echo "Usage: $0 <directory>"
-	exit
+	echo "Usage: $(basename $0) <directory>"
+	exit 1
 fi
 
-# The directory the project is in
-projectpath=$(realpath $1)
-
-# The directory the script is in
-zeus_dir=$(dirname $(realpath $0))
-
-# Move to the script's directory
-cd $zeus_dir
-
-util/bin/print_title "42Zeus"
+echo "+------------+"
+echo "|   42ZEUS   |"
+echo "+------------+"
 
 if [ ! -d $1 ]
 then
-	echo "Directory $projectpath does not exist, stopping..."
-	exit
+	echo -e "${red}$1 does not exist or is not a directory${nocolor}"
+	exit 1
 fi
 
-echo "Running 42Zeus on directory $projectpath"
+echo -e "${green}Running on directory $1${nocolor}"
 
 # Copy the testable directory into Zeus's local files
-rm -rf repo/
-cp -RT $projectpath repo/
+cp -R $1 $(dirname $0)/repo/
 
-project=$(util/detect_project)
+cd $(dirname $0)
+
+project=$(util/detectproject)
 
 if [ $project != none ]
 then
-	echo "Detected project $project"
-	$project/tester | util/indent
+	echo -e "${green}Detected project $project!${nocolor}"
+	$project/tester
+	status=$?
+	rm -rf repo/
+	exit $status
 else
-	echo "Couldn't automatically detect project, stopping..."
+	echo -e "${red}Couldn't automatically detect project, stopping...${nocolor}"
+	rm -rf repo/
+	exit 1
 fi

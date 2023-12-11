@@ -1,22 +1,93 @@
 #!/bin/bash
 
-util/bin/print_title "libft: Mandatory part"
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
 
-echo "Building project..."
-make -s -C repo/ all clean
+status=0
 
-echo "Checking symbols..."
-util/check_symbols repo/libft.a libft/expected_funs libft/expected_refs | util/indent
+echo "+---------------------------+"
+echo "|   libft: MANDATORY PART   |"
+echo "+---------------------------+"
 
-if [ $(util/detect_bonus) == yes ]
+echo "+----------------+"
+echo "|   NORMINETTE   |"
+echo "+----------------+"
+
+util/normcheck
+if [ $? -ne 0 ]
 then
-	util/bin/print_title "libft: Bonus part"
+	status=1
+fi
 
-	echo "Building bonus..."
-	make -s -C repo/ bonus clean
+echo "+---------------------+"
+echo "|   COMPILE LIBRARY   |"
+echo "+---------------------+"
 
-	echo "Checking bonus symbols..."
-	util/check_symbols repo/libft.a libft/expected_funs_bonus libft/expected_refs | util/indent
+make -s -C repo/ all clean
+if [ $? -ne 0 ]
+then
+	../util/printtitle "${red}Errors while compiling the library${nocolor}"
+	exit 1
 else
-	echo "Project doesn't have bonus rule"
+	echo -e "${green}Library compiled successfully!${nocolor}"
+fi
+
+echo "+---------------------+"
+echo "|   CHECK SYMBOLS     |"
+echo "+---------------------+"
+
+util/symbolcheck repo/libft.a libft/expected_funs libft/expected_refs
+
+echo "+-------------------+"
+echo "|   COMPILE TESTS   |"
+echo "+-------------------+"
+
+make -s  -C libft/ all clean
+if [ $? -ne 0 ]
+then
+	../util/printtitle "${red}Errors while compiling tests${nocolor}"
+	exit 1
+else
+	echo -e "${green}Tests compiled successfully!${nocolor}"
+fi
+
+echo "+-----------+"
+echo "|   TESTS   |"
+echo "+-----------+"
+
+libft/bin/test
+if [ $? -ne 0 ]
+then
+	status=1
+fi
+
+make -s -C libft/ fclean
+
+if [ $(util/bonuscheck) == yes ]
+then
+	echo "+-----------------------+"
+	echo "|   libft: BONUS PART   |"
+	echo "+-----------------------+"
+
+	echo "+---------------------+"
+	echo "|   COMPILE LIBRARY   |"
+	echo "+---------------------+"
+
+	make -s -C repo/ bonus clean
+	if [ $? -ne 0 ]
+	then
+		../util/printtitle "${red}Compilation errors were found${nocolor}"
+		exit 1
+	else
+		echo -e "${green}Library compiled successfully!${nocolor}"
+	fi
+
+	echo "+---------------------+"
+	echo "|   CHECK SYMBOLS     |"
+	echo "+---------------------+"
+
+	util/symbolcheck repo/libft.a libft/expected_funs_bonus libft/expected_refs
+else
+	echo "${green}Bonus part not found!${nocolor}"
 fi

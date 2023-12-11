@@ -1,0 +1,15 @@
+#!/bin/bash
+
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
+
+norminette=$(norminette repo/ | grep -v ': OK!$')
+if [ $? -ne 0 ]
+then
+	echo -e "${green}No norminette errors!${nocolor}"
+	exit 0
+else
+	echo -e "${red}${norminette}${nocolor}"
+	exit 1
+fi
