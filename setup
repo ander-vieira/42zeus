@@ -23,14 +23,14 @@ make -s -C ~/42zeus
 echo "Adding alias for zeus command"
 if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
-	echo "alias zeus=/$HOME/42zeus/zeus" >> ~/.bashrc
+	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.bashrc
 	echo "Alias added successfully (bash)"
 else
 	echo "Alias already exists (bash)"
 fi
 if [ ! -e ~/.zshrc ] || [ $(cat ~/.zshrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
-	echo "alias zeus=/$HOME/42zeus/zeus" >> ~/.zshrc
+	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.zshrc
 	echo "Alias added successfully (zsh)"
 else
 	echo "Alias already exists (zsh)"
