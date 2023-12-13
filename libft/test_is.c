@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:15:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/11 17:43:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:14:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,21 @@ void	test_isalnum(void)
 void	test_isascii_isprint(void)
 {
 	print_title("isascii");
-	print_test("1", ft_isascii('5'), TRUE);
+	print_test("1", ft_isascii('0'), FALSE);
+	print_test("2", ft_isascii(0x00), FALSE);
+	print_test("3", ft_isascii(0x7F), FALSE);
+	print_test("4", !ft_isascii(0x80), FALSE);
+	print_test("5", !ft_isascii(0x100), TRUE);
 	print_title("isprint");
-	print_test("1", ft_isprint('5'), TRUE);
+	print_test("1", !ft_isprint(0), FALSE);
+	print_test("2", !ft_isprint('\n'), FALSE);
+	print_test("3", ft_isprint(' '), FALSE);
+	print_test("4", ft_isprint('5'), FALSE);
+	print_test("5", ft_isprint('A'), FALSE);
+	print_test("6", ft_isprint('a'), FALSE);
+	print_test("7", ft_isprint('~'), FALSE);
+	print_test("8", !ft_isprint(0x7F), FALSE);
+	print_test("9", !ft_isprint(0x100), TRUE);
 }
 
 void	test_is(void)

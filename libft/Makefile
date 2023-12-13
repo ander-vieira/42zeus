@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/11 17:49:13 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/13 14:18:36 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = bin/test
 LIBFT = bin/libft.a
 TESTUTILS = ../util/bin/testutils.a
 
-SRCS = test.c test_is.c
+SRCS = test.c test_is.c test_to.c
 HDRS = test.h
 OBJS = $(SRCS:.c=.o)
 
