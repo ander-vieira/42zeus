@@ -2,13 +2,16 @@
 
 red="\033[0;31m"
 green="\033[0;32m"
+blue="\033[1;36m"
 nocolor="\033[0m"
 
 status=0
 
+echo -en "${blue}"
 echo "+---------------------------+"
 echo "|   libft: MANDATORY PART   |"
 echo "+---------------------------+"
+echo -en "${nocolor}"
 
 echo "+----------------+"
 echo "|   NORMINETTE   |"
@@ -66,13 +69,15 @@ make -s -C libft/ fclean
 
 if [ $(util/bonuscheck) == yes ]
 then
+	echo -en "${blue}"
 	echo "+-----------------------+"
 	echo "|   libft: BONUS PART   |"
 	echo "+-----------------------+"
+	echo -en "${nocolor}"
 
-	echo "+---------------------+"
-	echo "|   COMPILE LIBRARY   |"
-	echo "+---------------------+"
+	echo "+-----------------------------+"
+	echo "|   COMPILE LIBRARY (BONUS)   |"
+	echo "+-----------------------------+"
 
 	make -s -C repo/ bonus clean
 	if [ $? -ne 0 ]
@@ -83,11 +88,36 @@ then
 		echo -e "${green}Library compiled successfully!${nocolor}"
 	fi
 
-	echo "+---------------------+"
-	echo "|   CHECK SYMBOLS     |"
-	echo "+---------------------+"
+	echo "+-----------------------------+"
+	echo "|   CHECK SYMBOLS (BONUS)     |"
+	echo "+-----------------------------+"
 
 	util/symbolcheck repo/libft.a libft/expected_funs_bonus libft/expected_refs
+
+	echo "+---------------------------+"
+	echo "|   COMPILE TESTS (BONUS)   |"
+	echo "+---------------------------+"
+
+	make -s  -C libft/ bonus clean
+	if [ $? -ne 0 ]
+	then
+		../util/printtitle "${red}Errors while compiling tests${nocolor}"
+		exit 1
+	else
+		echo -e "${green}Tests compiled successfully!${nocolor}"
+	fi
+
+	echo "+-------------------+"
+	echo "|   TESTS (BONUS)   |"
+	echo "+-------------------+"
+
+	libft/bin/test_bonus
+	if [ $? -ne 0 ]
+	then
+		status=1
+	fi
+
+	make -s -C libft/ fclean
 else
 	echo "${green}Bonus part not found!${nocolor}"
 fi

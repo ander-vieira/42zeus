@@ -2,6 +2,7 @@
 
 red="\033[0;31m"
 green="\033[0;32m"
+blue="\033[1;36m"
 nocolor="\033[0m"
 
 # Check the testable directory is passed
@@ -11,9 +12,11 @@ then
 	exit 1
 fi
 
+echo -en "${blue}"
 echo "+------------+"
 echo "|   42ZEUS   |"
 echo "+------------+"
+echo -en "${nocolor}"
 
 if [ ! -d $1 ]
 then
