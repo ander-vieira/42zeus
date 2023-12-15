@@ -2,7 +2,7 @@
 
 if [ -f repo/Makefile ]
 then
-	if [ $(cat repo/Makefile | grep "bonus\s*:" | wc -l) -eq 1 ]
+	if [ $(cat repo/Makefile | grep '^bonus\s*:' | wc -l) -ge 1 ]
 	then
 		echo yes
 		exit
