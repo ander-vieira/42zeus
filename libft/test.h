@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/15 17:40:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/15 17:44:25 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int num, int fd);
 void	ft_putstr_fd(char *str, int fd);
 
+int		ft_atoi(const char *str);
+
 void	test_is(void);
 void	test_to(void);
 void	test_mem(void);
 void	test_put(void);
+void	test_atoi(void);
 
 #endif
