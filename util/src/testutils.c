@@ -6,13 +6,20 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/11 17:36:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/16 11:53:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testutils.h"
 
-t_uint	g_failed = 0;
+static t_uint	failed_count(t_bool add)
+{
+	static t_uint	count;
+
+	if (add)
+		count++;
+	return (count);
+}
 
 void	print_title(char *title)
 {
@@ -27,7 +34,7 @@ void	print_test(char *text, t_bool ok, t_bool last)
 	else
 	{
 		printf(COLOR_RED"KO"COLOR_NONE);
-		g_failed++;
+		failed_count(TRUE);
 	}
 	printf("]");
 	if (last)
@@ -39,7 +46,7 @@ void	print_test(char *text, t_bool ok, t_bool last)
 int	print_all_tests(void)
 {
 	printf("--- FINAL RESULT ---\n");
-	if (g_failed == 0)
+	if (failed_count(FALSE) == 0)
 	{
 		printf(COLOR_GREEN"All tests OK!\n"COLOR_NONE);
 		return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/15 17:44:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/16 11:50:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <string.h>
 
 # include "../util/src/testutils.h"
+
+# ifdef TEST_EVAL
+#  include "../repo/libft.h"
+# else
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -40,6 +44,8 @@ void	ft_putnbr_fd(int num, int fd);
 void	ft_putstr_fd(char *str, int fd);
 
 int		ft_atoi(const char *str);
+
+# endif
 
 void	test_is(void);
 void	test_to(void);

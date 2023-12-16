@@ -6,11 +6,11 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/15 17:56:19 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/16 11:45:55 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -D TEST_EVAL
 
 LIBFT = bin/libft.a
 TESTUTILS = ../util/bin/testutils.a
