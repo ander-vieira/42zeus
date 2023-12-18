@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:25:29 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 12:58:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:11:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-int	test_calloc_child1(void *ctx)
+static int	test_calloc_child1(void *ctx)
 {
 	char	*buf;
 

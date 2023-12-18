@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 11:50:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:11:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_bzero_memset(void)
+static void	test_bzero_memset(void)
 {
 	char	buf[5];
 
@@ -26,7 +26,7 @@ void	test_bzero_memset(void)
 	print_test("4", !memcmp(buf, "55555", 5), TRUE);
 }
 
-void	test_memcpy_memmove(void)
+static void	test_memcpy_memmove(void)
 {
 	char	buf[5];
 
@@ -42,7 +42,7 @@ void	test_memcpy_memmove(void)
 	print_test("6", !memcmp(buf, "DFDF ", 5), TRUE);
 }
 
-void	test_memchr(void)
+static void	test_memchr(void)
 {
 	char	buf[11];
 
@@ -57,7 +57,7 @@ void	test_memchr(void)
 	print_test("7", memchr(buf, '\0', 11) == buf + 10, TRUE);
 }
 
-void	test_memcmp(void)
+static void	test_memcmp(void)
 {
 	print_title("memcmp");
 	print_test("1", !ft_memcmp("HOLA MUNDO", "HOLA MUNDO", 10), FALSE);

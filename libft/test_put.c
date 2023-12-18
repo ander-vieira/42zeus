@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 11:50:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:12:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_putchar_fd(void)
+static void	test_putchar_fd(void)
 {
 	int		fd[2];
 	char	c;
@@ -32,7 +32,7 @@ void	test_putchar_fd(void)
 	close(fd[1]);
 }
 
-void	test_putstr_fd(void)
+static void	test_putstr_fd(void)
 {
 	int		fd[2];
 	char	str[11];
@@ -49,7 +49,7 @@ void	test_putstr_fd(void)
 	close(fd[1]);
 }
 
-void	test_putendl_fd(void)
+static void	test_putendl_fd(void)
 {
 	int		fd[2];
 	char	str[11];
@@ -66,7 +66,7 @@ void	test_putendl_fd(void)
 	close(fd[1]);
 }
 
-void	test_putnbr_fd(void)
+static void	test_putnbr_fd(void)
 {
 	int		fd[2];
 	char	str[11];

@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:15:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/13 14:14:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:12:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_isalpha(void)
+static void	test_isalpha(void)
 {
 	print_title("isalpha");
 	print_test("1", ft_isalpha('a'), FALSE);
@@ -23,7 +23,7 @@ void	test_isalpha(void)
 	print_test("6", !ft_isalpha(127), TRUE);
 }
 
-void	test_isdigit(void)
+static void	test_isdigit(void)
 {
 	print_title("isdigit");
 	print_test("1", ft_isdigit('5'), FALSE);
@@ -32,7 +32,7 @@ void	test_isdigit(void)
 	print_test("4", !ft_isdigit(5), TRUE);
 }
 
-void	test_isalnum(void)
+static void	test_isalnum(void)
 {
 	print_title("isalnum");
 	print_test("1", ft_isalnum('5'), FALSE);
@@ -42,7 +42,7 @@ void	test_isalnum(void)
 	print_test("5", !ft_isalnum(5), TRUE);
 }
 
-void	test_isascii_isprint(void)
+static void	test_isascii_isprint(void)
 {
 	print_title("isascii");
 	print_test("1", ft_isascii('0'), FALSE);

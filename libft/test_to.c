@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:14:57 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 11:50:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:12:35 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_tolower(void)
+static void	test_tolower(void)
 {
 	print_title("tolower");
 	print_test("1", ft_tolower('\0') == '\0', FALSE);
@@ -24,7 +24,7 @@ void	test_tolower(void)
 	print_test("7", ft_tolower(0x80) == 0x80, TRUE);
 }
 
-void	test_toupper(void)
+static void	test_toupper(void)
 {
 	print_title("toupper");
 	print_test("1", ft_toupper('\0') == '\0', FALSE);
