@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:19:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:32:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	test_strdup(void)
 static void	test_strlcpy(void)
 {
 	char	buf[10];
-	
+
 	print_title("strlcpy");
 	print_test("1", ft_strlcat(buf, "HOLA", 10) == 4, FALSE);
 	print_test("2", !strcmp(buf, "HOLA"), FALSE);
@@ -41,7 +41,7 @@ static void	test_strlcpy(void)
 static void	test_strlcat(void)
 {
 	char	buf[10];
-	
+
 	print_title("strlcat");
 	strcpy(buf, "");
 	print_test("1", ft_strlcat(buf, "HOLA", 10) == 4, FALSE);
