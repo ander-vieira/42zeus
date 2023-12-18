@@ -8,29 +8,33 @@ library=$1
 expected_funs=$2
 expected_refs=$3
 
-list_funs_1=$(nm $library | grep " T " | awk '{print $3}' | sort -u)
-list_refs_1=$(nm $library | grep " U " | awk '{print $2}' | sort -u)
-list_globals_1=$(nm $library | grep -e " C " -e " D " | awk '{print $3}' | sort -u)
+symbols=$(nm --demangle $library)
 
-list_funs_2=$(util/bin/filter_list - "$list_funs_1" "$(cat $expected_funs)")
+list_funs_1=$(echo -n "$symbols" | grep " T " | awk '{print $3}' | sort -u)
+list_refs_1=$(echo -n "$symbols" | grep " U " | awk '{print $2}' | sort -u)
+list_globals_1=$(echo -n "$symbols" | grep -e " C " -e " D " | awk '{print $3}' | sort -u)
+
+list_funs_2=$(util/bin/filter_list - "$(cat $expected_funs)" "$list_funs_1" )
 
 list_refs_2=$(util/bin/filter_list - "$list_refs_1" "$list_funs_1")
 list_refs_3=$(util/bin/filter_list - "$list_refs_2" "$(cat $expected_refs)")
 
 if [ $(echo "$list_funs_2" | wc -w) -eq 0 ]
 then
-	echo -e "${green}All non-static functions OK!${nocolor}"
+	echo -e "${green}All required functions found!${nocolor}"
 else
-	echo -e "${yellow}Unexpected non-static functions:${nocolor}"
+	echo -e "${yellow}Missing functions:"
 	echo "$list_funs_2"
+	echo -e "${nocolor}"
 fi
 
 if [ $(echo "$list_refs_3" | wc -w) -eq 0 ]
 then
-	echo -e "${green}All references to external functions OK!${nocolor}"
+	echo -e "${green}No forbidden functions!${nocolor}"
 else
-	echo -e "${yellow}Possible forbidden functions:${nocolor}"
+	echo -e "${yellow}Possible forbidden functions:"
 	echo "$list_refs_3"
+	echo -e "${nocolor}"
 fi
 
 if [ $(echo "$list_globals_1" | wc -w) -eq 0 ]

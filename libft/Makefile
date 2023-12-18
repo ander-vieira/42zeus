@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/18 17:44:30 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/18 21:15:11 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: util $(NAME)
 
-$(NAME): $(LIBFT) $(TESTUTILS) $(OBJS)
+$(NAME): libft $(TESTUTILS) $(OBJS)
 	ar rcs $(LIBFT) $(OBJS)
 	gcc $(CFLAGS) $(LIBFT) $(TESTUTILS) -o $(NAME)
 
@@ -37,15 +37,15 @@ $(OBJS): $(SRCS) $(HDRS)
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): $(LIBFT) $(TESTUTILS) $(OBJS_BONUS)
+$(NAME_BONUS): libft $(TESTUTILS) $(OBJS_BONUS)
 	ar rcs $(LIBFT) $(OBJS_BONUS)
 	gcc $(CFLAGS) $(LIBFT) $(TESTUTILS) -o $(NAME_BONUS)
 
 $(OBJS_BONUS): $(SRCS_BONUS) $(HDRS)
 	gcc $(CFLAGS) -c $(SRCS_BONUS)
 
-$(LIBFT):
-	mkdir bin/
+libft:
+	mkdir -p bin/
 	cp -f ../repo/libft.a bin/
 
 util:
@@ -60,4 +60,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all libft util clean fclean re

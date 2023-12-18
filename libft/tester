@@ -31,6 +31,7 @@ make -s -C repo/ all clean
 if [ $? -ne 0 ]
 then
 	../util/printtitle "${red}Errors while compiling the library${nocolor}"
+	make -s -C repo/ fclean
 	exit 1
 else
 	echo -e "${green}Library compiled successfully!${nocolor}"
