@@ -5,18 +5,19 @@ green="\033[0;32m"
 blue="\033[1;36m"
 nocolor="\033[0m"
 
-# Check the testable directory is passed
-if [ $# -ne 1 ]
-then
-	echo "Usage: $(basename $0) <directory>"
-	exit 1
-fi
-
 echo -en "${blue}"
 echo "+------------+"
 echo "|   42ZEUS   |"
 echo "+------------+"
 echo -en "${nocolor}"
+
+# Check the testable directory is passed
+if [ $# -ne 1 ]
+then
+	echo "Version $(cat $(dirname $0)/version.txt)"
+	echo "Usage: $(basename $0) <directory>"
+	exit 1
+fi
 
 if [ ! -d $1 ]
 then

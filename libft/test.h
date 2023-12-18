@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 11:50:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:27:26 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,23 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *str, int fd);
 void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int num, int fd);
-void	ft_putstr_fd(char *str, int fd);
 
 int		ft_atoi(const char *str);
+
+void	*ft_calloc(size_t count, size_t size);
+
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *str, int c);
+char	*ft_strrchr(const char *str, int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+char	*ft_strdup(const char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_strnstr(const char *h, const char *n, size_t len);
 
 # endif
 
@@ -52,5 +64,6 @@ void	test_to(void);
 void	test_mem(void);
 void	test_put(void);
 void	test_atoi(void);
+void	test_calloc(void);
 
 #endif
