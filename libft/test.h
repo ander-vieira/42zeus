@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 12:27:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:25:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@ void	test_mem(void);
 void	test_put(void);
 void	test_atoi(void);
 void	test_calloc(void);
+void	test_str1(void);
+void	test_str2(void);
 
 #endif
