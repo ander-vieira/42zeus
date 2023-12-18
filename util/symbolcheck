@@ -10,6 +10,7 @@ expected_refs=$3
 
 list_funs_1=$(nm $library | grep " T " | awk '{print $3}' | sort -u)
 list_refs_1=$(nm $library | grep " U " | awk '{print $2}' | sort -u)
+list_globals_1=$(nm $library | grep -e " C " -e " D " | awk '{print $3}' | sort -u)
 
 list_funs_2=$(util/bin/filter_list - "$list_funs_1" "$(cat $expected_funs)")
 
@@ -30,4 +31,13 @@ then
 else
 	echo -e "${yellow}Possible forbidden functions:${nocolor}"
 	echo "$list_refs_3"
+fi
+
+if [ $(echo "$list_globals_1" | wc -w) -eq 0 ]
+then
+	echo -e "${green}No global variables!${nocolor}"
+else
+	echo -e "${yellow}Global variables used:"
+	echo "$list_globals_1"
+	echo -e "${nocolor}"
 fi
