@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/18 13:25:57 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/18 15:48:01 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ TESTUTILS = ../util/bin/testutils.a
 
 NAME = bin/test
 SRCS = test.c test_is.c test_to.c test_mem.c test_put.c test_atoi.c \
-test_calloc.c test_str1.c test_str2.c
+test_calloc.c test_str1.c test_str2.c test_itoa.c
 HDRS = test.h
 OBJS = $(SRCS:.c=.o)
 
