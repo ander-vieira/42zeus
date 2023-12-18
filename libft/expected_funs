@@ -24,7 +24,6 @@ ft_strjoin
 ft_strlcat
 ft_strlcpy
 ft_strlen
-ft_strlen_null
 ft_strmapi
 ft_strncmp
 ft_strnstr

@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/18 21:15:11 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/18 21:49:02 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ HDRS = test.h
 OBJS = $(SRCS:.c=.o)
 
 NAME_BONUS = bin/test_bonus
-SRCS_BONUS = test_bonus.c
+SRCS_BONUS = test_bonus.c test_bonus2.c test_bonus3.c
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: util $(NAME)
