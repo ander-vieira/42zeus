@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:24:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:44:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*ft_strtrim(char const *s, char const *set);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
+char	**ft_split(char const *str, char c);
 
 # endif
 
@@ -75,5 +76,6 @@ void	test_str2(void);
 void	test_str3(void);
 void	test_str4(void);
 void	test_itoa(void);
+void	test_split(void);
 
 #endif

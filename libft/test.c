@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:14:59 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:24:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:44:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(void)
 	test_str3();
 	test_str4();
 	test_itoa();
+	test_split();
 	return (print_all_tests());
 }
