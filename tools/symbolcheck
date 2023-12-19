@@ -14,10 +14,10 @@ list_funs_1=$(echo -n "$symbols" | grep " T " | awk '{print $3}' | sort -u)
 list_refs_1=$(echo -n "$symbols" | grep " U " | awk '{print $2}' | sort -u)
 list_globals_1=$(echo -n "$symbols" | grep -e " C " -e " D " | awk '{print $3}' | sort -u)
 
-list_funs_2=$(util/bin/filter_list - "$(cat $expected_funs)" "$list_funs_1" )
+list_funs_2=$(tools/filterlist.out - "$(cat $expected_funs)" "$list_funs_1" )
 
-list_refs_2=$(util/bin/filter_list - "$list_refs_1" "$list_funs_1")
-list_refs_3=$(util/bin/filter_list - "$list_refs_2" "$(cat $expected_refs)")
+list_refs_2=$(tools/filterlist.out - "$list_refs_1" "$list_funs_1")
+list_refs_3=$(tools/filterlist.out - "$list_refs_2" "$(cat $expected_refs)")
 
 if [ $(echo "$list_funs_2" | wc -w) -eq 0 ]
 then

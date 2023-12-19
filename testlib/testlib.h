@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testutils.h                                        :+:      :+:    :+:   */
+/*   testlib.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 13:45:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/19 01:23:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTUTILS_H
-# define TESTUTILS_H
+#ifndef TESTLIB_H
+# define TESTLIB_H
 
 # include <stdlib.h>
 # include <stdio.h>

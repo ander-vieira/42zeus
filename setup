@@ -17,7 +17,7 @@ git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
 
 # Build binaries
 echo "Building necessary binaries"
-make -s -C ~/42zeus
+make -s -C ~/42zeus/tools
 
 # Add aliases
 echo "Adding alias for zeus command"

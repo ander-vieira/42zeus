@@ -1,4 +1,5 @@
 .vscode
 repo/
-libft/bin/
-util/bin/
+*.o
+*.a
+*.out

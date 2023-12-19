@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:44:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/19 01:27:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <unistd.h>
 # include <string.h>
 
-# include "../util/src/testutils.h"
+# include "../../testlib/testlib.h"
 
 # ifdef TEST_EVAL
-#  include "../repo/libft.h"
+#  include "../../repo/libft.h"
 # else
 
 int		ft_isalnum(int c);

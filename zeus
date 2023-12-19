@@ -39,7 +39,7 @@ cp -R $1 $(dirname $0)/repo/
 
 cd $(dirname $0)
 
-project=$(util/detectproject)
+project=$(tools/detectproject)
 
 if [ $project != none ]
 then

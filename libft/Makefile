@@ -6,58 +6,58 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/18 21:49:02 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/19 01:28:49 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra -D TEST_EVAL
 
-LIBFT = bin/libft.a
-TESTUTILS = ../util/bin/testutils.a
+TESTLIB = ../testlib/testlib.a
+LIBFT = libft.a
 
-NAME = bin/test
-SRCS = test.c test_is.c test_to.c test_mem.c test_put.c test_atoi.c \
-test_calloc.c test_str1.c test_str2.c test_str3.c test_str4.c \
-test_itoa.c test_split.c
-HDRS = test.h
-OBJS = $(SRCS:.c=.o)
+NAME = test.out
+SRCS = src/test.c src/test_is.c src/test_to.c src/test_mem.c src/test_put.c \
+src/test_atoi.c src/test_calloc.c src/test_str1.c src/test_str2.c \
+src/test_str3.c src/test_str4.c src/test_itoa.c src/test_split.c
+HDRS = src/test.h
+OBJS = $(patsubst %.c,%.o,$(notdir $(SRCS)))
 
-NAME_BONUS = bin/test_bonus
-SRCS_BONUS = test_bonus.c test_bonus2.c test_bonus3.c
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+NAME_BONUS = test_bonus.out
+SRCS_BONUS = src_bonus/test_bonus.c src_bonus/test_bonus2.c \
+src_bonus/test_bonus3.c
+HDRS_BONUS = src_bonus/test_bonus.h
+OBJS_BONUS = $(patsubst %.c,%.o,$(notdir $(SRCS_BONUS)))
 
-all: util $(NAME)
+all: $(NAME)
 
-$(NAME): libft $(TESTUTILS) $(OBJS)
+$(NAME): testlib libft $(OBJS)
 	ar rcs $(LIBFT) $(OBJS)
-	gcc $(CFLAGS) $(LIBFT) $(TESTUTILS) -o $(NAME)
+	gcc $(CFLAGS) $(LIBFT) $(TESTLIB) -o $(NAME)
 
 $(OBJS): $(SRCS) $(HDRS)
 	gcc $(CFLAGS) -c $(SRCS)
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): libft $(TESTUTILS) $(OBJS_BONUS)
+$(NAME_BONUS): testlib libft $(OBJS_BONUS)
 	ar rcs $(LIBFT) $(OBJS_BONUS)
-	gcc $(CFLAGS) $(LIBFT) $(TESTUTILS) -o $(NAME_BONUS)
+	gcc $(CFLAGS) $(LIBFT) $(TESTLIB) -o $(NAME_BONUS)
 
-$(OBJS_BONUS): $(SRCS_BONUS) $(HDRS)
+$(OBJS_BONUS): $(SRCS_BONUS) $(HDRS_BONUS)
 	gcc $(CFLAGS) -c $(SRCS_BONUS)
 
-libft:
-	mkdir -p bin/
-	cp -f ../repo/libft.a bin/
+testlib:
+	make -C ../testlib all clean
 
-util:
-	make -C ../util all
+libft:
+	cp -f ../repo/libft.a libft.a
 
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS) $(LIBFT)
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
-	rmdir bin/
 
 re: fclean all
 
-.PHONY: all libft util clean fclean re
+.PHONY: all testlib libft clean fclean re

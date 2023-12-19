@@ -5,22 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/18 14:19:30 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/11 17:32:20 by andeviei         ###   ########.fr        #
+#    Created: 2023/12/19 01:09:18 by andeviei          #+#    #+#              #
+#    Updated: 2023/12/19 01:10:07 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all: bin/filter_list bin/testutils.a
+all: filterlist.out
 
-bin/filter_list: bin/ src/filter_list.c
-	gcc src/filter_list.c -o bin/filter_list
-
-bin/testutils.a: src/testutils.c src/testutils.h
-	gcc -c src/testutils.c
-	ar rcs bin/testutils.a testutils.o
-	rm -f testutils.o
-
-bin/:
-	mkdir bin/
+filterlist.out: src/filterlist.c
+	gcc src/filterlist.c -o filterlist.out
 
 .PHONY: all
