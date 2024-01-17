@@ -6,7 +6,7 @@ To install, use this command:
 
 Once installed, you will need to start a new terminal process to be able to use the "zeus" command.
 
-Usage: "zeus \<directory\>" command will test the directory passed by the argument, as a relative or absolute path. For example, to test the current directory, you can use:
+Usage: "zeus \<directory\>" will test the directory passed by the argument, as a relative or absolute path. For example, to test the current directory, you can use:
 
 	zeus .
 
