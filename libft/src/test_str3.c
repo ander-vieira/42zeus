@@ -6,17 +6,21 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:38:54 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:31:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:45:29 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+		__attribute__((weak));
+char	*ft_strjoin(char const *s1, char const *s2) __attribute__((weak));
+char	*ft_strtrim(char const *s, char const *set) __attribute__((weak));
+
 static void	test_substr(void)
 {
 	char	*str;
 
-	print_title("substr");
 	str = ft_substr("HOLA MUNDO", 0, 4);
 	print_test("1", !strncmp(str, "HOLA", 5), FALSE);
 	free(str);
@@ -35,7 +39,6 @@ static void	test_strjoin(void)
 {
 	char	*str;
 
-	print_title("strjoin");
 	str = ft_strjoin("HOLA", "MUNDO");
 	print_test("1", !strcmp(str, "HOLAMUNDO"), FALSE);
 	free(str);
@@ -54,7 +57,6 @@ static void	test_strtrim(void)
 {
 	char	*str;
 
-	print_title("strtrim");
 	str = ft_strtrim("HOLA MUNDO", " ");
 	print_test("1", !strcmp(str, "HOLA MUNDO"), FALSE);
 	free(str);
@@ -77,7 +79,7 @@ static void	test_strtrim(void)
 
 void	test_str3(void)
 {
-	test_substr();
-	test_strjoin();
-	test_strtrim();
+	test_if_exists(&test_substr, &ft_substr, "substr");
+	test_if_exists(&test_strjoin, &ft_strjoin, "strjoin");
+	test_if_exists(&test_strtrim, &ft_strtrim, "strtrim");
 }

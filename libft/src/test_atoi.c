@@ -6,15 +6,16 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/16 11:54:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:31:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_atoi(void)
+int		ft_atoi(const char *str) __attribute__((weak));
+
+static void	test_atoi1(void)
 {
-	print_title("atoi");
 	print_test("1", ft_atoi("53") == 53, FALSE);
 	print_test("2", ft_atoi("-417") == -417, FALSE);
 	print_test("3", ft_atoi("0") == 0, FALSE);
@@ -37,4 +38,9 @@ void	test_atoi(void)
 	print_test("20", ft_atoi("+-69") == 0, FALSE);
 	print_test("21", ft_atoi("-+69") == 0, FALSE);
 	print_test("22", ft_atoi("   -+69") == 0, TRUE);
+}
+
+void	test_atoi(void)
+{
+	test_if_exists(&test_atoi1, &ft_atoi, "atoi");
 }

@@ -6,18 +6,19 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:50:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:57:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	test_split(void)
+char	**ft_split(char const *str, char c) __attribute__((weak));
+
+static void	test_split1(void)
 {
 	char	**split;
 	size_t	i;
 
-	print_title("split");
 	split = ft_split(" HOLA MUNDO SOY  ANDER  ", ' ');
 	print_test("1", split != NULL, FALSE);
 	print_test("2", split[0] != NULL && !strcmp(split[0], "HOLA"), FALSE);
@@ -32,4 +33,9 @@ void	test_split(void)
 		i++;
 	}
 	free(split);
+}
+
+void	test_split(void)
+{
+	test_if_exists(&test_split1, &ft_split, "split");
 }

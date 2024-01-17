@@ -6,18 +6,22 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 13:12:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:54:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+
+void	ft_putchar_fd(char c, int fd) __attribute__((weak));
+void	ft_putstr_fd(char *str, int fd) __attribute__((weak));
+void	ft_putendl_fd(char *str, int fd) __attribute__((weak));
+void	ft_putnbr_fd(int num, int fd) __attribute__((weak));
 
 static void	test_putchar_fd(void)
 {
 	int		fd[2];
 	char	c;
 
-	print_title("putchar_fd");
 	pipe(fd);
 	ft_putchar_fd('5', fd[1]);
 	print_test("1", read(fd[0], &c, 1) == 1, FALSE);
@@ -37,7 +41,6 @@ static void	test_putstr_fd(void)
 	int		fd[2];
 	char	str[11];
 
-	print_title("putstr_fd");
 	pipe(fd);
 	ft_putstr_fd("HOLA MUNDO", fd[1]);
 	print_test("1", read(fd[0], str, 10) == 10, FALSE);
@@ -54,7 +57,6 @@ static void	test_putendl_fd(void)
 	int		fd[2];
 	char	str[11];
 
-	print_title("putendl_fd");
 	pipe(fd);
 	ft_putendl_fd("HOLA MUNDO", fd[1]);
 	print_test("1", read(fd[0], str, 11) == 11, FALSE);
@@ -71,7 +73,6 @@ static void	test_putnbr_fd(void)
 	int		fd[2];
 	char	str[11];
 
-	print_title("putnbr_fd");
 	pipe(fd);
 	ft_putnbr_fd(53, fd[1]);
 	print_test("1", read(fd[0], str, 2) == 2, FALSE);
@@ -94,8 +95,8 @@ static void	test_putnbr_fd(void)
 
 void	test_put(void)
 {
-	test_putchar_fd();
-	test_putstr_fd();
-	test_putendl_fd();
-	test_putnbr_fd();
+	test_if_exists(&test_putchar_fd, &ft_putchar_fd, "putchar_fd");
+	test_if_exists(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
+	test_if_exists(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
+	test_if_exists(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
 }

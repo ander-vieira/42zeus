@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/19 01:27:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:36:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ char	**ft_split(char const *str, char c);
 
 # endif
 
-void	test_is(void);
+void	test_is1(void);
+void	test_is2(void);
 void	test_to(void);
-void	test_mem(void);
+void	test_mem1(void);
+void	test_mem2(void);
 void	test_put(void);
 void	test_atoi(void);
 void	test_calloc(void);

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/19 01:22:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:07:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,16 @@ static t_uint	failed_count(t_bool add)
 	return (count);
 }
 
-int	run_in_process(int (*fun)(void *), void *ctx)
-{
-	pid_t	pid;
-	int		status;
-	int		fd;
-
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	else if (pid == 0)
-	{
-		fd = open("/dev/null", O_RDONLY);
-		dup2(fd, STDOUT_FILENO);
-		dup2(fd, STDERR_FILENO);
-		close(fd);
-		exit(fun(ctx));
-	}
-	waitpid(pid, &status, 0);
-	return (status);
-}
-
-void	print_title(char *title)
+void	test_if_exists(void (*test)(void), void *fun, char *title)
 {
 	printf("%s: ", title);
+	if (fun != NULL)
+		test();
+	else
+	{
+		printf("["COLOR_RED"MISSING"COLOR_NONE"]\n");
+		failed_count(TRUE);
+	}
 }
 
 void	print_test(char *text, t_bool ok, t_bool last)

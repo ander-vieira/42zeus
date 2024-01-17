@@ -6,17 +6,24 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 17:32:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:49:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
+char	*ft_strdup(const char *str) __attribute__((weak));
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+		__attribute__((weak));
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+		__attribute__((weak));
+char	*ft_strnstr(const char *h, const char *n, size_t len)
+		__attribute__((weak));
+
 static void	test_strdup(void)
 {
 	char	*str;
 
-	print_title("strdup");
 	str = ft_strdup("HOLA");
 	print_test("1", !strcmp(str, "HOLA"), FALSE);
 	free(str);
@@ -29,7 +36,6 @@ static void	test_strlcpy(void)
 {
 	char	buf[10];
 
-	print_title("strlcpy");
 	print_test("1", ft_strlcat(buf, "HOLA", 10) == 4, FALSE);
 	print_test("2", !strcmp(buf, "HOLA"), FALSE);
 	print_test("3", ft_strlcpy(buf, "HOLA MUNDO", 10) == 10, FALSE);
@@ -42,7 +48,6 @@ static void	test_strlcat(void)
 {
 	char	buf[10];
 
-	print_title("strlcat");
 	strcpy(buf, "");
 	print_test("1", ft_strlcat(buf, "HOLA", 10) == 4, FALSE);
 	print_test("2", !strcmp(buf, "HOLA"), FALSE);
@@ -62,7 +67,6 @@ static void	test_strnstr(void)
 {
 	char	*str;
 
-	print_title("strnstr");
 	str = "HOLA MUNDO";
 	print_test("1", ft_strnstr(str, "HOLA", 10) == str, FALSE);
 	print_test("2", ft_strnstr(str, "MUN", 10) == str + 5, FALSE);
@@ -75,8 +79,8 @@ static void	test_strnstr(void)
 
 void	test_str2(void)
 {
-	test_strdup();
-	test_strlcpy();
-	test_strlcat();
-	test_strnstr();
+	test_if_exists(&test_strdup, &ft_strdup, "strdup");
+	test_if_exists(&test_strlcpy, &ft_strlcpy, "strlcpy");
+	test_if_exists(&test_strlcat, &ft_strlcat, "strlcat");
+	test_if_exists(&test_strnstr, &ft_strnstr, "strnstr");
 }

@@ -6,11 +6,15 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:49:33 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 21:58:01 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 17:06:26 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
+
+void	ft_lstiter(t_list *lst, void (*fun)(void *)) __attribute__((weak));
+t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *))
+		__attribute__((weak));
 
 static void	iter(void *content)
 {
@@ -28,7 +32,6 @@ static void	test_lstiter(void)
 	char	c2;
 	t_list	*l;
 
-	print_title("lstiter");
 	c1 = 'a';
 	c2 = 'a';
 	l = ft_lstnew(&c1);
@@ -47,7 +50,6 @@ static void	test_lstmap(void)
 	t_list	*l1;
 	t_list	*l2;
 
-	print_title("lstmap");
 	c1 = 'a';
 	c2 = 'a';
 	l1 = ft_lstnew(&c1);
@@ -65,6 +67,6 @@ static void	test_lstmap(void)
 
 void	test_bonus3(void)
 {
-	test_lstiter();
-	test_lstmap();
+	test_if_exists(&test_lstiter, &ft_lstiter, "lstiter");
+	test_if_exists(&test_lstmap, &ft_lstmap, "lstmap");
 }

@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/19 01:28:49 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/17 16:36:34 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ TESTLIB = ../testlib/testlib.a
 LIBFT = libft.a
 
 NAME = test.out
-SRCS = src/test.c src/test_is.c src/test_to.c src/test_mem.c src/test_put.c \
-src/test_atoi.c src/test_calloc.c src/test_str1.c src/test_str2.c \
-src/test_str3.c src/test_str4.c src/test_itoa.c src/test_split.c
+SRCS = src/test.c src/test_is1.c src/test_is2.c src/test_to.c src/test_mem1.c \
+src/test_mem2.c src/test_put.c src/test_atoi.c src/test_calloc.c \
+src/test_str1.c src/test_str2.c src/test_str3.c src/test_str4.c \
+src/test_itoa.c src/test_split.c
 HDRS = src/test.h
 OBJS = $(patsubst %.c,%.o,$(notdir $(SRCS)))
 
@@ -32,7 +33,7 @@ all: $(NAME)
 
 $(NAME): testlib libft $(OBJS)
 	ar rcs $(LIBFT) $(OBJS)
-	gcc $(CFLAGS) $(LIBFT) $(TESTLIB) -o $(NAME)
+	gcc $(CFLAGS) -undefined dynamic_lookup $(LIBFT) $(TESTLIB) -o $(NAME)
 
 $(OBJS): $(SRCS) $(HDRS)
 	gcc $(CFLAGS) -c $(SRCS)

@@ -1,53 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_mem.c                                         :+:      :+:    :+:   */
+/*   test_mem2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/18 13:11:53 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/17 16:45:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_bzero_memset(void)
-{
-	char	buf[5];
-
-	print_title("bzero");
-	ft_bzero(buf, 5);
-	print_test("1", !memcmp(buf, "\0\0\0\0\0", 5), TRUE);
-	print_title("memset");
-	print_test("1", ft_memset(buf, '\0', 5) == buf, FALSE);
-	print_test("2", !memcmp(buf, "\0\0\0\0\0", 5), FALSE);
-	print_test("3", ft_memset(buf, '5', 5) == buf, FALSE);
-	print_test("4", !memcmp(buf, "55555", 5), TRUE);
-}
-
-static void	test_memcpy_memmove(void)
-{
-	char	buf[5];
-
-	print_title("memcpy");
-	print_test("1", ft_memcpy(buf, "AS DF", 5) == buf, FALSE);
-	print_test("2", !memcmp(buf, "AS DF", 5), TRUE);
-	print_title("memmove");
-	print_test("1", ft_memmove(buf, "AS DF", 5) == buf, FALSE);
-	print_test("2", !memcmp(buf, "AS DF", 5), FALSE);
-	print_test("3", ft_memmove(buf, buf + 3, 2) == buf, FALSE);
-	print_test("4", !memcmp(buf, "DF DF", 5), FALSE);
-	print_test("5", ft_memmove(buf + 2, buf, 3) == buf + 2, FALSE);
-	print_test("6", !memcmp(buf, "DFDF ", 5), TRUE);
-}
+void	*ft_memchr(const void *s, int c, size_t n) __attribute__((weak));
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
+		__attribute__((weak));
 
 static void	test_memchr(void)
 {
 	char	buf[11];
 
 	strcpy(buf, "HOLA MUNDO");
-	print_title("memchr");
 	print_test("1", memchr(buf, 'H', 10) == buf, FALSE);
 	print_test("2", memchr(buf, 'A', 10) == buf + 3, FALSE);
 	print_test("3", memchr(buf, ' ', 10) == buf + 4, FALSE);
@@ -59,7 +32,6 @@ static void	test_memchr(void)
 
 static void	test_memcmp(void)
 {
-	print_title("memcmp");
 	print_test("1", !ft_memcmp("HOLA MUNDO", "HOLA MUNDO", 10), FALSE);
 	print_test("2", !ft_memcmp("HOLA MUNDO", "HOLA", 4), FALSE);
 	print_test("3", !ft_memcmp("HOLA MUNDO", "HOLAAAAA", 4), FALSE);
@@ -69,10 +41,8 @@ static void	test_memcmp(void)
 	print_test("7", !ft_memcmp("", "", 1), TRUE);
 }
 
-void	test_mem(void)
+void	test_mem2(void)
 {
-	test_bzero_memset();
-	test_memcpy_memmove();
-	test_memchr();
-	test_memcmp();
+	test_if_exists(&test_memchr, &ft_memchr, "memchr");
+	test_if_exists(&test_memcmp, &ft_memcmp, "memcmp");
 }
