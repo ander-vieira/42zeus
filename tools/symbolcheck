@@ -10,8 +10,8 @@ expected_refs=$3
 
 symbols=$(nm --demangle $library)
 
-list_funs_1=$(echo -n "$symbols" | grep " T " | awk '{print $3}' | sort -u)
-list_refs_1=$(echo -n "$symbols" | grep " U " | awk '{print $2}' | sort -u)
+list_funs_1=$(echo -n "$symbols" | grep " T " | awk '{print $3}' | sed 's/^_*//g' | sort -u)
+list_refs_1=$(echo -n "$symbols" | grep " U " | awk '{print $2}' | sed 's/^_*//g' | sort -u)
 list_globals_1=$(echo -n "$symbols" | grep -e " C " -e " D " | awk '{print $3}' | sort -u)
 
 list_funs_2=$(tools/filterlist.out - "$(cat $expected_funs)" "$list_funs_1" )
