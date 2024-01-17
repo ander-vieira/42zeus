@@ -1,39 +1,72 @@
 #!/bin/bash
 
-echo "+----------------+"
-echo "| 42ZEUS (SETUP) |"
-echo "+----------------+"
+red="\033[0;31m"
+green="\033[0;32m"
+blue="\033[1;36m"
+nocolor="\033[0m"
+
+echo -en "${blue}"
+echo "+---------------------------------------------------------------------------+";
+echo "| █████ █████   ████████     ███████████ ██████████ █████  █████  █████████ |";
+echo "|░░███ ░░███   ███░░░░███   ░█░░░░░░███ ░░███░░░░░█░░███  ░░███  ███░░░░░███|";
+echo "| ░███  ░███ █░░░    ░███   ░     ███░   ░███  █ ░  ░███   ░███ ░███    ░░░ |";
+echo "| ░███████████   ███████         ███     ░██████    ░███   ░███ ░░█████████ |";
+echo "| ░░░░░░░███░█  ███░░░░         ███      ░███░░█    ░███   ░███  ░░░░░░░░███|";
+echo "|       ░███░  ███      █     ████     █ ░███ ░   █ ░███   ░███  ███    ░███|";
+echo "|       █████ ░██████████    ███████████ ██████████ ░░████████  ░░█████████ |";
+echo "|      ░░░░░  ░░░░░░░░░░    ░░░░░░░░░░░ ░░░░░░░░░░   ░░░░░░░░    ░░░░░░░░░  |";
+echo "+---------------------------------------------------------------------------+";
+echo -en "${nocolor}"
 
 # Don't mess with existing directories :)
 if [ -e ~/42zeus ]
 then
-	echo "Can't clone 42Zeus because the directory ~/42zeus already exists; please rename/remove it first."
-	exit
+	echo -e "${green}42Zeus is already installed, attempting to update!${nocolor}"
+	git -C ~/42zeus pull
+	if [ $? -ne 0 ]
+	then
+		echo -e "${red}Error while updating repository; please delete/rename directory ~/42zeus and try again.${nocolor}"
+		exit 1
+	fi
+	echo -e "${green}42Zeus updated successfully!${nocolor}"
+	exit 0
 fi
+
+echo -e "${green}Attempting to install 42Zeus!${nocolor}"
 
 # Clone the tester
 echo "Cloning git repository into directory ~/42zeus"
 git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
+if [ $? -ne 0 ]
+then
+	echo -e "${red}Error while cloning repository.${nocolor}"
+	exit 1
+fi
 
 # Build binaries
-echo "Building necessary binaries"
+echo "Building 42Zeus binaries..."
 make -s -C ~/42zeus/tools
+if [ $? -ne 0 ]
+then
+	echo -e "${red}Error while building binaries.${nocolor}"
+	exit 1
+fi
 
 # Add aliases
-echo "Adding alias for zeus command"
+echo "Adding aliases for zeus command"
 if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
 	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.bashrc
-	echo "Alias added successfully (bash)"
+	echo -e "${green}Alias added successfully! (bash)${nocolor}"
 else
-	echo "Alias already exists (bash)"
+	echo -e "${green}Alias already exists! (bash)${nocolor}"
 fi
 if [ ! -e ~/.zshrc ] || [ $(cat ~/.zshrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
 	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.zshrc
-	echo "Alias added successfully (zsh)"
+	echo -e "${green}Alias added successfully! (zsh)${nocolor}"
 else
-	echo "Alias already exists (zsh)"
+	echo -e "${green}Alias already exists! (zsh)${nocolor}"
 fi
 
 echo "+----------------+"
