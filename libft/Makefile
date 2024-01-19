@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/17 16:36:34 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/17 18:53:42 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS = $(patsubst %.c,%.o,$(notdir $(SRCS)))
 
 NAME_BONUS = test_bonus.out
 SRCS_BONUS = src_bonus/test_bonus.c src_bonus/test_bonus2.c \
-src_bonus/test_bonus3.c
+src_bonus/test_bonus3.c src_bonus/taux_lst.c
 HDRS_BONUS = src_bonus/test_bonus.h
 OBJS_BONUS = $(patsubst %.c,%.o,$(notdir $(SRCS_BONUS)))
 

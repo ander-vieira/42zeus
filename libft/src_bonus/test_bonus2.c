@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:42:55 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 17:05:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:15:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	test_lstsize(void)
 {
 	t_list	*l;
 
-	l = ft_lstnew(NULL);
-	ft_lstadd_back(&l, ft_lstnew(NULL));
-	ft_lstadd_back(&l, ft_lstnew(NULL));
+	l = taux_lstnew(NULL);
+	taux_lstadd_back(&l, taux_lstnew(NULL));
+	taux_lstadd_back(&l, taux_lstnew(NULL));
 	print_test("1", ft_lstsize(l) == 3, FALSE);
 	print_test("2", ft_lstsize(l->next) == 2, FALSE);
 	print_test("3", ft_lstsize(l->next->next) == 1, FALSE);
@@ -41,7 +41,7 @@ static void	test_lstdelone(void)
 	t_list	*l;
 
 	c = 'a';
-	l = ft_lstnew(&c);
+	l = taux_lstnew(&c);
 	ft_lstdelone(l, &delone);
 	print_test("1", c == 'c', TRUE);
 }
@@ -54,8 +54,8 @@ static void	test_lstclear(void)
 
 	c1 = 'a';
 	c2 = 'a';
-	l = ft_lstnew(&c1);
-	ft_lstadd_back(&l, ft_lstnew(&c2));
+	l = taux_lstnew(&c1);
+	taux_lstadd_back(&l, taux_lstnew(&c2));
 	ft_lstclear(&l, &delone);
 	print_test("1", l == NULL, FALSE);
 	print_test("2", c1 == 'c', FALSE);

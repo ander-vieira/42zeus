@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:49:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 17:06:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:15:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	test_lstiter(void)
 
 	c1 = 'a';
 	c2 = 'a';
-	l = ft_lstnew(&c1);
-	ft_lstadd_back(&l, ft_lstnew(&c2));
+	l = taux_lstnew(&c1);
+	taux_lstadd_back(&l, taux_lstnew(&c2));
 	ft_lstiter(l, &iter);
 	print_test("1", c1 == 'c', FALSE);
 	print_test("2", c2 == 'c', TRUE);
@@ -52,8 +52,8 @@ static void	test_lstmap(void)
 
 	c1 = 'a';
 	c2 = 'a';
-	l1 = ft_lstnew(&c1);
-	ft_lstadd_back(&l1, ft_lstnew(&c2));
+	l1 = taux_lstnew(&c1);
+	taux_lstadd_back(&l1, taux_lstnew(&c2));
 	l2 = ft_lstmap(l1, &map, &iter);
 	print_test("1", l2->content == &c1, FALSE);
 	print_test("2", c1 == 'a', FALSE);

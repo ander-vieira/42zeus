@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 16:36:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:19:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # ifdef TEST_EVAL
 #  include "../../repo/libft.h"
 # else
+
+/* ************************************************************************** */
+/* Fake definitions to get VSCode dependency detection working                */
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -64,6 +67,9 @@ char	*ft_itoa(int n);
 char	**ft_split(char const *str, char c);
 
 # endif
+
+/* ************************************************************************** */
+/* Test functions                                                             */
 
 void	test_is1(void);
 void	test_is2(void);

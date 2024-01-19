@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:56:26 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 17:00:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:16:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	test_lstadd_front(void)
 	t_list	*l2;
 
 	l = NULL;
-	l1 = ft_lstnew(NULL);
+	l1 = taux_lstnew(NULL);
 	ft_lstadd_front(&l, l1);
 	print_test("1", l == l1, FALSE);
 	print_test("2", l->next == NULL, FALSE);
-	l2 = ft_lstnew(NULL);
+	l2 = taux_lstnew(NULL);
 	ft_lstadd_front(&l, l2);
 	print_test("3", l == l2, FALSE);
 	print_test("4", l->next == l1, FALSE);
@@ -54,11 +54,11 @@ static void	test_lstadd_back(void)
 	t_list	*l2;
 
 	l = NULL;
-	l1 = ft_lstnew(NULL);
+	l1 = taux_lstnew(NULL);
 	ft_lstadd_back(&l, l1);
 	print_test("1", l == l1, FALSE);
 	print_test("2", l->next == NULL, FALSE);
-	l2 = ft_lstnew(NULL);
+	l2 = taux_lstnew(NULL);
 	ft_lstadd_back(&l, l2);
 	print_test("3", l == l1, FALSE);
 	print_test("4", l->next == l2, FALSE);
@@ -73,9 +73,9 @@ void	test_lstlast(void)
 {
 	t_list	*l;
 
-	l = ft_lstnew(NULL);
-	ft_lstadd_back(&l, ft_lstnew(NULL));
-	ft_lstadd_back(&l, ft_lstnew(NULL));
+	l = taux_lstnew(NULL);
+	taux_lstadd_back(&l, taux_lstnew(NULL));
+	taux_lstadd_back(&l, taux_lstnew(NULL));
 	print_test("1", ft_lstlast(l) == l->next->next, FALSE);
 	print_test("2", ft_lstlast(l->next) == l->next->next, FALSE);
 	print_test("3", ft_lstlast(l->next->next) == l->next->next, FALSE);
