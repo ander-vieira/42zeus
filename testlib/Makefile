@@ -6,13 +6,13 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 14:19:30 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/17 16:51:36 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/19 13:30:47 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = testlib.a
 
-SRCS = testlib.c testlib_run.c
+SRCS = testlib_print.c testlib_run.c testlib_var.c
 HDRS = testlib.h
 OBJS = $(SRCS:.c=.o)
 

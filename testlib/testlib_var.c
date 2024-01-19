@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   testlib_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 17:14:59 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:47 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/19 13:21:54 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/19 13:24:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "testlib.h"
 
-int	main(void)
+t_uint	tlib_var_failed(t_bool add)
 {
-	test_is1();
-	test_is2();
-	test_to();
-	test_mem1();
-	test_mem2();
-	test_atoi();
-	test_calloc();
-	test_str1();
-	test_str2();
-	test_str3();
-	test_str4();
-	test_itoa();
-	test_split();
-	test_put();
-	return (tlib_print_final());
+	static t_uint	count;
+
+	if (add)
+		count++;
+	return (count);
 }

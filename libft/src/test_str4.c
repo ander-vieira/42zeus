@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 16:53:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	test_strmapi(void)
 	char	*str;
 
 	str = ft_strmapi("HOLAMUNDO", &mapchar);
-	print_test("1", !strcmp(str, "HPNDQZTKW"), TRUE);
+	tlib_print_test("1", !strcmp(str, "HPNDQZTKW"), TRUE);
 	free(str);
 }
 
@@ -42,12 +42,12 @@ static void	test_striteri(void)
 
 	str = ft_strdup("HOLAMUNDO");
 	ft_striteri(str, &iterchar);
-	print_test("1", !strcmp(str, "GOMCPYSJV"), TRUE);
+	tlib_print_test("1", !strcmp(str, "GOMCPYSJV"), TRUE);
 	free(str);
 }
 
 void	test_str4(void)
 {
-	test_if_exists(&test_strmapi, &ft_strmapi, "strmapi");
-	test_if_exists(&test_striteri, &ft_striteri, "striteri");
+	tlib_print_missing(&test_strmapi, &ft_strmapi, "strmapi");
+	tlib_print_missing(&test_striteri, &ft_striteri, "striteri");
 }

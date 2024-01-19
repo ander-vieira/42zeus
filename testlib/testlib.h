@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 17:07:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:29:32 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,21 @@ typedef enum e_bool
 }						t_bool;
 typedef unsigned int	t_uint;
 
-int		run_in_process(int (*fun)(void *), void *ctx);
-void	test_if_exists(void (*test)(void), void *fun, char *title);
-void	print_test(char *text, t_bool ok, t_bool last);
-int		print_all_tests(void);
+/* ************************************************************************** */
+/* Print: printing test results                                               */
+
+void	tlib_print_missing(void (*test)(void), void *fun, char *title);
+void	tlib_print_test(char *text, t_bool ok, t_bool last);
+int		tlib_print_final(void);
+
+/* ************************************************************************** */
+/* Run: handling child processes                                              */
+
+int		tlib_run_process(int (*fun)(void *), void *ctx);
+
+/* ************************************************************************** */
+/* Var: "global" variables                                                    */
+
+t_uint	tlib_var_failed(t_bool add);
 
 #endif

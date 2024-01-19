@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:25:29 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 16:31:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:27:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void	test_calloc1(void)
 {
 	int	status;
 
-	status = run_in_process(test_calloc_child1, NULL);
-	print_test("1", !WIFSIGNALED(status) || WTERMSIG(status) != 11, FALSE);
-	print_test("2", !WIFSIGNALED(status) || WTERMSIG(status) != 6, FALSE);
-	print_test("3", WIFEXITED(status) && WEXITSTATUS(status) == 0, TRUE);
+	status = tlib_run_process(test_calloc_child1, NULL);
+	tlib_print_test("1", !WIFSIGNALED(status) || WTERMSIG(status) != 11, FALSE);
+	tlib_print_test("2", !WIFSIGNALED(status) || WTERMSIG(status) != 6, FALSE);
+	tlib_print_test("3", WIFEXITED(status) && WEXITSTATUS(status) == 0, TRUE);
 }
 
 void	test_calloc(void)
 {
-	test_if_exists(&test_calloc1, &ft_calloc, "calloc");
+	tlib_print_missing(&test_calloc1, &ft_calloc, "calloc");
 }

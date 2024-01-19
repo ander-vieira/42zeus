@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:42:55 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:15:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static void	test_lstsize(void)
 	l = taux_lstnew(NULL);
 	taux_lstadd_back(&l, taux_lstnew(NULL));
 	taux_lstadd_back(&l, taux_lstnew(NULL));
-	print_test("1", ft_lstsize(l) == 3, FALSE);
-	print_test("2", ft_lstsize(l->next) == 2, FALSE);
-	print_test("3", ft_lstsize(l->next->next) == 1, FALSE);
-	print_test("4", ft_lstsize(l->next->next->next) == 0, FALSE);
-	print_test("5", ft_lstsize(NULL) == 0, TRUE);
+	tlib_print_test("1", ft_lstsize(l) == 3, FALSE);
+	tlib_print_test("2", ft_lstsize(l->next) == 2, FALSE);
+	tlib_print_test("3", ft_lstsize(l->next->next) == 1, FALSE);
+	tlib_print_test("4", ft_lstsize(l->next->next->next) == 0, FALSE);
+	tlib_print_test("5", ft_lstsize(NULL) == 0, TRUE);
 }
 
 static void	delone(void *content)
@@ -43,7 +43,7 @@ static void	test_lstdelone(void)
 	c = 'a';
 	l = taux_lstnew(&c);
 	ft_lstdelone(l, &delone);
-	print_test("1", c == 'c', TRUE);
+	tlib_print_test("1", c == 'c', TRUE);
 }
 
 static void	test_lstclear(void)
@@ -57,14 +57,14 @@ static void	test_lstclear(void)
 	l = taux_lstnew(&c1);
 	taux_lstadd_back(&l, taux_lstnew(&c2));
 	ft_lstclear(&l, &delone);
-	print_test("1", l == NULL, FALSE);
-	print_test("2", c1 == 'c', FALSE);
-	print_test("3", c2 == 'c', TRUE);
+	tlib_print_test("1", l == NULL, FALSE);
+	tlib_print_test("2", c1 == 'c', FALSE);
+	tlib_print_test("3", c2 == 'c', TRUE);
 }
 
 void	test_bonus2(void)
 {
-	test_if_exists(&test_lstsize, &ft_lstsize, "lstsize");
-	test_if_exists(&test_lstdelone, &ft_lstdelone, "lstdelone");
-	test_if_exists(&test_lstclear, &ft_lstclear, "lstclear");
+	tlib_print_missing(&test_lstsize, &ft_lstsize, "lstsize");
+	tlib_print_missing(&test_lstdelone, &ft_lstdelone, "lstdelone");
+	tlib_print_missing(&test_lstclear, &ft_lstclear, "lstclear");
 }

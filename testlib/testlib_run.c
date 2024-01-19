@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:51:24 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/17 16:51:42 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:27:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlib.h"
 
-int	run_in_process(int (*fun)(void *), void *ctx)
+int	tlib_run_process(int (*fun)(void *), void *ctx)
 {
 	pid_t	pid;
 	int		status;
