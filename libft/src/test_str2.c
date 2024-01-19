@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/19 17:34:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ static void	test_strdup(void)
 {
 	char	*str;
 
+	tlib_alloc_reset();
 	str = ft_strdup("HOLA");
 	tlib_print_test("1", !strcmp(str, "HOLA"), FALSE);
+	tlib_print_test("2", tlib_alloc_lookup(str) == 5, FALSE);
+	tlib_print_test("3", tlib_alloc_count() == 1, FALSE);
 	free(str);
 	str = ft_strdup("");
-	tlib_print_test("", !strcmp(str, ""), TRUE);
+	tlib_print_test("4", !strcmp(str, ""), FALSE);
+	tlib_print_test("5", tlib_alloc_lookup(str) == 1, FALSE);
+	tlib_print_test("6", tlib_alloc_count() == 1, FALSE);
 	free(str);
+	tlib_print_test("7", tlib_alloc_errors(), TRUE);
 }
 
 static void	test_strlcpy(void)
