@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:05:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:04:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ char	**ft_split(char const *str, char c);
 #pragma weak ft_striteri
 #pragma weak ft_itoa
 #pragma weak ft_split
+
+/* ************************************************************************** */
+/* Functions for testing split results                                        */
+
+void	taux_split_free(char **split);
 
 /* ************************************************************************** */
 /* Test functions                                                             */
