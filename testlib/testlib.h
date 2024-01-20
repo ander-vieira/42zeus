@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:28:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <string.h>
 # include <unistd.h>
+# include <dlfcn.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include <dlfcn.h>
 
 # define COLOR_GREEN	"\033[0;32m"
 # define COLOR_NONE		"\033[0m"
@@ -56,6 +57,11 @@ void	tlib_alloc_reset(void);
 size_t	tlib_alloc_lookup(void *addr);
 size_t	tlib_alloc_count(void);
 t_byte	tlib_alloc_errors(void);
+
+/* ************************************************************************** */
+/* Io: testing functions that use file descriptors                            */
+
+t_bool	tlib_io_readtest(int fd, size_t len, ssize_t exp_len, void *exp);
 
 /* ************************************************************************** */
 /* Print: printing test results                                               */
