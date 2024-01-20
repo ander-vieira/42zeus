@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:42:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:15:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,21 @@ static void	test_strmapi(void)
 	char	*str;
 
 	str = ft_strmapi("HOLAMUNDO", &mapchar);
-	tlib_print_test("1", !strcmp(str, "HPNDQZTKW"), TRUE);
+	tlib_print_test("1", str != NULL && !strcmp(str, "HPNDQZTKW"), FALSE);
+	tlib_print_test("2", tlib_alloc_lookup(str) == 10, FALSE);
+	tlib_print_test("3", tlib_alloc_count() == 1, FALSE);
 	free(str);
+	str = ft_strmapi("HHH", &mapchar);
+	tlib_print_test("4", str != NULL && !strcmp(str, "HIJ"), FALSE);
+	tlib_print_test("5", tlib_alloc_lookup(str) == 4, FALSE);
+	tlib_print_test("6", tlib_alloc_count() == 1, FALSE);
+	free(str);
+	str = ft_strmapi("", &mapchar);
+	tlib_print_test("7", str != NULL && !strcmp(str, ""), FALSE);
+	tlib_print_test("8", tlib_alloc_lookup(str) == 1, FALSE);
+	tlib_print_test("9", tlib_alloc_count() == 1, FALSE);
+	free(str);
+	tlib_print_test("10", tlib_alloc_errors() == 0x00, TRUE);
 	tlib_alloc_reset();
 }
 
@@ -36,10 +49,13 @@ static void	test_striteri(void)
 {
 	char	*str;
 
-	str = ft_strdup("HOLAMUNDO");
+	str = strdup("HOLAMUNDO");
 	ft_striteri(str, &iterchar);
-	tlib_print_test("1", !strcmp(str, "GOMCPYSJV"), TRUE);
+	tlib_print_test("1", !strcmp(str, "GOMCPYSJV"), FALSE);
+	ft_striteri(str, &iterchar);
+	tlib_print_test("2", !strcmp(str, "FONES]XP]"), FALSE);
 	free(str);
+	tlib_print_test("3", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
 }
 
