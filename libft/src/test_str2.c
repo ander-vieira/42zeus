@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:04:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:39:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	test_strdup(void)
 {
 	char	*str;
 
-	tlib_alloc_reset();
 	str = ft_strdup("HOLA");
 	tlib_print_test("1", !strcmp(str, "HOLA"), FALSE);
 	tlib_print_test("2", tlib_alloc_lookup(str) == 5, FALSE);
@@ -27,7 +26,8 @@ static void	test_strdup(void)
 	tlib_print_test("5", tlib_alloc_lookup(str) == 1, FALSE);
 	tlib_print_test("6", tlib_alloc_count() == 1, FALSE);
 	free(str);
-	tlib_print_test("7", tlib_alloc_errors(), TRUE);
+	tlib_print_test("7", tlib_alloc_errors() == 0x00, TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_strlcpy(void)
@@ -40,6 +40,7 @@ static void	test_strlcpy(void)
 	tlib_print_test("4", !strcmp(buf, "HOLA MUND"), FALSE);
 	tlib_print_test("5", ft_strlcpy(buf, "", 10) == 0, FALSE);
 	tlib_print_test("6", !strcmp(buf, ""), TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_strlcat(void)
@@ -59,6 +60,7 @@ static void	test_strlcat(void)
 	strcpy(buf, "ABC");
 	tlib_print_test("9", ft_strlcat(buf, "DE", 2) == 4, FALSE);
 	tlib_print_test("10", !strcmp(buf, "ABC"), TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_strnstr(void)
@@ -73,6 +75,7 @@ static void	test_strnstr(void)
 	tlib_print_test("5", ft_strnstr(str, "MUND", 5) == NULL, FALSE);
 	tlib_print_test("6", ft_strnstr(str, "", 10) == str, FALSE);
 	tlib_print_test("7", ft_strnstr(str, "", 0) == str, TRUE);
+	tlib_alloc_reset();
 }
 
 void	test_str2(void)

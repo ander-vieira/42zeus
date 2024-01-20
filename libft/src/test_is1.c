@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:15:49 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:03:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:39:31 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static void	test_isalpha(void)
 	tlib_print_test("3", !ft_isalpha('3'), FALSE);
 	tlib_print_test("4", !ft_isalpha(' '), FALSE);
 	tlib_print_test("5", !ft_isalpha('.'), FALSE);
-	tlib_print_test("6", !ft_isalpha(127), TRUE);
+	tlib_print_test("6", !ft_isalpha(127), FALSE);
+	tlib_print_test("7", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_isdigit(void)
@@ -27,7 +29,9 @@ static void	test_isdigit(void)
 	tlib_print_test("1", ft_isdigit('5'), FALSE);
 	tlib_print_test("2", !ft_isdigit('d'), FALSE);
 	tlib_print_test("3", !ft_isdigit(' '), FALSE);
-	tlib_print_test("4", !ft_isdigit(5), TRUE);
+	tlib_print_test("4", !ft_isdigit(5), FALSE);
+	tlib_print_test("5", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_isalnum(void)
@@ -36,7 +40,9 @@ static void	test_isalnum(void)
 	tlib_print_test("2", ft_isalnum('d'), FALSE);
 	tlib_print_test("3", ft_isalnum('J'), FALSE);
 	tlib_print_test("4", !ft_isalnum(' '), FALSE);
-	tlib_print_test("5", !ft_isalnum(5), TRUE);
+	tlib_print_test("5", !ft_isalnum(5), FALSE);
+	tlib_print_test("6", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_isascii(void)
@@ -45,7 +51,9 @@ static void	test_isascii(void)
 	tlib_print_test("2", ft_isascii(0x00), FALSE);
 	tlib_print_test("3", ft_isascii(0x7F), FALSE);
 	tlib_print_test("4", !ft_isascii(0x80), FALSE);
-	tlib_print_test("5", !ft_isascii(0x100), TRUE);
+	tlib_print_test("5", !ft_isascii(0x100), FALSE);
+	tlib_print_test("6", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 void	test_is1(void)

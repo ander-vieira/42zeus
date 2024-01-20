@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:03:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:40:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	test_putchar_fd(void)
 	tlib_print_test("6", c == '\0', TRUE);
 	close(fd[0]);
 	close(fd[1]);
+	tlib_alloc_reset();
 }
 
 static void	test_putstr_fd(void)
@@ -45,6 +46,7 @@ static void	test_putstr_fd(void)
 	tlib_print_test("4", !memcmp(str, "PEPITO\n\n", 8), TRUE);
 	close(fd[0]);
 	close(fd[1]);
+	tlib_alloc_reset();
 }
 
 static void	test_putendl_fd(void)
@@ -61,6 +63,7 @@ static void	test_putendl_fd(void)
 	tlib_print_test("4", !memcmp(str, "\n", 1), TRUE);
 	close(fd[0]);
 	close(fd[1]);
+	tlib_alloc_reset();
 }
 
 static void	test_putnbr_fd(void)
@@ -86,6 +89,7 @@ static void	test_putnbr_fd(void)
 	tlib_print_test("10", !memcmp(str, "-2147483648", 11), TRUE);
 	close(fd[0]);
 	close(fd[1]);
+	tlib_alloc_reset();
 }
 
 void	test_put(void)

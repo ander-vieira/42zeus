@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:12:58 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 17:33:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:37:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	tlib_alloc_count(void)
 	return (count);
 }
 
-t_bool	tlib_alloc_errors(void)
+t_byte	tlib_alloc_errors(void)
 {
-	return (*tlib_var_errmalloc() == 0x00);
+	return (*tlib_var_errmalloc());
 }

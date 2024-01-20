@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:32:38 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:04:50 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:41:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	test_itoa1(void)
 	str = ft_itoa(-2147483648);
 	tlib_print_test("5", !strcmp(str, "-2147483648"), TRUE);
 	free(str);
+	tlib_alloc_reset();
 }
 
 void	test_itoa(void)

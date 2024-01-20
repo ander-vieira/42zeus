@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:27:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:03:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:39:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static void	test_isprint(void)
 	tlib_print_test("6", ft_isprint('a'), FALSE);
 	tlib_print_test("7", ft_isprint('~'), FALSE);
 	tlib_print_test("8", !ft_isprint(0x7F), FALSE);
-	tlib_print_test("9", !ft_isprint(0x100), TRUE);
+	tlib_print_test("9", !ft_isprint(0x100), FALSE);
+	tlib_print_test("10", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 void	test_is2(void)

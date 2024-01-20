@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:03:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:39:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	test_memchr(void)
 	tlib_print_test("4", memchr(buf, ' ', 2) == NULL, FALSE);
 	tlib_print_test("5", memchr(buf, 'J', 10) == NULL, FALSE);
 	tlib_print_test("6", memchr(buf, '\0', 10) == NULL, FALSE);
-	tlib_print_test("7", memchr(buf, '\0', 11) == buf + 10, TRUE);
+	tlib_print_test("7", memchr(buf, '\0', 11) == buf + 10, FALSE);
+	tlib_print_test("8", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 static void	test_memcmp(void)
@@ -34,7 +36,9 @@ static void	test_memcmp(void)
 	tlib_print_test("4", ft_memcmp("JOLA MUNDO", "HOLA MUNDO", 4), FALSE);
 	tlib_print_test("5", ft_memcmp("HOLA MUNDO", "HOLAAAAA", 5), FALSE);
 	tlib_print_test("6", ft_memcmp("", "HOLAAAAA", 1), FALSE);
-	tlib_print_test("7", !ft_memcmp("", "", 1), TRUE);
+	tlib_print_test("7", !ft_memcmp("", "", 1), FALSE);
+	tlib_print_test("8", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 void	test_mem2(void)

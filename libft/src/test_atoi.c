@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:02:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:44:29 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static void	test_atoi1(void)
 	tlib_print_test("19", ft_atoi("   -2147483648aaa5") == -2147483648, FALSE);
 	tlib_print_test("20", ft_atoi("+-69") == 0, FALSE);
 	tlib_print_test("21", ft_atoi("-+69") == 0, FALSE);
-	tlib_print_test("22", ft_atoi("   -+69") == 0, TRUE);
+	tlib_print_test("22", ft_atoi("   -+69") == 0, FALSE);
+	tlib_print_test("23", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }
 
 void	test_atoi(void)

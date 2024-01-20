@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:04:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:42:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	test_strmapi(void)
 	str = ft_strmapi("HOLAMUNDO", &mapchar);
 	tlib_print_test("1", !strcmp(str, "HPNDQZTKW"), TRUE);
 	free(str);
+	tlib_alloc_reset();
 }
 
 static void	test_striteri(void)
@@ -39,6 +40,7 @@ static void	test_striteri(void)
 	ft_striteri(str, &iterchar);
 	tlib_print_test("1", !strcmp(str, "GOMCPYSJV"), TRUE);
 	free(str);
+	tlib_alloc_reset();
 }
 
 void	test_str4(void)

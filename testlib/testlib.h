@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:18:27 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:37:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	tlib_alloc_print(void);
 void	tlib_alloc_reset(void);
 size_t	tlib_alloc_lookup(void *addr);
 size_t	tlib_alloc_count(void);
-t_bool	tlib_alloc_errors(void);
+t_byte	tlib_alloc_errors(void);
 
 /* ************************************************************************** */
 /* Print: printing test results                                               */
