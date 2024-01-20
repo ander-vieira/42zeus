@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:05:47 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 17:27:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 16:39:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*malloc(size_t len)
 {
 	void	*(*old_malloc)(size_t);
 	void	*addr;
+	void	*caller[2];
+	char	**symbols;
 
 	if (len == 0)
 	{

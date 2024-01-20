@@ -6,15 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:03:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	*ft_memchr(const void *s, int c, size_t n) __attribute__((weak));
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
-		__attribute__((weak));
 
 static void	test_memchr(void)
 {

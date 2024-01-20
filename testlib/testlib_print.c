@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 16:17:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:11:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,44 @@
 
 void	tlib_print_missing(void (*test)(void), void *fun, char *title)
 {
-	printf("%s: ", title);
+	tlib_printf(STDOUT_FILENO, "%s: ", title);
 	if (fun != NULL)
 		test();
 	else
 	{
-		printf("["COLOR_RED"MISSING"COLOR_NONE"]\n");
+		tlib_printf(STDOUT_FILENO, "["COLOR_RED"MISSING"COLOR_NONE"]\n");
 		*tlib_var_failed() += 1;
 	}
 }
 
 void	tlib_print_test(char *text, t_bool ok, t_bool last)
 {
-	printf("[%s: ", text);
+	tlib_printf(STDOUT_FILENO, "[%s: ", text);
 	if (ok)
-		printf(COLOR_GREEN"OK"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"OK"COLOR_NONE);
 	else
 	{
-		printf(COLOR_RED"KO"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_RED"KO"COLOR_NONE);
 		*tlib_var_failed() += 1;
 	}
-	printf("]");
+	tlib_printf(STDOUT_FILENO, "]");
 	if (last)
-		printf("\n");
+		tlib_printf(STDOUT_FILENO, "\n");
 	else
-		printf(" ");
+		tlib_printf(STDOUT_FILENO, " ");
 }
 
 int	tlib_print_final(void)
 {
-	printf("--- FINAL RESULT ---\n");
+	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
 	if (*tlib_var_failed() == 0)
 	{
-		printf(COLOR_GREEN"All tests OK!\n"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"All tests OK!\n"COLOR_NONE);
 		return (EXIT_SUCCESS);
 	}
 	else
 	{
-		printf(COLOR_RED"Errors detected, please review.\n"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_RED"Errors detected, please review.\n"COLOR_NONE);
 		return (EXIT_FAILURE);
 	}
 }

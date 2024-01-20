@@ -6,13 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-char	**ft_split(char const *str, char c) __attribute__((weak));
 
 static void	test_split1(void)
 {

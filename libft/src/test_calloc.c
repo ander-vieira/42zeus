@@ -6,13 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:25:29 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:27:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	*ft_calloc(size_t count, size_t size) __attribute__((weak));
 
 static int	test_calloc_child1(void *ctx)
 {

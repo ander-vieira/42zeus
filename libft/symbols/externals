@@ -1,3 +1,4 @@
 free
 malloc
 write
+stack_chk_fail

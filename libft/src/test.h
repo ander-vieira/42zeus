@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:19:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:05:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,50 @@ char	*ft_itoa(int n);
 char	**ft_split(char const *str, char c);
 
 # endif
+
+/* ************************************************************************** */
+/* Weak definitions to check for missing functions                            */
+
+#pragma weak ft_isalpha
+#pragma weak ft_isdigit
+#pragma weak ft_isalnum
+#pragma weak ft_isascii
+#pragma weak ft_isprint
+
+#pragma weak ft_tolower
+#pragma weak ft_toupper
+
+#pragma weak ft_bzero
+#pragma weak ft_memset
+#pragma weak ft_memcpy
+#pragma weak ft_memmove
+#pragma weak ft_memchr
+#pragma weak ft_memcmp
+
+#pragma weak ft_putchar_fd
+#pragma weak ft_putstr_fd
+#pragma weak ft_putendl_fd
+#pragma weak ft_putnbr_fd
+
+#pragma weak ft_atoi
+
+#pragma weak ft_calloc
+
+#pragma weak ft_strlen
+#pragma weak ft_strchr
+#pragma weak ft_strrchr
+#pragma weak ft_strncmp
+#pragma weak ft_strdup
+#pragma weak ft_strlcpy
+#pragma weak ft_strlcat
+#pragma weak ft_strnstr
+#pragma weak ft_substr
+#pragma weak ft_strjoin
+#pragma weak ft_strtrim
+#pragma weak ft_strmapi
+#pragma weak ft_striteri
+#pragma weak ft_itoa
+#pragma weak ft_split
 
 /* ************************************************************************** */
 /* Test functions                                                             */

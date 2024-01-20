@@ -6,15 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:42:55 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:10:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
-
-int		ft_lstsize(t_list *lst) __attribute__((weak));
-void	ft_lstdelone(t_list *lst, void (*del)(void *)) __attribute__((weak));
-void	ft_lstclear(t_list **lst, void (*del)(void *)) __attribute__((weak));
 
 static void	test_lstsize(void)
 {
@@ -28,6 +24,7 @@ static void	test_lstsize(void)
 	tlib_print_test("3", ft_lstsize(l->next->next) == 1, FALSE);
 	tlib_print_test("4", ft_lstsize(l->next->next->next) == 0, FALSE);
 	tlib_print_test("5", ft_lstsize(NULL) == 0, TRUE);
+	taux_lstclear(&l);
 }
 
 static void	delone(void *content)

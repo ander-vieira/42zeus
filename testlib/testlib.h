@@ -6,14 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 17:34:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:18:27 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTLIB_H
 # define TESTLIB_H
 
+# define _GNU_SOURCE
+
 # include <stdlib.h>
+# include <stdarg.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -60,6 +63,11 @@ t_bool	tlib_alloc_errors(void);
 void	tlib_print_missing(void (*test)(void), void *fun, char *title);
 void	tlib_print_test(char *text, t_bool ok, t_bool last);
 int		tlib_print_final(void);
+
+/* ************************************************************************** */
+/* Printf: making my own version for portability                              */
+
+void	tlib_printf(int fd, char *format, ...);
 
 /* ************************************************************************** */
 /* Run: handling child processes                                              */

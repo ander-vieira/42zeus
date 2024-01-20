@@ -6,13 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:27:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:03:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-int		ft_isprint(int c) __attribute__((weak));
 
 static void	test_isprint(void)
 {

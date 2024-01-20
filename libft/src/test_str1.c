@@ -6,17 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:09:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:25 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-size_t	ft_strlen(const char *str) __attribute__((weak));
-char	*ft_strchr(const char *str, int c) __attribute__((weak));
-char	*ft_strrchr(const char *str, int c) __attribute__((weak));
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
-		__attribute__((weak));
 
 static void	test_strlen(void)
 {

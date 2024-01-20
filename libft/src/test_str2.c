@@ -6,19 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 17:34:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-char	*ft_strdup(const char *str) __attribute__((weak));
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-		__attribute__((weak));
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-		__attribute__((weak));
-char	*ft_strnstr(const char *h, const char *n, size_t len)
-		__attribute__((weak));
 
 static void	test_strdup(void)
 {

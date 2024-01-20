@@ -6,16 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:03:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	ft_bzero(void *b, size_t n) __attribute__((weak));
-void	*ft_memset(void *b, int c, size_t n) __attribute__((weak));
-void	*ft_memcpy(void *d, const void *s, size_t n) __attribute__((weak));
-void	*ft_memmove(void *d, const void *s, size_t n) __attribute__((weak));
 
 static void	test_bzero(void)
 {

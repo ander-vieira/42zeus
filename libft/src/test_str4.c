@@ -6,16 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-		__attribute__((weak));
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
-		__attribute__((weak));
 
 static char	mapchar(unsigned int index, char c)
 {

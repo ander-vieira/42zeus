@@ -6,16 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:56:26 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:10:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
-
-t_list	*ft_lstnew(void *content) __attribute__((weak));
-void	ft_lstadd_front(t_list **lst, t_list *n) __attribute__((weak));
-void	ft_lstadd_back(t_list **lst, t_list *n) __attribute__((weak));
-t_list	*ft_lstlast(t_list *lst) __attribute__((weak));
 
 static void	test_lstnew(void)
 {
@@ -45,6 +40,7 @@ static void	test_lstadd_front(void)
 	tlib_print_test("3", l == l2, FALSE);
 	tlib_print_test("4", l->next == l1, FALSE);
 	tlib_print_test("5", l->next->next == NULL, TRUE);
+	taux_lstclear(&l);
 }
 
 static void	test_lstadd_back(void)
@@ -65,8 +61,7 @@ static void	test_lstadd_back(void)
 	tlib_print_test("5", l->next->next == NULL, FALSE);
 	ft_lstadd_back(&l, NULL);
 	tlib_print_test("6", l->next->next == NULL, TRUE);
-	free(l1);
-	free(l2);
+	taux_lstclear(&l);
 }
 
 void	test_lstlast(void)
@@ -80,9 +75,7 @@ void	test_lstlast(void)
 	tlib_print_test("2", ft_lstlast(l->next) == l->next->next, FALSE);
 	tlib_print_test("3", ft_lstlast(l->next->next) == l->next->next, FALSE);
 	tlib_print_test("4", ft_lstlast(NULL) == NULL, TRUE);
-	free(l->next->next);
-	free(l->next);
-	free(l);
+	taux_lstclear(&l);
 }
 
 int	main(void)

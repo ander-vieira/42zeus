@@ -6,16 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:03:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	ft_putchar_fd(char c, int fd) __attribute__((weak));
-void	ft_putstr_fd(char *str, int fd) __attribute__((weak));
-void	ft_putendl_fd(char *str, int fd) __attribute__((weak));
-void	ft_putnbr_fd(int num, int fd) __attribute__((weak));
 
 static void	test_putchar_fd(void)
 {

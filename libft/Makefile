@@ -6,11 +6,17 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/17 18:53:42 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/20 17:32:41 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra -D TEST_EVAL
+UNAME = $(shell uname)
+ifeq ($(UNAME), Linux)
+OSFLAGS = 
+else
+OSFLAGS = -undefined dynamic_lookup
+endif
 
 TESTLIB = ../testlib/testlib.a
 LIBFT = libft.a
@@ -21,31 +27,21 @@ src/test_mem2.c src/test_put.c src/test_atoi.c src/test_calloc.c \
 src/test_str1.c src/test_str2.c src/test_str3.c src/test_str4.c \
 src/test_itoa.c src/test_split.c
 HDRS = src/test.h
-OBJS = $(patsubst %.c,%.o,$(notdir $(SRCS)))
 
 NAME_BONUS = test_bonus.out
 SRCS_BONUS = src_bonus/test_bonus.c src_bonus/test_bonus2.c \
 src_bonus/test_bonus3.c src_bonus/taux_lst.c
 HDRS_BONUS = src_bonus/test_bonus.h
-OBJS_BONUS = $(patsubst %.c,%.o,$(notdir $(SRCS_BONUS)))
 
 all: $(NAME)
 
-$(NAME): testlib libft $(OBJS)
-	ar rcs $(LIBFT) $(OBJS)
-	gcc $(CFLAGS) -undefined dynamic_lookup $(LIBFT) $(TESTLIB) -o $(NAME)
-
-$(OBJS): $(SRCS) $(HDRS)
-	gcc $(CFLAGS) -c $(SRCS)
+$(NAME): testlib libft $(SRCS) $(HDRS)
+	gcc $(CFLAGS) $(OSFLAGS) $(SRCS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME)
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): testlib libft $(OBJS_BONUS)
-	ar rcs $(LIBFT) $(OBJS_BONUS)
-	gcc $(CFLAGS) $(LIBFT) $(TESTLIB) -o $(NAME_BONUS)
-
-$(OBJS_BONUS): $(SRCS_BONUS) $(HDRS_BONUS)
-	gcc $(CFLAGS) -c $(SRCS_BONUS)
+$(NAME_BONUS): testlib libft $(SRCS_BONUS) $(HDRS_BONUS)
+	gcc $(CFLAGS) $(OSFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
 
 testlib:
 	make -C ../testlib all clean
@@ -54,7 +50,7 @@ libft:
 	cp -f ../repo/libft.a libft.a
 
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS) $(LIBFT)
+	rm -f $(LIBFT)
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)
