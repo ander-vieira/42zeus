@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 17:10:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:21:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 /* ************************************************************************** */
 /* Weak definitions to check for missing functions                            */
 
-#pragma weak ft_lstnew
-#pragma weak ft_lstadd_front
-#pragma weak ft_lstadd_back
-#pragma weak ft_lstlast
-#pragma weak ft_lstsize
-#pragma weak ft_lstdelone
-#pragma weak ft_lstclear
-#pragma weak ft_lstiter
-#pragma weak ft_lstmap
+# pragma weak ft_lstnew
+# pragma weak ft_lstadd_front
+# pragma weak ft_lstadd_back
+# pragma weak ft_lstlast
+# pragma weak ft_lstsize
+# pragma weak ft_lstdelone
+# pragma weak ft_lstclear
+# pragma weak ft_lstiter
+# pragma weak ft_lstmap
 
 /* ************************************************************************** */
 /* Functions for creating lists for testing                                   */

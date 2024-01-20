@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:37:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 12:47:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:23:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	tlib_alloc_print(void)
 	while (*list != NULL)
 	{
 		tlib_printf(STDOUT_FILENO, "%p: %u bytes\n",
-				(*list)->addr, (*list)->size);
+			(*list)->addr, (*list)->size);
 		list = &((*list)->next);
 	}
 }

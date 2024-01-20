@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 13:11:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/20 19:22:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	tlib_print_final(void)
 	}
 	else
 	{
-		tlib_printf(STDOUT_FILENO, COLOR_RED"Errors detected, please review.\n"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO,
+			COLOR_RED"Errors detected, please review.\n"COLOR_NONE);
 		return (EXIT_FAILURE);
 	}
 }
