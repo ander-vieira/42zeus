@@ -6,14 +6,14 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 14:19:30 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/20 19:28:04 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/22 14:05:25 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = testlib.a
 
-SRCS = testlib_alloc.c testlib_alloc2.c testlib_io.c testlib_malloc.c \
-testlib_print.c testlib_printf.c testlib_run.c testlib_var.c
+SRCS = testlib_alloc.c testlib_alloc2.c testlib_alloc3.c testlib_io.c \
+testlib_malloc.c testlib_print.c testlib_printf.c testlib_run.c testlib_var.c
 HDRS = testlib.h
 OBJS = $(SRCS:.c=.o)
 

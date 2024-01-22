@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:37:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 13:51:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:09:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void	tlib_alloc_reset(void)
 	}
 	*tlib_var_alloclist() = NULL;
 	*tlib_var_errmalloc() = 0x00;
+	tlib_alloc_resetmocks();
 }

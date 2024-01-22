@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:21:42 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:22:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	test_atoi(void);
 void	test_calloc(void);
 void	test_str1(void);
 void	test_str2(void);
+void	test_substr(void);
 void	test_str3(void);
 void	test_str4(void);
 void	test_itoa(void);

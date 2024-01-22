@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:14:59 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/19 13:26:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:23:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(void)
 	test_calloc();
 	test_str1();
 	test_str2();
+	test_substr();
 	test_str3();
 	test_str4();
 	test_itoa();

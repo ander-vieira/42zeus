@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 13:54:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:04:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_alloc
 	size_t			size;
 }	t_alloc;
 
+typedef struct s_amock
+{
+	struct s_amock	*next;
+	size_t			timer;
+}	t_amock;
+
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
@@ -57,6 +63,9 @@ void	tlib_alloc_reset(void);
 size_t	tlib_alloc_lookup(void *addr);
 size_t	tlib_alloc_count(void);
 t_byte	tlib_alloc_errors(void);
+void	tlib_alloc_setmock(size_t timer);
+t_bool	tlib_alloc_tickmocks(void);
+void	tlib_alloc_resetmocks(void);
 
 /* ************************************************************************** */
 /* Io: testing functions that use file descriptors                            */
@@ -91,6 +100,7 @@ int		tlib_run_process(int (*fun)(void *), void *ctx);
 
 t_uint	*tlib_var_failed(void);
 t_alloc	**tlib_var_alloclist(void);
+t_amock	**tlib_var_amocklist(void);
 t_byte	*tlib_var_errmalloc(void);
 
 #endif
