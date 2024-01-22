@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:22:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:52:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	tlib_print_missing(void (*test)(void), void *fun, char *title)
 {
-	tlib_printf(STDOUT_FILENO, "%s: ", title);
+	tlib_printf(STDOUT_FILENO, "--- %s ---\n", title);
 	if (fun != NULL)
 		test();
 	else
@@ -26,7 +26,7 @@ void	tlib_print_missing(void (*test)(void), void *fun, char *title)
 
 void	tlib_print_test(char *text, t_bool ok, t_bool last)
 {
-	tlib_printf(STDOUT_FILENO, "[%s: ", text);
+	tlib_printf(STDOUT_FILENO, "[%s ", text);
 	if (ok)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"OK"COLOR_NONE);
 	else
@@ -37,8 +37,6 @@ void	tlib_print_test(char *text, t_bool ok, t_bool last)
 	tlib_printf(STDOUT_FILENO, "]");
 	if (last)
 		tlib_printf(STDOUT_FILENO, "\n");
-	else
-		tlib_printf(STDOUT_FILENO, " ");
 }
 
 int	tlib_print_final(void)
@@ -46,6 +44,7 @@ int	tlib_print_final(void)
 	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
 	if (*tlib_var_failed() == 0)
 	{
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"/home/ander/42zeus/zeus\n"COLOR_NONE);
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"All tests OK!\n"COLOR_NONE);
 		return (EXIT_SUCCESS);
 	}
