@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:09:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:43:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:18:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_strlen(void)
+void	test_strlen(void)
 {
 	tlib_print_test("1", ft_strlen("HOLA") == 4, FALSE);
 	tlib_print_test("2", ft_strlen("HOLA MUNDO\nAAA") == 14, FALSE);
@@ -21,7 +21,7 @@ static void	test_strlen(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strchr(void)
+void	test_strchr(void)
 {
 	char	*str;
 
@@ -36,7 +36,7 @@ static void	test_strchr(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strrchr(void)
+void	test_strrchr(void)
 {
 	char	*str;
 
@@ -51,7 +51,7 @@ static void	test_strrchr(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strncmp(void)
+void	test_strncmp(void)
 {
 	tlib_print_test("1", !ft_strncmp("HOLA", "HOLA", 4), FALSE);
 	tlib_print_test("2", !ft_strncmp("HOLA", "HOLA MUNDO", 4), FALSE);
@@ -61,12 +61,4 @@ static void	test_strncmp(void)
 	tlib_print_test("6", !ft_strncmp("HOLA", "HOLA", 10), FALSE);
 	tlib_print_test("7", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_str1(void)
-{
-	tlib_print_missing(&test_strlen, &ft_strlen, "strlen");
-	tlib_print_missing(&test_strchr, &ft_strchr, "strchr");
-	tlib_print_missing(&test_strrchr, &ft_strrchr, "strrchr");
-	tlib_print_missing(&test_strncmp, &ft_strncmp, "strncmp");
 }

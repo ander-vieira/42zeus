@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_is1.c                                         :+:      :+:    :+:   */
+/*   test_is.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:15:49 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:39:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:22:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_isalpha(void)
+void	test_isalpha(void)
 {
 	tlib_print_test("1", ft_isalpha('a'), FALSE);
 	tlib_print_test("2", ft_isalpha('F'), FALSE);
@@ -24,7 +24,7 @@ static void	test_isalpha(void)
 	tlib_alloc_reset();
 }
 
-static void	test_isdigit(void)
+void	test_isdigit(void)
 {
 	tlib_print_test("1", ft_isdigit('5'), FALSE);
 	tlib_print_test("2", !ft_isdigit('d'), FALSE);
@@ -34,7 +34,7 @@ static void	test_isdigit(void)
 	tlib_alloc_reset();
 }
 
-static void	test_isalnum(void)
+void	test_isalnum(void)
 {
 	tlib_print_test("1", ft_isalnum('5'), FALSE);
 	tlib_print_test("2", ft_isalnum('d'), FALSE);
@@ -45,7 +45,7 @@ static void	test_isalnum(void)
 	tlib_alloc_reset();
 }
 
-static void	test_isascii(void)
+void	test_isascii(void)
 {
 	tlib_print_test("1", ft_isascii('0'), FALSE);
 	tlib_print_test("2", ft_isascii(0x00), FALSE);
@@ -56,10 +56,17 @@ static void	test_isascii(void)
 	tlib_alloc_reset();
 }
 
-void	test_is1(void)
+void	test_isprint(void)
 {
-	tlib_print_missing(&test_isalpha, &ft_isalpha, "isalpha");
-	tlib_print_missing(&test_isdigit, &ft_isdigit, "isdigit");
-	tlib_print_missing(&test_isalnum, &ft_isalnum, "isalnum");
-	tlib_print_missing(&test_isascii, &ft_isascii, "isascii");
+	tlib_print_test("1", !ft_isprint(0), FALSE);
+	tlib_print_test("2", !ft_isprint('\n'), FALSE);
+	tlib_print_test("3", ft_isprint(' '), FALSE);
+	tlib_print_test("4", ft_isprint('5'), FALSE);
+	tlib_print_test("5", ft_isprint('A'), FALSE);
+	tlib_print_test("6", ft_isprint('a'), FALSE);
+	tlib_print_test("7", ft_isprint('~'), FALSE);
+	tlib_print_test("8", !ft_isprint(0x7F), FALSE);
+	tlib_print_test("9", !ft_isprint(0x100), FALSE);
+	tlib_print_test("10", tlib_alloc_count() == 0, TRUE);
+	tlib_alloc_reset();
 }

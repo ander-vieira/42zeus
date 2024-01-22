@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 16:02:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:18:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	test_atoi_crash1(void *ctx)
 	return (0);
 }
 
-static void	test_atoi1(void)
+void	test_atoi(void)
 {
 	tlib_print_test("1", ft_atoi("53") == 53, FALSE);
 	tlib_print_test("2", ft_atoi("-417") == -417, FALSE);
@@ -46,9 +46,4 @@ static void	test_atoi1(void)
 	tlib_print_test("23", tlib_alloc_count() == 0, FALSE);
 	tlib_print_test("24", tlib_run_process(&test_atoi_crash1, NULL), TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_atoi(void)
-{
-	tlib_print_missing(&test_atoi1, &ft_atoi, "atoi");
 }

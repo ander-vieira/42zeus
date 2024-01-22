@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:16:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:19:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	test_memmove_crash3(void *ctx)
 	return (status);
 }
 
-static void	test_memmove1(void)
+void	test_memmove(void)
 {
 	char	buf[5];
 
@@ -61,9 +61,4 @@ static void	test_memmove1(void)
 	tlib_print_test("10",
 		tlib_run_process(&test_memmove_crash3, NULL) == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_memmove(void)
-{
-	tlib_print_missing(&test_memmove1, &ft_memmove, "memmove");
 }

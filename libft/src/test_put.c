@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:39:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:16:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_putchar_fd(void)
+void	test_putchar_fd(void)
 {
 	int		fd[2];
 
@@ -30,7 +30,7 @@ static void	test_putchar_fd(void)
 	tlib_alloc_reset();
 }
 
-static void	test_putstr_fd(void)
+void	test_putstr_fd(void)
 {
 	int		fd[2];
 
@@ -47,7 +47,7 @@ static void	test_putstr_fd(void)
 	tlib_alloc_reset();
 }
 
-static void	test_putendl_fd(void)
+void	test_putendl_fd(void)
 {
 	int		fd[2];
 
@@ -65,7 +65,7 @@ static void	test_putendl_fd(void)
 	tlib_alloc_reset();
 }
 
-static void	test_putnbr_fd(void)
+void	test_putnbr_fd(void)
 {
 	int		fd[2];
 
@@ -84,12 +84,4 @@ static void	test_putnbr_fd(void)
 	tlib_print_test("6", tlib_alloc_count() == 0, TRUE);
 	close(fd[0]);
 	tlib_alloc_reset();
-}
-
-void	test_put(void)
-{
-	tlib_print_missing(&test_putchar_fd, &ft_putchar_fd, "putchar_fd");
-	tlib_print_missing(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
-	tlib_print_missing(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
-	tlib_print_missing(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
 }

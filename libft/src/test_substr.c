@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:20:57 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:41:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:06:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	test_substr2(void)
 	tlib_alloc_reset();
 }
 
-static void	test_substr1(void)
+void	test_substr(void)
 {
 	char	*str;
 
@@ -78,9 +78,4 @@ static void	test_substr1(void)
 	tlib_print_test("12", tlib_alloc_count() == 1, FALSE);
 	free(str);
 	test_substr2();
-}
-
-void	test_substr(void)
-{
-	tlib_print_missing(&test_substr1, &ft_substr, "substr");
 }

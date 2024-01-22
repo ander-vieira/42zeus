@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:32:38 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:41:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:08:26 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_itoa1(void)
+void	test_itoa(void)
 {
 	char	*str;
 
@@ -32,9 +32,4 @@ static void	test_itoa1(void)
 	tlib_print_test("5", !strcmp(str, "-2147483648"), TRUE);
 	free(str);
 	tlib_alloc_reset();
-}
-
-void	test_itoa(void)
-{
-	tlib_print_missing(&test_itoa1, &ft_itoa, "itoa");
 }

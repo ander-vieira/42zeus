@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:25:29 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:42:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:03:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	test_calloc_crash1(void *ctx)
 	return (status);
 }
 
-static void	test_calloc1(void)
+void	test_calloc(void)
 {
 	void	*buf;
 
@@ -42,9 +42,4 @@ static void	test_calloc1(void)
 		free(buf);
 	tlib_print_test("6",
 		tlib_run_process(&test_calloc_crash1, NULL) == 0, TRUE);
-}
-
-void	test_calloc(void)
-{
-	tlib_print_missing(&test_calloc1, &ft_calloc, "calloc");
 }

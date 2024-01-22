@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:14:57 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:43:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:10:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_tolower(void)
+void	test_tolower(void)
 {
 	tlib_print_test("1", ft_tolower('\0') == '\0', FALSE);
 	tlib_print_test("2", ft_tolower('\n') == '\n', FALSE);
@@ -25,7 +25,7 @@ static void	test_tolower(void)
 	tlib_alloc_reset();
 }
 
-static void	test_toupper(void)
+void	test_toupper(void)
 {
 	tlib_print_test("1", ft_toupper('\0') == '\0', FALSE);
 	tlib_print_test("2", ft_toupper('\n') == '\n', FALSE);
@@ -36,10 +36,4 @@ static void	test_toupper(void)
 	tlib_print_test("7", ft_toupper(0x80) == 0x80, FALSE);
 	tlib_print_test("8", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_to(void)
-{
-	tlib_print_missing(&test_tolower, &ft_tolower, "tolower");
-	tlib_print_missing(&test_toupper, &ft_toupper, "toupper");
 }

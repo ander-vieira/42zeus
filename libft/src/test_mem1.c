@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:17:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:06:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	test_bzero_crash1(void *ctx)
 	return (0);
 }
 
-static void	test_bzero(void)
+void	test_bzero(void)
 {
 	char	buf[5];
 
@@ -37,7 +37,7 @@ static int	test_memset_crash1(void *ctx)
 	return (0);
 }
 
-static void	test_memset(void)
+void	test_memset(void)
 {
 	char	buf[5];
 
@@ -51,10 +51,4 @@ static void	test_memset(void)
 	tlib_print_test("8",
 		tlib_run_process(&test_memset_crash1, NULL) != 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_mem1(void)
-{
-	tlib_print_missing(&test_bzero, &ft_bzero, "bzero");
-	tlib_print_missing(&test_memset, &ft_memset, "memset");
 }

@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:38:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:41:42 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:19:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_strjoin(void)
+void	test_strjoin(void)
 {
 	char	*str;
 
@@ -40,7 +40,7 @@ static void	test_strjoin(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strtrim(void)
+void	test_strtrim(void)
 {
 	char	*str;
 
@@ -66,10 +66,4 @@ static void	test_strtrim(void)
 	free(str);
 	tlib_print_test("13", tlib_alloc_errors() == 0x00, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_str3(void)
-{
-	tlib_print_missing(&test_strjoin, &ft_strjoin, "strjoin");
-	tlib_print_missing(&test_strtrim, &ft_strtrim, "strtrim");
 }

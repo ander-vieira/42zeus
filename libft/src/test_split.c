@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:04:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:08:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_split1(void)
+void	test_split(void)
 {
 	char	**split;
 
@@ -33,9 +33,4 @@ static void	test_split1(void)
 	tlib_print_test("13", tlib_alloc_count() == 0, FALSE);
 	tlib_print_test("14", tlib_alloc_errors() == 0x00, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_split(void)
-{
-	tlib_print_missing(&test_split1, &ft_split, "split");
 }

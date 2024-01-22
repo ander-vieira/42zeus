@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 20:01:32 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:18:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_strdup(void)
+void	test_strdup(void)
 {
 	char	*str;
 
@@ -30,7 +30,7 @@ static void	test_strdup(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strlcpy(void)
+void	test_strlcpy(void)
 {
 	char	buf[10];
 
@@ -44,7 +44,7 @@ static void	test_strlcpy(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strlcat(void)
+void	test_strlcat(void)
 {
 	char	buf[10];
 
@@ -65,7 +65,7 @@ static void	test_strlcat(void)
 	tlib_alloc_reset();
 }
 
-static void	test_strnstr(void)
+void	test_strnstr(void)
 {
 	char	*str;
 
@@ -79,12 +79,4 @@ static void	test_strnstr(void)
 	tlib_print_test("7", ft_strnstr(str, "", 0) == str, FALSE);
 	tlib_print_test("8", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_str2(void)
-{
-	tlib_print_missing(&test_strdup, &ft_strdup, "strdup");
-	tlib_print_missing(&test_strlcpy, &ft_strlcpy, "strlcpy");
-	tlib_print_missing(&test_strlcat, &ft_strlcat, "strlcat");
-	tlib_print_missing(&test_strnstr, &ft_strnstr, "strnstr");
 }

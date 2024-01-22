@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:46:07 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:16:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:19:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	test_memcpy_crash3(void *ctx)
 	return (status);
 }
 
-static void	test_memcpy1(void)
+void	test_memcpy(void)
 {
 	char	buf[5];
 
@@ -57,9 +57,4 @@ static void	test_memcpy1(void)
 	tlib_print_test("6",
 		tlib_run_process(&test_memcpy_crash3, NULL) == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_memcpy(void)
-{
-	tlib_print_missing(&test_memcpy1, &ft_memcpy, "memcpy");
 }

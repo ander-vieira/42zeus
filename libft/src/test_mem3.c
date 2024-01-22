@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:44:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:15:27 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_memchr(void)
+void	test_memchr(void)
 {
 	char	buf[11];
 
@@ -28,7 +28,7 @@ static void	test_memchr(void)
 	tlib_alloc_reset();
 }
 
-static void	test_memcmp(void)
+void	test_memcmp(void)
 {
 	tlib_print_test("1", !ft_memcmp("HOLA MUNDO", "HOLA MUNDO", 10), FALSE);
 	tlib_print_test("2", !ft_memcmp("HOLA MUNDO", "HOLA", 4), FALSE);
@@ -39,10 +39,4 @@ static void	test_memcmp(void)
 	tlib_print_test("7", !ft_memcmp("", "", 1), FALSE);
 	tlib_print_test("8", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_mem3(void)
-{
-	tlib_print_missing(&test_memchr, &ft_memchr, "memchr");
-	tlib_print_missing(&test_memcmp, &ft_memcmp, "memcmp");
 }

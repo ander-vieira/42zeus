@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 16:09:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:20:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,22 +120,39 @@ void	taux_split_free(char **split);
 /* ************************************************************************** */
 /* Test functions                                                             */
 
-void	test_is1(void);
-void	test_is2(void);
-void	test_to(void);
-void	test_mem1(void);
+void	test_isalpha(void);
+void	test_isdigit(void);
+void	test_isalnum(void);
+void	test_isascii(void);
+void	test_isprint(void);
+void	test_tolower(void);
+void	test_toupper(void);
+void	test_bzero(void);
+void	test_memset(void);
 void	test_memcpy(void);
 void	test_memmove(void);
-void	test_mem3(void);
-void	test_put(void);
+void	test_memchr(void);
+void	test_memcmp(void);
 void	test_atoi(void);
 void	test_calloc(void);
-void	test_str1(void);
-void	test_str2(void);
+void	test_strlen(void);
+void	test_strchr(void);
+void	test_strrchr(void);
+void	test_strncmp(void);
+void	test_strdup(void);
+void	test_strlcpy(void);
+void	test_strlcat(void);
+void	test_strnstr(void);
 void	test_substr(void);
-void	test_str3(void);
-void	test_str4(void);
+void	test_strjoin(void);
+void	test_strtrim(void);
+void	test_strmapi(void);
+void	test_striteri(void);
 void	test_itoa(void);
 void	test_split(void);
+void	test_putchar_fd(void);
+void	test_putstr_fd(void);
+void	test_putendl_fd(void);
+void	test_putnbr_fd(void);
 
 #endif

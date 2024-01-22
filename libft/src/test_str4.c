@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 20:15:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:20:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	iterchar(unsigned int index, char *c)
 	*c += index - 1;
 }
 
-static void	test_strmapi(void)
+void	test_strmapi(void)
 {
 	char	*str;
 
@@ -45,7 +45,7 @@ static void	test_strmapi(void)
 	tlib_alloc_reset();
 }
 
-static void	test_striteri(void)
+void	test_striteri(void)
 {
 	char	*str;
 
@@ -57,10 +57,4 @@ static void	test_striteri(void)
 	free(str);
 	tlib_print_test("3", tlib_alloc_count() == 0, TRUE);
 	tlib_alloc_reset();
-}
-
-void	test_str4(void)
-{
-	tlib_print_missing(&test_strmapi, &ft_strmapi, "strmapi");
-	tlib_print_missing(&test_striteri, &ft_striteri, "striteri");
 }
