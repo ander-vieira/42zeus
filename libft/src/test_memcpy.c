@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:46:07 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 16:11:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:13:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static int	test_memcpy_crash1(void *ctx)
 {
-	char	buf[5];
-
 	(void)ctx;
-	ft_memcpy(NULL, buf, 5);
+	ft_memcpy(NULL, "MUNDO", 5);
 	return (0);
 }
 

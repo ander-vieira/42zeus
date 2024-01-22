@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 16:12:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:13:22 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static int	test_memmove_crash1(void *ctx)
 {
-	char	buf[5];
-
 	(void)ctx;
-	ft_memmove(NULL, buf, 5);
+	ft_memmove(NULL, "MUNDO", 5);
 	return (0);
 }
 
