@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:12:58 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:37:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:34:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ size_t	tlib_alloc_lookup(void *addr)
 	t_alloc	**list;
 
 	list = tlib_var_alloclist();
-	while ((*list)->addr != addr)
+	while (*list != NULL)
 	{
-		if (*list == NULL)
-			return (0);
+		if ((*list)->addr == addr)
+			return ((*list)->size);
 		list = &((*list)->next);
 	}
-	return ((*list)->size);
+	return (0);
 }
 
 size_t	tlib_alloc_count(void)

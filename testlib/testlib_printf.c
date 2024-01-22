@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:11:26 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 12:52:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:27:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_nbr(int fd, size_t nbr, t_uint base)
 		return ;
 	if (nbr >= base)
 		print_nbr(fd, nbr /= base, base);
-	write(fd, "0123456789abcdef" + (nbr % base), 1);
+	write(fd, &("0123456789abcdef"[nbr % base]), 1);
 }
 
 static void	print_text(int fd, char *format, size_t *i)

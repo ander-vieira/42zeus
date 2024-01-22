@@ -6,17 +6,12 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/20 19:05:35 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/22 13:26:23 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra -D TEST_EVAL
 UNAME = $(shell uname)
-ifeq ($(UNAME), Linux)
-OSFLAGS = 
-else
-OSFLAGS = -undefined dynamic_lookup
-endif
 
 TESTLIB = ../testlib/testlib.a
 LIBFT = libft.a
@@ -38,12 +33,20 @@ HDRS_BONUS = src_bonus/test_bonus.h
 all: $(NAME)
 
 $(NAME): testlib libft $(SRCS) $(HDRS)
-	gcc $(CFLAGS) $(OSFLAGS) $(SRCS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME)
+ifeq ($(UNAME), Darwin)
+	gcc $(CFLAGS) -undefined dynamic_lookup $(SRCS) $(LIBFT) $(TESTLIB) -o $(NAME)
+else
+	gcc $(CFLAGS) $(SRCS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME)
+endif
 
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): testlib libft $(SRCS_BONUS) $(HDRS_BONUS)
-	gcc $(CFLAGS) $(OSFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
+ifeq ($(UNAME), Darwin)
+	gcc $(CFLAGS) -undefined dynamic_lookup $(SRCS_BONUS) $(LIBFT) $(TESTLIB) -o $(NAME_BONUS)
+else
+	gcc $(CFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
+endif
 
 testlib:
 	make -C ../testlib all clean
