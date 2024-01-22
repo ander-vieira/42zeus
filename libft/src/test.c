@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:14:59 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 14:23:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:09:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	main(void)
 	test_is2();
 	test_to();
 	test_mem1();
-	test_mem2();
+	test_memcpy();
+	test_memmove();
+	test_mem3();
 	test_atoi();
 	test_calloc();
 	test_str1();

@@ -1,28 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_mem2.c                                        :+:      :+:    :+:   */
+/*   test_memmove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 15:46:07 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:49:16 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/22 16:12:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_memcpy(void)
+static int	test_memmove_crash1(void *ctx)
 {
 	char	buf[5];
 
-	tlib_print_test("1", ft_memcpy(buf, "AS DF", 5) == buf, FALSE);
-	tlib_print_test("2", !memcmp(buf, "AS DF", 5), FALSE);
-	tlib_print_test("3", tlib_alloc_count() == 0, TRUE);
-	tlib_alloc_reset();
+	(void)ctx;
+	ft_memmove(NULL, buf, 5);
+	return (0);
 }
 
-static void	test_memmove(void)
+static int	test_memmove_crash2(void *ctx)
+{
+	char	buf[5];
+
+	(void)ctx;
+	ft_memmove(buf, NULL, 5);
+	return (0);
+}
+
+static int	test_memmove_crash3(void *ctx)
+{
+	int		status;
+	void	*ptr;
+
+	(void)ctx;
+	ptr = ft_memmove(NULL, NULL, 2);
+	if (ptr == NULL)
+		status = 0;
+	else
+		status = 1;
+	free(ptr);
+	return (status);
+}
+
+static void	test_memmove1(void)
 {
 	char	buf[5];
 
@@ -32,12 +55,14 @@ static void	test_memmove(void)
 	tlib_print_test("4", !memcmp(buf, "DF DF", 5), FALSE);
 	tlib_print_test("5", ft_memmove(buf + 2, buf, 3) == buf + 2, FALSE);
 	tlib_print_test("6", !memcmp(buf, "DFDF ", 5), FALSE);
-	tlib_print_test("7", tlib_alloc_count() == 0, TRUE);
+	tlib_print_test("7", tlib_alloc_count() == 0, FALSE);
+	tlib_print_test("8", tlib_run_process(&test_memmove_crash1, NULL) != 0, FALSE);
+	tlib_print_test("9", tlib_run_process(&test_memmove_crash2, NULL) != 0, FALSE);
+	tlib_print_test("10", tlib_run_process(&test_memmove_crash3, NULL) == 0, TRUE);
 	tlib_alloc_reset();
 }
 
-void	test_mem2(void)
+void	test_memmove(void)
 {
-	tlib_print_missing(&test_memcpy, &ft_memcpy, "memcpy");
-	tlib_print_missing(&test_memmove, &ft_memmove, "memmove");
+	tlib_print_missing(&test_memmove1, &ft_memmove, "memmove");
 }

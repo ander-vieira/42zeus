@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:54:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:01:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,9 @@ static void	test_bzero(void)
 
 static int	test_memset_crash1(void *ctx)
 {
-	void	*ptr;
-
 	(void)ctx;
-	ptr = ft_memset(NULL, 'p', 5);
-	if (ptr == NULL)
-		return (0);
-	else
-		return (1);
+	ft_memset(NULL, 'p', 5);
+	return (0);
 }
 
 static void	test_memset(void)

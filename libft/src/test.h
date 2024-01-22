@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 14:22:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:09:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,9 @@ void	test_is1(void);
 void	test_is2(void);
 void	test_to(void);
 void	test_mem1(void);
-void	test_mem2(void);
+void	test_memcpy(void);
+void	test_memmove(void);
+void	test_mem3(void);
 void	test_put(void);
 void	test_atoi(void);
 void	test_calloc(void);

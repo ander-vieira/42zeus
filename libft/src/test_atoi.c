@@ -6,11 +6,18 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 18:44:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:02:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+
+static int	test_atoi_crash1(void *ctx)
+{
+	(void)ctx;
+	ft_atoi(NULL);
+	return (0);
+}
 
 static void	test_atoi1(void)
 {
@@ -36,7 +43,8 @@ static void	test_atoi1(void)
 	tlib_print_test("20", ft_atoi("+-69") == 0, FALSE);
 	tlib_print_test("21", ft_atoi("-+69") == 0, FALSE);
 	tlib_print_test("22", ft_atoi("   -+69") == 0, FALSE);
-	tlib_print_test("23", tlib_alloc_count() == 0, TRUE);
+	tlib_print_test("23", tlib_alloc_count() == 0, FALSE);
+	tlib_print_test("24", tlib_run_process(&test_atoi_crash1, NULL), TRUE);
 	tlib_alloc_reset();
 }
 
