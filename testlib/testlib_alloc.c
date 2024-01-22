@@ -6,20 +6,20 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:37:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:23:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:51:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlib.h"
 
-void	tlib_alloc_add(void *addr, size_t size, void *(*old_malloc)(size_t))
+void	tlib_alloc_add(void *addr, size_t size)
 {
 	t_alloc	**list;
 
 	list = tlib_var_alloclist();
 	while (*list != NULL)
 		list = &((*list)->next);
-	*list = (t_alloc *)old_malloc(sizeof(t_alloc));
+	*list = (t_alloc *)libc_malloc(sizeof(t_alloc));
 	if (*list == NULL)
 		return ;
 	(*list)->addr = addr;
@@ -27,7 +27,7 @@ void	tlib_alloc_add(void *addr, size_t size, void *(*old_malloc)(size_t))
 	(*list)->next = NULL;
 }
 
-t_bool	tlib_alloc_delete(void *addr, void (*old_free)(void *))
+t_bool	tlib_alloc_delete(void *addr)
 {
 	t_alloc	**list;
 	t_alloc	*current;
@@ -41,7 +41,7 @@ t_bool	tlib_alloc_delete(void *addr, void (*old_free)(void *))
 	}
 	current = *list;
 	*list = current->next;
-	old_free(current);
+	libc_free(current);
 	return (TRUE);
 }
 

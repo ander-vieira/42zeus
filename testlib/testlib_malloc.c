@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:05:47 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 16:39:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:52:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@
 
 void	*malloc(size_t len)
 {
-	void	*(*old_malloc)(size_t);
 	void	*addr;
-	void	*caller[2];
-	char	**symbols;
 
 	if (len == 0)
 	{
 		*tlib_var_errmalloc() |= ERRMALLOC_ZERO;
 		return (NULL);
 	}
-	old_malloc = dlsym(RTLD_NEXT, "malloc");
-	addr = old_malloc(len);
-	tlib_alloc_add(addr, len, old_malloc);
+	addr = libc_malloc(len);
+	tlib_alloc_add(addr, len);
 	return (addr);
 }
 
@@ -38,14 +34,29 @@ void	*malloc(size_t len)
 
 void	free(void *addr)
 {
-	void	(*old_free)(void *);
-
 	if (tlib_alloc_lookup(addr) == 0)
 	{
 		*tlib_var_errmalloc() |= ERRMALLOC_FREE;
 		return ;
 	}
-	old_free = dlsym(RTLD_NEXT, "free");
-	old_free(addr);
-	tlib_alloc_delete(addr, old_free);
+	libc_free(addr);
+	tlib_alloc_delete(addr);
+}
+
+void	*libc_malloc(size_t len)
+{
+	static void	*(*fun)(size_t);
+
+	if (fun == NULL)
+		fun = dlsym(RTLD_NEXT, "malloc");
+	return (fun(len));
+}
+
+void	libc_free(void *addr)
+{
+	static void	(*fun)(void *);
+
+	if (fun == NULL)
+		fun = dlsym(RTLD_NEXT, "free");
+	fun(addr);
 }

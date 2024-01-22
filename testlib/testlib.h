@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:28:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 13:54:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_alloc
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
-void	tlib_alloc_add(void *addr, size_t size, void *(*old_malloc)(size_t));
-t_bool	tlib_alloc_delete(void *addr, void (*old_free)(void *));
+void	tlib_alloc_add(void *addr, size_t size);
+t_bool	tlib_alloc_delete(void *addr);
 void	tlib_alloc_print(void);
 void	tlib_alloc_reset(void);
 size_t	tlib_alloc_lookup(void *addr);
@@ -62,6 +62,12 @@ t_byte	tlib_alloc_errors(void);
 /* Io: testing functions that use file descriptors                            */
 
 t_bool	tlib_io_readtest(int fd, size_t len, ssize_t exp_len, void *exp);
+
+/* ************************************************************************** */
+/* Malloc: redefining malloc and free to add logging tools                    */
+
+void	*libc_malloc(size_t len);
+void	libc_free(void *addr);
 
 /* ************************************************************************** */
 /* Print: printing test results                                               */
