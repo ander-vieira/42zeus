@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:13:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:16:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ static void	test_memmove1(void)
 	tlib_print_test("5", ft_memmove(buf + 2, buf, 3) == buf + 2, FALSE);
 	tlib_print_test("6", !memcmp(buf, "DFDF ", 5), FALSE);
 	tlib_print_test("7", tlib_alloc_count() == 0, FALSE);
-	tlib_print_test("8", tlib_run_process(&test_memmove_crash1, NULL) != 0, FALSE);
-	tlib_print_test("9", tlib_run_process(&test_memmove_crash2, NULL) != 0, FALSE);
-	tlib_print_test("10", tlib_run_process(&test_memmove_crash3, NULL) == 0, TRUE);
+	tlib_print_test("8",
+		tlib_run_process(&test_memmove_crash1, NULL) != 0, FALSE);
+	tlib_print_test("9",
+		tlib_run_process(&test_memmove_crash2, NULL) != 0, FALSE);
+	tlib_print_test("10",
+		tlib_run_process(&test_memmove_crash3, NULL) == 0, TRUE);
 	tlib_alloc_reset();
 }
 

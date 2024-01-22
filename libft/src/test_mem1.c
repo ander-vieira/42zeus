@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 16:01:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:17:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	test_memset(void)
 	tlib_print_test("5", ft_memset(buf, 256 + '.', 3) == buf, FALSE);
 	tlib_print_test("6", !memcmp(buf, "...", 3), FALSE);
 	tlib_print_test("7", tlib_alloc_count() == 0, FALSE);
-	tlib_print_test("8", tlib_run_process(&test_memset_crash1, NULL) != 0, TRUE);
+	tlib_print_test("8",
+		tlib_run_process(&test_memset_crash1, NULL) != 0, TRUE);
 	tlib_alloc_reset();
 }
 
