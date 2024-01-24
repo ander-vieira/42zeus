@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 20:52:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:28:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	tlib_print_final(void)
 	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
 	if (*tlib_var_failed() == 0)
 	{
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"/home/ander/42zeus/zeus\n"COLOR_NONE);
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"All tests OK!\n"COLOR_NONE);
 		return (EXIT_SUCCESS);
 	}
