@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 19:21:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:46:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # else
 
 /* ************************************************************************** */
-/* Fake definitions to get VSCode dependency detection working                */
+/* Fake definition to get VSCode dependency detection working                */
 
 typedef struct s_list
 {
@@ -31,20 +31,10 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *n);
-void	ft_lstadd_back(t_list **lst, t_list *n);
-t_list	*ft_lstlast(t_list *lst);
-int		ft_lstsize(t_list *lst);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*fun)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
-
 # endif
 
 /* ************************************************************************** */
-/* Weak definitions to check for missing functions                            */
+/* Weak declarations to check for missing functions                           */
 
 # pragma weak ft_lstnew
 # pragma weak ft_lstadd_front
@@ -55,6 +45,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 # pragma weak ft_lstclear
 # pragma weak ft_lstiter
 # pragma weak ft_lstmap
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *n);
+void	ft_lstadd_back(t_list **lst, t_list *n);
+t_list	*ft_lstlast(t_list *lst);
+int		ft_lstsize(t_list *lst);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*fun)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 
 /* ************************************************************************** */
 /* Functions for creating lists for testing                                   */

@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/22 20:14:45 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/24 12:53:14 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ src_bonus/test_bonus3.c \
 src_bonus/taux_lst.c
 HDRS_BONUS = src_bonus/test_bonus.h
 
+NAME_CHECK_TLIST = check_tlist.out
+SRCS_CHECK_TLIST = src_bonus/check_tlist.c
+
 all: $(NAME)
 
 $(NAME): testlib libft $(SRCS) $(HDRS)
@@ -49,6 +52,11 @@ else
 	gcc $(CFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
 endif
 
+check_tlist: $(NAME_CHECK_TLIST)
+
+$(NAME_CHECK_TLIST): $(SRCS_CHECK_TLIST) $(HDRS_BONUS)
+	gcc $(CFLAGS) $(SRCS_CHECK_TLIST) -o $(NAME_CHECK_TLIST)
+
 testlib:
 	make -C ../testlib all clean
 
@@ -59,7 +67,7 @@ clean:
 	rm -f $(LIBFT)
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME) $(NAME_BONUS) $(NAME_CHECK_TLIST)
 
 re: fclean all
 

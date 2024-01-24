@@ -101,6 +101,16 @@ then
 	echo "|   COMPILE TESTS (BONUS)   |"
 	echo "+---------------------------+"
 
+	make -s -C libft/ check_tlist 2> /dev/null
+	if [ $? -ne 0 ]
+	then
+		echo -e "${red}t_list definition wasn't found or isn't correct${nocolor}"
+		make -s -C libft/ fclean
+		exit 1
+	else
+		echo -e "${green}t_list definition found!${nocolor}"
+	fi
+
 	make -s  -C libft/ bonus clean
 	if [ $? -ne 0 ]
 	then
