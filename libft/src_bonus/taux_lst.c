@@ -6,17 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:42:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/20 13:10:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:51:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-t_list	*taux_lstnew(void *content)
+t_list	*taux_lstnew(void *content, void *(*f_malloc)(size_t))
 {
 	t_list	*list;
 
-	list = (t_list *)malloc(sizeof(t_list));
+	list = (t_list *)f_malloc(sizeof(t_list));
 	if (list == NULL)
 		return (NULL);
 	list->content = content;
@@ -33,7 +33,7 @@ void	taux_lstadd_back(t_list **list, t_list *n)
 	*list = n;
 }
 
-void	taux_lstclear(t_list **list)
+void	taux_lstclear(t_list **list, void (*f_free)(void *))
 {
 	t_list	*current;
 	t_list	*next;
@@ -46,6 +46,6 @@ void	taux_lstclear(t_list **list)
 	{
 		current = next;
 		next = current->next;
-		free(current);
+		f_free(current);
 	}
 }

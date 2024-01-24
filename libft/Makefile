@@ -6,11 +6,11 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/24 12:53:14 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/24 19:11:28 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Werror -Wextra -D TEST_EVAL
+CFLAGS = -Wall -Werror -Wextra
 UNAME = $(shell uname)
 
 TESTLIB = ../testlib/testlib.a
@@ -26,13 +26,12 @@ src/taux_split.c
 HDRS = src/test.h
 
 NAME_BONUS = test_bonus.out
-SRCS_BONUS = src_bonus/test_bonus.c src_bonus/test_bonus2.c \
-src_bonus/test_bonus3.c \
-src_bonus/taux_lst.c
+SRCS_BONUS = src_bonus/test_bonus.c src_bonus/taux_lst.c src_bonus/taux_lst2.c \
+src_bonus/test_lstnew.c src_bonus/test_lstadd_front.c src_bonus/test_lstsize.c \
+src_bonus/test_lstlast.c src_bonus/test_lstadd_back.c \
+src_bonus/test_lstdelone.c src_bonus/test_lstclear.c src_bonus/test_lstiter.c \
+src_bonus/test_lstmap.c
 HDRS_BONUS = src_bonus/test_bonus.h
-
-NAME_CHECK_TLIST = check_tlist.out
-SRCS_CHECK_TLIST = src_bonus/check_tlist.c
 
 all: $(NAME)
 
@@ -51,11 +50,6 @@ ifeq ($(UNAME), Darwin)
 else
 	gcc $(CFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
 endif
-
-check_tlist: $(NAME_CHECK_TLIST)
-
-$(NAME_CHECK_TLIST): $(SRCS_CHECK_TLIST) $(HDRS_BONUS)
-	gcc $(CFLAGS) $(SRCS_CHECK_TLIST) -o $(NAME_CHECK_TLIST)
 
 testlib:
 	make -C ../testlib all clean

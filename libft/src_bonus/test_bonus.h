@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 12:46:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:09:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 
 # include "../../testlib/testlib.h"
 
-# ifdef TEST_EVAL
-#  include "../../repo/libft.h"
-# else
-
 /* ************************************************************************** */
 /* Fake definition to get VSCode dependency detection working                */
 
@@ -30,8 +26,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }				t_list;
-
-# endif
 
 /* ************************************************************************** */
 /* Weak declarations to check for missing functions                           */
@@ -57,16 +51,27 @@ void	ft_lstiter(t_list *lst, void (*fun)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 
 /* ************************************************************************** */
-/* Functions for creating lists for testing                                   */
+/* Utility unctions for testing lists                                         */
 
-t_list	*taux_lstnew(void *content);
+t_list	*taux_lstnew(void *content, void *(*f_malloc)(size_t));
 void	taux_lstadd_back(t_list **list, t_list *n);
-void	taux_lstclear(t_list **list);
+void	taux_lstclear(t_list **list, void (*f_free)(void *));
+
+void	taux_delfun(void *content);
+void	taux_iterfun(void *content);
+void	*taux_mapfun(void *content);
 
 /* ************************************************************************** */
 /* Test functions                                                             */
 
-void	test_bonus2(void);
-void	test_bonus3(void);
+void	test_lstnew(void);
+void	test_lstadd_front(void);
+void	test_lstsize(void);
+void	test_lstlast(void);
+void	test_lstadd_back(void);
+void	test_lstdelone(void);
+void	test_lstclear(void);
+void	test_lstiter(void);
+void	test_lstmap(void);
 
 #endif

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_tlist.c                                      :+:      :+:    :+:   */
+/*   taux_lst2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 12:41:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 12:45:01 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/24 18:50:59 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/24 18:58:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-int	main(void)
+void	taux_delfun(void *content)
 {
-	t_list	list;
+	*((char *)content) = 'c';
+}
 
-	list.content = NULL;
-	list.next = &list;
+void	taux_iterfun(void *content)
+{
+	*((char *)content) = 'i';
+}
+
+void	*taux_mapfun(void *content)
+{
+	static int	i;
+
+	i += 1;
+	return (content + i);
 }

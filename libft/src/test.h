@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 12:57:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:28:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include <string.h>
 
 # include "../../testlib/testlib.h"
-
-# ifdef TEST_EVAL
-#  include "../../repo/libft.h"
-# endif
 
 /* ************************************************************************** */
 /* Weak declarations to check for missing functions                           */

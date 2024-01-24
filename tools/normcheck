@@ -4,7 +4,13 @@ red="\033[0;31m"
 green="\033[0;32m"
 nocolor="\033[0m"
 
-norminette=$(norminette repo/ | grep -v ': OK!$')
+if [ $# -lt 1 ]
+then
+	echo -e "${red}No filename specified.${nocolor}"
+	exit 1
+fi
+
+norminette=$(norminette $1 | grep -v ': OK!$')
 if [ $? -ne 0 ]
 then
 	echo -e "${green}No norminette errors!${nocolor}"
