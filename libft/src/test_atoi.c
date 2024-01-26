@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:01:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static void	test_atoi_child1_1(void)
+static int	test_atoi_child1(void)
 {
 	tlib_alloc_reset();
 	tlib_test_ok(ft_atoi("4") == 4);
@@ -32,11 +32,6 @@ static void	test_atoi_child1_1(void)
 	tlib_test_ok(ft_atoi("-2147483648") == -2147483648);
 	tlib_test_ok(ft_atoi("2147483648") == -2147483648);
 	tlib_test_ok(ft_atoi("+2147483648") == -2147483648);
-}
-
-static int	test_atoi_child1(void)
-{
-	test_atoi_child1_1();
 	tlib_test_ok(ft_atoi("88aaa") == 88);
 	tlib_test_ok(ft_atoi("100b.g") == 100);
 	tlib_test_ok(ft_atoi("f55") == 0);
