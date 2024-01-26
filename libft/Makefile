@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/26 10:05:55 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/26 10:49:13 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ LIBFT = libft.a
 
 NAME = test.out
 SRCS = src/test.c src/test_is.c src/test_to.c \
-src/test_bzero.c src/test_memset.c src/test_memcpy.c src/test_memmove.c src/test_memchr.c src/test_memcmp.c \
+src/mem/test_bzero.c src/mem/test_memset.c src/mem/test_memcpy.c src/mem/test_memmove.c src/mem/test_memchr.c src/mem/test_memcmp.c \
 src/test_put.c src/test_atoi.c src/test_calloc.c \
-src/test_str1.c src/test_str2.c src/test_substr.c src/test_str3.c src/test_str4.c \
+src/str/test_str1.c src/str/test_str2.c src/str/test_substr.c src/str/test_str3.c src/str/test_str4.c \
 src/test_itoa.c src/test_split.c \
 src/taux_split.c
 HDRS = src/test.h
@@ -37,9 +37,9 @@ all: $(NAME)
 
 $(NAME): testlib libft $(SRCS) $(HDRS)
 ifeq ($(UNAME), Darwin)
-	gcc $(CFLAGS) -undefined dynamic_lookup $(SRCS) $(LIBFT) $(TESTLIB) -o $(NAME)
+	gcc $(CFLAGS) -undefined dynamic_lookup -Isrc $(SRCS) $(LIBFT) $(TESTLIB) -o $(NAME)
 else
-	gcc $(CFLAGS) $(SRCS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME)
+	gcc $(CFLAGS) $(SRCS) -Wl,--whole-archive -Isrc -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME)
 endif
 
 bonus: $(NAME_BONUS)
