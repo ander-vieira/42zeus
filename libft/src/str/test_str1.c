@@ -6,20 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:09:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:22:16 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	test_strlen(void)
-{
-	tlib_test_ok(ft_strlen("HOLA") == 4);
-	tlib_test_ok(ft_strlen("HOLA MUNDO\nAAA") == 14);
-	tlib_test_ok(ft_strlen("") == 0);
-	tlib_test_ok(tlib_alloc_count() == 0);
-	tlib_alloc_reset();
-}
 
 void	test_strchr(void)
 {

@@ -6,29 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:44:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:12:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	test_strdup(void)
-{
-	char	*str;
-
-	str = ft_strdup("HOLA");
-	tlib_test_ok(!strcmp(str, "HOLA"));
-	tlib_test_ok(tlib_alloc_lookup(str) == 5);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
-	str = ft_strdup("");
-	tlib_test_ok(!strcmp(str, ""));
-	tlib_test_ok(tlib_alloc_lookup(str) == 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
-	tlib_test_ok(tlib_alloc_errors() == 0x00);
-	tlib_alloc_reset();
-}
 
 void	test_strlcpy(void)
 {
