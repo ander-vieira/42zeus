@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/26 10:49:13 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/26 11:50:40 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ LIBFT = libft.a
 NAME = test.out
 SRCS = src/test.c src/test_is.c src/test_to.c \
 src/mem/test_bzero.c src/mem/test_memset.c src/mem/test_memcpy.c src/mem/test_memmove.c src/mem/test_memchr.c src/mem/test_memcmp.c \
-src/test_put.c src/test_atoi.c src/test_calloc.c \
+src/test_atoi.c src/test_calloc.c \
 src/str/test_str1.c src/str/test_str2.c src/str/test_substr.c src/str/test_str3.c src/str/test_str4.c \
 src/test_itoa.c src/test_split.c \
+src/put/test_putchar.c src/put/test_putstr.c src/put/test_putendl.c src/put/test_putnbr.c \
 src/taux_split.c
 HDRS = src/test.h
 

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 11:45:17 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:05:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ t_byte	tlib_alloc_errors(void);
 void	tlib_alloc_setmock(size_t timer);
 t_bool	tlib_alloc_tickmocks(void);
 void	tlib_alloc_resetmocks(void);
-
-/* ************************************************************************** */
-/* Io: testing functions that use file descriptors                            */
-
-t_bool	tlib_io_readtest(int fd, size_t len, ssize_t exp_len, void *exp);
 
 /* ************************************************************************** */
 /* Malloc: redefining malloc and free to add logging tools                    */
