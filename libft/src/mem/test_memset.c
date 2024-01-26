@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:51:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	test_memset_child1(void)
 	tlib_test_ok(!memcmp(buf, "CCCCA", 5));
 	tlib_test_ok(ft_memset(buf + 3, '\0', 1) == buf + 3);
 	tlib_test_ok(!memcmp(buf, "CCC\0A", 5));
+	tlib_test_ok(ft_memset(buf, 'A' + 256, 2) == buf);
+	tlib_test_ok(!memcmp(buf, "AAC\0A", 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
 	return (0);
 }
