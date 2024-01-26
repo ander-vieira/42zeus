@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 09:30:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:45:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	tlib_printf(int fd, char *format, ...);
 /* ************************************************************************** */
 /* Run: handling child processes                                              */
 
-int		tlib_run_process(int (*fun)(void *), void *ctx);
+int		tlib_run_process(int (*fun)(void));
 
 /* ************************************************************************** */
 /* Var: "global" variables                                                    */

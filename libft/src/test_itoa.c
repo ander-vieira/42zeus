@@ -6,18 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:32:38 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_itoa_crash1(void *ctx)
+static int	test_itoa_crash1(void)
 {
 	char	*str;
 	int		status;
 
-	(void)ctx;
 	tlib_alloc_setmock(1);
 	str = ft_itoa(5);
 	if (str == NULL)
@@ -38,7 +37,7 @@ static void	test_itoa2(void)
 	tlib_print_test(tlib_alloc_count() == 1);
 	free(str);
 	tlib_print_test(tlib_alloc_errors() == 0x00);
-	tlib_print_test(tlib_run_process(&test_itoa_crash1, NULL) == 0);
+	tlib_print_test(tlib_run_process(&test_itoa_crash1) == 0);
 }
 
 void	test_itoa(void)

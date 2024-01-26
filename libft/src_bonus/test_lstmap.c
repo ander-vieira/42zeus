@@ -6,17 +6,16 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:49:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static int	test_lstmap_crash1(void *ctx)
+static int	test_lstmap_crash1(void)
 {
 	int	status;
 
-	(void)ctx;
 	status = 0;
 	return (status);
 }
@@ -42,6 +41,6 @@ void	test_lstmap(void)
 	tlib_print_test(!memcmp(c, "aaaaaaaaaa", 10));
 	taux_lstclear(&l1, &libc_free);
 	taux_lstclear(&l2, &free);
-	tlib_print_test(tlib_run_process(&test_lstmap_crash1, NULL) == 0);
+	tlib_print_test(tlib_run_process(&test_lstmap_crash1) == 0);
 	tlib_alloc_reset();
 }

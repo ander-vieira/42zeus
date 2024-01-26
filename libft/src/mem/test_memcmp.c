@@ -6,15 +6,14 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 10:33:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_memcmp_child1(void *ctx)
+static int	test_memcmp_child1(void)
 {
-	(void)ctx;
 	tlib_alloc_reset();
 	tlib_print_test(!ft_memcmp("ASDFG", "ASDFG", 5));
 	tlib_print_test(ft_memcmp("ASDFG", "ASDFH", 5));
@@ -27,9 +26,8 @@ static int	test_memcmp_child1(void *ctx)
 	return (0);
 }
 
-static int	test_memcmp_child2(void *ctx)
+static int	test_memcmp_child2(void)
 {
-	(void)ctx;
 	tlib_alloc_reset();
 	tlib_print_test(!ft_memcmp(NULL, "ASDFG", 0));
 	tlib_print_test(!ft_memcmp("ASDFG", NULL, 0));
@@ -39,24 +37,22 @@ static int	test_memcmp_child2(void *ctx)
 	return (0);
 }
 
-static int	test_memcmp_child3(void *ctx)
+static int	test_memcmp_child3(void)
 {
-	(void)ctx;
 	ft_memcmp(NULL, "ASDFG", 5);
 	return (0);
 }
 
-static int	test_memcmp_child4(void *ctx)
+static int	test_memcmp_child4(void)
 {
-	(void)ctx;
 	ft_memcmp("ASDFG", NULL, 5);
 	return (0);
 }
 
 void	test_memcmp(void)
 {
-	tlib_print_test(tlib_run_process(&test_memcmp_child1, NULL) == 0);
-	tlib_print_test(tlib_run_process(&test_memcmp_child2, NULL) == 0);
-	tlib_print_test(tlib_run_process(&test_memcmp_child3, NULL) != 0);
-	tlib_print_test(tlib_run_process(&test_memcmp_child4, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_memcmp_child1) == 0);
+	tlib_print_test(tlib_run_process(&test_memcmp_child2) == 0);
+	tlib_print_test(tlib_run_process(&test_memcmp_child3) != 0);
+	tlib_print_test(tlib_run_process(&test_memcmp_child4) != 0);
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 11:13:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:47:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static void	test_atoi_child1_1(void)
 	tlib_print_test(ft_atoi("+2147483648") == -2147483648);
 }
 
-static int	test_atoi_child1(void *ctx)
+static int	test_atoi_child1(void)
 {
-	(void)ctx;
 	test_atoi_child1_1();
 	tlib_print_test(ft_atoi("88aaa") == 88);
 	tlib_print_test(ft_atoi("100b.g") == 100);
@@ -59,15 +58,14 @@ static int	test_atoi_child1(void *ctx)
 	return (0);
 }
 
-static int	test_atoi_child2(void *ctx)
+static int	test_atoi_child2(void)
 {
-	(void)ctx;
 	ft_atoi(NULL);
 	return (0);
 }
 
 void	test_atoi(void)
 {
-	tlib_print_test(tlib_run_process(&test_atoi_child1, NULL) == 0);
-	tlib_print_test(tlib_run_process(&test_atoi_child2, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_atoi_child1) == 0);
+	tlib_print_test(tlib_run_process(&test_atoi_child2) != 0);
 }

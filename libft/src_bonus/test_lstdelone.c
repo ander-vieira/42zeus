@@ -6,24 +6,22 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:06:12 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static int	test_lstdelone_crash1(void *ctx)
+static int	test_lstdelone_crash1(void)
 {
-	(void)ctx;
 	ft_lstdelone(NULL, &taux_delfun);
 	return (0);
 }
 
-static int	test_lstdelone_crash2(void *ctx)
+static int	test_lstdelone_crash2(void)
 {
 	t_list	*list;
 
-	(void)ctx;
 	list = taux_lstnew(NULL, &malloc);
 	ft_lstdelone(list, NULL);
 	free(list);
@@ -52,7 +50,7 @@ void	test_lstdelone(void)
 	tlib_print_test(c[1] == 'c');
 	free(l1);
 	free(l2);
-	tlib_print_test(tlib_run_process(&test_lstdelone_crash1, NULL) == 0);
-	tlib_print_test(tlib_run_process(&test_lstdelone_crash2, NULL) == 0);
+	tlib_print_test(tlib_run_process(&test_lstdelone_crash1) == 0);
+	tlib_print_test(tlib_run_process(&test_lstdelone_crash2) == 0);
 	tlib_alloc_reset();
 }
