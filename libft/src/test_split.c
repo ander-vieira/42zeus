@@ -6,30 +6,90 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 14:37:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/27 00:54:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
+static void	test_split_free(char **split)
+{
+	size_t	i;
+
+	if (split != NULL)
+	{
+		i = 0;
+		while (split[i] != NULL)
+		{
+			free(split[i]);
+			i++;
+		}
+		free(split);
+	}
+}
+
+static void	test_split_testone(char *str, char c, size_t len, ...)
+{
+	va_list	args;
+	char	**split;
+	char	*expected;
+	size_t	i;
+
+	va_start(args, len);
+	tlib_alloc_reset();
+	split = ft_split(str, c);
+	tlib_test_ok(split != NULL);
+	tlib_test_ok(tlib_alloc_lookup(split) == sizeof(char *) * (len + 1));
+	i = 0;
+	while (i < len)
+	{
+		expected = va_arg(args, char *);
+		tlib_test_ok(split[i] != NULL && !strcmp(split[i], expected) && tlib_alloc_lookup(split[i]) == strlen(expected) + 1);
+		i++;
+	}
+	tlib_test_ok(split[len] == NULL);
+	tlib_test_ok(tlib_alloc_count() == len + 1);
+	test_split_free(split);
+	va_end(args);
+}
+
+static void	test_split_child1(void)
+{
+	test_split_testone("AB CDE F", ' ', 3, "AB", "CDE", "F");
+	test_split_testone("   AB  CDE F  ", ' ', 3, "AB", "CDE", "F");
+	test_split_testone("     ", ' ', 0);
+	test_split_testone("AABABBACAA", 'A', 3, "B", "BB", "C");
+}
+
+static void	test_split_child2(void)
+{
+	test_split_testone("ABC DE", '\0', 1, "ABC DE");
+	test_split_testone("", ' ', 0);
+	test_split_testone("", '\0', 0);
+}
+
+static void	test_split_child3(void)
+{
+	tlib_test_ok(ft_split(NULL, ' ') == NULL);
+}
+
+static void	test_split_child4(void)
+{
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
+}
+
+static void	test_split_child5(void)
+{
+	tlib_alloc_setmock(2);
+	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
+}
+
 void	test_split(void)
 {
-	char	**split;
-
-	split = ft_split(" HOLA MUNDO SOY  ANDER  ", ' ');
-	tlib_test_ok(split != NULL);
-	tlib_test_ok(tlib_alloc_lookup(split) == sizeof(char *) * 5);
-	tlib_test_ok(split[0] != NULL && !strcmp(split[0], "HOLA"));
-	tlib_test_ok(tlib_alloc_lookup(split[0]) == 5);
-	tlib_test_ok(split[1] != NULL && !strcmp(split[1], "MUNDO"));
-	tlib_test_ok(tlib_alloc_lookup(split[1]) == 6);
-	tlib_test_ok(split[2] != NULL && !strcmp(split[2], "SOY"));
-	tlib_test_ok(tlib_alloc_lookup(split[2]) == 4);
-	tlib_test_ok(split[3] != NULL && !strcmp(split[3], "ANDER"));
-	tlib_test_ok(tlib_alloc_lookup(split[3]) == 6);
-	tlib_test_ok(split[4] == NULL);
-	tlib_test_ok(tlib_alloc_count() == 5);
-	taux_split_free(split);
-	tlib_test_ok(tlib_alloc_count() == 0);
-	tlib_alloc_reset();
+	tlib_test_process(&test_split_child1, STATUS_OK);
+	tlib_test_process(&test_split_child2, STATUS_OK);
+	tlib_test_process(&test_split_child3, STATUS_OK);
+	tlib_test_process(&test_split_child4, STATUS_OK);
+	tlib_test_process(&test_split_child5, STATUS_OK);
 }

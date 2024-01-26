@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:08:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/27 00:42:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int num, int fd);
-
-/* ************************************************************************** */
-/* Functions for testing split results                                        */
-
-void	taux_split_free(char **split);
 
 /* ************************************************************************** */
 /* Test functions                                                             */
