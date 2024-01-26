@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:05:47 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 15:29:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:14:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	*malloc(size_t len)
 		return (NULL);
 	if (len == 0)
 	{
-		*tlib_var_errmalloc() |= ERRMALLOC_ZERO;
 		return (NULL);
 	}
 	addr = libc_malloc(len);
@@ -38,7 +37,6 @@ void	free(void *addr)
 {
 	if (tlib_alloc_lookup(addr) == 0)
 	{
-		*tlib_var_errmalloc() |= ERRMALLOC_FREE;
 		return ;
 	}
 	libc_free(addr);

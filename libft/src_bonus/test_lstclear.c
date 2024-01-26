@@ -6,28 +6,26 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:42:55 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static int	test_lstclear_crash1(void)
+static void	test_lstclear_crash1(void)
 {
 	ft_lstclear(NULL, &taux_delfun);
-	return (0);
 }
 
-static int	test_lstclear_crash2(void)
+static void	test_lstclear_crash2(void)
 {
 	t_list	*list;
 
 	list = NULL;
 	ft_lstclear(&list, &taux_delfun);
-	return (0);
 }
 
-static int	test_lstclear_crash3(void)
+static void	test_lstclear_crash3(void)
 {
 	t_list	*l;
 	t_list	*l1;
@@ -36,7 +34,6 @@ static int	test_lstclear_crash3(void)
 	l = l1;
 	ft_lstclear(&l, NULL);
 	free(l1);
-	return (0);
 }
 
 void	test_lstclear(void)
@@ -59,8 +56,8 @@ void	test_lstclear(void)
 	tlib_test_ok(!memcmp(c, "cc", 2));
 	free(l1);
 	free(l2);
-	tlib_test_ok(tlib_run_process(&test_lstclear_crash1) == 0);
-	tlib_test_ok(tlib_run_process(&test_lstclear_crash2) == 0);
-	tlib_test_ok(tlib_run_process(&test_lstclear_crash3) == 0);
+	tlib_test_process(&test_lstclear_crash1, STATUS_OK);
+	tlib_test_process(&test_lstclear_crash2, STATUS_OK);
+	tlib_test_process(&test_lstclear_crash3, STATUS_OK);
 	tlib_alloc_reset();
 }

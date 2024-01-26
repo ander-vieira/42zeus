@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:37:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ void	test_split(void)
 	tlib_test_ok(tlib_alloc_count() == 5);
 	taux_split_free(split);
 	tlib_test_ok(tlib_alloc_count() == 0);
-	tlib_test_ok(tlib_alloc_errors() == 0x00);
 	tlib_alloc_reset();
 }

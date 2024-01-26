@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 14:14:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ static void	test_putendl_fd_testone(char *str)
 	close(fd[0]);
 }
 
-static int	test_putendl_fd_child1(void)
+static void	test_putendl_fd_child1(void)
 {
 	tlib_alloc_reset();
 	test_putendl_fd_testone("ASDFG");
 	test_putendl_fd_testone("");
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
-static int	test_putendl_fd_child2(void)
+static void	test_putendl_fd_child2(void)
 {
 	int		fd[2];
 
@@ -46,11 +45,10 @@ static int	test_putendl_fd_child2(void)
 	close(fd[1]);
 	close(fd[0]);
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
 void	test_putendl_fd(void)
 {
-	tlib_test_ok(tlib_run_process(&test_putendl_fd_child1) == 0);
-	tlib_test_ok(tlib_run_process(&test_putendl_fd_child2) == 0);
+	tlib_test_process(&test_putendl_fd_child1, STATUS_OK);
+	tlib_test_process(&test_putendl_fd_child2, STATUS_OK);
 }

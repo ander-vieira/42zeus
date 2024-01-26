@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:39:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:23:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,36 @@ void	tlib_test_ok(t_bool ok)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
 	else
 	{
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
 		g_failed += 1;
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+	}
+}
+
+void	tlib_test_process(void (*fun)(void), int expected)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+		return ;
+	else if (pid == 0)
+	{
+		fun();
+		exit(0);
+	}
+	waitpid(pid, &status, 0);
+	if (status == expected)
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+	else
+	{
+		g_failed += 1;
+		if (status == STATUS_OK)
+			tlib_printf(STDOUT_FILENO, COLOR_RED"[NO CRASH]"COLOR_NONE);
+		else if (status == STATUS_SEGFAULT)
+			tlib_printf(STDOUT_FILENO, COLOR_RED"[SEGFAULT]"COLOR_NONE);
+		else
+			tlib_printf(STDOUT_FILENO, COLOR_RED"[CRASH]"COLOR_NONE);
 	}
 }
 

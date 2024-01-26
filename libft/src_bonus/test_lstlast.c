@@ -6,16 +6,15 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:32:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static int	test_lstlast_crash1(void)
+static void	test_lstlast_crash1(void)
 {
 	ft_lstlast(NULL);
-	return (0);
 }
 
 void	test_lstlast(void)
@@ -29,7 +28,7 @@ void	test_lstlast(void)
 	tlib_test_ok(ft_lstlast(l->next) == l->next->next);
 	tlib_test_ok(ft_lstlast(l->next->next) == l->next->next);
 	tlib_test_ok(tlib_alloc_count() == 0);
-	tlib_test_ok(tlib_run_process(&test_lstlast_crash1) == 0);
+	tlib_test_process(&test_lstlast_crash1, STATUS_OK);
 	taux_lstclear(&l, &libc_free);
 	tlib_alloc_reset();
 }

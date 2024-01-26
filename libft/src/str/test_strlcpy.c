@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:17:08 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 14:18:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_strlcpy_child1(void)
+static void	test_strlcpy_child1(void)
 {
 	char	buf[10];
 
@@ -24,10 +24,9 @@ static int	test_strlcpy_child1(void)
 	tlib_test_ok(ft_strlcpy(buf, "", 10) == 0);
 	tlib_test_ok(!strcmp(buf, ""));
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
 void	test_strlcpy(void)
 {
-	tlib_test_ok(tlib_run_process(&test_strlcpy_child1) == 0);
+	tlib_test_process(&test_strlcpy_child1, STATUS_OK);
 }

@@ -6,46 +6,33 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:20:57 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_substr_crash1(void)
+static void	test_substr_crash1(void)
 {
 	char	*str;
-	int		status;
 
 	str = ft_substr(NULL, 0, 4);
-	if (str == NULL)
-		status = 0;
-	else
-		status = 1;
-	free(str);
-	return (status);
+	tlib_test_ok(str == NULL);
 }
 
-static int	test_substr_crash2(void)
+static void	test_substr_crash2(void)
 {
 	char	*str;
-	int		status;
 
 	tlib_alloc_setmock(1);
 	str = ft_substr("HOLA MUNDO", 0, 4);
-	if (str == NULL)
-		status = 0;
-	else
-		status = 1;
-	free(str);
-	return (status);
+	tlib_test_ok(str == NULL);
 }
 
 static void	test_substr2(void)
 {
-	tlib_test_ok(tlib_run_process(&test_substr_crash1) == 0);
-	tlib_test_ok(tlib_run_process(&test_substr_crash2) == 0);
-	tlib_test_ok(tlib_alloc_errors() == 0x00);
+	tlib_test_process(&test_substr_crash1, STATUS_OK);
+	tlib_test_process(&test_substr_crash2, STATUS_OK);
 	tlib_alloc_reset();
 }
 

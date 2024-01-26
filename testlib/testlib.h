@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:58:24 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:15:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 
 # define ERRMALLOC_ZERO	0x01
 # define ERRMALLOC_FREE	0x02
+
+# define STATUS_OK			0
+# define STATUS_SEGFAULT	139
 
 typedef unsigned char	t_byte;
 typedef unsigned int	t_uint;
@@ -58,11 +61,9 @@ typedef struct s_amock
 
 void	tlib_alloc_add(void *addr, size_t size);
 t_bool	tlib_alloc_delete(void *addr);
-void	tlib_alloc_print(void);
 void	tlib_alloc_reset(void);
 size_t	tlib_alloc_lookup(void *addr);
 size_t	tlib_alloc_count(void);
-t_byte	tlib_alloc_errors(void);
 void	tlib_alloc_setmock(size_t timer);
 t_bool	tlib_alloc_tickmocks(void);
 void	tlib_alloc_resetmocks(void);
@@ -81,18 +82,13 @@ void	tlib_printf(int fd, char *format, ...);
 /* ************************************************************************** */
 /* Run: handling child processes                                              */
 
-int		tlib_run_process(int (*fun)(void));
 
 /* ************************************************************************** */
 /* Test: printing test results                                                */
 
 void	tlib_test_missing(void (*test)(void), void *fun, char *title);
 void	tlib_test_ok(t_bool ok);
+void	tlib_test_process(void (*fun)(void), int expected);
 int		tlib_test_results(void);
-
-/* ************************************************************************** */
-/* Var: "global" variables                                                    */
-
-t_byte	*tlib_var_errmalloc(void);
 
 #endif

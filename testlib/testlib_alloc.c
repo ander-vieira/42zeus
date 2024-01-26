@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:37:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:58:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:14:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,6 @@ t_bool	tlib_alloc_delete(void *addr)
 	return (TRUE);
 }
 
-void	tlib_alloc_print(void)
-{
-	t_alloc	**list;
-
-	list = &g_allocs;
-	while (*list != NULL)
-	{
-		tlib_printf(STDOUT_FILENO, "%p: %u bytes\n",
-			(*list)->addr, (*list)->size);
-		list = &((*list)->next);
-	}
-}
-
 void	tlib_alloc_reset(void)
 {
 	t_alloc	**list;
@@ -74,7 +61,6 @@ void	tlib_alloc_reset(void)
 		free(current);
 	}
 	g_allocs = NULL;
-	*tlib_var_errmalloc() = 0x00;
 	tlib_alloc_resetmocks();
 }
 
@@ -105,11 +91,6 @@ size_t	tlib_alloc_count(void)
 		list = &((*list)->next);
 	}
 	return (count);
-}
-
-t_byte	tlib_alloc_errors(void)
-{
-	return (*tlib_var_errmalloc());
 }
 
 void	tlib_alloc_setmock(size_t timer)

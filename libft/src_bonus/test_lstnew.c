@@ -6,25 +6,19 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:06:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static int	test_lstnew_crash1(void)
+static void	test_lstnew_crash1(void)
 {
 	t_list	*list;
-	int		status;
 
 	tlib_alloc_setmock(1);
 	list = ft_lstnew(NULL);
-	if (list == NULL)
-		status = 0;
-	else
-		status = 1;
-	free(list);
-	return (status);
+	tlib_test_ok(list == NULL);
 }
 
 void	test_lstnew(void)
@@ -39,6 +33,6 @@ void	test_lstnew(void)
 	tlib_test_ok(tlib_alloc_lookup(l) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_count() == 1);
 	free(l);
-	tlib_test_ok(tlib_run_process(&test_lstnew_crash1) == 0);
+	tlib_test_process(&test_lstnew_crash1, STATUS_OK);
 	tlib_alloc_reset();
 }

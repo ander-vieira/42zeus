@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:10:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_memmove_child1(void)
+static void	test_memmove_child1(void)
 {
 	char	buf[5];
 
@@ -24,10 +24,9 @@ static int	test_memmove_child1(void)
 	tlib_test_ok(ft_memmove(buf + 2, buf, 3) == buf + 2);
 	tlib_test_ok(!memcmp(buf, "FGFGD", 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
-static int	test_memmove_child2(void)
+static void	test_memmove_child2(void)
 {
 	char	buf[5];
 
@@ -39,27 +38,24 @@ static int	test_memmove_child2(void)
 	tlib_test_ok(ft_memmove(NULL, NULL, 0) == NULL);
 	tlib_test_ok(ft_memmove(NULL, NULL, 3) == NULL);
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
-static int	test_memmove_child3(void)
+static void	test_memmove_child3(void)
 {
 	ft_memmove(NULL, "ASDFG", 5);
-	return (0);
 }
 
-static int	test_memmove_child4(void)
+static void	test_memmove_child4(void)
 {
 	char	buf[5];
 
 	ft_memmove(buf, NULL, 5);
-	return (0);
 }
 
 void	test_memmove(void)
 {
-	tlib_test_ok(tlib_run_process(&test_memmove_child1) == 0);
-	tlib_test_ok(tlib_run_process(&test_memmove_child2) == 0);
-	tlib_test_ok(tlib_run_process(&test_memmove_child3) != 0);
-	tlib_test_ok(tlib_run_process(&test_memmove_child4) != 0);
+	tlib_test_process(&test_memmove_child1, STATUS_OK);
+	tlib_test_process(&test_memmove_child2, STATUS_OK);
+	tlib_test_process(&test_memmove_child3, STATUS_SEGFAULT);
+	tlib_test_process(&test_memmove_child4, STATUS_SEGFAULT);
 }

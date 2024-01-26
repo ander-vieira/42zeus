@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 14:15:11 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	test_putnbr_fd_testone(int num, char *str)
 	close(fd[0]);
 }
 
-static int	test_putnbr_fd_child1(void)
+static void	test_putnbr_fd_child1(void)
 {
 	tlib_alloc_reset();
 	test_putnbr_fd_testone(53, "53");
@@ -35,10 +35,9 @@ static int	test_putnbr_fd_child1(void)
 	test_putnbr_fd_testone(2147483647, "2147483647");
 	test_putnbr_fd_testone(-2147483648, "-2147483648");
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
 void	test_putnbr_fd(void)
 {
-	tlib_test_ok(tlib_run_process(&test_putnbr_fd_child1) == 0);
+	tlib_test_process(&test_putnbr_fd_child1, STATUS_OK);
 }

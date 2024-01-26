@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:11:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_memcmp_child1(void)
+static void	test_memcmp_child1(void)
 {
 	tlib_alloc_reset();
 	tlib_test_ok(!ft_memcmp("ASDFG", "ASDFG", 5));
@@ -23,10 +23,9 @@ static int	test_memcmp_child1(void)
 	tlib_test_ok(!ft_memcmp("ASD", "ASDFG", 3));
 	tlib_test_ok(ft_memcmp("ASD\0G", "ASD\0H", 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
-static int	test_memcmp_child2(void)
+static void	test_memcmp_child2(void)
 {
 	tlib_alloc_reset();
 	tlib_test_ok(!ft_memcmp(NULL, "ASDFG", 0));
@@ -34,25 +33,22 @@ static int	test_memcmp_child2(void)
 	tlib_test_ok(!ft_memcmp(NULL, NULL, 0));
 	tlib_test_ok(!ft_memcmp(NULL, NULL, 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
-	return (0);
 }
 
-static int	test_memcmp_child3(void)
+static void	test_memcmp_child3(void)
 {
 	ft_memcmp(NULL, "ASDFG", 5);
-	return (0);
 }
 
-static int	test_memcmp_child4(void)
+static void	test_memcmp_child4(void)
 {
 	ft_memcmp("ASDFG", NULL, 5);
-	return (0);
 }
 
 void	test_memcmp(void)
 {
-	tlib_test_ok(tlib_run_process(&test_memcmp_child1) == 0);
-	tlib_test_ok(tlib_run_process(&test_memcmp_child2) == 0);
-	tlib_test_ok(tlib_run_process(&test_memcmp_child3) != 0);
-	tlib_test_ok(tlib_run_process(&test_memcmp_child4) != 0);
+	tlib_test_process(&test_memcmp_child1, STATUS_OK);
+	tlib_test_process(&test_memcmp_child2, STATUS_OK);
+	tlib_test_process(&test_memcmp_child3, STATUS_SEGFAULT);
+	tlib_test_process(&test_memcmp_child4, STATUS_SEGFAULT);
 }
