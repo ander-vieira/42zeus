@@ -6,32 +6,30 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:12:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-static int	test_putchar_fd_child1(void)
+static void	test_putchar_fd_testone(char c)
 {
-	char	buf[10];
+	char	buf[2];
 	int		fd[2];
 
-	tlib_alloc_reset();
 	pipe(fd);
-	ft_putchar_fd('5', fd[1]);
+	ft_putchar_fd(c, fd[1]);
 	close(fd[1]);
-	tlib_test_ok(read(fd[0], buf, 10) == 1);
-	tlib_test_ok(buf[0] == '5');
+	tlib_test_ok(read(fd[0], buf, 2) == 1 && buf[0] == c);
+	close(fd[0]);
+}
+
+static int	test_putchar_fd_child1(void)
+{
+	tlib_alloc_reset();
+	test_putchar_fd_testone('A');
+	test_putchar_fd_testone('\0');
 	tlib_test_ok(tlib_alloc_count() == 0);
-	close(fd[0]);
-	tlib_alloc_reset();
-	pipe(fd);
-	ft_putchar_fd('\0', fd[1]);
-	close(fd[1]);
-	tlib_test_ok(read(fd[0], buf, 10) == 1);
-	tlib_test_ok(buf[0] == '\0');
-	close(fd[0]);
 	return (0);
 }
 
