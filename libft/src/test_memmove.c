@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:19:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,15 @@ void	test_memmove(void)
 {
 	char	buf[5];
 
-	tlib_print_test("1", ft_memmove(buf, "AS DF", 5) == buf, FALSE);
-	tlib_print_test("2", !memcmp(buf, "AS DF", 5), FALSE);
-	tlib_print_test("3", ft_memmove(buf, buf + 3, 2) == buf, FALSE);
-	tlib_print_test("4", !memcmp(buf, "DF DF", 5), FALSE);
-	tlib_print_test("5", ft_memmove(buf + 2, buf, 3) == buf + 2, FALSE);
-	tlib_print_test("6", !memcmp(buf, "DFDF ", 5), FALSE);
-	tlib_print_test("7", tlib_alloc_count() == 0, FALSE);
-	tlib_print_test("8",
-		tlib_run_process(&test_memmove_crash1, NULL) != 0, FALSE);
-	tlib_print_test("9",
-		tlib_run_process(&test_memmove_crash2, NULL) != 0, FALSE);
-	tlib_print_test("10",
-		tlib_run_process(&test_memmove_crash3, NULL) == 0, TRUE);
+	tlib_print_test(ft_memmove(buf, "AS DF", 5) == buf);
+	tlib_print_test(!memcmp(buf, "AS DF", 5));
+	tlib_print_test(ft_memmove(buf, buf + 3, 2) == buf);
+	tlib_print_test(!memcmp(buf, "DF DF", 5));
+	tlib_print_test(ft_memmove(buf + 2, buf, 3) == buf + 2);
+	tlib_print_test(!memcmp(buf, "DFDF ", 5));
+	tlib_print_test(tlib_alloc_count() == 0);
+	tlib_print_test(tlib_run_process(&test_memmove_crash1, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_memmove_crash2, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_memmove_crash3, NULL) == 0);
 	tlib_alloc_reset();
 }

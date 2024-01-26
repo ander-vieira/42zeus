@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:46:07 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 18:19:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,11 @@ void	test_memcpy(void)
 {
 	char	buf[5];
 
-	tlib_print_test("1", ft_memcpy(buf, "AS DF", 5) == buf, FALSE);
-	tlib_print_test("2", !memcmp(buf, "AS DF", 5), FALSE);
-	tlib_print_test("3", tlib_alloc_count() == 0, FALSE);
-	tlib_print_test("4",
-		tlib_run_process(&test_memcpy_crash1, NULL) != 0, FALSE);
-	tlib_print_test("5",
-		tlib_run_process(&test_memcpy_crash2, NULL) != 0, FALSE);
-	tlib_print_test("6",
-		tlib_run_process(&test_memcpy_crash3, NULL) == 0, TRUE);
+	tlib_print_test(ft_memcpy(buf, "AS DF", 5) == buf);
+	tlib_print_test(!memcmp(buf, "AS DF", 5));
+	tlib_print_test(tlib_alloc_count() == 0);
+	tlib_print_test(tlib_run_process(&test_memcpy_crash1, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_memcpy_crash2, NULL) != 0);
+	tlib_print_test(tlib_run_process(&test_memcpy_crash3, NULL) == 0);
 	tlib_alloc_reset();
 }

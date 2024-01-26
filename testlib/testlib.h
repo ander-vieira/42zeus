@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/22 14:04:54 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:30:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	libc_free(void *addr);
 /* Print: printing test results                                               */
 
 void	tlib_print_missing(void (*test)(void), void *fun, char *title);
-void	tlib_print_test(char *text, t_bool ok, t_bool last);
+void	tlib_print_test(t_bool ok);
 int		tlib_print_final(void);
 
 /* ************************************************************************** */

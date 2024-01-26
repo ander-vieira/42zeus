@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 19:08:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,17 @@ void	test_lstadd_front(void)
 	l = NULL;
 	l1 = taux_lstnew(NULL, &libc_malloc);
 	ft_lstadd_front(&l, l1);
-	tlib_print_test("1", l == l1, FALSE);
-	tlib_print_test("2", l->next == NULL, FALSE);
-	tlib_print_test("3", tlib_alloc_count() == 0, FALSE);
+	tlib_print_test(l == l1);
+	tlib_print_test(l->next == NULL);
+	tlib_print_test(tlib_alloc_count() == 0);
 	l2 = taux_lstnew(NULL, &libc_malloc);
 	ft_lstadd_front(&l, l2);
-	tlib_print_test("4", l == l2, FALSE);
-	tlib_print_test("5", l->next == l1, FALSE);
-	tlib_print_test("6", l->next->next == NULL, FALSE);
-	tlib_print_test("7", tlib_alloc_count() == 0, FALSE);
+	tlib_print_test(l == l2);
+	tlib_print_test(l->next == l1);
+	tlib_print_test(l->next->next == NULL);
+	tlib_print_test(tlib_alloc_count() == 0);
 	taux_lstclear(&l, &libc_free);
-	tlib_print_test("8",
-		tlib_run_process(&test_lstadd_front_crash1, NULL) == 0, FALSE);
-	tlib_print_test("9",
-		tlib_run_process(&test_lstadd_front_crash2, NULL) == 0, TRUE);
+	tlib_print_test(tlib_run_process(&test_lstadd_front_crash1, NULL) == 0);
+	tlib_print_test(tlib_run_process(&test_lstadd_front_crash2, NULL) == 0);
 	tlib_alloc_reset();
 }

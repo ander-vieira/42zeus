@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 12:28:54 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:30:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@ void	tlib_print_missing(void (*test)(void), void *fun, char *title)
 		tlib_printf(STDOUT_FILENO, "["COLOR_RED"MISSING"COLOR_NONE"]\n");
 		*tlib_var_failed() += 1;
 	}
+	tlib_printf(STDOUT_FILENO, "\n");
 }
 
-void	tlib_print_test(char *text, t_bool ok, t_bool last)
+void	tlib_print_test(t_bool ok)
 {
-	tlib_printf(STDOUT_FILENO, "[%s ", text);
 	if (ok)
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"OK"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
 	else
 	{
-		tlib_printf(STDOUT_FILENO, COLOR_RED"KO"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
 		*tlib_var_failed() += 1;
 	}
-	tlib_printf(STDOUT_FILENO, "]");
-	if (last)
-		tlib_printf(STDOUT_FILENO, "\n");
 }
 
 int	tlib_print_final(void)

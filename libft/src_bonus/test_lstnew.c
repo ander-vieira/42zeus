@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 19:08:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 09:39:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ void	test_lstnew(void)
 	t_list	*l;
 
 	l = ft_lstnew(&c);
-	tlib_print_test("1", l != NULL, FALSE);
-	tlib_print_test("2", l->content == &c, FALSE);
-	tlib_print_test("3", l->next == NULL, FALSE);
-	tlib_print_test("4", tlib_alloc_lookup(l) == sizeof(t_list), FALSE);
-	tlib_print_test("5", tlib_alloc_count() == 1, FALSE);
+	tlib_print_test(l != NULL);
+	tlib_print_test(l->content == &c);
+	tlib_print_test(l->next == NULL);
+	tlib_print_test(tlib_alloc_lookup(l) == sizeof(t_list));
+	tlib_print_test(tlib_alloc_count() == 1);
 	free(l);
-	tlib_print_test("6",
-		tlib_run_process(&test_lstnew_crash1, NULL) == 0, TRUE);
+	tlib_print_test(tlib_run_process(&test_lstnew_crash1, NULL) == 0);
 	tlib_alloc_reset();
 }
