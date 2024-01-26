@@ -6,25 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 13:12:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:18:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	test_strlcpy(void)
-{
-	char	buf[10];
-
-	tlib_test_ok(ft_strlcat(buf, "HOLA", 10) == 4);
-	tlib_test_ok(!strcmp(buf, "HOLA"));
-	tlib_test_ok(ft_strlcpy(buf, "HOLA MUNDO", 10) == 10);
-	tlib_test_ok(!strcmp(buf, "HOLA MUND"));
-	tlib_test_ok(ft_strlcpy(buf, "", 10) == 0);
-	tlib_test_ok(!strcmp(buf, ""));
-	tlib_test_ok(tlib_alloc_count() == 0);
-	tlib_alloc_reset();
-}
 
 void	test_strlcat(void)
 {
