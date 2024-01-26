@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:15:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/27 00:57:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,6 @@ void	libc_free(void *addr);
 /* Printf: making my own version for portability                              */
 
 void	tlib_printf(int fd, char *format, ...);
-
-/* ************************************************************************** */
-/* Run: handling child processes                                              */
-
 
 /* ************************************************************************** */
 /* Test: printing test results                                                */
