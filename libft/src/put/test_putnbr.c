@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 13:08:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:10:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	test_putnbr_fd_testone(int num, char *str)
 
 static int	test_putnbr_fd_child1(void)
 {
-
 	tlib_alloc_reset();
 	test_putnbr_fd_testone(53, "53");
 	test_putnbr_fd_testone(0, "0");
