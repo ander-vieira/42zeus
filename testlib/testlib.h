@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:05:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:58:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ void	*libc_malloc(size_t len);
 void	libc_free(void *addr);
 
 /* ************************************************************************** */
-/* Print: printing test results                                               */
-
-void	tlib_print_missing(void (*test)(void), void *fun, char *title);
-void	tlib_print_test(t_bool ok);
-int		tlib_print_final(void);
-
-/* ************************************************************************** */
 /* Printf: making my own version for portability                              */
 
 void	tlib_printf(int fd, char *format, ...);
@@ -91,11 +84,15 @@ void	tlib_printf(int fd, char *format, ...);
 int		tlib_run_process(int (*fun)(void));
 
 /* ************************************************************************** */
+/* Test: printing test results                                                */
+
+void	tlib_test_missing(void (*test)(void), void *fun, char *title);
+void	tlib_test_ok(t_bool ok);
+int		tlib_test_results(void);
+
+/* ************************************************************************** */
 /* Var: "global" variables                                                    */
 
-t_uint	*tlib_var_failed(void);
-t_alloc	**tlib_var_alloclist(void);
-t_amock	**tlib_var_amocklist(void);
 t_byte	*tlib_var_errmalloc(void);
 
 #endif

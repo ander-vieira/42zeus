@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:32:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	test_lstlast(void)
 	l = taux_lstnew(NULL, &libc_malloc);
 	taux_lstadd_back(&l, taux_lstnew(NULL, &libc_malloc));
 	taux_lstadd_back(&l, taux_lstnew(NULL, &libc_malloc));
-	tlib_print_test(ft_lstlast(l) == l->next->next);
-	tlib_print_test(ft_lstlast(l->next) == l->next->next);
-	tlib_print_test(ft_lstlast(l->next->next) == l->next->next);
-	tlib_print_test(tlib_alloc_count() == 0);
-	tlib_print_test(tlib_run_process(&test_lstlast_crash1) == 0);
+	tlib_test_ok(ft_lstlast(l) == l->next->next);
+	tlib_test_ok(ft_lstlast(l->next) == l->next->next);
+	tlib_test_ok(ft_lstlast(l->next->next) == l->next->next);
+	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_test_ok(tlib_run_process(&test_lstlast_crash1) == 0);
 	taux_lstclear(&l, &libc_free);
 	tlib_alloc_reset();
 }

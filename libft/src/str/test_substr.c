@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:20:57 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int	test_substr_crash2(void)
 
 static void	test_substr2(void)
 {
-	tlib_print_test(tlib_run_process(&test_substr_crash1) == 0);
-	tlib_print_test(tlib_run_process(&test_substr_crash2) == 0);
-	tlib_print_test(tlib_alloc_errors() == 0x00);
+	tlib_test_ok(tlib_run_process(&test_substr_crash1) == 0);
+	tlib_test_ok(tlib_run_process(&test_substr_crash2) == 0);
+	tlib_test_ok(tlib_alloc_errors() == 0x00);
 	tlib_alloc_reset();
 }
 
@@ -54,24 +54,24 @@ void	test_substr(void)
 	char	*str;
 
 	str = ft_substr("HOLA MUNDO", 0, 4);
-	tlib_print_test(str != NULL && !strcmp(str, "HOLA"));
-	tlib_print_test(tlib_alloc_lookup(str) == 5);
-	tlib_print_test(tlib_alloc_count() == 1);
+	tlib_test_ok(str != NULL && !strcmp(str, "HOLA"));
+	tlib_test_ok(tlib_alloc_lookup(str) == 5);
+	tlib_test_ok(tlib_alloc_count() == 1);
 	free(str);
 	str = ft_substr("HOLA MUNDO", 4, 5);
-	tlib_print_test(str != NULL && !strcmp(str, " MUND"));
-	tlib_print_test(tlib_alloc_lookup(str) == 6);
-	tlib_print_test(tlib_alloc_count() == 1);
+	tlib_test_ok(str != NULL && !strcmp(str, " MUND"));
+	tlib_test_ok(tlib_alloc_lookup(str) == 6);
+	tlib_test_ok(tlib_alloc_count() == 1);
 	free(str);
 	str = ft_substr("HOLA MUNDO", 7, 6);
-	tlib_print_test(str != NULL && !strcmp(str, "NDO"));
-	tlib_print_test(tlib_alloc_lookup(str) == 4);
-	tlib_print_test(tlib_alloc_count() == 1);
+	tlib_test_ok(str != NULL && !strcmp(str, "NDO"));
+	tlib_test_ok(tlib_alloc_lookup(str) == 4);
+	tlib_test_ok(tlib_alloc_count() == 1);
 	free(str);
 	str = ft_substr("HOLA MUNDO", 15, 8);
-	tlib_print_test(str != NULL && !strcmp(str, ""));
-	tlib_print_test(tlib_alloc_lookup(str) == 1);
-	tlib_print_test(tlib_alloc_count() == 1);
+	tlib_test_ok(str != NULL && !strcmp(str, ""));
+	tlib_test_ok(tlib_alloc_lookup(str) == 1);
+	tlib_test_ok(tlib_alloc_count() == 1);
 	free(str);
 	test_substr2();
 }

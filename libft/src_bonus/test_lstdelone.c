@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:06:12 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 11:47:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:25:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ void	test_lstdelone(void)
 	l2 = taux_lstnew(c + 1, &malloc);
 	taux_lstadd_back(&l1, l2);
 	ft_lstdelone(l1, &taux_delfun);
-	tlib_print_test(tlib_alloc_lookup(l1) == 0);
-	tlib_print_test(tlib_alloc_lookup(l2) == sizeof(t_list));
-	tlib_print_test(tlib_alloc_count() == 1);
-	tlib_print_test(c[0] == 'c');
-	tlib_print_test(c[1] == 'a');
+	tlib_test_ok(tlib_alloc_lookup(l1) == 0);
+	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
+	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_test_ok(c[0] == 'c');
+	tlib_test_ok(c[1] == 'a');
 	ft_lstdelone(l2, &taux_delfun);
-	tlib_print_test(tlib_alloc_lookup(l2) == 0);
-	tlib_print_test(tlib_alloc_count() == 0);
-	tlib_print_test(c[1] == 'c');
+	tlib_test_ok(tlib_alloc_lookup(l2) == 0);
+	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_test_ok(c[1] == 'c');
 	free(l1);
 	free(l2);
-	tlib_print_test(tlib_run_process(&test_lstdelone_crash1) == 0);
-	tlib_print_test(tlib_run_process(&test_lstdelone_crash2) == 0);
+	tlib_test_ok(tlib_run_process(&test_lstdelone_crash1) == 0);
+	tlib_test_ok(tlib_run_process(&test_lstdelone_crash2) == 0);
 	tlib_alloc_reset();
 }
