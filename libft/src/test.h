@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 18:28:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:08:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@
 # pragma weak ft_memchr
 # pragma weak ft_memcmp
 
-# pragma weak ft_putchar_fd
-# pragma weak ft_putstr_fd
-# pragma weak ft_putendl_fd
-# pragma weak ft_putnbr_fd
-
 # pragma weak ft_atoi
 
 # pragma weak ft_calloc
@@ -62,6 +57,11 @@
 # pragma weak ft_itoa
 # pragma weak ft_split
 
+# pragma weak ft_putchar_fd
+# pragma weak ft_putstr_fd
+# pragma weak ft_putendl_fd
+# pragma weak ft_putnbr_fd
+
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -77,11 +77,6 @@ void	*ft_memcpy(void *d, const void *s, size_t n);
 void	*ft_memmove(void *d, const void *s, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *str, int fd);
-void	ft_putendl_fd(char *str, int fd);
-void	ft_putnbr_fd(int num, int fd);
 
 int		ft_atoi(const char *str);
 
@@ -103,6 +98,11 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_itoa(int n);
 char	**ft_split(char const *str, char c);
 
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *str, int fd);
+void	ft_putendl_fd(char *str, int fd);
+void	ft_putnbr_fd(int num, int fd);
+
 /* ************************************************************************** */
 /* Functions for testing split results                                        */
 
@@ -116,16 +116,21 @@ void	test_isdigit(void);
 void	test_isalnum(void);
 void	test_isascii(void);
 void	test_isprint(void);
+
 void	test_tolower(void);
 void	test_toupper(void);
+
 void	test_bzero(void);
 void	test_memset(void);
 void	test_memcpy(void);
 void	test_memmove(void);
 void	test_memchr(void);
 void	test_memcmp(void);
+
 void	test_atoi(void);
+
 void	test_calloc(void);
+
 void	test_strlen(void);
 void	test_strchr(void);
 void	test_strrchr(void);
@@ -141,6 +146,7 @@ void	test_strmapi(void);
 void	test_striteri(void);
 void	test_itoa(void);
 void	test_split(void);
+
 void	test_putchar_fd(void);
 void	test_putstr_fd(void);
 void	test_putendl_fd(void);
