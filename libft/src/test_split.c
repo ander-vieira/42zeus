@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:20:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void	test_split_testone(char *str, char c, size_t len, ...)
 	while (i < len)
 	{
 		expected = va_arg(args, char *);
-		tlib_test_ok(split[i] != NULL && !strcmp(split[i], expected) && tlib_alloc_lookup(split[i]) == strlen(expected) + 1);
+		tlib_test_ok(split[i] != NULL && !strcmp(split[i], expected)
+			&& tlib_alloc_lookup(split[i]) == strlen(expected) + 1);
 		i++;
 	}
 	tlib_test_ok(split[len] == NULL);

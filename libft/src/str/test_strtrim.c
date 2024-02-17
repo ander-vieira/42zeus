@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:38:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:16:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:35:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	test_strtrim(void)
 {
 	char	*str;
 
+	tlib_alloc_reset();
 	str = ft_strtrim("HOLA MUNDO", " ");
 	tlib_test_ok(str != NULL && !strcmp(str, "HOLA MUNDO"));
 	tlib_test_ok(tlib_alloc_lookup(str) == 11);
@@ -38,5 +39,4 @@ void	test_strtrim(void)
 	tlib_test_ok(tlib_alloc_lookup(str) == 4);
 	tlib_test_ok(tlib_alloc_count() == 1);
 	free(str);
-	tlib_alloc_reset();
 }

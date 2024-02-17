@@ -6,29 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:14:59 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 12:26:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:36:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-static void	main2(void)
-{
-	tlib_test_missing(&test_strlcpy, &ft_strlcpy, "strlcpy");
-	tlib_test_missing(&test_strlcat, &ft_strlcat, "strlcat");
-	tlib_test_missing(&test_strnstr, &ft_strnstr, "strnstr");
-	tlib_test_missing(&test_substr, &ft_substr, "substr");
-	tlib_test_missing(&test_strjoin, &ft_strjoin, "strjoin");
-	tlib_test_missing(&test_strtrim, &ft_strtrim, "strtrim");
-	tlib_test_missing(&test_strmapi, &ft_strmapi, "strmapi");
-	tlib_test_missing(&test_striteri, &ft_striteri, "striteri");
-	tlib_test_missing(&test_itoa, &ft_itoa, "itoa");
-	tlib_test_missing(&test_split, &ft_split, "split");
-	tlib_test_missing(&test_putchar_fd, &ft_putchar_fd, "putchar_fd");
-	tlib_test_missing(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
-	tlib_test_missing(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
-	tlib_test_missing(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
-}
 
 int	main(void)
 {
@@ -52,6 +34,19 @@ int	main(void)
 	tlib_test_missing(&test_strrchr, &ft_strrchr, "strrchr");
 	tlib_test_missing(&test_strncmp, &ft_strncmp, "strncmp");
 	tlib_test_missing(&test_strdup, &ft_strdup, "strdup");
-	main2();
+	tlib_test_missing(&test_strlcpy, &ft_strlcpy, "strlcpy");
+	tlib_test_missing(&test_strlcat, &ft_strlcat, "strlcat");
+	tlib_test_missing(&test_strnstr, &ft_strnstr, "strnstr");
+	tlib_test_missing(&test_substr, &ft_substr, "substr");
+	tlib_test_missing(&test_strjoin, &ft_strjoin, "strjoin");
+	tlib_test_missing(&test_strtrim, &ft_strtrim, "strtrim");
+	tlib_test_missing(&test_split, &ft_split, "split");
+	tlib_test_missing(&test_itoa, &ft_itoa, "itoa");
+	tlib_test_missing(&test_strmapi, &ft_strmapi, "strmapi");
+	tlib_test_missing(&test_striteri, &ft_striteri, "striteri");
+	tlib_test_missing(&test_putchar_fd, &ft_putchar_fd, "putchar_fd");
+	tlib_test_missing(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
+	tlib_test_missing(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
+	tlib_test_missing(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
 	return (tlib_test_results());
 }
