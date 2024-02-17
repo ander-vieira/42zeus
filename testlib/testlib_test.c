@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:23:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:03:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,31 @@ void	tlib_test_ok(t_bool ok)
 	}
 }
 
-void	tlib_test_process(void (*fun)(void), int expected)
+static t_pres	get_pres(int status)
+{
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
+		return (PRESULT_OK);
+	else if (WIFSIGNALED(status) && WTERMSIG(status) == 11)
+		return (PRESULT_SEGFAULT);
+	else
+		return (PRESULT_CRASH);
+}
+
+static void	print_pres(t_pres pres)
+{
+	if (pres == PRESULT_OK)
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[NO CRASH]"COLOR_NONE);
+	else if (pres == PRESULT_SEGFAULT)
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[SEGFAULT]"COLOR_NONE);
+	else
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[CRASH]"COLOR_NONE);
+}
+
+void	tlib_test_process(void (*fun)(void), t_pres expected)
 {
 	pid_t	pid;
 	int		status;
+	t_pres	pres;
 
 	pid = fork();
 	if (pid == -1)
@@ -52,17 +73,13 @@ void	tlib_test_process(void (*fun)(void), int expected)
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
-	if (status == expected)
+	pres = get_pres(status);
+	if (pres == expected)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
 	else
 	{
 		g_failed += 1;
-		if (status == STATUS_OK)
-			tlib_printf(STDOUT_FILENO, COLOR_RED"[NO CRASH]"COLOR_NONE);
-		else if (status == STATUS_SEGFAULT)
-			tlib_printf(STDOUT_FILENO, COLOR_RED"[SEGFAULT]"COLOR_NONE);
-		else
-			tlib_printf(STDOUT_FILENO, COLOR_RED"[CRASH]"COLOR_NONE);
+		print_pres(pres);
 	}
 }
 

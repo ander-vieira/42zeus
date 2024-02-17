@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:10:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	test_memset_child3(void)
 
 void	test_memset(void)
 {
-	tlib_test_process(&test_memset_child1, STATUS_OK);
-	tlib_test_process(&test_memset_child2, STATUS_OK);
-	tlib_test_process(&test_memset_child3, STATUS_SEGFAULT);
+	tlib_test_process(&test_memset_child1, PRESULT_OK);
+	tlib_test_process(&test_memset_child2, PRESULT_OK);
+	tlib_test_process(&test_memset_child3, PRESULT_SEGFAULT);
 	tlib_alloc_reset();
 }

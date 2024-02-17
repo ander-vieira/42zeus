@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:41:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:11:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ static void	test_atoi_child2(void)
 
 void	test_atoi(void)
 {
-	tlib_test_process(&test_atoi_child1, STATUS_OK);
-	tlib_test_process(&test_atoi_child2, STATUS_SEGFAULT);
+	tlib_test_process(&test_atoi_child1, PRESULT_OK);
+	tlib_test_process(&test_atoi_child2, PRESULT_SEGFAULT);
 }

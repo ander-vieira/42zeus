@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:06:12 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	test_lstdelone(void)
 	tlib_test_ok(c[1] == 'c');
 	free(l1);
 	free(l2);
-	tlib_test_process(&test_lstdelone_crash1, STATUS_OK);
-	tlib_test_process(&test_lstdelone_crash2, STATUS_OK);
+	tlib_test_process(&test_lstdelone_crash1, PRESULT_OK);
+	tlib_test_process(&test_lstdelone_crash2, PRESULT_OK);
 	tlib_alloc_reset();
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 12:25:29 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ static void	test_calloc_child2(void)
 
 void	test_calloc(void)
 {
-	tlib_test_process(&test_calloc_child1, STATUS_OK);
-	tlib_test_process(&test_calloc_child2, STATUS_OK);
+	tlib_test_process(&test_calloc_child1, PRESULT_OK);
+	tlib_test_process(&test_calloc_child2, PRESULT_OK);
 }

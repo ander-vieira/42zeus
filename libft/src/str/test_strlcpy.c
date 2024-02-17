@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 14:17:08 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ static void	test_strlcpy_child1(void)
 
 void	test_strlcpy(void)
 {
-	tlib_test_process(&test_strlcpy_child1, STATUS_OK);
+	tlib_test_process(&test_strlcpy_child1, PRESULT_OK);
 }

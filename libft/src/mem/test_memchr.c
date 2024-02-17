@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:10:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	test_memchr_child3(void)
 
 void	test_memchr(void)
 {
-	tlib_test_process(&test_memchr_child1, STATUS_OK);
-	tlib_test_process(&test_memchr_child2, STATUS_OK);
-	tlib_test_process(&test_memchr_child3, STATUS_SEGFAULT);
+	tlib_test_process(&test_memchr_child1, PRESULT_OK);
+	tlib_test_process(&test_memchr_child2, PRESULT_OK);
+	tlib_test_process(&test_memchr_child3, PRESULT_SEGFAULT);
 }

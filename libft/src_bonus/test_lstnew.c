@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:06:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	test_lstnew(void)
 	tlib_test_ok(tlib_alloc_lookup(l) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_count() == 1);
 	free(l);
-	tlib_test_process(&test_lstnew_crash1, STATUS_OK);
+	tlib_test_process(&test_lstnew_crash1, PRESULT_OK);
 	tlib_alloc_reset();
 }

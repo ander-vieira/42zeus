@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:32:38 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/27 00:32:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ static void	test_itoa_child2(void)
 
 void	test_itoa(void)
 {
-	tlib_test_process(&test_itoa_child1, STATUS_OK);
-	tlib_test_process(&test_itoa_child2, STATUS_OK);
+	tlib_test_process(&test_itoa_child1, PRESULT_OK);
+	tlib_test_process(&test_itoa_child2, PRESULT_OK);
 }

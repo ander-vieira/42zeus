@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:05:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ static void	test_putnbr_fd_child1(void)
 
 void	test_putnbr_fd(void)
 {
-	tlib_test_process(&test_putnbr_fd_child1, STATUS_OK);
+	tlib_test_process(&test_putnbr_fd_child1, PRESULT_OK);
 }

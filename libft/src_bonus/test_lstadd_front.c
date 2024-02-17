@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	test_lstadd_front(void)
 	tlib_test_ok(l->next->next == NULL);
 	tlib_test_ok(tlib_alloc_count() == 0);
 	taux_lstclear(&l, &libc_free);
-	tlib_test_process(&test_lstadd_front_crash1, STATUS_OK);
-	tlib_test_process(&test_lstadd_front_crash2, STATUS_OK);
+	tlib_test_process(&test_lstadd_front_crash1, PRESULT_OK);
+	tlib_test_process(&test_lstadd_front_crash2, PRESULT_OK);
 	tlib_alloc_reset();
 }

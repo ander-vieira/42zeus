@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:23:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:10:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	test_bzero_child4(void)
 
 void	test_bzero(void)
 {
-	tlib_test_process(&test_bzero_child1, STATUS_OK);
-	tlib_test_process(&test_bzero_child2, STATUS_OK);
-	tlib_test_process(&test_bzero_child3, STATUS_OK);
-	tlib_test_process(&test_bzero_child4, STATUS_SEGFAULT);
+	tlib_test_process(&test_bzero_child1, PRESULT_OK);
+	tlib_test_process(&test_bzero_child2, PRESULT_OK);
+	tlib_test_process(&test_bzero_child3, PRESULT_OK);
+	tlib_test_process(&test_bzero_child4, PRESULT_SEGFAULT);
 }

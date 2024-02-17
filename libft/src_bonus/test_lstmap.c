@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:49:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:09:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	test_lstmap(void)
 	tlib_test_ok(!memcmp(c, "aaaaaaaaaa", 10));
 	taux_lstclear(&l1, &libc_free);
 	taux_lstclear(&l2, &free);
-	tlib_test_process(&test_lstmap_crash1, STATUS_OK);
+	tlib_test_process(&test_lstmap_crash1, PRESULT_OK);
 	tlib_alloc_reset();
 }

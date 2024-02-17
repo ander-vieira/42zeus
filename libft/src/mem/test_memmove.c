@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:08:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:10:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	test_memmove_child4(void)
 
 void	test_memmove(void)
 {
-	tlib_test_process(&test_memmove_child1, STATUS_OK);
-	tlib_test_process(&test_memmove_child2, STATUS_OK);
-	tlib_test_process(&test_memmove_child3, STATUS_SEGFAULT);
-	tlib_test_process(&test_memmove_child4, STATUS_SEGFAULT);
+	tlib_test_process(&test_memmove_child1, PRESULT_OK);
+	tlib_test_process(&test_memmove_child2, PRESULT_OK);
+	tlib_test_process(&test_memmove_child3, PRESULT_SEGFAULT);
+	tlib_test_process(&test_memmove_child4, PRESULT_SEGFAULT);
 }

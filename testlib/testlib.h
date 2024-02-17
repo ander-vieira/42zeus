@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:16:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/27 00:57:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:03:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct s_amock
 	size_t			timer;
 }	t_amock;
 
+typedef enum s_pres
+{
+	PRESULT_OK,
+	PRESULT_SEGFAULT,
+	PRESULT_CRASH
+}	t_pres;
+
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
@@ -84,7 +91,7 @@ void	tlib_printf(int fd, char *format, ...);
 
 void	tlib_test_missing(void (*test)(void), void *fun, char *title);
 void	tlib_test_ok(t_bool ok);
-void	tlib_test_process(void (*fun)(void), int expected);
+void	tlib_test_process(void (*fun)(void), t_pres expected);
 int		tlib_test_results(void);
 
 #endif

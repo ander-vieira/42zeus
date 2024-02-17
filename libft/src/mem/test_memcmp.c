@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/26 15:11:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	test_memcmp_child4(void)
 
 void	test_memcmp(void)
 {
-	tlib_test_process(&test_memcmp_child1, STATUS_OK);
-	tlib_test_process(&test_memcmp_child2, STATUS_OK);
-	tlib_test_process(&test_memcmp_child3, STATUS_SEGFAULT);
-	tlib_test_process(&test_memcmp_child4, STATUS_SEGFAULT);
+	tlib_test_process(&test_memcmp_child1, PRESULT_OK);
+	tlib_test_process(&test_memcmp_child2, PRESULT_OK);
+	tlib_test_process(&test_memcmp_child3, PRESULT_SEGFAULT);
+	tlib_test_process(&test_memcmp_child4, PRESULT_SEGFAULT);
 }

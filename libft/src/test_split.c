@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/27 00:54:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:05:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ static void	test_split_child5(void)
 
 void	test_split(void)
 {
-	tlib_test_process(&test_split_child1, STATUS_OK);
-	tlib_test_process(&test_split_child2, STATUS_OK);
-	tlib_test_process(&test_split_child3, STATUS_OK);
-	tlib_test_process(&test_split_child4, STATUS_OK);
-	tlib_test_process(&test_split_child5, STATUS_OK);
+	tlib_test_process(&test_split_child1, PRESULT_OK);
+	tlib_test_process(&test_split_child2, PRESULT_OK);
+	tlib_test_process(&test_split_child3, PRESULT_OK);
+	tlib_test_process(&test_split_child4, PRESULT_OK);
+	tlib_test_process(&test_split_child5, PRESULT_OK);
 }
