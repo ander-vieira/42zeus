@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/27 00:42:05 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/17 17:15:25 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS = src/test.c src/test_is.c src/test_to.c \
 src/mem/test_bzero.c src/mem/test_memset.c src/mem/test_memcpy.c src/mem/test_memmove.c src/mem/test_memchr.c src/mem/test_memcmp.c \
 src/test_atoi.c src/test_calloc.c \
 src/str/test_strlen.c src/str/test_strchr.c src/str/test_strrchr.c src/str/test_strncmp.c src/str/test_strdup.c \
-src/str/test_strlcpy.c src/str/test_str2.c src/str/test_substr.c src/str/test_str3.c src/str/test_str4.c \
+src/str/test_strlcpy.c src/str/test_strlcat.c src/str/test_strnstr.c src/str/test_substr.c src/str/test_strjoin.c \
+src/str/test_strtrim.c src/str/test_strmapi.c src/str/test_striteri.c \
 src/test_itoa.c src/test_split.c \
 src/put/test_putchar.c src/put/test_putstr.c src/put/test_putendl.c src/put/test_putnbr.c
 HDRS = src/test.h
