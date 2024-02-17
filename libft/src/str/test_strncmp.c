@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:09:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:09:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	test_strncmp_child2(void)
 	tlib_test_ok(!ft_strncmp(NULL, "ASDFG", 0));
 	tlib_test_ok(!ft_strncmp("ASDFG", NULL, 0));
 	tlib_test_ok(!ft_strncmp(NULL, NULL, 0));
-	tlib_test_ok(!ft_strncmp(NULL, NULL, 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
 }
 

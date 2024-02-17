@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:32:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:09:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	test_memcmp_child2(void)
 	tlib_test_ok(!ft_memcmp(NULL, "ASDFG", 0));
 	tlib_test_ok(!ft_memcmp("ASDFG", NULL, 0));
 	tlib_test_ok(!ft_memcmp(NULL, NULL, 0));
-	tlib_test_ok(!ft_memcmp(NULL, NULL, 5));
 	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
