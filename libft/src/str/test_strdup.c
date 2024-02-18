@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:12:10 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/18 15:48:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,19 @@ static void	test_strdup_child1(void)
 
 static void	test_strdup_child2(void)
 {
+	tlib_alloc_reset();
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_strdup("HOLA") == NULL);
+}
+
+static void	test_strdup_child3(void)
+{
 	ft_strdup(NULL);
 }
 
 void	test_strdup(void)
 {
 	tlib_test_process(&test_strdup_child1, PRESULT_OK);
-	tlib_test_process(&test_strdup_child2, PRESULT_SEGFAULT);
+	tlib_test_process(&test_strdup_child2, PRESULT_OK);
+	tlib_test_process(&test_strdup_child3, PRESULT_SEGFAULT);
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:55:32 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:30:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,17 @@ static void	test_strmapi_child3(void)
 	ft_strmapi("HOLA", NULL);
 }
 
+static void	test_strmapi_child4(void)
+{
+	tlib_alloc_reset();
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
+}
+
 void	test_strmapi(void)
 {
 	tlib_test_process(&test_strmapi_child1, PRESULT_OK);
 	tlib_test_process(&test_strmapi_child2, PRESULT_OK);
 	tlib_test_process(&test_strmapi_child3, PRESULT_OK);
+	tlib_test_process(&test_strmapi_child4, PRESULT_OK);
 }
