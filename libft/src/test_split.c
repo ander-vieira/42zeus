@@ -6,11 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:55:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 23:10:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+
+static size_t	g_mocked;
 
 static void	test_split_free(char **split)
 {
@@ -71,33 +73,29 @@ static void	test_split_child2(void)
 
 static void	test_split_child3(void)
 {
-	tlib_alloc_setmock(1);
+	tlib_alloc_reset();
+	tlib_alloc_setmock(g_mocked);
 	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
+	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
 static void	test_split_child4(void)
 {
-	tlib_alloc_setmock(2);
-	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
-}
-
-static void	test_split_child5(void)
-{
-	tlib_alloc_setmock(3);
-	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
-}
-
-static void	test_split_child6(void)
-{
 	tlib_test_ok(ft_split(NULL, ' ') == NULL);
+}
+
+static void	test_split_testmock(size_t mocked)
+{
+	g_mocked = mocked;
+	tlib_test_process(&test_split_child3, PRESULT_OK);
 }
 
 void	test_split(void)
 {
 	tlib_test_process(&test_split_child1, PRESULT_OK);
 	tlib_test_process(&test_split_child2, PRESULT_OK);
-	tlib_test_process(&test_split_child3, PRESULT_OK);
+	test_split_testmock(1);
+	test_split_testmock(2);
+	test_split_testmock(3);
 	tlib_test_process(&test_split_child4, PRESULT_OK);
-	tlib_test_process(&test_split_child5, PRESULT_OK);
-	tlib_test_process(&test_split_child6, PRESULT_OK);
 }
