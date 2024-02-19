@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:20:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:55:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,25 @@ static void	test_split_child2(void)
 
 static void	test_split_child3(void)
 {
-	tlib_test_ok(ft_split(NULL, ' ') == NULL);
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
 }
 
 static void	test_split_child4(void)
 {
-	tlib_alloc_setmock(1);
+	tlib_alloc_setmock(2);
 	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
 }
 
 static void	test_split_child5(void)
 {
-	tlib_alloc_setmock(2);
+	tlib_alloc_setmock(3);
 	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
+}
+
+static void	test_split_child6(void)
+{
+	tlib_test_ok(ft_split(NULL, ' ') == NULL);
 }
 
 void	test_split(void)
@@ -93,4 +99,5 @@ void	test_split(void)
 	tlib_test_process(&test_split_child3, PRESULT_OK);
 	tlib_test_process(&test_split_child4, PRESULT_OK);
 	tlib_test_process(&test_split_child5, PRESULT_OK);
+	tlib_test_process(&test_split_child6, PRESULT_OK);
 }

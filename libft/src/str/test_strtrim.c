@@ -6,37 +6,57 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:38:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:35:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:36:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-//TODO
+static void	test_strtrim_testone(char *str, char *set, char *expected)
+{
+	char	*result;
+
+	tlib_alloc_reset();
+	result = ft_strtrim(str, set);
+	tlib_test_ok(result != NULL && !strcmp(result, expected));
+	tlib_test_ok(tlib_alloc_lookup(result) == strlen(expected) + 1);
+	tlib_test_ok(tlib_alloc_count() == 1);
+	free(result);
+}
+
+static void	test_strtrim_child1(void)
+{
+	test_strtrim_testone("A B", " ", "A B");
+	test_strtrim_testone(" A B  ", " ", "A B");
+	test_strtrim_testone("C ACBCC", "C", " ACB");
+	test_strtrim_testone(" . A .B.. .", " .", "A .B");
+	test_strtrim_testone("    ", " ", "");
+	test_strtrim_testone(" . .. .", " .", "");
+	test_strtrim_testone("", " ", "");
+	test_strtrim_testone(" A B ", "", " A B ");
+}
+
+static void	test_strtrim_child2(void)
+{
+	tlib_alloc_reset();
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_strtrim(" A ", " ") == NULL);
+}
+
+static void	test_strtrim_child3(void)
+{
+	tlib_test_ok(ft_strtrim(NULL, " ") == NULL);
+}
+
+static void	test_strtrim_child4(void)
+{
+	tlib_test_ok(ft_strtrim(" ", NULL) == NULL);
+}
 
 void	test_strtrim(void)
 {
-	char	*str;
-
-	tlib_alloc_reset();
-	str = ft_strtrim("HOLA MUNDO", " ");
-	tlib_test_ok(str != NULL && !strcmp(str, "HOLA MUNDO"));
-	tlib_test_ok(tlib_alloc_lookup(str) == 11);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
-	str = ft_strtrim("HOLA MUNDO", "H");
-	tlib_test_ok(str != NULL && !strcmp(str, "OLA MUNDO"));
-	tlib_test_ok(tlib_alloc_lookup(str) == 10);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
-	str = ft_strtrim("   HOLA MUNDO ", " AU");
-	tlib_test_ok(str != NULL && !strcmp(str, "HOLA MUNDO"));
-	tlib_test_ok(tlib_alloc_lookup(str) == 11);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
-	str = ft_strtrim("\n  J K\n ", " \n");
-	tlib_test_ok(str != NULL && !strcmp(str, "J K"));
-	tlib_test_ok(tlib_alloc_lookup(str) == 4);
-	tlib_test_ok(tlib_alloc_count() == 1);
-	free(str);
+	tlib_test_process(&test_strtrim_child1, PRESULT_OK);
+	tlib_test_process(&test_strtrim_child2, PRESULT_OK);
+	tlib_test_process(&test_strtrim_child3, PRESULT_OK);
+	tlib_test_process(&test_strtrim_child4, PRESULT_OK);
 }

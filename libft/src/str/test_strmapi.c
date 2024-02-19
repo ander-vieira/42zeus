@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/18 16:30:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:47:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	test_strmapi_testone(char *str)
 	g_i = 0;
 	tlib_alloc_reset();
 	str2 = ft_strmapi(str, &test_strmapi_fun1);
-	if(strlen(str) == 0)
+	if (strlen(str) == 0)
 		tlib_test_ok(strlen(str2) == 0);
 	else
 		tlib_test_ok(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
@@ -49,25 +49,25 @@ static void	test_strmapi_testone(char *str)
 
 static void	test_strmapi_child1(void)
 {
-	test_strmapi_testone("HOLA");
+	test_strmapi_testone("ABCD");
 	test_strmapi_testone("");
 }
 
 static void	test_strmapi_child2(void)
 {
-	ft_strmapi(NULL, &test_strmapi_fun2);
+	tlib_alloc_reset();
+	tlib_alloc_setmock(1);
+	tlib_test_ok(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child3(void)
 {
-	ft_strmapi("HOLA", NULL);
+	tlib_test_ok(ft_strmapi(NULL, &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child4(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
+	tlib_test_ok(ft_strmapi("HOLA", NULL) == NULL);
 }
 
 void	test_strmapi(void)

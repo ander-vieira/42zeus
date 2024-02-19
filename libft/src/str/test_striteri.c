@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:52:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:48:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static void	test_striteri_testone(char *str)
 	tlib_alloc_reset();
 	ft_striteri(g_str, &test_striteri_fun1);
 	tlib_test_ok(g_i == strlen(str));
+	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
 static void	test_striteri_child1(void)
 {
 	test_striteri_testone("HOLA");
 	test_striteri_testone("");
-	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
 static void	test_striteri_child2(void)
