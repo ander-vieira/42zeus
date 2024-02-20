@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:06:12 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/20 00:49:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:00:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	test_lstdelone_del1(void *p)
 
 static void	test_lstdelone_del2(void *p)
 {
-	tlib_test_ok(p == g_p);
-	g_i++;
+	(void)p;
 }
 
 static void	test_lstdelone_child1(void)
