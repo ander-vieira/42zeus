@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:32:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 23:59:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:17:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@ static void	test_lstlast_child1(void)
 	t_list	*l2;
 	t_list	*l3;
 
-	l1 = taux_lstnew(NULL, &libc_malloc);
-	l2 = taux_lstnew(NULL, &libc_malloc);
-	l3 = taux_lstnew(NULL, &libc_malloc);
+	tlib_alloc_reset();
+	l1 = taux_lstnew(NULL);
+	l2 = taux_lstnew(NULL);
+	l3 = taux_lstnew(NULL);
 	l1->next = l2;
 	l2->next = l3;
-	tlib_alloc_reset();
 	tlib_test_ok(ft_lstlast(l1) == l3);
 	tlib_test_ok(ft_lstlast(l2) == l3);
 	tlib_test_ok(ft_lstlast(l3) == l3);
-	tlib_test_ok(tlib_alloc_count() == 0);
-	libc_free(l1);
-	libc_free(l2);
-	libc_free(l3);
+	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
+	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
+	tlib_test_ok(tlib_alloc_lookup(l3) == sizeof(t_list));
+	tlib_test_ok(tlib_alloc_count() == 3);
+	free(l1);
+	free(l2);
+	free(l3);
 }
 
 static void	test_lstlast_child2(void)

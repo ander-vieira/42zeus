@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/17 17:37:04 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/21 19:34:57 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ src/put/test_putchar.c src/put/test_putstr.c src/put/test_putendl.c src/put/test
 HDRS = src/test.h
 
 NAME_BONUS = test_bonus.out
-SRCS_BONUS = src_bonus/test_bonus.c src_bonus/taux_lst.c src_bonus/taux_lst2.c \
+SRCS_BONUS = src_bonus/test_bonus.c src_bonus/taux_lst.c \
 src_bonus/test_lstnew.c src_bonus/test_lstadd_front.c src_bonus/test_lstsize.c \
 src_bonus/test_lstlast.c src_bonus/test_lstadd_back.c \
 src_bonus/test_lstdelone.c src_bonus/test_lstclear.c src_bonus/test_lstiter.c \

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 23:56:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:21:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	test_lstnew_child2(void)
 	tlib_alloc_reset();
 	tlib_alloc_setmock(1);
 	tlib_test_ok(ft_lstnew(NULL) == NULL);
+	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
 void	test_lstnew(void)

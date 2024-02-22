@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/24 19:09:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:00:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,31 @@ t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 /* ************************************************************************** */
 /* Utility unctions for testing lists                                         */
 
-t_list	*taux_lstnew(void *content, void *(*f_malloc)(size_t));
-void	taux_lstadd_back(t_list **list, t_list *n);
-void	taux_lstclear(t_list **list, void (*f_free)(void *));
+typedef struct s_pcall
+{
+	void	*p[3];
+	size_t	len;
+	size_t	i;
+	t_bool	err;
+}	t_parg;
 
-void	taux_delfun(void *content);
-void	taux_iterfun(void *content);
-void	*taux_mapfun(void *content);
+typedef struct s_pget
+{
+	void	*p[3];
+	size_t	len;
+	size_t	i;
+	size_t	j;
+	t_bool	err;
+}	t_pget;
+
+t_list	*taux_lstnew(void *content);
+void	taux_parg_init(t_parg *parg, size_t len, ...);
+void	taux_parg_check(t_parg *parg, void *p);
+t_bool	taux_parg_ok(t_parg parg);
+void	taux_pget_init(t_pget *pget, size_t len, ...);
+void	*taux_pget_get(t_pget *pget);
+void	taux_pget_check(t_pget *pget, void *p);
+t_bool	taux_pget_ok(t_pget pget);
 
 /* ************************************************************************** */
 /* Test functions                                                             */

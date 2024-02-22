@@ -6,24 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:06:12 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/20 11:00:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:01:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test_bonus.h"
 
-static void		*g_p;
-static t_uint	g_i;
+static t_parg	g_parg;
 
-static void	test_lstdelone_del1(void *p)
+static void	test_lstdelone_del(void *p)
 {
-	tlib_test_ok(p == g_p);
-	g_i++;
-}
-
-static void	test_lstdelone_del2(void *p)
-{
-	(void)p;
+	taux_parg_check(&g_parg, p);
 }
 
 static void	test_lstdelone_child1(void)
@@ -31,14 +24,14 @@ static void	test_lstdelone_child1(void)
 	t_list	*l1;
 	t_list	*l2;
 
-	g_p = &l1;
-	g_i = 0;
+	taux_parg_init(&g_parg, 1, &l1);
 	tlib_alloc_reset();
-	l1 = taux_lstnew(g_p, &malloc);
-	l2 = taux_lstnew(NULL, &malloc);
+	l1 = taux_lstnew(&l1);
+	l2 = taux_lstnew(NULL);
 	l1->next = l2;
-	ft_lstdelone(l1, &test_lstdelone_del1);
-	tlib_test_ok(g_i == 1);
+	ft_lstdelone(l1, &test_lstdelone_del);
+	tlib_test_ok(taux_parg_ok(g_parg));
+	tlib_test_ok(g_parg.i == 1);
 	tlib_test_ok(tlib_alloc_lookup(l1) == 0);
 	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_count() == 1);
@@ -51,7 +44,7 @@ static void	test_lstdelone_child2(void)
 	t_list	*l;
 
 	tlib_alloc_reset();
-	l = taux_lstnew(NULL, &malloc);
+	l = taux_lstnew(NULL);
 	ft_lstdelone(l, NULL);
 	tlib_test_ok(tlib_alloc_lookup(l) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_count() == 1);
@@ -60,7 +53,11 @@ static void	test_lstdelone_child2(void)
 
 static void	test_lstdelone_child3(void)
 {
-	ft_lstdelone(NULL, &test_lstdelone_del2);
+	tlib_alloc_reset();
+	taux_parg_init(&g_parg, 0);
+	ft_lstdelone(NULL, &test_lstdelone_del);
+	tlib_test_ok(g_parg.i == 0);
+	tlib_test_ok(tlib_alloc_count() == 0);
 }
 
 void	test_lstdelone(void)
