@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:42:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/22 11:08:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:10:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	taux_parg_check(t_parg *parg, void *p)
 	parg->i++;
 	if (p != NULL)
 	{
-	i = 0;
+		i = 0;
 		while (i < parg->len)
 		{
 			if (p == parg->p[i])

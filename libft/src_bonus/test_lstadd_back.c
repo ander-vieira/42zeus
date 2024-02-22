@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:41:49 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/21 21:19:17 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:11:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void	test_lstadd_back_child3(void)
 	l = l1;
 	l->next = l2;
 	ft_lstadd_back(&l, l3);
-	tlib_test_ok(l == l1 && l1->next == l2 && l2->next == l3 && l3->next == NULL);
+	tlib_test_ok(l == l1 && l1->next == l2
+		&& l2->next == l3 && l3->next == NULL);
 	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
 	tlib_test_ok(tlib_alloc_lookup(l3) == sizeof(t_list));
