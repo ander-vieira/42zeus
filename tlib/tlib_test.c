@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/03 00:33:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 00:49:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	tlib_testmissing(void (*test)(void), void *fun, char *title)
 	else
 	{
 		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, "["COLOR_RED"MISSING"COLOR_NONE"]\n");
+		tlib_printf(STDOUT_FILENO, "%r[MISSING]%n");
 	}
 	tlib_printf(STDOUT_FILENO, "\n");
 }
@@ -44,11 +44,11 @@ void	tlib_testmissing(void (*test)(void), void *fun, char *title)
 void	tlib_testresult_bool(t_bool ok)
 {
 	if (ok)
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
 	else
 	{
 		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
 	}
 }
 
@@ -57,11 +57,11 @@ void	tlib_testmalloc_size(void *addr, size_t expected_size) {
 
 	actual_size = tlib_mockmalloc_lookup(addr);
 	if (actual_size == expected_size)
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
 	else
 	{
 		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
 		//TODO report error
 	}
 }
@@ -71,11 +71,11 @@ void	tlib_testmalloc_count(size_t expected_count) {
 
 	actual_count = tlib_mockmalloc_count();
 	if (actual_count == expected_count)
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
 	else
 	{
 		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
 		//TODO report error
 	}
 }
@@ -93,11 +93,11 @@ static t_pres	get_pres(int status)
 static void	print_pres(t_pres pres)
 {
 	if (pres == PRESULT_OK)
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[NO CRASH]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[NO CRASH]%n");
 	else if (pres == PRESULT_SEGFAULT)
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[SEGFAULT]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[SEGFAULT]%n");
 	else
-		tlib_printf(STDOUT_FILENO, COLOR_RED"[CRASH]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%r[CRASH]%n");
 }
 
 void	tlib_test_process(void (*fun)(void), t_pres expected)
@@ -121,7 +121,7 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 	signal(SIGUSR1, sighandler);
 	pres = get_pres(status);
 	if (pres == expected)
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
 	else
 	{
 		tlib_test_setfail();
@@ -134,13 +134,13 @@ int	tlib_test_results(void)
 	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
 	if (!g_failed)
 	{
-		tlib_printf(STDOUT_FILENO, COLOR_GREEN"All tests OK!\n"COLOR_NONE);
+		tlib_printf(STDOUT_FILENO, "%gAll tests OK!\n%n");
 		return (EXIT_SUCCESS);
 	}
 	else
 	{
 		tlib_printf(STDOUT_FILENO,
-			COLOR_RED"Errors detected, please review.\n"COLOR_NONE);
+			"%rErrors detected, please review.\n%n");
 		return (EXIT_FAILURE);
 	}
 }

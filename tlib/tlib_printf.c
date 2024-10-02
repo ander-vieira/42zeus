@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:11:26 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/02 22:47:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 00:47:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ static void	print_str(int fd, char *str)
 		print_str(fd, "(null)");
 }
 
-static void	print_nbr(int fd, size_t nbr, t_uint base)
-{
-	if (base > 16)
+static void print_color(int fd, char c) {
+	if (!isatty(fd))
 		return ;
-	if (nbr >= base)
-		print_nbr(fd, nbr /= base, base);
-	write(fd, &("0123456789abcdef"[nbr % base]), 1);
+	if (c == 'n')
+		print_str(fd, COLORCODE_NONE);
+	else if (c == 'r')
+		print_str(fd, COLORCODE_RED);
+	else if (c == 'g')
+		print_str(fd, COLORCODE_GREEN);
 }
 
 static void	print_text(int fd, char *format, size_t *i)
@@ -52,13 +54,8 @@ static void	print_direc(int fd, char *format, size_t *i, va_list args)
 	*i += 1;
 	if (format[*i] == 's')
 		print_str(fd, va_arg(args, char *));
-	else if (format[*i] == 'u')
-		print_nbr(fd, va_arg(args, size_t), 10);
-	else if (format[*i] == 'p')
-	{
-		print_str(fd, "0x");
-		print_nbr(fd, (size_t)va_arg(args, void *), 16);
-	}
+	else if (format[*i] == 'n' || format[*i] == 'r' || format[*i] == 'g')
+		print_color(fd, format[*i]);
 	else
 		write(fd, "%", 1);
 	if (format[*i] != '\0')

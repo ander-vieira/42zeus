@@ -1,8 +1,11 @@
 #!/bin/bash
 
-yellow="\033[0;33m"
-green="\033[0;32m"
-nocolor="\033[0m"
+if [ -t 1 ]
+then
+	yellow="\033[0;33m"
+	green="\033[0;32m"
+	nocolor="\033[0m"
+fi
 
 library=$1
 expected_funs=$2

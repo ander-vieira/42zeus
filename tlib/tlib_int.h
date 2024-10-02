@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 22:43:51 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 00:47:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 
 # include "tlib.h"
 
-# define COLOR_GREEN	"\033[0;32m"
-# define COLOR_NONE		"\033[0m"
-# define COLOR_RED		"\033[0;31m"
+# define COLORCODE_GREEN	"\033[0;32m"
+# define COLORCODE_NONE		"\033[0m"
+# define COLORCODE_RED		"\033[0;31m"
 
 typedef struct s_alloc {
 	struct s_alloc	*next;

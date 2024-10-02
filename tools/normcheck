@@ -1,8 +1,11 @@
 #!/bin/bash
 
-red="\033[0;31m"
-green="\033[0;32m"
-nocolor="\033[0m"
+if [ -t 1 ]
+then
+	red="\033[0;31m"
+	green="\033[0;32m"
+	nocolor="\033[0m"
+fi
 
 if [ $# -lt 1 ]
 then
