@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:22:09 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 20:23:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	test_strlcat_testone(char *str1, char *str2, char *expected)
 {
 	char	buf[5];
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	strcpy(buf, str1);
-	tlib_test_ok(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
-	tlib_test_ok(!strcmp(buf, expected));
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_testresult_bool(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
+	tlib_testresult_bool(!strcmp(buf, expected));
+	tlib_testmalloc_count(0);
 }
 
 static void	test_strlcat_child1(void)
@@ -35,14 +35,14 @@ static void	test_strlcat_child2(void)
 {
 	char	buf[5];
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	strcpy(buf, "AB");
-	tlib_test_ok(ft_strlcat(buf, "C", 1) == 2);
-	tlib_test_ok(!strcmp(buf, "AB"));
+	tlib_testresult_bool(ft_strlcat(buf, "C", 1) == 2);
+	tlib_testresult_bool(!strcmp(buf, "AB"));
 	strcpy(buf, "AB");
-	tlib_test_ok(ft_strlcat(buf, "C", 0) == 1);
-	tlib_test_ok(!strcmp(buf, "AB"));
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_testresult_bool(ft_strlcat(buf, "C", 0) == 1);
+	tlib_testresult_bool(!strcmp(buf, "AB"));
+	tlib_testmalloc_count(0);
 }
 
 static void	test_strlcat_child3(void)

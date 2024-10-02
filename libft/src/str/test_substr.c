@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:20:57 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:44:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	test_substr_testone(char *str, unsigned int start, size_t len,
 {
 	char	*result;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	result = ft_substr(str, start, len);
-	tlib_test_ok(result != NULL && !strcmp(result, expected));
-	tlib_test_ok(tlib_alloc_lookup(result) == strlen(expected) + 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(result != NULL && !strcmp(result, expected));
+	tlib_testmalloc_size(result, strlen(expected) + 1);
+	tlib_testmalloc_count(1);
 	free(result);
 }
 
@@ -37,14 +37,14 @@ static void	test_substr_child1(void)
 
 static void	test_substr_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_substr("ABCDEF", 0, 4) == NULL);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_substr("ABCDEF", 0, 4) == NULL);
 }
 
 static void	test_substr_child3(void)
 {
-	tlib_test_ok(ft_substr(NULL, 0, 4) == NULL);
+	tlib_testresult_bool(ft_substr(NULL, 0, 4) == NULL);
 }
 
 void	test_substr(void)

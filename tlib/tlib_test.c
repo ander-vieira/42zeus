@@ -1,40 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testlib_test.c                                     :+:      :+:    :+:   */
+/*   tlib_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:03:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 00:25:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "testlib.h"
+#include "tlib_int.h"
 
-t_uint	g_failed;
+t_bool	g_child;
+t_bool	g_failed;
 
-void	tlib_test_missing(void (*test)(void), void *fun, char *title)
+static void	tlib_test_setfail()
+{
+	g_failed = TRUE;
+}
+
+void	tlib_testmissing(void (*test)(void), void *fun, char *title)
 {
 	tlib_printf(STDOUT_FILENO, "--- %s ---\n", title);
 	if (fun != NULL)
 		test();
 	else
 	{
+		tlib_test_setfail();
 		tlib_printf(STDOUT_FILENO, "["COLOR_RED"MISSING"COLOR_NONE"]\n");
-		g_failed += 1;
 	}
 	tlib_printf(STDOUT_FILENO, "\n");
 }
 
-void	tlib_test_ok(t_bool ok)
+void	tlib_testresult_bool(t_bool ok)
 {
 	if (ok)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
 	else
 	{
-		g_failed += 1;
+		tlib_test_setfail();
 		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+	}
+}
+
+void	tlib_testmalloc_size(void *addr, size_t expected_size) {
+	size_t	actual_size;
+
+	actual_size = tlib_mockmalloc_lookup(addr);
+	if (actual_size == expected_size)
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+	else
+	{
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+		//TODO report error
+	}
+}
+
+void	tlib_testmalloc_count(size_t expected_count) {
+	size_t	actual_count;
+
+	actual_count = tlib_mockmalloc_count();
+	if (actual_count == expected_count)
+		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
+	else
+	{
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, COLOR_RED"[KO]"COLOR_NONE);
+		//TODO report error
 	}
 }
 
@@ -69,6 +103,7 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 		return ;
 	else if (pid == 0)
 	{
+		g_child = TRUE;
 		fun();
 		exit(0);
 	}
@@ -78,7 +113,7 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
 	else
 	{
-		g_failed += 1;
+		tlib_test_setfail();
 		print_pres(pres);
 	}
 }
@@ -86,7 +121,7 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 int	tlib_test_results(void)
 {
 	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
-	if (g_failed == 0)
+	if (!g_failed)
 	{
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"All tests OK!\n"COLOR_NONE);
 		return (EXIT_SUCCESS);

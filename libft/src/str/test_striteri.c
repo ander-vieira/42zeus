@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:48:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_uint	g_i;
 
 static void	test_striteri_fun1(t_uint i, char *c)
 {
-	tlib_test_ok(i == g_i && c == g_str + g_i);
+	tlib_testresult_bool(i == g_i && c == g_str + g_i);
 	g_i++;
 }
 
@@ -31,10 +31,10 @@ static void	test_striteri_testone(char *str)
 {
 	g_str = str;
 	g_i = 0;
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	ft_striteri(g_str, &test_striteri_fun1);
-	tlib_test_ok(g_i == strlen(str));
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_testresult_bool(g_i == strlen(str));
+	tlib_testmalloc_count(0);
 }
 
 static void	test_striteri_child1(void)

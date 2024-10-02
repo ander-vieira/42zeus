@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:22:08 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 15:05:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	test_strlen_child1(void)
 {
-	tlib_alloc_reset();
-	tlib_test_ok(ft_strlen("ASDFG") == 5);
-	tlib_test_ok(ft_strlen("AAA BBB CCC") == 11);
-	tlib_test_ok(ft_strlen("") == 0);
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_mockmalloc_reset();
+	tlib_testresult_bool(ft_strlen("ASDFG") == 5);
+	tlib_testresult_bool(ft_strlen("AAA BBB CCC") == 11);
+	tlib_testresult_bool(ft_strlen("") == 0);
+	tlib_testmalloc_count(0);
 }
 
 static void	test_strlen_child2(void)

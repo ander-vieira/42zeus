@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:32:38 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:46:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	test_itoa_testone(int num, char *expected)
 {
 	char	*str;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	str = ft_itoa(num);
-	tlib_test_ok(!strcmp(str, expected));
-	tlib_test_ok(tlib_alloc_lookup(str) == strlen(expected) + 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(!strcmp(str, expected));
+	tlib_testmalloc_size(str, strlen(expected) + 1);
+	tlib_testmalloc_count(1);
 	free(str);
 }
 
@@ -35,9 +35,9 @@ static void	test_itoa_child1(void)
 
 static void	test_itoa_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_itoa(5) == NULL);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_itoa(5) == NULL);
 }
 
 void	test_itoa(void)

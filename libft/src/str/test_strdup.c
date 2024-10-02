@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:12:10 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:52:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	test_strdup_testone(char *str)
 {
 	char	*result;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	result = ft_strdup(str);
-	tlib_test_ok(!strcmp(result, str));
-	tlib_test_ok(tlib_alloc_lookup(result) == strlen(str) + 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(!strcmp(result, str));
+	tlib_testmalloc_size(result, strlen(str) + 1);
+	tlib_testmalloc_count(1);
 	free(str);
 }
 
@@ -32,14 +32,14 @@ static void	test_strdup_child1(void)
 
 static void	test_strdup_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_strdup("HOLA") == NULL);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_strdup("HOLA") == NULL);
 }
 
 static void	test_strdup_child3(void)
 {
-	tlib_test_ok(ft_strdup(NULL) == NULL);
+	tlib_testresult_bool(ft_strdup(NULL) == NULL);
 }
 
 void	test_strdup(void)

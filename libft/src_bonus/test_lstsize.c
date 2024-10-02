@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:32:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/21 21:18:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ static void	test_lstsize_child1(void)
 	t_list	*l2;
 	t_list	*l3;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	l1 = taux_lstnew(NULL);
 	l2 = taux_lstnew(NULL);
 	l3 = taux_lstnew(NULL);
 	l1->next = l2;
 	l2->next = l3;
-	tlib_test_ok(ft_lstsize(l1) == 3);
-	tlib_test_ok(ft_lstsize(l2) == 2);
-	tlib_test_ok(ft_lstsize(l3) == 1);
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l3) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 3);
+	tlib_testresult_bool(ft_lstsize(l1) == 3);
+	tlib_testresult_bool(ft_lstsize(l2) == 2);
+	tlib_testresult_bool(ft_lstsize(l3) == 1);
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testmalloc_size(l3, sizeof(t_list));
+	tlib_testmalloc_count(3);
 	free(l1);
 	free(l2);
 	free(l3);
@@ -38,7 +38,7 @@ static void	test_lstsize_child1(void)
 
 static void	test_lstsize_child2(void)
 {
-	tlib_test_ok(ft_lstsize(NULL) == 0);
+	tlib_testresult_bool(ft_lstsize(NULL) == 0);
 }
 
 void	test_lstsize(void)

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:09:35 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/21 21:21:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ static void	test_lstnew_child1(void)
 {
 	t_list	*l;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	l = ft_lstnew(&l);
-	tlib_test_ok(l != NULL && l->content == &l && l->next == NULL);
-	tlib_test_ok(tlib_alloc_lookup(l) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(l != NULL && l->content == &l && l->next == NULL);
+	tlib_testmalloc_size(l, sizeof(t_list));
+	tlib_testmalloc_count(1);
 	free(l);
 }
 
 static void	test_lstnew_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_lstnew(NULL) == NULL);
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_lstnew(NULL) == NULL);
+	tlib_testmalloc_count(0);
 }
 
 void	test_lstnew(void)

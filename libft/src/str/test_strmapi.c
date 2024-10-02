@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:18:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:47:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_uint	g_i;
 
 static char	test_strmapi_fun1(unsigned int i, char c)
 {
-	tlib_test_ok(i == g_i && c == g_str[g_i]);
+	tlib_testresult_bool(i == g_i && c == g_str[g_i]);
 	g_i++;
 	if (i == 0)
 		return (c + 1);
@@ -36,14 +36,14 @@ static void	test_strmapi_testone(char *str)
 
 	g_str = str;
 	g_i = 0;
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	str2 = ft_strmapi(str, &test_strmapi_fun1);
 	if (strlen(str) == 0)
-		tlib_test_ok(strlen(str2) == 0);
+		tlib_testresult_bool(strlen(str2) == 0);
 	else
-		tlib_test_ok(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
-	tlib_test_ok(tlib_alloc_lookup(str2) == strlen(str) + 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
+		tlib_testresult_bool(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
+	tlib_testmalloc_size(str2, strlen(str) + 1);
+	tlib_testmalloc_count(1);
 	free(str2);
 }
 
@@ -55,19 +55,19 @@ static void	test_strmapi_child1(void)
 
 static void	test_strmapi_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child3(void)
 {
-	tlib_test_ok(ft_strmapi(NULL, &test_strmapi_fun2) == NULL);
+	tlib_testresult_bool(ft_strmapi(NULL, &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child4(void)
 {
-	tlib_test_ok(ft_strmapi("HOLA", NULL) == NULL);
+	tlib_testresult_bool(ft_strmapi("HOLA", NULL) == NULL);
 }
 
 void	test_strmapi(void)

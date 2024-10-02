@@ -6,14 +6,14 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 14:19:30 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/26 15:15:09 by andeviei         ###   ########.fr        #
+#    Updated: 2024/10/02 23:02:02 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = testlib.a
+NAME = tlib.a
 
-SRCS = testlib_alloc.c testlib_malloc.c testlib_printf.c testlib_test.c
-HDRS = testlib.h
+SRCS = tlib_mockmalloc.c tlib_printf.c tlib_test.c
+HDRS = tlib.h
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

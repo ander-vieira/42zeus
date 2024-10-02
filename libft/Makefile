@@ -6,14 +6,14 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 17:23:02 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/21 19:34:57 by andeviei         ###   ########.fr        #
+#    Updated: 2024/10/02 22:51:18 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra
 UNAME = $(shell uname)
 
-TESTLIB = ../testlib/testlib.a
+TESTLIB = ../tlib/tlib.a
 LIBFT = libft.a
 
 NAME = test.out
@@ -36,7 +36,7 @@ HDRS_BONUS = src_bonus/test_bonus.h
 
 all: $(NAME)
 
-$(NAME): testlib libft $(SRCS) $(HDRS)
+$(NAME): tlib libft $(SRCS) $(HDRS)
 ifeq ($(UNAME), Darwin)
 	gcc $(CFLAGS) -undefined dynamic_lookup -Isrc $(SRCS) $(LIBFT) $(TESTLIB) -o $(NAME)
 else
@@ -45,15 +45,15 @@ endif
 
 bonus: $(NAME_BONUS)
 
-$(NAME_BONUS): testlib libft $(SRCS_BONUS) $(HDRS_BONUS)
+$(NAME_BONUS): tlib libft $(SRCS_BONUS) $(HDRS_BONUS)
 ifeq ($(UNAME), Darwin)
 	gcc $(CFLAGS) -undefined dynamic_lookup $(SRCS_BONUS) $(LIBFT) $(TESTLIB) -o $(NAME_BONUS)
 else
 	gcc $(CFLAGS) $(SRCS_BONUS) -Wl,--whole-archive -L. -l:$(LIBFT) -l:$(TESTLIB) -Wl,--no-whole-archive -o $(NAME_BONUS)
 endif
 
-testlib:
-	make -C ../testlib all clean
+tlib:
+	make -C ../tlib all clean
 
 libft:
 	cp -f ../repo/libft.a libft.a
@@ -66,4 +66,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all testlib libft clean fclean re
+.PHONY: all tlib libft clean fclean re

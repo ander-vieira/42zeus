@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:42:13 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 23:10:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ static void	test_split_testone(char *str, char c, size_t len, ...)
 	size_t	i;
 
 	va_start(args, len);
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	split = ft_split(str, c);
-	tlib_test_ok(split != NULL);
-	tlib_test_ok(tlib_alloc_lookup(split) == sizeof(char *) * (len + 1));
+	tlib_testresult_bool(split != NULL);
+	tlib_testmalloc_size(split, sizeof(char *) * (len + 1));
 	i = 0;
 	while (i < len)
 	{
 		expected = va_arg(args, char *);
-		tlib_test_ok(split[i] != NULL && !strcmp(split[i], expected)
-			&& tlib_alloc_lookup(split[i]) == strlen(expected) + 1);
+		tlib_testresult_bool(split[i] != NULL && !strcmp(split[i], expected));
+		tlib_testmalloc_size(split[i], strlen(expected) + 1);
 		i++;
 	}
-	tlib_test_ok(split[len] == NULL);
-	tlib_test_ok(tlib_alloc_count() == len + 1);
+	tlib_testresult_bool(split[len] == NULL);
+	tlib_testmalloc_count(len + 1);
 	test_split_free(split);
 	va_end(args);
 }
@@ -73,15 +73,15 @@ static void	test_split_child2(void)
 
 static void	test_split_child3(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(g_mocked);
-	tlib_test_ok(ft_split("AB CD", ' ') == NULL);
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(g_mocked);
+	tlib_testresult_bool(ft_split("AB CD", ' ') == NULL);
+	tlib_testmalloc_count(0);
 }
 
 static void	test_split_child4(void)
 {
-	tlib_test_ok(ft_split(NULL, ' ') == NULL);
+	tlib_testresult_bool(ft_split(NULL, ' ') == NULL);
 }
 
 static void	test_split_testmock(size_t mocked)

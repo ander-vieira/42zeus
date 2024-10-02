@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:20:43 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/17 17:36:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 22:51:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 
-# include "../../testlib/testlib.h"
+# include "../../tlib/tlib.h"
 
 /* ************************************************************************** */
 /* Weak declarations to check for missing functions                           */

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:38:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/19 14:36:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	test_strjoin_testone(char *str1, char *str2, char *expected)
 {
 	char	*result;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	result = ft_strjoin(str1, str2);
-	tlib_test_ok(result != NULL && !strcmp(result, expected));
-	tlib_test_ok(tlib_alloc_lookup(result) == strlen(expected) + 1);
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(result != NULL && !strcmp(result, expected));
+	tlib_testmalloc_size(result, strlen(expected) + 1);
+	tlib_testmalloc_count(1);
 	free(result);
 }
 
@@ -34,19 +34,19 @@ static void	test_strjoin_child1(void)
 
 static void	test_strjoin_child2(void)
 {
-	tlib_alloc_reset();
-	tlib_alloc_setmock(1);
-	tlib_test_ok(ft_strjoin("HOLA", "MUNDO") == NULL);
+	tlib_mockmalloc_reset();
+	tlib_mockmalloc_setmock(1);
+	tlib_testresult_bool(ft_strjoin("HOLA", "MUNDO") == NULL);
 }
 
 static void	test_strjoin_child3(void)
 {
-	tlib_test_ok(ft_strjoin(NULL, "MUNDO") == NULL);
+	tlib_testresult_bool(ft_strjoin(NULL, "MUNDO") == NULL);
 }
 
 static void	test_strjoin_child4(void)
 {
-	tlib_test_ok(ft_strjoin("HOLA", NULL) == NULL);
+	tlib_testresult_bool(ft_strjoin("HOLA", NULL) == NULL);
 }
 
 void	test_strjoin(void)

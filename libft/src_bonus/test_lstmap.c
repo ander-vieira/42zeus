@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:49:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/22 11:08:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/02 23:46:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	test_lstmap_child1(void)
 	t_list	*l1;
 	t_list	*l2;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 2, &l1, &l2);
 	taux_pget_init(&g_pget, 2, &l, &l + 1);
 	l1 = taux_lstnew(&l1);
@@ -43,16 +43,16 @@ static void	test_lstmap_child1(void)
 		taux_pget_check(&g_pget, l->content);
 	if (l != NULL && l->next != NULL)
 		taux_pget_check(&g_pget, l->next->content);
-	tlib_test_ok(l1->next == l2 && l2->next == NULL);
-	tlib_test_ok(l != NULL && l->next != NULL && l->next->next == NULL);
-	tlib_test_ok(taux_parg_ok(g_parg));
-	tlib_test_ok(g_parg.i == 2);
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l->next) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 4);
+	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_bool(l != NULL && l->next != NULL && l->next->next == NULL);
+	tlib_testresult_bool(taux_parg_ok(g_parg));
+	tlib_testresult_bool(g_parg.i == 2);
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testmalloc_size(l, sizeof(t_list));
+	tlib_testmalloc_size(l->next, sizeof(t_list));
+	tlib_testmalloc_count(4);
 	free(l1);
 	free(l2);
 	free(l->next);
@@ -65,21 +65,21 @@ static void	test_lstmap_child2(void)
 	t_list	*l1;
 	t_list	*l2;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 2, &l1, &l2);
 	taux_pget_init(&g_pget, 2, &l, &l + 1);
 	l1 = taux_lstnew(&l1);
 	l2 = taux_lstnew(&l2);
 	l1->next = l2;
-	tlib_alloc_setmock(1);
+	tlib_mockmalloc_setmock(1);
 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-	tlib_test_ok(l1->next == l2 && l2->next == NULL);
-	tlib_test_ok(l == NULL);
-	tlib_test_ok(taux_parg_ok(g_parg));
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 2);
+	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_bool(l == NULL);
+	tlib_testresult_bool(taux_parg_ok(g_parg));
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testmalloc_count(2);
 	free(l1);
 	free(l2);
 }
@@ -90,21 +90,21 @@ static void	test_lstmap_child3(void)
 	t_list	*l1;
 	t_list	*l2;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 2, &l1, &l2);
 	taux_pget_init(&g_pget, 2, &l, &l + 1);
 	l1 = taux_lstnew(&l1);
 	l2 = taux_lstnew(&l2);
 	l1->next = l2;
-	tlib_alloc_setmock(2);
+	tlib_mockmalloc_setmock(2);
 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-	tlib_test_ok(l1->next == l2 && l2->next == NULL);
-	tlib_test_ok(l == NULL);
-	tlib_test_ok(taux_parg_ok(g_parg));
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_lookup(l2) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 2);
+	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_bool(l == NULL);
+	tlib_testresult_bool(taux_parg_ok(g_parg));
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testmalloc_count(2);
 	free(l1);
 	free(l2);
 }
@@ -113,15 +113,15 @@ static void	test_lstmap_child4(void)
 {
 	t_list	*l;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 0);
 	taux_pget_init(&g_pget, 0);
 	l = ft_lstmap(NULL, &test_lstmap_fun, &test_lstmap_del);
-	tlib_test_ok(l == NULL);
-	tlib_test_ok(taux_parg_ok(g_parg));
-	tlib_test_ok(g_parg.i == 0);
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(tlib_alloc_count() == 0);
+	tlib_testresult_bool(l == NULL);
+	tlib_testresult_bool(taux_parg_ok(g_parg));
+	tlib_testresult_bool(g_parg.i == 0);
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testmalloc_count(0);
 }
 
 static void	test_lstmap_child5(void)
@@ -129,16 +129,16 @@ static void	test_lstmap_child5(void)
 	t_list	*l;
 	t_list	*l1;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_pget_init(&g_pget, 0);
 	l1 = taux_lstnew(&l1);
 	l = ft_lstmap(l1, NULL, &test_lstmap_del);
-	tlib_test_ok(l1->next == NULL);
-	tlib_test_ok(l == NULL);
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(g_pget.j == 0);
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(l1->next == NULL);
+	tlib_testresult_bool(l == NULL);
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testresult_bool(g_pget.j == 0);
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_count(1);
 	free(l1);
 }
 
@@ -147,18 +147,18 @@ static void	test_lstmap_child6(void)
 	t_list	*l;
 	t_list	*l1;
 
-	tlib_alloc_reset();
+	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 0);
 	taux_pget_init(&g_pget, 0);
 	l1 = taux_lstnew(&l1);
 	l = ft_lstmap(l1, &test_lstmap_fun, NULL);
-	tlib_test_ok(l1->next == NULL);
-	tlib_test_ok(l == NULL);
-	tlib_test_ok(taux_parg_ok(g_parg));
-	tlib_test_ok(g_parg.i == 0);
-	tlib_test_ok(taux_pget_ok(g_pget));
-	tlib_test_ok(tlib_alloc_lookup(l1) == sizeof(t_list));
-	tlib_test_ok(tlib_alloc_count() == 1);
+	tlib_testresult_bool(l1->next == NULL);
+	tlib_testresult_bool(l == NULL);
+	tlib_testresult_bool(taux_parg_ok(g_parg));
+	tlib_testresult_bool(g_parg.i == 0);
+	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testmalloc_count(1);
 	free(l1);
 }
 
