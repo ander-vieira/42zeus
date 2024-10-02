@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:25:04 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/03 00:25:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 00:33:22 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,15 @@ t_bool	g_failed;
 
 static void	tlib_test_setfail()
 {
-	g_failed = TRUE;
+	if (g_child)
+		kill(getppid(), SIGUSR1);
+	else
+		g_failed = TRUE;
+}
+
+void	handle_sigusr(int signal)
+{
+	tlib_test_setfail();
 }
 
 void	tlib_testmissing(void (*test)(void), void *fun, char *title)
@@ -97,7 +105,9 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 	pid_t	pid;
 	int		status;
 	t_pres	pres;
+	void	(*sighandler)(int);
 
+	sighandler = signal(SIGUSR1, &handle_sigusr);
 	pid = fork();
 	if (pid == -1)
 		return ;
@@ -108,6 +118,7 @@ void	tlib_test_process(void (*fun)(void), t_pres expected)
 		exit(0);
 	}
 	waitpid(pid, &status, 0);
+	signal(SIGUSR1, sighandler);
 	pres = get_pres(status);
 	if (pres == expected)
 		tlib_printf(STDOUT_FILENO, COLOR_GREEN"[OK]"COLOR_NONE);
