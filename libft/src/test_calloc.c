@@ -5,7 +5,7 @@ static void	test_calloc_child1(void) {
 
 	tlib_mockmalloc_reset();
 	buf = ft_calloc(3, 2);
-	tlib_testresult_raw(buf != NULL);
+	tlib_testresult_notnull(buf, "ft_calloc(3, 2)");
 	tlib_testmalloc_size(buf, 6, "ft_calloc(3, 2)");
 	tlib_testresult_raw(!memcmp(buf, "\0\0\0\0\0\0", 6));
 	free(buf);
@@ -15,7 +15,7 @@ static void	test_calloc_child1(void) {
 static void	test_calloc_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_raw(ft_calloc(3, 2) == NULL);
+	tlib_testresult_addr(ft_calloc(3, 2), NULL, "ft_calloc(3, 2) (malloc fail)");
 }
 
 void	test_calloc(void) {

@@ -4,11 +4,11 @@ static void	test_memmove_child1(void) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(ft_memmove(buf, "ASDFG", 5) == buf);
+	tlib_testresult_addr(ft_memmove(buf, "ASDFG", 5), buf, "ft_memmove(%p, \"ASDFG\", 5)", buf);
 	tlib_testresult_raw(!memcmp(buf, "ASDFG", 5));
-	tlib_testresult_raw(ft_memmove(buf, buf + 3, 2) == buf);
+	tlib_testresult_addr(ft_memmove(buf, buf + 3, 2), buf, "ft_memmove(%p, %p, 2)", buf, buf + 3);
 	tlib_testresult_raw(!memcmp(buf, "FGDFG", 5));
-	tlib_testresult_raw(ft_memmove(buf + 2, buf, 3) == buf + 2);
+	tlib_testresult_addr(ft_memmove(buf + 2, buf, 3), buf + 2, "ft_memmove(%p, %p, 3)", buf + 2, buf);
 	tlib_testresult_raw(!memcmp(buf, "FGFGD", 5));
 	tlib_testmalloc_leak(NULL);
 }
@@ -18,11 +18,11 @@ static void	test_memmove_child2(void) {
 
 	tlib_mockmalloc_reset();
 	memcpy(buf, "ASDFG", 5);
-	tlib_testresult_raw(ft_memmove(NULL, "ASDFG", 0) == NULL);
-	tlib_testresult_raw(ft_memmove(buf, NULL, 0) == buf);
+	tlib_testresult_addr(ft_memmove(NULL, "ASDFG", 0), NULL, "ft_memmove(NULL, \"ASDFG\", 0)");
+	tlib_testresult_addr(ft_memmove(buf, NULL, 0), buf, "ft_memmove(%p, NULL, 0)", buf);
 	tlib_testresult_raw(!memcmp(buf, "ASDFG", 5));
-	tlib_testresult_raw(ft_memmove(NULL, NULL, 0) == NULL);
-	tlib_testresult_raw(ft_memmove(NULL, NULL, 3) == NULL);
+	tlib_testresult_addr(ft_memmove(NULL, NULL, 0), NULL, "ft_memmove(NULL, NULL, 0)");
+	tlib_testresult_addr(ft_memmove(NULL, NULL, 3), NULL, "ft_memmove(NULL, NULL, 3)");
 	tlib_testmalloc_leak(NULL);
 }
 

@@ -29,6 +29,8 @@ void	tlib_testmissing(void (*test)(void), void *fun, char *section);
 void	tlib_testresult_raw(t_bool ok);
 void	tlib_testresult_true(int value, char *call, ...);
 void	tlib_testresult_false(int value, char *call, ...);
+void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, ...);
+void	tlib_testresult_notnull(void *value, char *call, ...);
 void	tlib_testprocess_ok(void (*fun)(void));
 void	tlib_testprocess_segfault(void (*fun)(void));
 int		tlib_test_results(void);

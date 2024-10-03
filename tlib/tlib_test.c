@@ -59,6 +59,30 @@ void	tlib_testresult_false(int value, char *call, ...) {
 	}
 }
 
+void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, ...) {
+	t_bool	condition;
+
+	condition = (actual_value == expected_value);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print("- (expected: %p, returned: %p)\n", expected_value, actual_value);
+	}
+}
+
+void	tlib_testresult_notnull(void *value, char *call, ...) {
+	t_bool	condition;
+
+	condition = (value != NULL);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print("- (expected: nonnull, returned: NULL)\n");
+	}
+}
+
 void	tlib_testmalloc_leak(char *call, ...) {
 	size_t	count;
 
