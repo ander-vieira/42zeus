@@ -17,6 +17,10 @@
 # define COLORCODE_GREEN	"\033[0;32m"
 # define COLORCODE_NONE		"\033[0m"
 # define COLORCODE_RED		"\033[0;31m"
+# define COLORCODE_YELLOW	"\033[0;33m"
+
+# define ERRORLOG_FILE		"errors.log"
+# define ERRORLOG_FULLFILE	"~/42zeus/"ERRORLOG_FILE
 
 typedef struct s_alloc {
 	struct s_alloc	*next;
@@ -29,6 +33,10 @@ typedef struct s_amock {
 	size_t			timer;
 }	t_amock;
 
+/****** LOG ******/
+
+void	tlib_log_print(char *format, ...);
+
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
@@ -39,5 +47,6 @@ size_t	tlib_mockmalloc_count(void);
 /* Printf: making my own version for portability                              */
 
 void	tlib_printf(int fd, char *format, ...);
+void	tlib_vprintf(int fd, char *format, va_list args);
 
 #endif

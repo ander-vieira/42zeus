@@ -28,15 +28,15 @@ static void	test_lstmap_child1(void) {
 		taux_pget_check(&g_pget, l->content);
 	if (l != NULL && l->next != NULL)
 		taux_pget_check(&g_pget, l->next->content);
-	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
-	tlib_testresult_bool(l != NULL && l->next != NULL && l->next->next == NULL);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(g_parg.i == 2);
-	tlib_testresult_bool(taux_pget_ok(g_pget));
-	tlib_testmalloc_size(l1, sizeof(t_list));
-	tlib_testmalloc_size(l2, sizeof(t_list));
-	tlib_testmalloc_size(l, sizeof(t_list));
-	tlib_testmalloc_size(l->next, sizeof(t_list));
+	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_raw(l != NULL && l->next != NULL && l->next->next == NULL);
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(g_parg.i == 2);
+	tlib_testresult_raw(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l->next, sizeof(t_list), "ft_lstmap(TODO)");
 	tlib_testmalloc_count(4);
 	free(l1);
 	free(l2);
@@ -57,12 +57,12 @@ static void	test_lstmap_child2(void) {
 	l1->next = l2;
 	tlib_mockmalloc_setmock(1);
 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
-	tlib_testresult_bool(l == NULL);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(taux_pget_ok(g_pget));
-	tlib_testmalloc_size(l1, sizeof(t_list));
-	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_raw(l == NULL);
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
 	tlib_testmalloc_count(2);
 	free(l1);
 	free(l2);
@@ -81,12 +81,12 @@ static void	test_lstmap_child3(void) {
 	l1->next = l2;
 	tlib_mockmalloc_setmock(2);
 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-	tlib_testresult_bool(l1->next == l2 && l2->next == NULL);
-	tlib_testresult_bool(l == NULL);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(taux_pget_ok(g_pget));
-	tlib_testmalloc_size(l1, sizeof(t_list));
-	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
+	tlib_testresult_raw(l == NULL);
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
 	tlib_testmalloc_count(2);
 	free(l1);
 	free(l2);
@@ -99,10 +99,10 @@ static void	test_lstmap_child4(void) {
 	taux_parg_init(&g_parg, 0);
 	taux_pget_init(&g_pget, 0);
 	l = ft_lstmap(NULL, &test_lstmap_fun, &test_lstmap_del);
-	tlib_testresult_bool(l == NULL);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(g_parg.i == 0);
-	tlib_testresult_bool(taux_pget_ok(g_pget));
+	tlib_testresult_raw(l == NULL);
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(g_parg.i == 0);
+	tlib_testresult_raw(taux_pget_ok(g_pget));
 	tlib_testmalloc_count(0);
 }
 
@@ -114,11 +114,11 @@ static void	test_lstmap_child5(void) {
 	taux_pget_init(&g_pget, 0);
 	l1 = taux_lstnew(&l1);
 	l = ft_lstmap(l1, NULL, &test_lstmap_del);
-	tlib_testresult_bool(l1->next == NULL);
-	tlib_testresult_bool(l == NULL);
-	tlib_testresult_bool(taux_pget_ok(g_pget));
-	tlib_testresult_bool(g_pget.j == 0);
-	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testresult_raw(l1->next == NULL);
+	tlib_testresult_raw(l == NULL);
+	tlib_testresult_raw(taux_pget_ok(g_pget));
+	tlib_testresult_raw(g_pget.j == 0);
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
 	tlib_testmalloc_count(1);
 	free(l1);
 }
@@ -132,12 +132,12 @@ static void	test_lstmap_child6(void) {
 	taux_pget_init(&g_pget, 0);
 	l1 = taux_lstnew(&l1);
 	l = ft_lstmap(l1, &test_lstmap_fun, NULL);
-	tlib_testresult_bool(l1->next == NULL);
-	tlib_testresult_bool(l == NULL);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(g_parg.i == 0);
-	tlib_testresult_bool(taux_pget_ok(g_pget));
-	tlib_testmalloc_size(l1, sizeof(t_list));
+	tlib_testresult_raw(l1->next == NULL);
+	tlib_testresult_raw(l == NULL);
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(g_parg.i == 0);
+	tlib_testresult_raw(taux_pget_ok(g_pget));
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
 	tlib_testmalloc_count(1);
 	free(l1);
 }

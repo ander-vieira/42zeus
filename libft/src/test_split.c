@@ -24,16 +24,16 @@ static void	test_split_testone(char *str, char c, size_t len, ...) {
 	va_start(args, len);
 	tlib_mockmalloc_reset();
 	split = ft_split(str, c);
-	tlib_testresult_bool(split != NULL);
-	tlib_testmalloc_size(split, sizeof(char *) * (len + 1));
+	tlib_testresult_raw(split != NULL);
+	tlib_testmalloc_size(split, sizeof(char *) * (len + 1), "ft_split(TODO)");
 	i = 0;
 	while (i < len) {
 		expected = va_arg(args, char *);
-		tlib_testresult_bool(split[i] != NULL && !strcmp(split[i], expected));
-		tlib_testmalloc_size(split[i], strlen(expected) + 1);
+		tlib_testresult_raw(split[i] != NULL && !strcmp(split[i], expected));
+		tlib_testmalloc_size(split[i], strlen(expected) + 1, "ft_split(TODO)");
 		i++;
 	}
-	tlib_testresult_bool(split[len] == NULL);
+	tlib_testresult_raw(split[len] == NULL);
 	tlib_testmalloc_count(len + 1);
 	test_split_free(split);
 	va_end(args);
@@ -55,12 +55,12 @@ static void	test_split_child2(void) {
 static void	test_split_child3(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(g_mocked);
-	tlib_testresult_bool(ft_split("AB CD", ' ') == NULL);
+	tlib_testresult_raw(ft_split("AB CD", ' ') == NULL);
 	tlib_testmalloc_count(0);
 }
 
 static void	test_split_child4(void) {
-	tlib_testresult_bool(ft_split(NULL, ' ') == NULL);
+	tlib_testresult_raw(ft_split(NULL, ' ') == NULL);
 }
 
 static void	test_split_testmock(size_t mocked) {

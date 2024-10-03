@@ -5,8 +5,8 @@ static void	test_strjoin_testone(char *str1, char *str2, char *expected) {
 
 	tlib_mockmalloc_reset();
 	result = ft_strjoin(str1, str2);
-	tlib_testresult_bool(result != NULL && !strcmp(result, expected));
-	tlib_testmalloc_size(result, strlen(expected) + 1);
+	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
+	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strjoin(TODO)");
 	tlib_testmalloc_count(1);
 	free(result);
 }
@@ -21,15 +21,15 @@ static void	test_strjoin_child1(void) {
 static void	test_strjoin_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_bool(ft_strjoin("HOLA", "MUNDO") == NULL);
+	tlib_testresult_raw(ft_strjoin("HOLA", "MUNDO") == NULL);
 }
 
 static void	test_strjoin_child3(void) {
-	tlib_testresult_bool(ft_strjoin(NULL, "MUNDO") == NULL);
+	tlib_testresult_raw(ft_strjoin(NULL, "MUNDO") == NULL);
 }
 
 static void	test_strjoin_child4(void) {
-	tlib_testresult_bool(ft_strjoin("HOLA", NULL) == NULL);
+	tlib_testresult_raw(ft_strjoin("HOLA", NULL) == NULL);
 }
 
 void	test_strjoin(void) {

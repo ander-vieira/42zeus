@@ -1,5 +1,8 @@
 .vscode
-repo/
+
 *.o
 *.a
 *.out
+
+repo/
+*.log

@@ -4,7 +4,7 @@ static char			*g_str;
 static unsigned int	g_i;
 
 static char	test_strmapi_fun1(unsigned int i, char c) {
-	tlib_testresult_bool(i == g_i && c == g_str[g_i]);
+	tlib_testresult_raw(i == g_i && c == g_str[g_i]);
 	g_i++;
 	if (i == 0)
 		return (c + 1);
@@ -24,10 +24,10 @@ static void	test_strmapi_testone(char *str) {
 	tlib_mockmalloc_reset();
 	str2 = ft_strmapi(str, &test_strmapi_fun1);
 	if (strlen(str) == 0)
-		tlib_testresult_bool(strlen(str2) == 0);
+		tlib_testresult_raw(strlen(str2) == 0);
 	else
-		tlib_testresult_bool(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
-	tlib_testmalloc_size(str2, strlen(str) + 1);
+		tlib_testresult_raw(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
+	tlib_testmalloc_size(str2, strlen(str) + 1, "ft_strmapi(TODO)");
 	tlib_testmalloc_count(1);
 	free(str2);
 }
@@ -40,15 +40,15 @@ static void	test_strmapi_child1(void) {
 static void	test_strmapi_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_bool(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
+	tlib_testresult_raw(ft_strmapi("HOLA", &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child3(void) {
-	tlib_testresult_bool(ft_strmapi(NULL, &test_strmapi_fun2) == NULL);
+	tlib_testresult_raw(ft_strmapi(NULL, &test_strmapi_fun2) == NULL);
 }
 
 static void	test_strmapi_child4(void) {
-	tlib_testresult_bool(ft_strmapi("HOLA", NULL) == NULL);
+	tlib_testresult_raw(ft_strmapi("HOLA", NULL) == NULL);
 }
 
 void	test_strmapi(void) {

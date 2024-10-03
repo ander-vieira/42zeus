@@ -4,7 +4,7 @@ static char			*g_str;
 static unsigned int	g_i;
 
 static void	test_striteri_fun1(unsigned int i, char *c) {
-	tlib_testresult_bool(i == g_i && c == g_str + g_i);
+	tlib_testresult_raw(i == g_i && c == g_str + g_i);
 	g_i++;
 }
 
@@ -18,7 +18,7 @@ static void	test_striteri_testone(char *str) {
 	g_i = 0;
 	tlib_mockmalloc_reset();
 	ft_striteri(g_str, &test_striteri_fun1);
-	tlib_testresult_bool(g_i == strlen(str));
+	tlib_testresult_raw(g_i == strlen(str));
 	tlib_testmalloc_count(0);
 }
 

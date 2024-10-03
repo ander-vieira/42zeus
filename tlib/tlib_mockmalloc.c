@@ -3,7 +3,7 @@
 t_alloc	*tlib_allocs;
 t_amock	*tlib_mocks;
 
-/* ***** Static functions ***** */
+/****** Static functions ******/
 
 static void	*libc_malloc(size_t len) {
 	static void	*(*fun)(size_t);
@@ -84,7 +84,7 @@ static void	tlib_mockmalloc_resetmocks(void) {
 	tlib_mocks = NULL;
 }
 
-/* ***** Internal functions ***** */
+/****** Internal functions ******/
 
 size_t	tlib_mockmalloc_lookup(void *addr) {
 	t_alloc	**list;
@@ -111,7 +111,7 @@ size_t	tlib_mockmalloc_count(void) {
 	return (count);
 }
 
-/* ***** Exposed functions ***** */
+/****** Exposed functions ******/
 
 void	tlib_mockmalloc_reset(void) {
 	t_alloc	**list;
@@ -142,7 +142,7 @@ void	tlib_mockmalloc_setmock(size_t timer) {
 	(*list)->next = NULL;
 }
 
-/* ***** Library function overrides ***** */
+/****** Library function overrides ******/
 
 void	*malloc(size_t len) {
 	void	*addr;

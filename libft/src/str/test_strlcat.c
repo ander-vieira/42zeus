@@ -5,8 +5,8 @@ static void	test_strlcat_testone(char *str1, char *str2, char *expected) {
 
 	tlib_mockmalloc_reset();
 	strcpy(buf, str1);
-	tlib_testresult_bool(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
-	tlib_testresult_bool(!strcmp(buf, expected));
+	tlib_testresult_raw(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
+	tlib_testresult_raw(!strcmp(buf, expected));
 	tlib_testmalloc_count(0);
 }
 
@@ -22,11 +22,11 @@ static void	test_strlcat_child2(void) {
 
 	tlib_mockmalloc_reset();
 	strcpy(buf, "AB");
-	tlib_testresult_bool(ft_strlcat(buf, "C", 1) == 2);
-	tlib_testresult_bool(!strcmp(buf, "AB"));
+	tlib_testresult_raw(ft_strlcat(buf, "C", 1) == 2);
+	tlib_testresult_raw(!strcmp(buf, "AB"));
 	strcpy(buf, "AB");
-	tlib_testresult_bool(ft_strlcat(buf, "C", 0) == 1);
-	tlib_testresult_bool(!strcmp(buf, "AB"));
+	tlib_testresult_raw(ft_strlcat(buf, "C", 0) == 1);
+	tlib_testresult_raw(!strcmp(buf, "AB"));
 	tlib_testmalloc_count(0);
 }
 

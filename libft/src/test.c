@@ -1,6 +1,7 @@
 #include "test.h"
 
 int	main(void) {
+	tlib_log_start(TRUE);
 	tlib_testmissing(&test_isalpha, &ft_isalpha, "isalpha");
 	tlib_testmissing(&test_isdigit, &ft_isdigit, "isdigit");
 	tlib_testmissing(&test_isalnum, &ft_isalnum, "isalnum");
@@ -35,5 +36,6 @@ int	main(void) {
 	tlib_testmissing(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
 	tlib_testmissing(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
 	tlib_testmissing(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
+	tlib_log_end();
 	return (tlib_test_results());
 }

@@ -5,8 +5,8 @@ static void	test_strtrim_testone(char *str, char *set, char *expected) {
 
 	tlib_mockmalloc_reset();
 	result = ft_strtrim(str, set);
-	tlib_testresult_bool(result != NULL && !strcmp(result, expected));
-	tlib_testmalloc_size(result, strlen(expected) + 1);
+	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
+	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strtrim(TODO)");
 	tlib_testmalloc_count(1);
 	free(result);
 }
@@ -25,15 +25,15 @@ static void	test_strtrim_child1(void) {
 static void	test_strtrim_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_bool(ft_strtrim(" A ", " ") == NULL);
+	tlib_testresult_raw(ft_strtrim(" A ", " ") == NULL);
 }
 
 static void	test_strtrim_child3(void) {
-	tlib_testresult_bool(ft_strtrim(NULL, " ") == NULL);
+	tlib_testresult_raw(ft_strtrim(NULL, " ") == NULL);
 }
 
 static void	test_strtrim_child4(void) {
-	tlib_testresult_bool(ft_strtrim(" ", NULL) == NULL);
+	tlib_testresult_raw(ft_strtrim(" ", NULL) == NULL);
 }
 
 void	test_strtrim(void) {

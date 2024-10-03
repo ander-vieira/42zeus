@@ -5,8 +5,8 @@ static void	test_itoa_testone(int num, char *expected) {
 
 	tlib_mockmalloc_reset();
 	str = ft_itoa(num);
-	tlib_testresult_bool(!strcmp(str, expected));
-	tlib_testmalloc_size(str, strlen(expected) + 1);
+	tlib_testresult_raw(!strcmp(str, expected));
+	tlib_testmalloc_size(str, strlen(expected) + 1, "ft_itoa(TODO)");
 	tlib_testmalloc_count(1);
 	free(str);
 }
@@ -22,7 +22,7 @@ static void	test_itoa_child1(void) {
 static void	test_itoa_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_bool(ft_itoa(5) == NULL);
+	tlib_testresult_raw(ft_itoa(5) == NULL);
 }
 
 void	test_itoa(void) {

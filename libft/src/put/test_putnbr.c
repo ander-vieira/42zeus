@@ -9,7 +9,7 @@ static void	test_putnbr_fd_testone(int num, char *str) {
 	ft_putnbr_fd(num, fd[1]);
 	close(fd[1]);
 	len = strlen(str);
-	tlib_testresult_bool(read(fd[0], buf, 15) == len && !memcmp(buf, str, len));
+	tlib_testresult_raw(read(fd[0], buf, 15) == len && !memcmp(buf, str, len));
 	close(fd[0]);
 }
 

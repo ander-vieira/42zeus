@@ -16,10 +16,10 @@ static void	test_lstdelone_child1(void) {
 	l2 = taux_lstnew(NULL);
 	l1->next = l2;
 	ft_lstdelone(l1, &test_lstdelone_del);
-	tlib_testresult_bool(taux_parg_ok(g_parg));
-	tlib_testresult_bool(g_parg.i == 1);
-	tlib_testmalloc_size(l1, 0);
-	tlib_testmalloc_size(l2, sizeof(t_list));
+	tlib_testresult_raw(taux_parg_ok(g_parg));
+	tlib_testresult_raw(g_parg.i == 1);
+	tlib_testmalloc_size(l1, 0, "ft_lstdelone(TODO)");
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstdelone(TODO)");
 	tlib_testmalloc_count(1);
 	free(l1);
 	free(l2);
@@ -31,7 +31,7 @@ static void	test_lstdelone_child2(void) {
 	tlib_mockmalloc_reset();
 	l = taux_lstnew(NULL);
 	ft_lstdelone(l, NULL);
-	tlib_testmalloc_size(l, sizeof(t_list));
+	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstdelone(TODO)");
 	tlib_testmalloc_count(1);
 	free(l);
 }
@@ -40,7 +40,7 @@ static void	test_lstdelone_child3(void) {
 	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 0);
 	ft_lstdelone(NULL, &test_lstdelone_del);
-	tlib_testresult_bool(g_parg.i == 0);
+	tlib_testresult_raw(g_parg.i == 0);
 	tlib_testmalloc_count(0);
 }
 

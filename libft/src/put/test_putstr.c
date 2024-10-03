@@ -9,7 +9,7 @@ static void	test_putstr_fd_testone(char *str) {
 	pipe(fd);
 	ft_putstr_fd(str, fd[1]);
 	close(fd[1]);
-	tlib_testresult_bool(read(fd[0], buf, 10) == len && !memcmp(buf, str, len));
+	tlib_testresult_raw(read(fd[0], buf, 10) == len && !memcmp(buf, str, len));
 	close(fd[0]);
 }
 

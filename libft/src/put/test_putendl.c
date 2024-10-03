@@ -9,7 +9,7 @@ static void	test_putendl_fd_testone(char *str) {
 	pipe(fd);
 	ft_putendl_fd(str, fd[1]);
 	close(fd[1]);
-	tlib_testresult_bool(read(fd[0], buf, 10) == len + 1 && !memcmp(buf, str, len)
+	tlib_testresult_raw(read(fd[0], buf, 10) == len + 1 && !memcmp(buf, str, len)
 		&& buf[len] == '\n');
 	close(fd[0]);
 }

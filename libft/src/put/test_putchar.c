@@ -7,7 +7,7 @@ static void	test_putchar_fd_testone(char c) {
 	pipe(fd);
 	ft_putchar_fd(c, fd[1]);
 	close(fd[1]);
-	tlib_testresult_bool(read(fd[0], buf, 2) == 1 && buf[0] == c);
+	tlib_testresult_raw(read(fd[0], buf, 2) == 1 && buf[0] == c);
 	close(fd[0]);
 }
 
