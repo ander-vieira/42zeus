@@ -1,7 +1,6 @@
 #include "test.h"
 
-void	test_isalpha(void)
-{
+void	test_isalpha(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_isalpha('a'));
 	tlib_testresult_bool(ft_isalpha('F'));
@@ -12,8 +11,7 @@ void	test_isalpha(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_isdigit(void)
-{
+void	test_isdigit(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_isdigit('5'));
 	tlib_testresult_bool(!ft_isdigit('d'));
@@ -22,8 +20,7 @@ void	test_isdigit(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_isalnum(void)
-{
+void	test_isalnum(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_isalnum('5'));
 	tlib_testresult_bool(ft_isalnum('d'));
@@ -33,8 +30,7 @@ void	test_isalnum(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_isascii(void)
-{
+void	test_isascii(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_isascii('0'));
 	tlib_testresult_bool(ft_isascii(0x00));
@@ -44,8 +40,7 @@ void	test_isascii(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_isprint(void)
-{
+void	test_isprint(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(!ft_isprint(0));
 	tlib_testresult_bool(!ft_isprint('\n'));

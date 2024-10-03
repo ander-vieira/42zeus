@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_atoi_child1(void)
-{
+static void	test_atoi_child1(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_atoi("4") == 4);
 	tlib_testresult_bool(ft_atoi("42") == 42);
@@ -40,13 +39,11 @@ static void	test_atoi_child1(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_atoi_child2(void)
-{
+static void	test_atoi_child2(void) {
 	ft_atoi(NULL);
 }
 
-void	test_atoi(void)
-{
+void	test_atoi(void) {
 	tlib_test_process(&test_atoi_child1, PRESULT_OK);
 	tlib_test_process(&test_atoi_child2, PRESULT_SEGFAULT);
 }

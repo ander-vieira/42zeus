@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_itoa_testone(int num, char *expected)
-{
+static void	test_itoa_testone(int num, char *expected) {
 	char	*str;
 
 	tlib_mockmalloc_reset();
@@ -12,8 +11,7 @@ static void	test_itoa_testone(int num, char *expected)
 	free(str);
 }
 
-static void	test_itoa_child1(void)
-{
+static void	test_itoa_child1(void) {
 	test_itoa_testone(314, "314");
 	test_itoa_testone(0, "0");
 	test_itoa_testone(-4268, "-4268");
@@ -21,15 +19,13 @@ static void	test_itoa_child1(void)
 	test_itoa_testone(-2147483648, "-2147483648");
 }
 
-static void	test_itoa_child2(void)
-{
+static void	test_itoa_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_bool(ft_itoa(5) == NULL);
 }
 
-void	test_itoa(void)
-{
+void	test_itoa(void) {
 	tlib_test_process(&test_itoa_child1, PRESULT_OK);
 	tlib_test_process(&test_itoa_child2, PRESULT_OK);
 }

@@ -1,8 +1,7 @@
 #include "test.h"
 
 static void	test_substr_testone(char *str, unsigned int start, size_t len,
-	char *expected)
-{
+	char *expected) {
 	char	*result;
 
 	tlib_mockmalloc_reset();
@@ -13,8 +12,7 @@ static void	test_substr_testone(char *str, unsigned int start, size_t len,
 	free(result);
 }
 
-static void	test_substr_child1(void)
-{
+static void	test_substr_child1(void) {
 	test_substr_testone("ABCDEF", 0, 2, "AB");
 	test_substr_testone("ABCDEF", 2, 3, "CDE");
 	test_substr_testone("ABCDEF", 3, 3, "DEF");
@@ -23,20 +21,17 @@ static void	test_substr_child1(void)
 	test_substr_testone("ABCDEF", 8, 4, "");
 }
 
-static void	test_substr_child2(void)
-{
+static void	test_substr_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_bool(ft_substr("ABCDEF", 0, 4) == NULL);
 }
 
-static void	test_substr_child3(void)
-{
+static void	test_substr_child3(void) {
 	tlib_testresult_bool(ft_substr(NULL, 0, 4) == NULL);
 }
 
-void	test_substr(void)
-{
+void	test_substr(void) {
 	tlib_test_process(&test_substr_child1, PRESULT_OK);
 	tlib_test_process(&test_substr_child2, PRESULT_OK);
 	tlib_test_process(&test_substr_child3, PRESULT_OK);

@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_calloc_child1(void)
-{
+static void	test_calloc_child1(void) {
 	void	*buf;
 
 	tlib_mockmalloc_reset();
@@ -13,15 +12,13 @@ static void	test_calloc_child1(void)
 	free(buf);
 }
 
-static void	test_calloc_child2(void)
-{
+static void	test_calloc_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_bool(ft_calloc(3, 2) == NULL);
 }
 
-void	test_calloc(void)
-{
+void	test_calloc(void) {
 	tlib_test_process(&test_calloc_child1, PRESULT_OK);
 	tlib_test_process(&test_calloc_child2, PRESULT_OK);
 }

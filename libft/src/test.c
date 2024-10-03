@@ -1,7 +1,6 @@
 #include "test.h"
 
-int	main(void)
-{
+int	main(void) {
 	tlib_testmissing(&test_isalpha, &ft_isalpha, "isalpha");
 	tlib_testmissing(&test_isdigit, &ft_isdigit, "isdigit");
 	tlib_testmissing(&test_isalnum, &ft_isalnum, "isalnum");

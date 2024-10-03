@@ -2,8 +2,7 @@
 
 static size_t	g_mocked;
 
-static void	test_split_free(char **split)
-{
+static void	test_split_free(char **split) {
 	size_t	i;
 
 	if (split != NULL)
@@ -18,8 +17,7 @@ static void	test_split_free(char **split)
 	}
 }
 
-static void	test_split_testone(char *str, char c, size_t len, ...)
-{
+static void	test_split_testone(char *str, char c, size_t len, ...) {
 	va_list	args;
 	char	**split;
 	char	*expected;
@@ -44,42 +42,36 @@ static void	test_split_testone(char *str, char c, size_t len, ...)
 	va_end(args);
 }
 
-static void	test_split_child1(void)
-{
+static void	test_split_child1(void) {
 	test_split_testone("AB CDE F", ' ', 3, "AB", "CDE", "F");
 	test_split_testone("   AB  CDE F  ", ' ', 3, "AB", "CDE", "F");
 	test_split_testone("     ", ' ', 0);
 	test_split_testone("AABABBACAA", 'A', 3, "B", "BB", "C");
 }
 
-static void	test_split_child2(void)
-{
+static void	test_split_child2(void) {
 	test_split_testone("ABC DE", '\0', 1, "ABC DE");
 	test_split_testone("", ' ', 0);
 	test_split_testone("", '\0', 0);
 }
 
-static void	test_split_child3(void)
-{
+static void	test_split_child3(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(g_mocked);
 	tlib_testresult_bool(ft_split("AB CD", ' ') == NULL);
 	tlib_testmalloc_count(0);
 }
 
-static void	test_split_child4(void)
-{
+static void	test_split_child4(void) {
 	tlib_testresult_bool(ft_split(NULL, ' ') == NULL);
 }
 
-static void	test_split_testmock(size_t mocked)
-{
+static void	test_split_testmock(size_t mocked) {
 	g_mocked = mocked;
 	tlib_test_process(&test_split_child3, PRESULT_OK);
 }
 
-void	test_split(void)
-{
+void	test_split(void) {
 	tlib_test_process(&test_split_child1, PRESULT_OK);
 	tlib_test_process(&test_split_child2, PRESULT_OK);
 	test_split_testmock(1);

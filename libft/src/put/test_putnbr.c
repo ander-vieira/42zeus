@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_putnbr_fd_testone(int num, char *str)
-{
+static void	test_putnbr_fd_testone(int num, char *str) {
 	char	buf[15];
 	int		fd[2];
 	ssize_t	len;
@@ -14,8 +13,7 @@ static void	test_putnbr_fd_testone(int num, char *str)
 	close(fd[0]);
 }
 
-static void	test_putnbr_fd_child1(void)
-{
+static void	test_putnbr_fd_child1(void) {
 	tlib_mockmalloc_reset();
 	test_putnbr_fd_testone(53, "53");
 	test_putnbr_fd_testone(0, "0");
@@ -25,7 +23,6 @@ static void	test_putnbr_fd_child1(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_putnbr_fd(void)
-{
+void	test_putnbr_fd(void) {
 	tlib_test_process(&test_putnbr_fd_child1, PRESULT_OK);
 }

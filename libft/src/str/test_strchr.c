@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_strchr_child1(void)
-{
+static void	test_strchr_child1(void) {
 	char	*str;
 
 	tlib_mockmalloc_reset();
@@ -15,13 +14,11 @@ static void	test_strchr_child1(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_strchr_child2(void)
-{
+static void	test_strchr_child2(void) {
 	ft_strchr(NULL, 'A');
 }
 
-void	test_strchr(void)
-{
+void	test_strchr(void) {
 	tlib_test_process(&test_strchr_child1, PRESULT_OK);
 	tlib_test_process(&test_strchr_child2, PRESULT_SEGFAULT);
 }

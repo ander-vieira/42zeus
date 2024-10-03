@@ -3,19 +3,16 @@
 static t_parg	g_parg;
 static t_pget	g_pget;
 
-static void	*test_lstmap_fun(void *p)
-{
+static void	*test_lstmap_fun(void *p) {
 	taux_parg_check(&g_parg, p);
 	return (taux_pget_get(&g_pget));
 }
 
-static void	test_lstmap_del(void *p)
-{
+static void	test_lstmap_del(void *p) {
 	taux_pget_check(&g_pget, p);
 }
 
-static void	test_lstmap_child1(void)
-{
+static void	test_lstmap_child1(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -47,8 +44,7 @@ static void	test_lstmap_child1(void)
 	free(l);
 }
 
-static void	test_lstmap_child2(void)
-{
+static void	test_lstmap_child2(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -72,8 +68,7 @@ static void	test_lstmap_child2(void)
 	free(l2);
 }
 
-static void	test_lstmap_child3(void)
-{
+static void	test_lstmap_child3(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -97,8 +92,7 @@ static void	test_lstmap_child3(void)
 	free(l2);
 }
 
-static void	test_lstmap_child4(void)
-{
+static void	test_lstmap_child4(void) {
 	t_list	*l;
 
 	tlib_mockmalloc_reset();
@@ -112,8 +106,7 @@ static void	test_lstmap_child4(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_lstmap_child5(void)
-{
+static void	test_lstmap_child5(void) {
 	t_list	*l;
 	t_list	*l1;
 
@@ -130,8 +123,7 @@ static void	test_lstmap_child5(void)
 	free(l1);
 }
 
-static void	test_lstmap_child6(void)
-{
+static void	test_lstmap_child6(void) {
 	t_list	*l;
 	t_list	*l1;
 
@@ -150,8 +142,7 @@ static void	test_lstmap_child6(void)
 	free(l1);
 }
 
-void	test_lstmap(void)
-{
+void	test_lstmap(void) {
 	tlib_test_process(&test_lstmap_child1, PRESULT_OK);
 	tlib_test_process(&test_lstmap_child2, PRESULT_OK);
 	tlib_test_process(&test_lstmap_child3, PRESULT_OK);

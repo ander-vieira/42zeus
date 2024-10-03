@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_strdup_testone(char *str)
-{
+static void	test_strdup_testone(char *str) {
 	char	*result;
 
 	tlib_mockmalloc_reset();
@@ -12,26 +11,22 @@ static void	test_strdup_testone(char *str)
 	free(str);
 }
 
-static void	test_strdup_child1(void)
-{
+static void	test_strdup_child1(void) {
 	test_strdup_testone("ABCDE");
 	test_strdup_testone("");
 }
 
-static void	test_strdup_child2(void)
-{
+static void	test_strdup_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_bool(ft_strdup("HOLA") == NULL);
 }
 
-static void	test_strdup_child3(void)
-{
+static void	test_strdup_child3(void) {
 	tlib_testresult_bool(ft_strdup(NULL) == NULL);
 }
 
-void	test_strdup(void)
-{
+void	test_strdup(void) {
 	tlib_test_process(&test_strdup_child1, PRESULT_OK);
 	tlib_test_process(&test_strdup_child2, PRESULT_OK);
 	tlib_test_process(&test_strdup_child3, PRESULT_SEGFAULT);

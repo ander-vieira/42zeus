@@ -1,7 +1,6 @@
 #include "tlib_int.h"
 
-static void	print_str(int fd, char *str)
-{
+static void	print_str(int fd, char *str) {
 	size_t	len;
 
 	if (str != NULL)
@@ -26,8 +25,7 @@ static void print_color(int fd, char c) {
 		print_str(fd, COLORCODE_GREEN);
 }
 
-static void	print_text(int fd, char *format, size_t *i)
-{
+static void	print_text(int fd, char *format, size_t *i) {
 	size_t	len;
 
 	len = 0;
@@ -37,8 +35,7 @@ static void	print_text(int fd, char *format, size_t *i)
 	*i += len;
 }
 
-static void	print_direc(int fd, char *format, size_t *i, va_list args)
-{
+static void	print_direc(int fd, char *format, size_t *i, va_list args) {
 	*i += 1;
 	if (format[*i] == 's')
 		print_str(fd, va_arg(args, char *));
@@ -50,8 +47,7 @@ static void	print_direc(int fd, char *format, size_t *i, va_list args)
 		*i += 1;
 }
 
-void	tlib_printf(int fd, char *format, ...)
-{
+void	tlib_printf(int fd, char *format, ...) {
 	size_t	i;
 	va_list	args;
 

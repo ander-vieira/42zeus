@@ -1,7 +1,6 @@
 #include "test_bonus.h"
 
-t_list	*taux_lstnew(void *content)
-{
+t_list	*taux_lstnew(void *content) {
 	t_list	*list;
 
 	list = (t_list *)malloc(sizeof(t_list));
@@ -12,8 +11,7 @@ t_list	*taux_lstnew(void *content)
 	return (list);
 }
 
-void	taux_parg_init(t_parg *parg, size_t len, ...)
-{
+void	taux_parg_init(t_parg *parg, size_t len, ...) {
 	va_list	args;
 	size_t	i;
 
@@ -32,8 +30,7 @@ void	taux_parg_init(t_parg *parg, size_t len, ...)
 	va_end(args);
 }
 
-void	taux_parg_check(t_parg *parg, void *p)
-{
+void	taux_parg_check(t_parg *parg, void *p) {
 	size_t	i;
 
 	parg->i++;
@@ -53,13 +50,11 @@ void	taux_parg_check(t_parg *parg, void *p)
 	parg->err = TRUE;
 }
 
-t_bool	taux_parg_ok(t_parg parg)
-{
+t_bool	taux_parg_ok(t_parg parg) {
 	return (!parg.err);
 }
 
-void	taux_pget_init(t_pget *pget, size_t len, ...)
-{
+void	taux_pget_init(t_pget *pget, size_t len, ...) {
 	va_list	args;
 	size_t	i;
 
@@ -79,8 +74,7 @@ void	taux_pget_init(t_pget *pget, size_t len, ...)
 	va_end(args);
 }
 
-void	*taux_pget_get(t_pget *pget)
-{
+void	*taux_pget_get(t_pget *pget) {
 	size_t	i;
 
 	i = pget->i;
@@ -90,8 +84,7 @@ void	*taux_pget_get(t_pget *pget)
 	return (pget->p[i]);
 }
 
-void	taux_pget_check(t_pget *pget, void *p)
-{
+void	taux_pget_check(t_pget *pget, void *p) {
 	size_t	i;
 
 	pget->j++;
@@ -111,7 +104,6 @@ void	taux_pget_check(t_pget *pget, void *p)
 	pget->err = TRUE;
 }
 
-t_bool	taux_pget_ok(t_pget pget)
-{
+t_bool	taux_pget_ok(t_pget pget) {
 	return (!pget.err && pget.i == pget.j);
 }

@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_strlcpy_child1(void)
-{
+static void	test_strlcpy_child1(void) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
@@ -20,23 +19,19 @@ static void	test_strlcpy_child1(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_strlcpy_child2(void)
-{
+static void	test_strlcpy_child2(void) {
 	ft_strlcpy(NULL, "ABC", 5);
 }
 
-static void	test_strlcpy_child3(void)
-{
+static void	test_strlcpy_child3(void) {
 	ft_strlcpy("ABC", NULL, 5);
 }
 
-static void	test_strlcpy_child4(void)
-{
+static void	test_strlcpy_child4(void) {
 	ft_strlcpy(NULL, NULL, 5);
 }
 
-void	test_strlcpy(void)
-{
+void	test_strlcpy(void) {
 	tlib_test_process(&test_strlcpy_child1, PRESULT_OK);
 	tlib_test_process(&test_strlcpy_child2, PRESULT_SEGFAULT);
 	tlib_test_process(&test_strlcpy_child3, PRESULT_SEGFAULT);

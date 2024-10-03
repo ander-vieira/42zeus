@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_strlcat_testone(char *str1, char *str2, char *expected)
-{
+static void	test_strlcat_testone(char *str1, char *str2, char *expected) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
@@ -11,16 +10,14 @@ static void	test_strlcat_testone(char *str1, char *str2, char *expected)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_strlcat_child1(void)
-{
+static void	test_strlcat_child1(void) {
 	test_strlcat_testone("AB", "CD", "ABCD");
 	test_strlcat_testone("", "ABC", "ABC");
 	test_strlcat_testone("AB", "CDE", "ABCD");
 	test_strlcat_testone("", "ABCDE", "ABCD");
 }
 
-static void	test_strlcat_child2(void)
-{
+static void	test_strlcat_child2(void) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
@@ -33,18 +30,15 @@ static void	test_strlcat_child2(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_strlcat_child3(void)
-{
+static void	test_strlcat_child3(void) {
 	ft_strlcat(NULL, "HOLA", 5);
 }
 
-static void	test_strlcat_child4(void)
-{
+static void	test_strlcat_child4(void) {
 	ft_strlcat("HOLA", NULL, 5);
 }
 
-void	test_strlcat(void)
-{
+void	test_strlcat(void) {
 	tlib_test_process(&test_strlcat_child1, PRESULT_OK);
 	tlib_test_process(&test_strlcat_child2, PRESULT_OK);
 	tlib_test_process(&test_strlcat_child3, PRESULT_SEGFAULT);

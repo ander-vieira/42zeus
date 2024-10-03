@@ -3,8 +3,7 @@
 t_alloc	*g_allocs;
 t_amock	*g_mocks;
 
-static void	*libc_malloc(size_t len)
-{
+static void	*libc_malloc(size_t len) {
 	static void	*(*fun)(size_t);
 
 	if (fun == NULL)
@@ -12,8 +11,7 @@ static void	*libc_malloc(size_t len)
 	return (fun(len));
 }
 
-static void	libc_free(void *addr)
-{
+static void	libc_free(void *addr) {
 	static void	(*fun)(void *);
 
 	if (fun == NULL)
@@ -21,8 +19,7 @@ static void	libc_free(void *addr)
 	fun(addr);
 }
 
-static void	tlib_mockmalloc_add(void *addr, size_t size)
-{
+static void	tlib_mockmalloc_add(void *addr, size_t size) {
 	t_alloc	**list;
 
 	list = &g_allocs;
@@ -36,8 +33,7 @@ static void	tlib_mockmalloc_add(void *addr, size_t size)
 	(*list)->next = NULL;
 }
 
-static t_bool	tlib_mockmalloc_delete(void *addr)
-{
+static t_bool	tlib_mockmalloc_delete(void *addr) {
 	t_alloc	**list;
 	t_alloc	*current;
 
@@ -54,8 +50,7 @@ static t_bool	tlib_mockmalloc_delete(void *addr)
 	return (TRUE);
 }
 
-static t_bool	tlib_mockmalloc_tickmocks(void)
-{
+static t_bool	tlib_mockmalloc_tickmocks(void) {
 	t_bool	mock;
 	t_amock	**list;
 	t_amock	*current;
@@ -78,8 +73,7 @@ static t_bool	tlib_mockmalloc_tickmocks(void)
 	return (mock);
 }
 
-static void	tlib_mockmalloc_resetmocks(void)
-{
+static void	tlib_mockmalloc_resetmocks(void) {
 	t_amock	**list;
 	t_amock	*current;
 
@@ -93,8 +87,7 @@ static void	tlib_mockmalloc_resetmocks(void)
 	g_mocks = NULL;
 }
 
-void	tlib_mockmalloc_reset(void)
-{
+void	tlib_mockmalloc_reset(void) {
 	t_alloc	**list;
 	t_alloc	*current;
 
@@ -109,8 +102,7 @@ void	tlib_mockmalloc_reset(void)
 	tlib_mockmalloc_resetmocks();
 }
 
-size_t	tlib_mockmalloc_lookup(void *addr)
-{
+size_t	tlib_mockmalloc_lookup(void *addr) {
 	t_alloc	**list;
 
 	list = &g_allocs;
@@ -123,8 +115,7 @@ size_t	tlib_mockmalloc_lookup(void *addr)
 	return (0);
 }
 
-size_t	tlib_mockmalloc_count(void)
-{
+size_t	tlib_mockmalloc_count(void) {
 	t_alloc	**list;
 	size_t	count;
 
@@ -138,8 +129,7 @@ size_t	tlib_mockmalloc_count(void)
 	return (count);
 }
 
-void	tlib_mockmalloc_setmock(size_t timer)
-{
+void	tlib_mockmalloc_setmock(size_t timer) {
 	t_amock	**list;
 
 	if (timer == 0)
@@ -157,8 +147,7 @@ void	tlib_mockmalloc_setmock(size_t timer)
 /* ************************************************************************** */
 /* Redefining malloc and free to log memory allocations                       */
 
-void	*malloc(size_t len)
-{
+void	*malloc(size_t len) {
 	void	*addr;
 
 	if (tlib_mockmalloc_tickmocks())
@@ -173,8 +162,7 @@ void	*malloc(size_t len)
 	return (addr);
 }
 
-void	free(void *addr)
-{
+void	free(void *addr) {
 	if (tlib_mockmalloc_lookup(addr) == 0)
 	{
 		//TODO report double free

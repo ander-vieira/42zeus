@@ -3,8 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-static char	*copystring(char *src, size_t len)
-{
+static char	*copystring(char *src, size_t len) {
 	char	*result;
 
 	result = (char *)malloc(sizeof(char) * (len + 1));
@@ -15,8 +14,7 @@ static char	*copystring(char *src, size_t len)
 	return (result);
 }
 
-static char	findinlist(char mode, char *elem1, char *lst2)
-{
+static char	findinlist(char mode, char *elem1, char *lst2) {
 	size_t	i;
 	size_t	len;
 	char	*elem2;
@@ -42,8 +40,7 @@ static char	findinlist(char mode, char *elem1, char *lst2)
 	return (mode == '-');
 }
 
-static void	mainloop(char mode, char *lst1, char *lst2)
-{
+static void	mainloop(char mode, char *lst1, char *lst2) {
 	size_t	i;
 	size_t	len;
 	char	*elem1;
@@ -68,8 +65,7 @@ static void	mainloop(char mode, char *lst1, char *lst2)
 	}
 }
 
-int	main(int argc, char **argv)
-{
+int	main(int argc, char **argv) {
 	if (argc < 4 || strlen(argv[1]) != 1
 		|| (argv[1][0] != '+' && argv[1][0] != '-'))
 		return (0);

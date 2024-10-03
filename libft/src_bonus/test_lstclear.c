@@ -2,13 +2,11 @@
 
 static t_parg	g_parg;
 
-static void	test_lstclear_del(void *p)
-{
+static void	test_lstclear_del(void *p) {
 	taux_parg_check(&g_parg, p);
 }
 
-static void	test_lstclear_child1(void)
-{
+static void	test_lstclear_child1(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -30,8 +28,7 @@ static void	test_lstclear_child1(void)
 	free(l2);
 }
 
-static void	test_lstclear_child2(void)
-{
+static void	test_lstclear_child2(void) {
 	t_list	*l;
 
 	tlib_mockmalloc_reset();
@@ -43,8 +40,7 @@ static void	test_lstclear_child2(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_lstclear_child3(void)
-{
+static void	test_lstclear_child3(void) {
 	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 0);
 	ft_lstclear(NULL, &test_lstclear_del);
@@ -52,8 +48,7 @@ static void	test_lstclear_child3(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_lstclear_child4(void)
-{
+static void	test_lstclear_child4(void) {
 	t_list	*l;
 	t_list	*l1;
 
@@ -67,8 +62,7 @@ static void	test_lstclear_child4(void)
 	free(l1);
 }
 
-void	test_lstclear(void)
-{
+void	test_lstclear(void) {
 	tlib_test_process(&test_lstclear_child1, PRESULT_OK);
 	tlib_test_process(&test_lstclear_child2, PRESULT_OK);
 	tlib_test_process(&test_lstclear_child3, PRESULT_OK);

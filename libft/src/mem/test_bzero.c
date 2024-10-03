@@ -1,7 +1,6 @@
 #include "test.h"
 
-static void	test_bzero_child1(void)
-{
+static void	test_bzero_child1(void) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
@@ -10,8 +9,7 @@ static void	test_bzero_child1(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_bzero_child2(void)
-{
+static void	test_bzero_child2(void) {
 	char	buf[5];
 
 	tlib_mockmalloc_reset();
@@ -21,18 +19,15 @@ static void	test_bzero_child2(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_bzero_child3(void)
-{
+static void	test_bzero_child3(void) {
 	ft_bzero(NULL, 0);
 }
 
-static void	test_bzero_child4(void)
-{
+static void	test_bzero_child4(void) {
 	ft_bzero(NULL, 5);
 }
 
-void	test_bzero(void)
-{
+void	test_bzero(void) {
 	tlib_test_process(&test_bzero_child1, PRESULT_OK);
 	tlib_test_process(&test_bzero_child2, PRESULT_OK);
 	tlib_test_process(&test_bzero_child3, PRESULT_OK);

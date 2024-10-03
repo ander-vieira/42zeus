@@ -1,7 +1,6 @@
 #include "test_bonus.h"
 
-static void	test_lstsize_child1(void)
-{
+static void	test_lstsize_child1(void) {
 	t_list	*l1;
 	t_list	*l2;
 	t_list	*l3;
@@ -24,13 +23,11 @@ static void	test_lstsize_child1(void)
 	free(l3);
 }
 
-static void	test_lstsize_child2(void)
-{
+static void	test_lstsize_child2(void) {
 	tlib_testresult_bool(ft_lstsize(NULL) == 0);
 }
 
-void	test_lstsize(void)
-{
+void	test_lstsize(void) {
 	tlib_test_process(&test_lstsize_child1, PRESULT_OK);
 	tlib_test_process(&test_lstsize_child2, PRESULT_OK);
 }

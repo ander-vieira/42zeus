@@ -9,8 +9,7 @@
 /* ************************************************************************** */
 /* Fake definition to get VSCode dependency detection working                */
 
-typedef struct s_list
-{
+typedef struct s_list {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
@@ -41,16 +40,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
 /* ************************************************************************** */
 /* Utility unctions for testing lists                                         */
 
-typedef struct s_pcall
-{
+typedef struct s_pcall {
 	void	*p[3];
 	size_t	len;
 	size_t	i;
 	t_bool	err;
 }	t_parg;
 
-typedef struct s_pget
-{
+typedef struct s_pget {
 	void	*p[3];
 	size_t	len;
 	size_t	i;

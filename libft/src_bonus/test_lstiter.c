@@ -2,13 +2,11 @@
 
 static t_parg	g_parg;
 
-static void	test_lstiter_fun(void *p)
-{
+static void	test_lstiter_fun(void *p) {
 	taux_parg_check(&g_parg, p);
 }
 
-static void	test_lstiter_child1(void)
-{
+static void	test_lstiter_child1(void) {
 	t_list	*l1;
 	t_list	*l2;
 
@@ -28,8 +26,7 @@ static void	test_lstiter_child1(void)
 	free(l2);
 }
 
-static void	test_lstiter_child2(void)
-{
+static void	test_lstiter_child2(void) {
 	tlib_mockmalloc_reset();
 	taux_parg_init(&g_parg, 0);
 	ft_lstiter(NULL, &test_lstiter_fun);
@@ -37,8 +34,7 @@ static void	test_lstiter_child2(void)
 	tlib_testmalloc_count(0);
 }
 
-static void	test_lstiter_child3(void)
-{
+static void	test_lstiter_child3(void) {
 	t_list	*l1;
 
 	tlib_mockmalloc_reset();
@@ -50,8 +46,7 @@ static void	test_lstiter_child3(void)
 	free(l1);
 }
 
-void	test_lstiter(void)
-{
+void	test_lstiter(void) {
 	tlib_test_process(&test_lstiter_child1, PRESULT_OK);
 	tlib_test_process(&test_lstiter_child2, PRESULT_OK);
 	tlib_test_process(&test_lstiter_child3, PRESULT_OK);

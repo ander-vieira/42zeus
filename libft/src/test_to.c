@@ -1,7 +1,6 @@
 #include "test.h"
 
-void	test_tolower(void)
-{
+void	test_tolower(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_tolower('\0') == '\0');
 	tlib_testresult_bool(ft_tolower('\n') == '\n');
@@ -13,8 +12,7 @@ void	test_tolower(void)
 	tlib_testmalloc_count(0);
 }
 
-void	test_toupper(void)
-{
+void	test_toupper(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_bool(ft_toupper('\0') == '\0');
 	tlib_testresult_bool(ft_toupper('\n') == '\n');

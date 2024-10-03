@@ -1,7 +1,6 @@
 #include "test_bonus.h"
 
-static void	test_lstadd_back_child1(void)
-{
+static void	test_lstadd_back_child1(void) {
 	t_list	*l;
 	t_list	*l1;
 
@@ -15,8 +14,7 @@ static void	test_lstadd_back_child1(void)
 	free(l1);
 }
 
-static void	test_lstadd_back_child2(void)
-{
+static void	test_lstadd_back_child2(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -34,8 +32,7 @@ static void	test_lstadd_back_child2(void)
 	free(l2);
 }
 
-static void	test_lstadd_back_child3(void)
-{
+static void	test_lstadd_back_child3(void) {
 	t_list	*l;
 	t_list	*l1;
 	t_list	*l2;
@@ -59,8 +56,7 @@ static void	test_lstadd_back_child3(void)
 	free(l3);
 }
 
-static void	test_lstadd_back_child4(void)
-{
+static void	test_lstadd_back_child4(void) {
 	t_list	*l1;
 
 	tlib_mockmalloc_reset();
@@ -71,8 +67,7 @@ static void	test_lstadd_back_child4(void)
 	free(l1);
 }
 
-static void	test_lstadd_back_child5(void)
-{
+static void	test_lstadd_back_child5(void) {
 	t_list	*l;
 	t_list	*l1;
 
@@ -86,8 +81,7 @@ static void	test_lstadd_back_child5(void)
 	free(l);
 }
 
-void	test_lstadd_back(void)
-{
+void	test_lstadd_back(void) {
 	tlib_test_process(&test_lstadd_back_child1, PRESULT_OK);
 	tlib_test_process(&test_lstadd_back_child2, PRESULT_OK);
 	tlib_test_process(&test_lstadd_back_child3, PRESULT_OK);

@@ -1,7 +1,6 @@
 #include "test_bonus.h"
 
-int	main(void)
-{
+int	main(void) {
 	tlib_testmissing(&test_lstnew, &ft_lstnew, "lstnew");
 	tlib_testmissing(&test_lstadd_front, &ft_lstadd_front, "lstadd_front");
 	tlib_testmissing(&test_lstsize, &ft_lstsize, "lstsize");

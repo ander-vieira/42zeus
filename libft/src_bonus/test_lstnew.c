@@ -1,7 +1,6 @@
 #include "test_bonus.h"
 
-static void	test_lstnew_child1(void)
-{
+static void	test_lstnew_child1(void) {
 	t_list	*l;
 
 	tlib_mockmalloc_reset();
@@ -12,16 +11,14 @@ static void	test_lstnew_child1(void)
 	free(l);
 }
 
-static void	test_lstnew_child2(void)
-{
+static void	test_lstnew_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_bool(ft_lstnew(NULL) == NULL);
 	tlib_testmalloc_count(0);
 }
 
-void	test_lstnew(void)
-{
+void	test_lstnew(void) {
 	tlib_test_process(&test_lstnew_child1, PRESULT_OK);
 	tlib_test_process(&test_lstnew_child2, PRESULT_OK);
 }
