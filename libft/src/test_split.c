@@ -25,17 +25,17 @@ static void	test_split_testone(char *str, char c, size_t len, ...) {
 	tlib_mockmalloc_reset();
 	split = ft_split(str, c);
 	tlib_testresult_raw(split != NULL);
-	tlib_testmalloc_size(split, sizeof(char *) * (len + 1), "ft_split(TODO)");
+	tlib_testmalloc_size(split, sizeof(char *) * (len + 1), NULL);
 	i = 0;
 	while (i < len) {
 		expected = va_arg(args, char *);
 		tlib_testresult_raw(split[i] != NULL && !strcmp(split[i], expected));
-		tlib_testmalloc_size(split[i], strlen(expected) + 1, "ft_split(TODO)");
+		tlib_testmalloc_size(split[i], strlen(expected) + 1, NULL);
 		i++;
 	}
 	tlib_testresult_raw(split[len] == NULL);
 	test_split_free(split);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_split(%S, %c)", str, c);
 	va_end(args);
 }
 
@@ -56,7 +56,7 @@ static void	test_split_child3(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(g_mocked);
 	tlib_testresult_raw(ft_split("AB CD", ' ') == NULL);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_split(\"AB CD\", ' ') (malloc %z failed)", g_mocked);
 }
 
 static void	test_split_child4(void) {

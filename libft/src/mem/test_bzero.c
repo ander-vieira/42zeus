@@ -6,7 +6,7 @@ static void	test_bzero_child1(void) {
 	tlib_mockmalloc_reset();
 	ft_bzero(buf, 5);
 	tlib_testresult_raw(!memcmp(buf, "\0\0\0\0\0", 5));
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_bzero_child2(void) {
@@ -16,7 +16,7 @@ static void	test_bzero_child2(void) {
 	strcpy(buf, "ASDF");
 	ft_bzero(buf, 0);
 	tlib_testresult_raw(!memcmp(buf, "ASDF", 5));
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_bzero_child3(void) {

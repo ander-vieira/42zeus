@@ -6,9 +6,9 @@ static void	test_itoa_testone(int num, char *expected) {
 	tlib_mockmalloc_reset();
 	str = ft_itoa(num);
 	tlib_testresult_raw(!strcmp(str, expected));
-	tlib_testmalloc_size(str, strlen(expected) + 1, "ft_itoa(TODO)");
+	tlib_testmalloc_size(str, strlen(expected) + 1, "ft_itoa(%d)", num);
 	free(str);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_itoa(%d)", num);
 }
 
 static void	test_itoa_child1(void) {

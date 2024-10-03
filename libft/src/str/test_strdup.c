@@ -6,9 +6,9 @@ static void	test_strdup_testone(char *str) {
 	tlib_mockmalloc_reset();
 	result = ft_strdup(str);
 	tlib_testresult_raw(!strcmp(result, str));
-	tlib_testmalloc_size(result, strlen(str) + 1, "ft_strdup(TODO)");
+	tlib_testmalloc_size(result, strlen(str) + 1, "ft_strdup(%S)", str);
 	free(result);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_strdup(%S)", str);
 }
 
 static void	test_strdup_child1(void) {

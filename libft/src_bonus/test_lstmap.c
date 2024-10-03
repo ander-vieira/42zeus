@@ -33,15 +33,15 @@ static void	test_lstmap_child1(void) {
 	tlib_testresult_raw(taux_parg_ok(g_parg));
 	tlib_testresult_raw(g_parg.i == 2);
 	tlib_testresult_raw(taux_pget_ok(g_pget));
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
-	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstmap(TODO)");
-	tlib_testmalloc_size(l->next, sizeof(t_list), "ft_lstmap(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testmalloc_size(l->next, sizeof(t_list), "ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
 	free(l1);
 	free(l2);
 	free(l->next);
 	free(l);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
 }
 
 static void	test_lstmap_child2(void) {
@@ -65,7 +65,7 @@ static void	test_lstmap_child2(void) {
 	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
 	free(l1);
 	free(l2);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstmap_child3(void) {
@@ -89,7 +89,7 @@ static void	test_lstmap_child3(void) {
 	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
 	free(l1);
 	free(l2);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstmap_child4(void) {
@@ -103,7 +103,7 @@ static void	test_lstmap_child4(void) {
 	tlib_testresult_raw(taux_parg_ok(g_parg));
 	tlib_testresult_raw(g_parg.i == 0);
 	tlib_testresult_raw(taux_pget_ok(g_pget));
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstmap_child5(void) {
@@ -120,7 +120,7 @@ static void	test_lstmap_child5(void) {
 	tlib_testresult_raw(g_pget.j == 0);
 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
 	free(l1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstmap_child6(void) {
@@ -139,7 +139,7 @@ static void	test_lstmap_child6(void) {
 	tlib_testresult_raw(taux_pget_ok(g_pget));
 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
 	free(l1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 void	test_lstmap(void) {

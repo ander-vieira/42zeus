@@ -6,9 +6,9 @@ static void	test_strjoin_testone(char *str1, char *str2, char *expected) {
 	tlib_mockmalloc_reset();
 	result = ft_strjoin(str1, str2);
 	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
-	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strjoin(TODO)");
+	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strjoin(%S, %S)", str1, str2);
 	free(result);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_strjoin(%S, %S)", str1, str2);
 }
 
 static void	test_strjoin_child1(void) {

@@ -7,9 +7,9 @@ static void	test_substr_testone(char *str, unsigned int start, size_t len,
 	tlib_mockmalloc_reset();
 	result = ft_substr(str, start, len);
 	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
-	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_substr(TODO)");
+	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_substr(%S, %u, %z)", str, start, len);
 	free(result);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_substr(%S, %u, %z)", str, start, len);
 }
 
 static void	test_substr_child1(void) {

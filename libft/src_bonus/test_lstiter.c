@@ -19,11 +19,11 @@ static void	test_lstiter_child1(void) {
 	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
 	tlib_testresult_raw(taux_parg_ok(g_parg));
 	tlib_testresult_raw(g_parg.i == 2);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstiter(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstiter(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstiter(%p, %p)", l1, &test_lstiter_fun);
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstiter(%p, %p)", l1, &test_lstiter_fun);
 	free(l1);
 	free(l2);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstiter(%p, %p)", l1, &test_lstiter_fun);
 }
 
 static void	test_lstiter_child2(void) {
@@ -31,7 +31,7 @@ static void	test_lstiter_child2(void) {
 	taux_parg_init(&g_parg, 0);
 	ft_lstiter(NULL, &test_lstiter_fun);
 	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstiter_child3(void) {
@@ -41,9 +41,9 @@ static void	test_lstiter_child3(void) {
 	l1 = taux_lstnew(NULL);
 	ft_lstiter(l1, NULL);
 	tlib_testresult_raw(l1->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstiter(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstiter(%p, NULL)", l1);
 	free(l1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstiter(%p, NULL)", l1);
 }
 
 void	test_lstiter(void) {

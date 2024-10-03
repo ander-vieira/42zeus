@@ -19,7 +19,7 @@ static void	test_strnstr_child1(void) {
 	tlib_testresult_raw(ft_strnstr(str, "ABC", 2) == NULL);
 	tlib_testresult_raw(ft_strnstr(str, "", 0) == str);
 	tlib_testresult_raw(ft_strnstr(str, "ABC", 0) == NULL);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strnstr_child2(void) {
@@ -29,7 +29,7 @@ static void	test_strnstr_child2(void) {
 	str = "ABCDE";
 	tlib_testresult_raw(ft_strnstr(str, "", 10) == str);
 	tlib_testresult_raw(ft_strnstr(str, "BCD", 10) == str + 1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 void	test_strnstr(void) {

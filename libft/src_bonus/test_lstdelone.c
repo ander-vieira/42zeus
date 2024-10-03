@@ -18,11 +18,11 @@ static void	test_lstdelone_child1(void) {
 	ft_lstdelone(l1, &test_lstdelone_del);
 	tlib_testresult_raw(taux_parg_ok(g_parg));
 	tlib_testresult_raw(g_parg.i == 1);
-	tlib_testmalloc_size(l1, 0, "ft_lstdelone(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstdelone(TODO)");
+	tlib_testmalloc_size(l1, 0, "ft_lstdelone(%p, %p)", l1, &test_lstdelone_del);
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstdelone(%p, %p)", l1, &test_lstdelone_del);
 	free(l1);
 	free(l2);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstdelone(%p, %p)", l1, &test_lstdelone_del);
 }
 
 static void	test_lstdelone_child2(void) {
@@ -31,9 +31,9 @@ static void	test_lstdelone_child2(void) {
 	tlib_mockmalloc_reset();
 	l = taux_lstnew(NULL);
 	ft_lstdelone(l, NULL);
-	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstdelone(TODO)");
+	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstdelone(%p, NULL)", l);
 	free(l);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstdelone_child3(void) {
@@ -41,7 +41,7 @@ static void	test_lstdelone_child3(void) {
 	taux_parg_init(&g_parg, 0);
 	ft_lstdelone(NULL, &test_lstdelone_del);
 	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 void	test_lstdelone(void) {

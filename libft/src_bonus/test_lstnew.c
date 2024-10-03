@@ -6,16 +6,16 @@ static void	test_lstnew_child1(void) {
 	tlib_mockmalloc_reset();
 	l = ft_lstnew(&l);
 	tlib_testresult_raw(l != NULL && l->content == &l && l->next == NULL);
-	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstnew(TODO)");
+	tlib_testmalloc_size(l, sizeof(t_list), "ft_lstnew(%p)", &l);
 	free(l);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstnew(%p)", &l);
 }
 
 static void	test_lstnew_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_raw(ft_lstnew(NULL) == NULL);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstnew(NULL)");
 }
 
 void	test_lstnew(void) {

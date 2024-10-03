@@ -20,7 +20,7 @@ static void	test_putnbr_fd_child1(void) {
 	test_putnbr_fd_testone(-4242, "-4242");
 	test_putnbr_fd_testone(2147483647, "2147483647");
 	test_putnbr_fd_testone(-2147483648, "-2147483648");
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 void	test_putnbr_fd(void) {

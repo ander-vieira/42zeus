@@ -18,7 +18,7 @@ static void	test_putendl_fd_child1(void) {
 	tlib_mockmalloc_reset();
 	test_putendl_fd_testone("ASDFG");
 	test_putendl_fd_testone("");
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_putendl_fd_child2(void) {
@@ -29,7 +29,7 @@ static void	test_putendl_fd_child2(void) {
 	ft_putendl_fd(NULL, fd[1]);
 	close(fd[1]);
 	close(fd[0]);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 void	test_putendl_fd(void) {

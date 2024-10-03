@@ -9,7 +9,7 @@ static void	test_calloc_child1(void) {
 	tlib_testmalloc_size(buf, 6, "ft_calloc(3, 2)");
 	tlib_testresult_raw(!memcmp(buf, "\0\0\0\0\0\0", 6));
 	free(buf);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_calloc(3, 2)");
 }
 
 static void	test_calloc_child2(void) {

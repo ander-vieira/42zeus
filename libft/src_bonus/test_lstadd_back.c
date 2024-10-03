@@ -9,9 +9,9 @@ static void	test_lstadd_back_child1(void) {
 	l = NULL;
 	ft_lstadd_back(&l, l1);
 	tlib_testresult_raw(l == l1 && l1->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l1);
 	free(l1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstadd_back(%p, %p)", &l, l1);
 }
 
 static void	test_lstadd_back_child2(void) {
@@ -25,11 +25,11 @@ static void	test_lstadd_back_child2(void) {
 	l = l1;
 	ft_lstadd_back(&l, l2);
 	tlib_testresult_raw(l == l1 && l1->next == l2 && l2->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstadd_back(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l2);
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l2);
 	free(l1);
 	free(l2);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstadd_back(%p, %p)", &l, l2);
 }
 
 static void	test_lstadd_back_child3(void) {
@@ -47,13 +47,13 @@ static void	test_lstadd_back_child3(void) {
 	ft_lstadd_back(&l, l3);
 	tlib_testresult_raw(l == l1 && l1->next == l2
 		&& l2->next == l3 && l3->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstadd_back(TODO)");
-	tlib_testmalloc_size(l3, sizeof(t_list), "ft_lstadd_back(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l3);
+	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l3);
+	tlib_testmalloc_size(l3, sizeof(t_list), "ft_lstadd_back(%p, %p)", &l, l3);
 	free(l1);
 	free(l2);
 	free(l3);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstadd_back(%p, %p)", &l, l3);
 }
 
 static void	test_lstadd_back_child4(void) {
@@ -62,9 +62,9 @@ static void	test_lstadd_back_child4(void) {
 	tlib_mockmalloc_reset();
 	l1 = taux_lstnew(NULL);
 	ft_lstadd_back(NULL, l1);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(NULL, %p)", l1);
 	free(l1);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstadd_back(NULL, %p)", l1);
 }
 
 static void	test_lstadd_back_child5(void) {
@@ -76,9 +76,9 @@ static void	test_lstadd_back_child5(void) {
 	l = l1;
 	ft_lstadd_back(&l, NULL);
 	tlib_testresult_raw(l == l1 && l->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstadd_back(%p, NULL)", &l);
 	free(l);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak("ft_lstadd_back(%p, NULL)", &l);
 }
 
 void	test_lstadd_back(void) {

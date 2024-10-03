@@ -20,7 +20,7 @@ static void	test_lstsize_child1(void) {
 	free(l1);
 	free(l2);
 	free(l3);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstsize_child2(void) {

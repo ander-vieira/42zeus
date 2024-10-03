@@ -16,7 +16,7 @@ static void	test_strlcpy_child1(void) {
 	tlib_testresult_raw(!strcmp(buf, "ABCD"));
 	tlib_testresult_raw(ft_strlcpy(buf, "", 0) == 0);
 	tlib_testresult_raw(buf[0] != '\0');
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strlcpy_child2(void) {

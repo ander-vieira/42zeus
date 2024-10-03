@@ -10,7 +10,7 @@ static void	test_memmove_child1(void) {
 	tlib_testresult_raw(!memcmp(buf, "FGDFG", 5));
 	tlib_testresult_raw(ft_memmove(buf + 2, buf, 3) == buf + 2);
 	tlib_testresult_raw(!memcmp(buf, "FGFGD", 5));
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_memmove_child2(void) {
@@ -23,7 +23,7 @@ static void	test_memmove_child2(void) {
 	tlib_testresult_raw(!memcmp(buf, "ASDFG", 5));
 	tlib_testresult_raw(ft_memmove(NULL, NULL, 0) == NULL);
 	tlib_testresult_raw(ft_memmove(NULL, NULL, 3) == NULL);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_memmove_child3(void) {

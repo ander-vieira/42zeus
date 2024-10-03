@@ -1,5 +1,6 @@
 #include "test_bonus.h"
 
+//TODO
 static void	test_lstlast_child1(void) {
 	t_list	*l1;
 	t_list	*l2;
@@ -14,13 +15,13 @@ static void	test_lstlast_child1(void) {
 	tlib_testresult_raw(ft_lstlast(l1) == l3);
 	tlib_testresult_raw(ft_lstlast(l2) == l3);
 	tlib_testresult_raw(ft_lstlast(l3) == l3);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstlast(TODO)");
-	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstlast(TODO)");
-	tlib_testmalloc_size(l3, sizeof(t_list), "ft_lstlast(TODO)");
+	tlib_testmalloc_size(l1, sizeof(t_list), NULL);
+	tlib_testmalloc_size(l2, sizeof(t_list), NULL);
+	tlib_testmalloc_size(l3, sizeof(t_list), NULL);
 	free(l1);
 	free(l2);
 	free(l3);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_lstlast_child2(void) {

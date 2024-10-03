@@ -19,12 +19,12 @@ static void	test_striteri_testone(char *str) {
 	tlib_mockmalloc_reset();
 	ft_striteri(g_str, &test_striteri_fun1);
 	tlib_testresult_raw(g_i == strlen(str));
-	tlib_testmalloc_leak();
 }
 
 static void	test_striteri_child1(void) {
 	test_striteri_testone("HOLA");
 	test_striteri_testone("");
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_striteri_child2(void) {

@@ -11,7 +11,7 @@ static void	test_strrchr_child1(void) {
 	tlib_testresult_raw(ft_strrchr(str, 'H') == NULL);
 	tlib_testresult_raw(ft_strrchr(str, 'A' + 256) == str + 4);
 	tlib_testresult_raw(ft_strrchr(str, 'H' + 256) == NULL);
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strrchr_child2(void) {

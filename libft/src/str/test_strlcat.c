@@ -7,7 +7,6 @@ static void	test_strlcat_testone(char *str1, char *str2, char *expected) {
 	strcpy(buf, str1);
 	tlib_testresult_raw(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
 	tlib_testresult_raw(!strcmp(buf, expected));
-	tlib_testmalloc_leak();
 }
 
 static void	test_strlcat_child1(void) {
@@ -15,6 +14,7 @@ static void	test_strlcat_child1(void) {
 	test_strlcat_testone("", "ABC", "ABC");
 	test_strlcat_testone("AB", "CDE", "ABCD");
 	test_strlcat_testone("", "ABCDE", "ABCD");
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strlcat_child2(void) {
@@ -27,7 +27,7 @@ static void	test_strlcat_child2(void) {
 	strcpy(buf, "AB");
 	tlib_testresult_raw(ft_strlcat(buf, "C", 0) == 1);
 	tlib_testresult_raw(!strcmp(buf, "AB"));
-	tlib_testmalloc_leak();
+	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strlcat_child3(void) {

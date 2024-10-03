@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 09:53:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/03 13:54:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:27:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,8 @@ void	tlib_log_end(void) {
 void	tlib_log_print(char *format, ...) {
 	va_list	args;
 
-	if (!tlib_islogging)
-		return ;
-	if (tlib_newsection) {
-		tlib_printf(tlib_logfd, "\n--- %s ---\n\n", tlib_section);
-		tlib_newsection = FALSE;
-	}
 	va_start(args, format);
-	tlib_vprintf(tlib_logfd, format, args);
+	tlib_log_vaprint(format, args);
 	va_end(args);
 }
 
@@ -53,4 +47,14 @@ void	tlib_log_start(t_bool clear) {
 		tlib_logfd = open(ERRORLOG_FILE, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (tlib_logfd != -1)
 		tlib_islogging = TRUE;
+}
+
+void	tlib_log_vaprint(char *format, va_list args) {
+	if (!tlib_islogging)
+		return ;
+	if (tlib_newsection) {
+		tlib_print(tlib_logfd, "\n--- %s ---\n\n", tlib_section);
+		tlib_newsection = FALSE;
+	}
+	tlib_vaprint(tlib_logfd, format, args);
 }

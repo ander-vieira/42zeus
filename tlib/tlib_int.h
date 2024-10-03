@@ -22,6 +22,16 @@
 # define ERRORLOG_FILE		"errors.log"
 # define ERRORLOG_FULLFILE	"~/42zeus/"ERRORLOG_FILE
 
+# define __tlib_log_call(call) \
+if (call == NULL)\
+	tlib_log_print("A function call");\
+else {\
+	va_list args;\
+	va_start(args, call);\
+	tlib_log_vaprint(call, args);\
+	va_end(args);\
+}
+
 typedef struct s_alloc {
 	struct s_alloc	*next;
 	void			*addr;
@@ -36,6 +46,7 @@ typedef struct s_amock {
 /****** LOG ******/
 
 void	tlib_log_print(char *format, ...);
+void	tlib_log_vaprint(char *format, va_list args);
 
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
@@ -46,7 +57,7 @@ size_t	tlib_mockmalloc_count(void);
 /* ************************************************************************** */
 /* Printf: making my own version for portability                              */
 
-void	tlib_printf(int fd, char *format, ...);
-void	tlib_vprintf(int fd, char *format, va_list args);
+void	tlib_print(int fd, char *format, ...);
+void	tlib_vaprint(int fd, char *format, va_list args);
 
 #endif
