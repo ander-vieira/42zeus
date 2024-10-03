@@ -23,7 +23,6 @@ void	tlib_mockmalloc_setmock(size_t timer);
 /* ************************************************************************** */
 /* Test: printing test results                                                */
 
-void	tlib_testmalloc_count(size_t count);
 void	tlib_testmalloc_leak(void);
 void	tlib_testmalloc_size(void *addr, size_t size, char *call);
 void	tlib_testmissing(void (*test)(void), void *fun, char *section);

@@ -73,30 +73,14 @@ void	tlib_testmalloc_leak(void) {
 
 void	tlib_testmalloc_size(void *addr, size_t expected_size, char *call) {
 	size_t	actual_size;
+	t_bool	condition;
 
 	actual_size = tlib_mockmalloc_lookup(addr);
-	if (actual_size == expected_size)
-		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
-	else {
-		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
+	condition = (actual_size == expected_size);
+	if (!condition) {
 		tlib_log_print(call);
 		tlib_log_print(" has returned a memory allocation of the wrong size\n");
 		tlib_log_print("- (expected: %z, returned: %z)\n", expected_size, actual_size);
-	}
-}
-
-void	tlib_testmalloc_count(size_t expected_count) {
-	size_t	actual_count;
-
-	actual_count = tlib_mockmalloc_count();
-	if (actual_count == expected_count)
-		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
-	else {
-		tlib_test_setfail();
-		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
-		tlib_log_print("A function call has made a different number of allocations than expected\n");
-		tlib_log_print("- (expected: %z allocations, actual: %z allocations)\n", expected_count, actual_count);
 	}
 }
 
