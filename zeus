@@ -21,24 +21,26 @@ echo "|      ░░░░░  ░░░░░░░░░░    ░░░░░�
 echo "+---------------------------------------------------------------------------+";
 echo -en "${nocolor}"
 
+echo -e "${green}Version $(cat $(dirname $0)/version.txt)${nocolor}"
+
 # Check the testable directory is passed
-if [ $# -ne 1 ]
+if [ $# -ge 1 ]
 then
-	echo "Version $(cat $(dirname $0)/version.txt)"
-	echo "Usage: $(basename $0) <directory>"
+	testdir=$1
+else
+	testdir=.
+fi
+
+if [ ! -d $testdir ]
+then
+	echo -e "${red}$testdir does not exist or is not a directory${nocolor}"
 	exit 1
 fi
 
-if [ ! -d $1 ]
-then
-	echo -e "${red}$1 does not exist or is not a directory${nocolor}"
-	exit 1
-fi
-
-echo -e "${green}Running on directory $1${nocolor}"
+echo -e "${green}Running on directory $testdir${nocolor}"
 
 # Copy the testable directory into Zeus's local files
-cp -R $1 $(dirname $0)/repo/
+cp -R "$testdir" $(dirname $0)/repo/
 
 cd $(dirname $0)
 
