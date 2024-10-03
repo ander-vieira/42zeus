@@ -1,13 +1,13 @@
 #include "tlib_int.h"
 
-t_bool	g_child;
-t_bool	g_failed;
+t_bool	tlib_ischild;
+t_bool	tlib_testfailed;
 
 static void	tlib_test_setfail() {
-	if (g_child)
+	if (tlib_ischild)
 		kill(getppid(), SIGUSR1);
 	else
-		g_failed = TRUE;
+		tlib_testfailed = TRUE;
 }
 
 static void	handle_sigusr(int signal) {
@@ -71,7 +71,7 @@ static int	tlib_testprocess_run(void (*fun)(void)) {
 	if (pid == -1)
 		return (-1);
 	else if (pid == 0) {
-		g_child = TRUE;
+		tlib_ischild = TRUE;
 		fun();
 		exit(0);
 	}
@@ -116,7 +116,7 @@ void	tlib_testprocess_segfault(void (*fun)(void)) {
 
 int	tlib_test_results(void) {
 	tlib_printf(STDOUT_FILENO, "--- FINAL RESULT ---\n");
-	if (!g_failed) {
+	if (!tlib_testfailed) {
 		tlib_printf(STDOUT_FILENO, "%gAll tests OK!\n%n");
 		return (EXIT_SUCCESS);
 	} else {

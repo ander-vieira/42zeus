@@ -1,7 +1,7 @@
 #include "test.h"
 
-static char		*g_str;
-static t_uint	g_i;
+static char			*g_str;
+static unsigned int	g_i;
 
 static char	test_strmapi_fun1(unsigned int i, char c) {
 	tlib_testresult_bool(i == g_i && c == g_str[g_i]);

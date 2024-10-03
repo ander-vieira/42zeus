@@ -1,8 +1,10 @@
 #ifndef TEST_H
 # define TEST_H
 
-# include <unistd.h>
+# include <stdarg.h>
+# include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
 
 # include "../../tlib/tlib.h"
 

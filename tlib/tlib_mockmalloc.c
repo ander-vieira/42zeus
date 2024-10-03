@@ -1,7 +1,9 @@
 #include "tlib_int.h"
 
-t_alloc	*g_allocs;
-t_amock	*g_mocks;
+t_alloc	*tlib_allocs;
+t_amock	*tlib_mocks;
+
+/* ***** Static functions ***** */
 
 static void	*libc_malloc(size_t len) {
 	static void	*(*fun)(size_t);
@@ -22,7 +24,7 @@ static void	libc_free(void *addr) {
 static void	tlib_mockmalloc_add(void *addr, size_t size) {
 	t_alloc	**list;
 
-	list = &g_allocs;
+	list = &tlib_allocs;
 	while (*list != NULL)
 		list = &((*list)->next);
 	*list = (t_alloc *)libc_malloc(sizeof(t_alloc));
@@ -37,7 +39,7 @@ static t_bool	tlib_mockmalloc_delete(void *addr) {
 	t_alloc	**list;
 	t_alloc	*current;
 
-	list = &g_allocs;
+	list = &tlib_allocs;
 	while ((*list)->addr != addr) {
 		if (*list == NULL)
 			return (FALSE);
@@ -54,7 +56,7 @@ static t_bool	tlib_mockmalloc_tickmocks(void) {
 	t_amock	**list;
 	t_amock	*current;
 
-	list = &g_mocks;
+	list = &tlib_mocks;
 	mock = FALSE;
 	while (*list != NULL) {
 		(*list)->timer -= 1;
@@ -73,33 +75,21 @@ static void	tlib_mockmalloc_resetmocks(void) {
 	t_amock	**list;
 	t_amock	*current;
 
-	list = &g_mocks;
+	list = &tlib_mocks;
 	while (*list != NULL) {
 		current = *list;
 		list = &((*list)->next);
 		free(current);
 	}
-	g_mocks = NULL;
+	tlib_mocks = NULL;
 }
 
-void	tlib_mockmalloc_reset(void) {
-	t_alloc	**list;
-	t_alloc	*current;
-
-	list = &g_allocs;
-	while (*list != NULL) {
-		current = *list;
-		list = &((*list)->next);
-		free(current);
-	}
-	g_allocs = NULL;
-	tlib_mockmalloc_resetmocks();
-}
+/* ***** Internal functions ***** */
 
 size_t	tlib_mockmalloc_lookup(void *addr) {
 	t_alloc	**list;
 
-	list = &g_allocs;
+	list = &tlib_allocs;
 	while (*list != NULL) {
 		if ((*list)->addr == addr)
 			return ((*list)->size);
@@ -112,7 +102,7 @@ size_t	tlib_mockmalloc_count(void) {
 	t_alloc	**list;
 	size_t	count;
 
-	list = &g_allocs;
+	list = &tlib_allocs;
 	count = 0;
 	while (*list != NULL) {
 		count += 1;
@@ -121,12 +111,28 @@ size_t	tlib_mockmalloc_count(void) {
 	return (count);
 }
 
+/* ***** Exposed functions ***** */
+
+void	tlib_mockmalloc_reset(void) {
+	t_alloc	**list;
+	t_alloc	*current;
+
+	list = &tlib_allocs;
+	while (*list != NULL) {
+		current = *list;
+		list = &((*list)->next);
+		free(current);
+	}
+	tlib_allocs = NULL;
+	tlib_mockmalloc_resetmocks();
+}
+
 void	tlib_mockmalloc_setmock(size_t timer) {
 	t_amock	**list;
 
 	if (timer == 0)
 		return ;
-	list = &g_mocks;
+	list = &tlib_mocks;
 	while (*list != NULL)
 		list = &((*list)->next);
 	*list = (t_amock *)libc_malloc(sizeof(t_amock));
@@ -136,8 +142,7 @@ void	tlib_mockmalloc_setmock(size_t timer) {
 	(*list)->next = NULL;
 }
 
-/* ************************************************************************** */
-/* Redefining malloc and free to log memory allocations                       */
+/* ***** Library function overrides ***** */
 
 void	*malloc(size_t len) {
 	void	*addr;

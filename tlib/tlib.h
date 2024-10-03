@@ -3,17 +3,6 @@
 
 # define _GNU_SOURCE
 
-# include <stdlib.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <dlfcn.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-
-typedef unsigned int	t_uint;
-
 typedef enum e_bool {
 	FALSE = 0,
 	TRUE = 1

@@ -1,8 +1,9 @@
 #ifndef TEST_BONUS_H
 # define TEST_BONUS_H
 
+# include <stdarg.h>
+# include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
 
 # include "../../tlib/tlib.h"
 
