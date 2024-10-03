@@ -7,8 +7,8 @@ static void	test_itoa_testone(int num, char *expected) {
 	str = ft_itoa(num);
 	tlib_testresult_raw(!strcmp(str, expected));
 	tlib_testmalloc_size(str, strlen(expected) + 1, "ft_itoa(TODO)");
-	tlib_testmalloc_count(1);
 	free(str);
+	tlib_testmalloc_leak();
 }
 
 static void	test_itoa_child1(void) {

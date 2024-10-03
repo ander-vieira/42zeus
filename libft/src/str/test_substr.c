@@ -8,8 +8,8 @@ static void	test_substr_testone(char *str, unsigned int start, size_t len,
 	result = ft_substr(str, start, len);
 	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
 	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_substr(TODO)");
-	tlib_testmalloc_count(1);
 	free(result);
+	tlib_testmalloc_leak();
 }
 
 static void	test_substr_child1(void) {

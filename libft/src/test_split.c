@@ -34,8 +34,8 @@ static void	test_split_testone(char *str, char c, size_t len, ...) {
 		i++;
 	}
 	tlib_testresult_raw(split[len] == NULL);
-	tlib_testmalloc_count(len + 1);
 	test_split_free(split);
+	tlib_testmalloc_leak();
 	va_end(args);
 }
 
@@ -56,7 +56,7 @@ static void	test_split_child3(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(g_mocked);
 	tlib_testresult_raw(ft_split("AB CD", ' ') == NULL);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_split_child4(void) {

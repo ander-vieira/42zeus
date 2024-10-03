@@ -7,8 +7,8 @@ static void	test_strdup_testone(char *str) {
 	result = ft_strdup(str);
 	tlib_testresult_raw(!strcmp(result, str));
 	tlib_testmalloc_size(result, strlen(str) + 1, "ft_strdup(TODO)");
-	tlib_testmalloc_count(1);
-	free(str);
+	free(result);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strdup_child1(void) {

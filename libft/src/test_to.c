@@ -9,7 +9,7 @@ void	test_tolower(void) {
 	tlib_testresult_raw(ft_tolower('G') == 'g');
 	tlib_testresult_raw(ft_tolower('j') == 'j');
 	tlib_testresult_raw(ft_tolower(0x80) == 0x80);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 void	test_toupper(void) {
@@ -21,5 +21,5 @@ void	test_toupper(void) {
 	tlib_testresult_raw(ft_toupper('G') == 'G');
 	tlib_testresult_raw(ft_toupper('j') == 'J');
 	tlib_testresult_raw(ft_toupper(0x80) == 0x80);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }

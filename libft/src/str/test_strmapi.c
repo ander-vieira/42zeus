@@ -28,8 +28,8 @@ static void	test_strmapi_testone(char *str) {
 	else
 		tlib_testresult_raw(str2[0] == str[0] + 1 && !strcmp(str2 + 1, str + 1));
 	tlib_testmalloc_size(str2, strlen(str) + 1, "ft_strmapi(TODO)");
-	tlib_testmalloc_count(1);
 	free(str2);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strmapi_child1(void) {

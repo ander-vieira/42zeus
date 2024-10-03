@@ -17,10 +17,10 @@ static void	test_lstsize_child1(void) {
 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstsize(TODO)");
 	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstsize(TODO)");
 	tlib_testmalloc_size(l3, sizeof(t_list), "ft_lstsize(TODO)");
-	tlib_testmalloc_count(3);
 	free(l1);
 	free(l2);
 	free(l3);
+	tlib_testmalloc_leak();
 }
 
 static void	test_lstsize_child2(void) {

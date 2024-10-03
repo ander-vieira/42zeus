@@ -7,8 +7,8 @@ static void	test_strjoin_testone(char *str1, char *str2, char *expected) {
 	result = ft_strjoin(str1, str2);
 	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
 	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strjoin(TODO)");
-	tlib_testmalloc_count(1);
 	free(result);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strjoin_child1(void) {

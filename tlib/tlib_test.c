@@ -59,6 +59,18 @@ void	tlib_testresult_false(int value, char *call) {
 	}
 }
 
+void	tlib_testmalloc_leak(void) {
+	size_t	count;
+
+	count = tlib_mockmalloc_count();
+	if (count != 0) {
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, "%r[LEAKS]%n");
+		tlib_log_print("A function call has created a memory leak\n");
+		tlib_log_print("- %z memory addresses not freed\n", count);
+	}
+}
+
 void	tlib_testmalloc_size(void *addr, size_t expected_size, char *call) {
 	size_t	actual_size;
 

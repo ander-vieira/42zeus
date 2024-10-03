@@ -17,7 +17,7 @@ static void	test_strncmp_child1(void) {
 	tlib_testresult_raw(!ft_strncmp("ASDFG", "SSDFG", 0));
 	tlib_testresult_raw(!ft_strncmp("ASDFG", "", 0));
 	tlib_testresult_raw(!ft_strncmp("", "ASDFG", 0));
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strncmp_child2(void) {
@@ -25,7 +25,7 @@ static void	test_strncmp_child2(void) {
 	tlib_testresult_raw(!ft_strncmp(NULL, "ASDFG", 0));
 	tlib_testresult_raw(!ft_strncmp("ASDFG", NULL, 0));
 	tlib_testresult_raw(!ft_strncmp(NULL, NULL, 0));
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strncmp_child3(void) {

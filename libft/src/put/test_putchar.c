@@ -15,7 +15,7 @@ static void	test_putchar_fd_child1(void) {
 	tlib_mockmalloc_reset();
 	test_putchar_fd_testone('A');
 	test_putchar_fd_testone('\0');
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 void	test_putchar_fd(void) {

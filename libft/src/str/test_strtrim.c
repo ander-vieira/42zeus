@@ -7,8 +7,8 @@ static void	test_strtrim_testone(char *str, char *set, char *expected) {
 	result = ft_strtrim(str, set);
 	tlib_testresult_raw(result != NULL && !strcmp(result, expected));
 	tlib_testmalloc_size(result, strlen(expected) + 1, "ft_strtrim(TODO)");
-	tlib_testmalloc_count(1);
 	free(result);
+	tlib_testmalloc_leak();
 }
 
 static void	test_strtrim_child1(void) {

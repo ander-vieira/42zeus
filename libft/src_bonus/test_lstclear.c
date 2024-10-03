@@ -23,7 +23,7 @@ static void	test_lstclear_child1(void) {
 	tlib_testresult_raw(g_parg.i == 2);
 	tlib_testmalloc_size(l1, 0, "ft_lstclear(TODO)");
 	tlib_testmalloc_size(l2, 0, "ft_lstclear(TODO)");
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 	free(l1);
 	free(l2);
 }
@@ -37,7 +37,7 @@ static void	test_lstclear_child2(void) {
 	ft_lstclear(&l, &test_lstclear_del);
 	tlib_testresult_raw(l == NULL);
 	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_lstclear_child3(void) {
@@ -45,7 +45,7 @@ static void	test_lstclear_child3(void) {
 	taux_parg_init(&g_parg, 0);
 	ft_lstclear(NULL, &test_lstclear_del);
 	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_lstclear_child4(void) {
@@ -58,8 +58,8 @@ static void	test_lstclear_child4(void) {
 	ft_lstclear(&l, NULL);
 	tlib_testresult_raw(l == l1 && l->next == NULL);
 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstclear(TODO)");
-	tlib_testmalloc_count(1);
 	free(l1);
+	tlib_testmalloc_leak();
 }
 
 void	test_lstclear(void) {

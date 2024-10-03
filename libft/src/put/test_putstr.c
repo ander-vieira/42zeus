@@ -17,7 +17,7 @@ static void	test_putstr_fd_child1(void) {
 	tlib_mockmalloc_reset();
 	test_putstr_fd_testone("ASDFG");
 	test_putstr_fd_testone("");
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_putstr_fd_child2(void) {
@@ -26,7 +26,7 @@ static void	test_putstr_fd_child2(void) {
 	tlib_mockmalloc_reset();
 	pipe(fd);
 	ft_putstr_fd(NULL, fd[1]);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 	close(fd[1]);
 	close(fd[0]);
 }

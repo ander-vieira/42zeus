@@ -13,13 +13,13 @@ static void	test_memchr_child1(void) {
 	tlib_testresult_raw(ft_memchr(buf, 'A', 0) == NULL);
 	tlib_testresult_raw(ft_memchr(buf, 'A' + 256, 5) == buf);
 	tlib_testresult_raw(ft_memchr(buf, 'H' + 256, 5) == NULL);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_memchr_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_testresult_raw(ft_memchr(NULL, 'A', 0) == NULL);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_memchr_child3(void) {

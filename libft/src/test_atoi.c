@@ -36,7 +36,7 @@ static void	test_atoi_child1(void) {
 	tlib_testresult_raw(ft_atoi("--103") == 0);
 	tlib_testresult_raw(ft_atoi("++104") == 0);
 	tlib_testresult_raw(ft_atoi("   -+117") == 0);
-	tlib_testmalloc_count(0);
+	tlib_testmalloc_leak();
 }
 
 static void	test_atoi_child2(void) {
