@@ -1,6 +1,7 @@
 #include "test_bonus.h"
 
-//TODO
+//TODO upgrade tests
+
 static void	test_lstlast_child1(void) {
 	t_list	*l1;
 	t_list	*l2;

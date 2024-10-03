@@ -1,5 +1,7 @@
 #include "test.h"
 
+//TODO upgrade tests
+
 static char			*g_str;
 static unsigned int	g_i;
 

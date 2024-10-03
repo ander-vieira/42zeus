@@ -1,6 +1,6 @@
 #include "test.h"
 
-//TODO
+//TODO upgrade tests
 
 static void test_strnstr_testone(char *h, char *n, size_t len, char *expected) {
 	tlib_testresult_addr(ft_strnstr(h, n, len), expected, "ft_strnstr(%S, %S, %z)", h, n, len);
