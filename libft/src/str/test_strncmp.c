@@ -1,30 +1,38 @@
 #include "test.h"
 
+static void	test_strncmp_testequal(char *s1, char *s2, size_t n) {
+	tlib_testresult_false(ft_strncmp(s1, s2, n), "ft_strncmp(%S, %S, %z)", s1, s2, n);
+}
+
+static void	test_strncmp_testdiff(char *s1, char *s2, size_t n) {
+	tlib_testresult_true(ft_strncmp(s1, s2, n), "ft_strncmp(%S, %S, %z)", s1, s2, n);
+}
+
 static void	test_strncmp_child1(void) {
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "ASDFG", 5));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "ASDFG", 10));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "ASDFG", 3));
-	tlib_testresult_raw(ft_strncmp("ASDFG", "ASDFH", 5));
-	tlib_testresult_raw(ft_strncmp("ASDFG", "ASDFH", 10));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "ASDFH", 3));
-	tlib_testresult_raw(ft_strncmp("ASDFG", "SSDFG", 5));
-	tlib_testresult_raw(ft_strncmp("ASDFG", "ASD", 5));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "ASD", 3));
-	tlib_testresult_raw(ft_strncmp("ASD", "ASDFG", 5));
-	tlib_testresult_raw(!ft_strncmp("ASD", "ASDFG", 3));
-	tlib_testresult_raw(ft_strncmp("", "ASDFG", 5));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "SSDFG", 0));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", "", 0));
-	tlib_testresult_raw(!ft_strncmp("", "ASDFG", 0));
+	test_strncmp_testequal("ASDFG", "ASDFG", 5);
+	test_strncmp_testequal("ASDFG", "ASDFG", 10);
+	test_strncmp_testequal("ASDFG", "ASDFG", 3);
+	test_strncmp_testdiff("ASDFG", "ASDFH", 5);
+	test_strncmp_testdiff("ASDFG", "ASDFH", 10);
+	test_strncmp_testequal("ASDFG", "ASDFH", 3);
+	test_strncmp_testdiff("ASDFG", "SSDFG", 5);
+	test_strncmp_testdiff("ASDFG", "ASD", 5);
+	test_strncmp_testequal("ASDFG", "ASD", 3);
+	test_strncmp_testdiff("ASD", "ASDFG", 5);
+	test_strncmp_testequal("ASD", "ASDFG", 3);
+	test_strncmp_testdiff("", "ASDFG", 5);
+	test_strncmp_testequal("ASDFG", "SSDFG", 0);
+	test_strncmp_testequal("ASDFG", "", 0);
+	test_strncmp_testequal("", "SSDFG", 0);
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strncmp_child2(void) {
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(!ft_strncmp(NULL, "ASDFG", 0));
-	tlib_testresult_raw(!ft_strncmp("ASDFG", NULL, 0));
-	tlib_testresult_raw(!ft_strncmp(NULL, NULL, 0));
+	test_strncmp_testequal(NULL, "ASDFG", 0);
+	test_strncmp_testequal("ASDFG", NULL, 0);
+	test_strncmp_testequal(NULL, NULL, 0);
 	tlib_testmalloc_leak(NULL);
 }
 

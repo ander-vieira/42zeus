@@ -1,16 +1,20 @@
 #include "test.h"
 
+static void test_strrchr_testone(char *str, int c, char *expected) {
+	tlib_testresult_addr(ft_strrchr(str, c), expected, "ft_strrchr(%S, %c)", str, c);
+}
+
 static void	test_strrchr_child1(void) {
 	char	*str;
 
 	tlib_mockmalloc_reset();
 	str = "ASDFA";
-	tlib_testresult_raw(ft_strrchr(str, 'A') == str + 4);
-	tlib_testresult_raw(ft_strrchr(str, 'D') == str + 2);
-	tlib_testresult_raw(ft_strrchr(str, '\0') == str + 5);
-	tlib_testresult_raw(ft_strrchr(str, 'H') == NULL);
-	tlib_testresult_raw(ft_strrchr(str, 'A' + 256) == str + 4);
-	tlib_testresult_raw(ft_strrchr(str, 'H' + 256) == NULL);
+	test_strrchr_testone(str, 'A', str + 4);
+	test_strrchr_testone(str, 'D', str + 2);
+	test_strrchr_testone(str, '\0', str + 5);
+	test_strrchr_testone(str, 'H', NULL);
+	test_strrchr_testone(str, 'A' + 256, str + 4);
+	test_strrchr_testone(str, 'H' + 256, NULL);
 	tlib_testmalloc_leak(NULL);
 }
 

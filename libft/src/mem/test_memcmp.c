@@ -1,22 +1,29 @@
 #include "test.h"
 
+static void	test_memcmp_testequal(char *s1, char *s2, size_t n) {
+	tlib_testresult_false(ft_memcmp(s1, s2, n), "ft_memcmp(%S, %S, %z)", s1, s2, n);
+}
+
+static void	test_memcmp_testdiff(char *s1, char *s2, size_t n) {
+	tlib_testresult_true(ft_memcmp(s1, s2, n), "ft_memcmp(%S, %S, %z)", s1, s2, n);
+}
+
 static void	test_memcmp_child1(void) {
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(!ft_memcmp("ASDFG", "ASDFG", 5));
-	tlib_testresult_raw(ft_memcmp("ASDFG", "ASDFH", 5));
-	tlib_testresult_raw(ft_memcmp("ASDFG", "ASFFG", 5));
-	tlib_testresult_raw(!ft_memcmp("ASDFG", "ASDFH", 4));
-	tlib_testresult_raw(!ft_memcmp("ASDFG", "ASD", 3));
-	tlib_testresult_raw(!ft_memcmp("ASD", "ASDFG", 3));
-	tlib_testresult_raw(ft_memcmp("ASD\0G", "ASD\0H", 5));
+	test_memcmp_testequal("ASDFG", "ASDFG", 5);
+	test_memcmp_testdiff("ASDFG", "ASDFH", 5);
+	test_memcmp_testdiff("ASDFG", "ASFFG", 5);
+	test_memcmp_testequal("ASDFG", "ASDFH", 4);
+	test_memcmp_testequal("ASDFG", "ASD", 3);
+	test_memcmp_testequal("ASD", "ASDFG", 3);
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_memcmp_child2(void) {
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(!ft_memcmp(NULL, "ASDFG", 0));
-	tlib_testresult_raw(!ft_memcmp("ASDFG", NULL, 0));
-	tlib_testresult_raw(!ft_memcmp(NULL, NULL, 0));
+	test_memcmp_testequal(NULL, "ASDFG", 0);
+	test_memcmp_testequal("ASDFG", NULL, 0);
+	test_memcmp_testequal(NULL, NULL, 0);
 	tlib_testmalloc_leak(NULL);
 }
 
