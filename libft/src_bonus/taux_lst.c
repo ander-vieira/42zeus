@@ -34,13 +34,11 @@ void	taux_parg_check(t_parg *parg, void *p) {
 	size_t	i;
 
 	parg->i++;
-	if (p != NULL)
-	{
+	if (p != NULL) {
 		i = 0;
 		while (i < parg->len)
 		{
-			if (p == parg->p[i])
-			{
+			if (p == parg->p[i]) {
 				parg->p[i] = NULL;
 				return ;
 			}
@@ -88,13 +86,11 @@ void	taux_pget_check(t_pget *pget, void *p) {
 	size_t	i;
 
 	pget->j++;
-	if (p != NULL)
-	{
+	if (p != NULL) {
 		i = 0;
 		while (i < pget->len && i < pget->i)
 		{
-			if (p == pget->p[i])
-			{
+			if (p == pget->p[i]) {
 				pget->p[i] = NULL;
 				return ;
 			}

@@ -3,14 +3,12 @@
 static void	print_str(int fd, char *str) {
 	size_t	len;
 
-	if (str != NULL)
-	{
+	if (str != NULL) {
 		len = 0;
 		while (str[len] != '\0')
 			len++;
 		write(fd, str, len);
-	}
-	else
+	} else
 		print_str(fd, "(null)");
 }
 

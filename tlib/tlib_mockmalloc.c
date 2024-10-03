@@ -60,14 +60,12 @@ static t_bool	tlib_mockmalloc_tickmocks(void) {
 	while (*list != NULL)
 	{
 		(*list)->timer -= 1;
-		if ((*list)->timer == 0)
-		{
+		if ((*list)->timer == 0) {
 			current = *list;
 			*list = current->next;
 			free(current);
 			mock = TRUE;
-		}
-		else
+		} else
 			list = &((*list)->next);
 	}
 	return (mock);
@@ -152,8 +150,7 @@ void	*malloc(size_t len) {
 
 	if (tlib_mockmalloc_tickmocks())
 		return (NULL);
-	if (len == 0)
-	{
+	if (len == 0) {
 		//TODO report zero length malloc
 		return (NULL);
 	}
@@ -163,8 +160,7 @@ void	*malloc(size_t len) {
 }
 
 void	free(void *addr) {
-	if (tlib_mockmalloc_lookup(addr) == 0)
-	{
+	if (tlib_mockmalloc_lookup(addr) == 0) {
 		//TODO report double free
 		return ;
 	}

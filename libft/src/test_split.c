@@ -5,8 +5,7 @@ static size_t	g_mocked;
 static void	test_split_free(char **split) {
 	size_t	i;
 
-	if (split != NULL)
-	{
+	if (split != NULL) {
 		i = 0;
 		while (split[i] != NULL)
 		{
