@@ -39,8 +39,8 @@ static void	test_strlcat_child4(void) {
 }
 
 void	test_strlcat(void) {
-	tlib_test_process(&test_strlcat_child1, PRESULT_OK);
-	tlib_test_process(&test_strlcat_child2, PRESULT_OK);
-	tlib_test_process(&test_strlcat_child3, PRESULT_SEGFAULT);
-	tlib_test_process(&test_strlcat_child4, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_strlcat_child1);
+	tlib_testprocess_ok(&test_strlcat_child2);
+	tlib_testprocess_segfault(&test_strlcat_child3);
+	tlib_testprocess_segfault(&test_strlcat_child4);
 }

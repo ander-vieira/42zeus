@@ -28,8 +28,8 @@ static void	test_bzero_child4(void) {
 }
 
 void	test_bzero(void) {
-	tlib_test_process(&test_bzero_child1, PRESULT_OK);
-	tlib_test_process(&test_bzero_child2, PRESULT_OK);
-	tlib_test_process(&test_bzero_child3, PRESULT_OK);
-	tlib_test_process(&test_bzero_child4, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_bzero_child1);
+	tlib_testprocess_ok(&test_bzero_child2);
+	tlib_testprocess_ok(&test_bzero_child3);
+	tlib_testprocess_segfault(&test_bzero_child4);
 }

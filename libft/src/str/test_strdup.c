@@ -27,7 +27,7 @@ static void	test_strdup_child3(void) {
 }
 
 void	test_strdup(void) {
-	tlib_test_process(&test_strdup_child1, PRESULT_OK);
-	tlib_test_process(&test_strdup_child2, PRESULT_OK);
-	tlib_test_process(&test_strdup_child3, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_strdup_child1);
+	tlib_testprocess_ok(&test_strdup_child2);
+	tlib_testprocess_segfault(&test_strdup_child3);
 }

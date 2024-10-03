@@ -27,7 +27,7 @@ static void	test_memchr_child3(void) {
 }
 
 void	test_memchr(void) {
-	tlib_test_process(&test_memchr_child1, PRESULT_OK);
-	tlib_test_process(&test_memchr_child2, PRESULT_OK);
-	tlib_test_process(&test_memchr_child3, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_memchr_child1);
+	tlib_testprocess_ok(&test_memchr_child2);
+	tlib_testprocess_segfault(&test_memchr_child3);
 }

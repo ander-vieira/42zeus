@@ -32,8 +32,8 @@ static void	test_strlcpy_child4(void) {
 }
 
 void	test_strlcpy(void) {
-	tlib_test_process(&test_strlcpy_child1, PRESULT_OK);
-	tlib_test_process(&test_strlcpy_child2, PRESULT_SEGFAULT);
-	tlib_test_process(&test_strlcpy_child3, PRESULT_SEGFAULT);
-	tlib_test_process(&test_strlcpy_child4, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_strlcpy_child1);
+	tlib_testprocess_segfault(&test_strlcpy_child2);
+	tlib_testprocess_segfault(&test_strlcpy_child3);
+	tlib_testprocess_segfault(&test_strlcpy_child4);
 }

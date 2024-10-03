@@ -58,8 +58,8 @@ static void	test_lstadd_front_child4(void) {
 }
 
 void	test_lstadd_front(void) {
-	tlib_test_process(&test_lstadd_front_child1, PRESULT_OK);
-	tlib_test_process(&test_lstadd_front_child2, PRESULT_OK);
-	tlib_test_process(&test_lstadd_front_child3, PRESULT_OK);
-	tlib_test_process(&test_lstadd_front_child4, PRESULT_OK);
+	tlib_testprocess_ok(&test_lstadd_front_child1);
+	tlib_testprocess_ok(&test_lstadd_front_child2);
+	tlib_testprocess_ok(&test_lstadd_front_child3);
+	tlib_testprocess_ok(&test_lstadd_front_child4);
 }

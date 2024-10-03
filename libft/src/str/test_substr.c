@@ -32,7 +32,7 @@ static void	test_substr_child3(void) {
 }
 
 void	test_substr(void) {
-	tlib_test_process(&test_substr_child1, PRESULT_OK);
-	tlib_test_process(&test_substr_child2, PRESULT_OK);
-	tlib_test_process(&test_substr_child3, PRESULT_OK);
+	tlib_testprocess_ok(&test_substr_child1);
+	tlib_testprocess_ok(&test_substr_child2);
+	tlib_testprocess_ok(&test_substr_child3);
 }

@@ -19,6 +19,6 @@ static void	test_strchr_child2(void) {
 }
 
 void	test_strchr(void) {
-	tlib_test_process(&test_strchr_child1, PRESULT_OK);
-	tlib_test_process(&test_strchr_child2, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_strchr_child1);
+	tlib_testprocess_segfault(&test_strchr_child2);
 }

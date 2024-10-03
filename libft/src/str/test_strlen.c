@@ -13,6 +13,6 @@ static void	test_strlen_child2(void) {
 }
 
 void	test_strlen(void) {
-	tlib_test_process(&test_strlen_child1, PRESULT_OK);
-	tlib_test_process(&test_strlen_child2, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_strlen_child1);
+	tlib_testprocess_segfault(&test_strlen_child2);
 }

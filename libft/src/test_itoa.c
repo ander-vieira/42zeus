@@ -26,6 +26,6 @@ static void	test_itoa_child2(void) {
 }
 
 void	test_itoa(void) {
-	tlib_test_process(&test_itoa_child1, PRESULT_OK);
-	tlib_test_process(&test_itoa_child2, PRESULT_OK);
+	tlib_testprocess_ok(&test_itoa_child1);
+	tlib_testprocess_ok(&test_itoa_child2);
 }

@@ -40,12 +40,4 @@ size_t	tlib_mockmalloc_count(void);
 
 void	tlib_printf(int fd, char *format, ...);
 
-/* ************************************************************************** */
-/* Test: printing test results                                                */
-
-// void	tlib_testmissing(void (*test)(void), void *fun, char *title);
-// void	tlib_testresult_bool(t_bool ok);
-// void	tlib_test_process(void (*fun)(void), t_pres expected);
-// int		tlib_test_results(void);
-
 #endif

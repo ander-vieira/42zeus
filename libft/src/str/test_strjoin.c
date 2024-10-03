@@ -33,8 +33,8 @@ static void	test_strjoin_child4(void) {
 }
 
 void	test_strjoin(void) {
-	tlib_test_process(&test_strjoin_child1, PRESULT_OK);
-	tlib_test_process(&test_strjoin_child2, PRESULT_OK);
-	tlib_test_process(&test_strjoin_child3, PRESULT_OK);
-	tlib_test_process(&test_strjoin_child4, PRESULT_OK);
+	tlib_testprocess_ok(&test_strjoin_child1);
+	tlib_testprocess_ok(&test_strjoin_child2);
+	tlib_testprocess_ok(&test_strjoin_child3);
+	tlib_testprocess_ok(&test_strjoin_child4);
 }

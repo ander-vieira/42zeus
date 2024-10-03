@@ -44,6 +44,6 @@ static void	test_atoi_child2(void) {
 }
 
 void	test_atoi(void) {
-	tlib_test_process(&test_atoi_child1, PRESULT_OK);
-	tlib_test_process(&test_atoi_child2, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_atoi_child1);
+	tlib_testprocess_segfault(&test_atoi_child2);
 }

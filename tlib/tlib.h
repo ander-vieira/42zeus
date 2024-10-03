@@ -19,12 +19,6 @@ typedef enum e_bool {
 	TRUE = 1
 }						t_bool;
 
-typedef enum s_pres {
-	PRESULT_OK,
-	PRESULT_SEGFAULT,
-	PRESULT_CRASH
-}	t_pres;
-
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
@@ -38,7 +32,8 @@ void	tlib_testmalloc_count(size_t count);
 void	tlib_testmalloc_size(void *addr, size_t size);
 void	tlib_testmissing(void (*test)(void), void *fun, char *title);
 void	tlib_testresult_bool(t_bool ok);
-void	tlib_test_process(void (*fun)(void), t_pres expected);
+void	tlib_testprocess_ok(void (*fun)(void));
+void	tlib_testprocess_segfault(void (*fun)(void));
 int		tlib_test_results(void);
 
 #endif

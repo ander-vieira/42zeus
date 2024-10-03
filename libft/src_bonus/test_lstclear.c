@@ -63,8 +63,8 @@ static void	test_lstclear_child4(void) {
 }
 
 void	test_lstclear(void) {
-	tlib_test_process(&test_lstclear_child1, PRESULT_OK);
-	tlib_test_process(&test_lstclear_child2, PRESULT_OK);
-	tlib_test_process(&test_lstclear_child3, PRESULT_OK);
-	tlib_test_process(&test_lstclear_child4, PRESULT_OK);
+	tlib_testprocess_ok(&test_lstclear_child1);
+	tlib_testprocess_ok(&test_lstclear_child2);
+	tlib_testprocess_ok(&test_lstclear_child3);
+	tlib_testprocess_ok(&test_lstclear_child4);
 }

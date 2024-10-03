@@ -143,10 +143,10 @@ static void	test_lstmap_child6(void) {
 }
 
 void	test_lstmap(void) {
-	tlib_test_process(&test_lstmap_child1, PRESULT_OK);
-	tlib_test_process(&test_lstmap_child2, PRESULT_OK);
-	tlib_test_process(&test_lstmap_child3, PRESULT_OK);
-	tlib_test_process(&test_lstmap_child4, PRESULT_OK);
-	tlib_test_process(&test_lstmap_child5, PRESULT_OK);
-	tlib_test_process(&test_lstmap_child6, PRESULT_OK);
+	tlib_testprocess_ok(&test_lstmap_child1);
+	tlib_testprocess_ok(&test_lstmap_child2);
+	tlib_testprocess_ok(&test_lstmap_child3);
+	tlib_testprocess_ok(&test_lstmap_child4);
+	tlib_testprocess_ok(&test_lstmap_child5);
+	tlib_testprocess_ok(&test_lstmap_child6);
 }

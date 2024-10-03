@@ -29,8 +29,8 @@ static void	test_memcmp_child4(void) {
 }
 
 void	test_memcmp(void) {
-	tlib_test_process(&test_memcmp_child1, PRESULT_OK);
-	tlib_test_process(&test_memcmp_child2, PRESULT_OK);
-	tlib_test_process(&test_memcmp_child3, PRESULT_SEGFAULT);
-	tlib_test_process(&test_memcmp_child4, PRESULT_SEGFAULT);
+	tlib_testprocess_ok(&test_memcmp_child1);
+	tlib_testprocess_ok(&test_memcmp_child2);
+	tlib_testprocess_segfault(&test_memcmp_child3);
+	tlib_testprocess_segfault(&test_memcmp_child4);
 }

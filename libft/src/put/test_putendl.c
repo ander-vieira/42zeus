@@ -33,6 +33,6 @@ static void	test_putendl_fd_child2(void) {
 }
 
 void	test_putendl_fd(void) {
-	tlib_test_process(&test_putendl_fd_child1, PRESULT_OK);
-	tlib_test_process(&test_putendl_fd_child2, PRESULT_OK);
+	tlib_testprocess_ok(&test_putendl_fd_child1);
+	tlib_testprocess_ok(&test_putendl_fd_child2);
 }

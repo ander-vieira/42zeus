@@ -36,7 +36,7 @@ static void	test_striteri_child3(void) {
 }
 
 void	test_striteri(void) {
-	tlib_test_process(&test_striteri_child1, PRESULT_OK);
-	tlib_test_process(&test_striteri_child2, PRESULT_OK);
-	tlib_test_process(&test_striteri_child3, PRESULT_OK);
+	tlib_testprocess_ok(&test_striteri_child1);
+	tlib_testprocess_ok(&test_striteri_child2);
+	tlib_testprocess_ok(&test_striteri_child3);
 }

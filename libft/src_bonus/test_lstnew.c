@@ -19,6 +19,6 @@ static void	test_lstnew_child2(void) {
 }
 
 void	test_lstnew(void) {
-	tlib_test_process(&test_lstnew_child1, PRESULT_OK);
-	tlib_test_process(&test_lstnew_child2, PRESULT_OK);
+	tlib_testprocess_ok(&test_lstnew_child1);
+	tlib_testprocess_ok(&test_lstnew_child2);
 }

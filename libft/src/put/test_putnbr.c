@@ -24,5 +24,5 @@ static void	test_putnbr_fd_child1(void) {
 }
 
 void	test_putnbr_fd(void) {
-	tlib_test_process(&test_putnbr_fd_child1, PRESULT_OK);
+	tlib_testprocess_ok(&test_putnbr_fd_child1);
 }

@@ -10,7 +10,7 @@ static void	tlib_test_setfail() {
 		g_failed = TRUE;
 }
 
-void	handle_sigusr(int signal) {
+static void	handle_sigusr(int signal) {
 	tlib_test_setfail();
 }
 
@@ -33,6 +33,7 @@ void	tlib_testresult_bool(t_bool ok) {
 	{
 		tlib_test_setfail();
 		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
+		//TODO add error log
 	}
 }
 
@@ -46,7 +47,7 @@ void	tlib_testmalloc_size(void *addr, size_t expected_size) {
 	{
 		tlib_test_setfail();
 		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
-		//TODO report error
+		//TODO add error log
 	}
 }
 
@@ -60,38 +61,19 @@ void	tlib_testmalloc_count(size_t expected_count) {
 	{
 		tlib_test_setfail();
 		tlib_printf(STDOUT_FILENO, "%r[KO]%n");
-		//TODO report error
+		//TODO add error log
 	}
 }
 
-static t_pres	get_pres(int status) {
-	if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-		return (PRESULT_OK);
-	else if (WIFSIGNALED(status) && WTERMSIG(status) == 11)
-		return (PRESULT_SEGFAULT);
-	else
-		return (PRESULT_CRASH);
-}
-
-static void	print_pres(t_pres pres) {
-	if (pres == PRESULT_OK)
-		tlib_printf(STDOUT_FILENO, "%r[NO CRASH]%n");
-	else if (pres == PRESULT_SEGFAULT)
-		tlib_printf(STDOUT_FILENO, "%r[SEGFAULT]%n");
-	else
-		tlib_printf(STDOUT_FILENO, "%r[CRASH]%n");
-}
-
-void	tlib_test_process(void (*fun)(void), t_pres expected) {
+static int	tlib_testprocess_run(void (*fun)(void)) {
 	pid_t	pid;
 	int		status;
-	t_pres	pres;
 	void	(*sighandler)(int);
 
 	sighandler = signal(SIGUSR1, &handle_sigusr);
 	pid = fork();
 	if (pid == -1)
-		return ;
+		return (-1);
 	else if (pid == 0)
 	{
 		g_child = TRUE;
@@ -100,13 +82,42 @@ void	tlib_test_process(void (*fun)(void), t_pres expected) {
 	}
 	waitpid(pid, &status, 0);
 	signal(SIGUSR1, sighandler);
-	pres = get_pres(status);
-	if (pres == expected)
-		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
-	else
-	{
+	return (status);
+}
+
+void	tlib_testprocess_ok(void (*fun)(void)) {
+	int		status;
+
+	status = tlib_testprocess_run(fun);
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+		//Expected result, do nothing
+	} else if (WIFSIGNALED(status) && WTERMSIG(status) == 11) {
 		tlib_test_setfail();
-		print_pres(pres);
+		tlib_printf(STDOUT_FILENO, "%r[SEGFAULT]%n");
+		//TODO add error log
+	}
+	else {
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, "%r[CRASH]%n");
+		//TODO add error log
+	}
+}
+
+void	tlib_testprocess_segfault(void (*fun)(void)) {
+	int		status;
+
+	status = tlib_testprocess_run(fun);
+	if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, "%r[NO CRASH]%n");
+		//TODO add error log
+	} else if (WIFSIGNALED(status) && WTERMSIG(status) == 11) {
+		tlib_printf(STDOUT_FILENO, "%g[OK]%n");
+	}
+	else {
+		tlib_test_setfail();
+		tlib_printf(STDOUT_FILENO, "%r[CRASH]%n");
+		//TODO add error log
 	}
 }
 

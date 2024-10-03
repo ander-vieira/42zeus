@@ -19,5 +19,5 @@ static void	test_putchar_fd_child1(void) {
 }
 
 void	test_putchar_fd(void) {
-	tlib_test_process(&test_putchar_fd_child1, PRESULT_OK);
+	tlib_testprocess_ok(&test_putchar_fd_child1);
 }

@@ -32,6 +32,6 @@ static void	test_putstr_fd_child2(void) {
 }
 
 void	test_putstr_fd(void) {
-	tlib_test_process(&test_putstr_fd_child1, PRESULT_OK);
-	tlib_test_process(&test_putstr_fd_child2, PRESULT_OK);
+	tlib_testprocess_ok(&test_putstr_fd_child1);
+	tlib_testprocess_ok(&test_putstr_fd_child2);
 }

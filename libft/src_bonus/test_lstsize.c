@@ -28,6 +28,6 @@ static void	test_lstsize_child2(void) {
 }
 
 void	test_lstsize(void) {
-	tlib_test_process(&test_lstsize_child1, PRESULT_OK);
-	tlib_test_process(&test_lstsize_child2, PRESULT_OK);
+	tlib_testprocess_ok(&test_lstsize_child1);
+	tlib_testprocess_ok(&test_lstsize_child2);
 }

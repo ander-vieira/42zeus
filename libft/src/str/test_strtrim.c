@@ -37,8 +37,8 @@ static void	test_strtrim_child4(void) {
 }
 
 void	test_strtrim(void) {
-	tlib_test_process(&test_strtrim_child1, PRESULT_OK);
-	tlib_test_process(&test_strtrim_child2, PRESULT_OK);
-	tlib_test_process(&test_strtrim_child3, PRESULT_OK);
-	tlib_test_process(&test_strtrim_child4, PRESULT_OK);
+	tlib_testprocess_ok(&test_strtrim_child1);
+	tlib_testprocess_ok(&test_strtrim_child2);
+	tlib_testprocess_ok(&test_strtrim_child3);
+	tlib_testprocess_ok(&test_strtrim_child4);
 }
