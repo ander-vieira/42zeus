@@ -22,8 +22,7 @@ static char	findinlist(char mode, char *elem1, char *lst2) {
 	i = 0;
 	while (isspace(lst2[i]))
 		i++;
-	while (lst2[i] != '\0')
-	{
+	while (lst2[i] != '\0') {
 		len = 0;
 		while (lst2[i + len] != '\0' && !isspace(lst2[i + len]))
 			len++;
@@ -48,8 +47,7 @@ static void	mainloop(char mode, char *lst1, char *lst2) {
 	i = 0;
 	while (isspace(lst1[i]))
 		i++;
-	while (lst1[i] != '\0')
-	{
+	while (lst1[i] != '\0') {
 		len = 0;
 		while (lst1[i + len] != '\0' && !isspace(lst1[i + len]))
 			len++;

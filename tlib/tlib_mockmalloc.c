@@ -38,8 +38,7 @@ static t_bool	tlib_mockmalloc_delete(void *addr) {
 	t_alloc	*current;
 
 	list = &g_allocs;
-	while ((*list)->addr != addr)
-	{
+	while ((*list)->addr != addr) {
 		if (*list == NULL)
 			return (FALSE);
 		list = &((*list)->next);
@@ -57,8 +56,7 @@ static t_bool	tlib_mockmalloc_tickmocks(void) {
 
 	list = &g_mocks;
 	mock = FALSE;
-	while (*list != NULL)
-	{
+	while (*list != NULL) {
 		(*list)->timer -= 1;
 		if ((*list)->timer == 0) {
 			current = *list;
@@ -76,8 +74,7 @@ static void	tlib_mockmalloc_resetmocks(void) {
 	t_amock	*current;
 
 	list = &g_mocks;
-	while (*list != NULL)
-	{
+	while (*list != NULL) {
 		current = *list;
 		list = &((*list)->next);
 		free(current);
@@ -90,8 +87,7 @@ void	tlib_mockmalloc_reset(void) {
 	t_alloc	*current;
 
 	list = &g_allocs;
-	while (*list != NULL)
-	{
+	while (*list != NULL) {
 		current = *list;
 		list = &((*list)->next);
 		free(current);
@@ -104,8 +100,7 @@ size_t	tlib_mockmalloc_lookup(void *addr) {
 	t_alloc	**list;
 
 	list = &g_allocs;
-	while (*list != NULL)
-	{
+	while (*list != NULL) {
 		if ((*list)->addr == addr)
 			return ((*list)->size);
 		list = &((*list)->next);
@@ -119,8 +114,7 @@ size_t	tlib_mockmalloc_count(void) {
 
 	list = &g_allocs;
 	count = 0;
-	while (*list != NULL)
-	{
+	while (*list != NULL) {
 		count += 1;
 		list = &((*list)->next);
 	}

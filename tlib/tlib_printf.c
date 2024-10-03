@@ -51,8 +51,7 @@ void	tlib_printf(int fd, char *format, ...) {
 
 	va_start(args, format);
 	i = 0;
-	while (format[i] != '\0')
-	{
+	while (format[i] != '\0') {
 		if (format[i] == '%')
 			print_direc(fd, format, &i, args);
 		else

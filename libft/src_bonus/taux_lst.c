@@ -22,8 +22,7 @@ void	taux_parg_init(t_parg *parg, size_t len, ...) {
 	parg->i = 0;
 	parg->err = FALSE;
 	i = 0;
-	while (i < len)
-	{
+	while (i < len) {
 		parg->p[i] = va_arg(args, void *);
 		i++;
 	}
@@ -36,8 +35,7 @@ void	taux_parg_check(t_parg *parg, void *p) {
 	parg->i++;
 	if (p != NULL) {
 		i = 0;
-		while (i < parg->len)
-		{
+		while (i < parg->len) {
 			if (p == parg->p[i]) {
 				parg->p[i] = NULL;
 				return ;
@@ -64,8 +62,7 @@ void	taux_pget_init(t_pget *pget, size_t len, ...) {
 	pget->j = 0;
 	pget->err = FALSE;
 	i = 0;
-	while (i < len)
-	{
+	while (i < len) {
 		pget->p[i] = va_arg(args, void *);
 		i++;
 	}
@@ -88,8 +85,7 @@ void	taux_pget_check(t_pget *pget, void *p) {
 	pget->j++;
 	if (p != NULL) {
 		i = 0;
-		while (i < pget->len && i < pget->i)
-		{
+		while (i < pget->len && i < pget->i) {
 			if (p == pget->p[i]) {
 				pget->p[i] = NULL;
 				return ;

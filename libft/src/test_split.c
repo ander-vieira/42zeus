@@ -7,8 +7,7 @@ static void	test_split_free(char **split) {
 
 	if (split != NULL) {
 		i = 0;
-		while (split[i] != NULL)
-		{
+		while (split[i] != NULL) {
 			free(split[i]);
 			i++;
 		}
@@ -28,8 +27,7 @@ static void	test_split_testone(char *str, char c, size_t len, ...) {
 	tlib_testresult_bool(split != NULL);
 	tlib_testmalloc_size(split, sizeof(char *) * (len + 1));
 	i = 0;
-	while (i < len)
-	{
+	while (i < len) {
 		expected = va_arg(args, char *);
 		tlib_testresult_bool(split[i] != NULL && !strcmp(split[i], expected));
 		tlib_testmalloc_size(split[i], strlen(expected) + 1);
