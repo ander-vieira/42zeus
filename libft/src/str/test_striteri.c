@@ -3,15 +3,15 @@
 //TODO upgrade tests
 
 static t_bool	striteri_testing;
-static char		striteri_str[5];
+static char		*striteri_str;
 static size_t	striteri_str_len;
-static char		striteri_checked[5];
+static char		striteri_checked[10];
 static size_t	striteri_called;
 
 static void	test_striteri_start(char *str) {
 	size_t	i;
 
-	tlib_str_cpy(striteri_str, str);
+	striteri_str = str;
 	striteri_str_len = tlib_str_len(str);
 	i = 0;
 	while (i < striteri_str_len) {
@@ -57,12 +57,15 @@ static void	test_striteri_child1(void) {
 }
 
 static void	test_striteri_child2(void) {
-	striteri_testing = FALSE;
+	tlib_mockmalloc_reset();
 	ft_striteri(NULL, &test_striteri_fun);
+	tlib_testmalloc_leak("ft_striteri(NULL, %p)", &test_striteri_fun);
 }
 
 static void	test_striteri_child3(void) {
+	tlib_mockmalloc_reset();
 	ft_striteri("HOLA", NULL);
+	tlib_testmalloc_leak("ft_striteri(\"HOLA\", NULL)");
 }
 
 void	test_striteri(void) {
