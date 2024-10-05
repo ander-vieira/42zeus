@@ -1,11 +1,13 @@
 #include "test.h"
 
+//TODO test positive vs negative values, not just equal/different
+
 static void	test_memcmp_testequal(char *s1, char *s2, size_t n) {
-	tlib_testresult_false(ft_memcmp(s1, s2, n), "ft_memcmp(%S, %S, %z)", s1, s2, n);
+	tlib_testresult_int(ft_memcmp(s1, s2, n), 0, "ft_memcmp(%S, %S, %z)", s1, s2, n);
 }
 
 static void	test_memcmp_testdiff(char *s1, char *s2, size_t n) {
-	tlib_testresult_true(ft_memcmp(s1, s2, n), "ft_memcmp(%S, %S, %z)", s1, s2, n);
+	tlib_testresult_nonzero(ft_memcmp(s1, s2, n), "ft_memcmp(%S, %S, %z)", s1, s2, n);
 }
 
 static void	test_memcmp_child1(void) {

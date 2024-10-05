@@ -1,11 +1,13 @@
 #include "test.h"
 
+//TODO test positive vs negative values, not just equal/different
+
 static void	test_strncmp_testequal(char *s1, char *s2, size_t n) {
-	tlib_testresult_false(ft_strncmp(s1, s2, n), "ft_strncmp(%S, %S, %z)", s1, s2, n);
+	tlib_testresult_int(ft_strncmp(s1, s2, n), 0, "ft_strncmp(%S, %S, %z)", s1, s2, n);
 }
 
 static void	test_strncmp_testdiff(char *s1, char *s2, size_t n) {
-	tlib_testresult_true(ft_strncmp(s1, s2, n), "ft_strncmp(%S, %S, %z)", s1, s2, n);
+	tlib_testresult_nonzero(ft_strncmp(s1, s2, n), "ft_strncmp(%S, %S, %z)", s1, s2, n);
 }
 
 static void	test_strncmp_child1(void) {

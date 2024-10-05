@@ -35,30 +35,6 @@ void	tlib_testresult_raw(t_bool ok) {
 	}
 }
 
-void	tlib_testresult_true(int value, char *call, ...) {
-	t_bool	condition;
-
-	condition = (value != 0);
-	tlib_testresult_raw(condition);
-	if (!condition) {
-		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
-		tlib_log_print("- (expected: nonzero, returned: 0)\n");
-	}
-}
-
-void	tlib_testresult_false(int value, char *call, ...) {
-	t_bool	condition;
-
-	condition = (value == 0);
-	tlib_testresult_raw(condition);
-	if (!condition) {
-		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
-		tlib_log_print("- (expected: 0, returned: %d)\n", value);
-	}
-}
-
 void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...) {
 	t_bool	condition;
 
@@ -80,6 +56,18 @@ void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...) 
 		__tlib_log_call(call);
 		tlib_log_print(" has returned an incorrect value\n");
 		tlib_log_print("- (expected: %d, returned: %d)\n", expected_value, actual_value);
+	}
+}
+
+void	tlib_testresult_nonzero(int value, char *call, ...) {
+	t_bool	condition;
+
+	condition = (value != 0);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print("- (expected: nonzero, returned: 0)\n");
 	}
 }
 
