@@ -76,11 +76,15 @@ static void	test_strmapi_child2(void) {
 }
 
 static void	test_strmapi_child3(void) {
+	tlib_mockmalloc_reset();
 	tlib_testresult_addr(ft_strmapi(NULL, &test_strmapi_fun), NULL, "ft_strmapi(NULL, %p)", &test_strmapi_fun);
+	tlib_testmalloc_leak("ft_strmapi(NULL, %p)", &test_strmapi_fun);
 }
 
 static void	test_strmapi_child4(void) {
+	tlib_mockmalloc_reset();
 	tlib_testresult_addr(ft_strmapi("HOLA", NULL), NULL, "ft_strmapi(\"HOLA\", NULL)");
+	tlib_testmalloc_leak("ft_strmapi(\"HOLA\", NULL)");
 }
 
 void	test_strmapi(void) {

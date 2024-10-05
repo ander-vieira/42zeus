@@ -39,7 +39,7 @@ void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...)
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: %c (%d), returned: %c (%d))\n", expected_value, expected_value, actual_value, actual_value);
 	}
 }
@@ -51,7 +51,7 @@ void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...) 
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: %d, returned: %d)\n", expected_value, actual_value);
 	}
 }
@@ -63,7 +63,7 @@ void	tlib_testresult_nonzero(int value, char *call, ...) {
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: nonzero, returned: 0)\n");
 	}
 }
@@ -75,7 +75,7 @@ void	tlib_testresult_size(size_t actual_value, size_t expected_value, char *call
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: %z, returned: %z)\n", expected_value, actual_value);
 	}
 }
@@ -87,7 +87,7 @@ void	tlib_testresult_str(char *actual_value, char *expected_value, char *call, .
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect string\n");
+		tlib_log_print(" returned an incorrect string\n");
 		tlib_log_print("- (expected: %S, returned: %S)\n", expected_value, actual_value);
 	}
 }
@@ -99,7 +99,7 @@ void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, 
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: %p, returned: %p)\n", expected_value, actual_value);
 	}
 }
@@ -111,7 +111,7 @@ void	tlib_testresult_notnull(void *value, char *call, ...) {
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print(" returned an incorrect value\n");
 		tlib_log_print("- (expected: nonnull, returned: NULL)\n");
 	}
 }
@@ -156,7 +156,7 @@ void	tlib_testmalloc_size(void *addr, size_t expected_size, char *call, ...) {
 	tlib_testresult_raw(condition);
 	if (!condition) {
 		__tlib_log_call(call);
-		tlib_log_print(" has returned a memory allocation of the wrong size\n");
+		tlib_log_print(" returned a memory allocation of the wrong size\n");
 		tlib_log_print("- (expected: %z, returned: %z)\n", expected_size, actual_size);
 	}
 }
