@@ -8,6 +8,22 @@ then
 	nocolor="\033[0m"
 fi
 
+# Check the testable directory is passed
+if [ $# -ge 1 ]
+then
+	testdir=$1
+else
+	testdir=.
+fi
+
+if [ $testdir == "--update" ]
+then
+	mv -f ~/42zeus ~/.42zeus_tmp
+	curl https://raw.githubusercontent.com/ander-vieira/42zeus/master/setup | bash
+	rm -rf ~/.42zeus_tmp
+	exit 0
+fi
+
 echo -en "${blue}"
 echo "+---------------------------------------------------------------------------+";
 echo "| █████ █████   ████████     ███████████ ██████████ █████  █████  █████████ |";
@@ -22,22 +38,6 @@ echo "+-------------------------------------------------------------------------
 echo -en "${nocolor}"
 
 echo -e "${green}Version $(cat $(dirname $0)/version.txt)${nocolor}"
-
-# Check the testable directory is passed
-if [ $# -ge 1 ]
-then
-	testdir=$1
-else
-	testdir=.
-fi
-
-if [ $testdir == "--update" ]
-then
-	mv ~/42zeus ~/.42zeus_tmp
-	curl https://raw.githubusercontent.com/ander-vieira/42zeus/master/setup | bash
-	rm -rf ~/.42zeus_tmp
-	exit 0
-fi
 
 if [ ! -d $testdir ]
 then
