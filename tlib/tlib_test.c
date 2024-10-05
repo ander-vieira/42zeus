@@ -119,6 +119,17 @@ void	tlib_testresult_notnull(void *value, char *call, ...) {
 	}
 }
 
+void	tlib_testresult_mem(void *addr, size_t n, unsigned char expected_c, char *call, ...) {
+	t_bool	condition;
+
+	condition = tlib_aux_memisset(addr, n, expected_c);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" did not fill buffer %p of size %z with byte %u\n", addr, n, expected_c);
+	}
+}
+
 void	tlib_testmalloc_leak(char *call, ...) {
 	size_t	count;
 

@@ -6,8 +6,8 @@ static void	test_calloc_child1(void) {
 	tlib_mockmalloc_reset();
 	buf = ft_calloc(3, 2);
 	tlib_testresult_notnull(buf, "ft_calloc(3, 2)");
+	tlib_testresult_mem(buf, 6, '\0', "ft_calloc(3, 2)");
 	tlib_testmalloc_size(buf, 6, "ft_calloc(3, 2)");
-	tlib_testresult_raw(!memcmp(buf, "\0\0\0\0\0\0", 6));
 	free(buf);
 	tlib_testmalloc_leak("ft_calloc(3, 2)");
 }

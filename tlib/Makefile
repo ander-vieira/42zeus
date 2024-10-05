@@ -1,6 +1,6 @@
 NAME = tlib.a
 
-SRCS = tlib_log.c tlib_mockmalloc.c tlib_print.c tlib_test.c
+SRCS = tlib_aux.c tlib_log.c tlib_mockmalloc.c tlib_print.c tlib_test.c
 HDRS = tlib.h
 OBJS = $(SRCS:.c=.o)
 
