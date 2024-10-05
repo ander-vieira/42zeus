@@ -59,6 +59,30 @@ void	tlib_testresult_false(int value, char *call, ...) {
 	}
 }
 
+void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...) {
+	t_bool	condition;
+
+	condition = (actual_value == expected_value);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print("- (expected: %c (%d), returned: %c (%d))\n", expected_value, expected_value, actual_value, actual_value);
+	}
+}
+
+void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...) {
+	t_bool	condition;
+
+	condition = (actual_value == expected_value);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect value\n");
+		tlib_log_print("- (expected: %d, returned: %d)\n", expected_value, actual_value);
+	}
+}
+
 void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, ...) {
 	t_bool	condition;
 
