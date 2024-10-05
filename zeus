@@ -31,6 +31,14 @@ else
 	testdir=.
 fi
 
+if [ $testdir == "--update" ]
+then
+	mv ~/42zeus ~/.42zeus_tmp
+	curl https://raw.githubusercontent.com/ander-vieira/42zeus/master/setup | bash
+	rm -rf ~/.42zeus_tmp
+	exit 0
+fi
+
 if [ ! -d $testdir ]
 then
 	echo -e "${red}$testdir does not exist or is not a directory${nocolor}"
