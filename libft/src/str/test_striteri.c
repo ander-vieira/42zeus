@@ -1,7 +1,5 @@
 #include "test.h"
 
-//TODO upgrade tests
-
 static t_bool	striteri_testing;
 static char		*striteri_str;
 static size_t	striteri_str_len;
@@ -47,7 +45,7 @@ static void	test_striteri_testone(char *str) {
 	ft_striteri(striteri_str, &test_striteri_fun);
 	test_striteri_stop();
 	tlib_testresult_custom(striteri_called == tlib_str_len(str),
-		"ft_striteri(%S, %p) has been called an incorrect number of times\n- (expected: %z calls, actual: %z calls)\n", str, &test_striteri_fun, tlib_str_len(str), striteri_called);
+		"ft_striteri(%S, %p) has called its function an incorrect number of times\n- (expected: %z calls, actual: %z calls)\n", str, &test_striteri_fun, tlib_str_len(str), striteri_called);
 	tlib_testmalloc_leak("ft_striteri(%S, %p)", str, &test_striteri_fun);
 }
 
