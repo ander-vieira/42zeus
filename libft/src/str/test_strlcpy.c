@@ -1,7 +1,7 @@
 #include "test.h"
 
 static void	test_strlcpy_testone(char *dst, char *src, size_t n, char *expected_str) {
-	tlib_testresult_size(ft_strlcpy(dst, src, n), tlib_aux_strlen(src), "ft_strlcpy(%p, %S, %z)", dst, src, n);
+	tlib_testresult_size(ft_strlcpy(dst, src, n), tlib_str_len(src), "ft_strlcpy(%p, %S, %z)", dst, src, n);
 	tlib_testresult_str(dst, expected_str, "ft_strlcpy(%p, %S, %z)", dst, src, n);
 }
 

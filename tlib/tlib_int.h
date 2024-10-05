@@ -51,6 +51,9 @@ void	tlib_log_vaprint(char *format, va_list args);
 /* ************************************************************************** */
 /* Alloc: managing lists of memory allocations                                */
 
+
+void	*libc_malloc(size_t len);
+void	libc_free(void *addr);
 size_t	tlib_mockmalloc_lookup(void *addr);
 size_t	tlib_mockmalloc_count(void);
 

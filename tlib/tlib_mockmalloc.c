@@ -5,22 +5,6 @@ t_amock	*tlib_mocks;
 
 /****** Static functions ******/
 
-static void	*libc_malloc(size_t len) {
-	static void	*(*fun)(size_t);
-
-	if (fun == NULL)
-		fun = dlsym(RTLD_NEXT, "malloc");
-	return (fun(len));
-}
-
-static void	libc_free(void *addr) {
-	static void	(*fun)(void *);
-
-	if (fun == NULL)
-		fun = dlsym(RTLD_NEXT, "free");
-	fun(addr);
-}
-
 static void	tlib_mockmalloc_add(void *addr, size_t size) {
 	t_alloc	**list;
 
@@ -85,6 +69,22 @@ static void	tlib_mockmalloc_resetmocks(void) {
 }
 
 /****** Internal functions ******/
+
+void	*libc_malloc(size_t len) {
+	static void	*(*fun)(size_t);
+
+	if (fun == NULL)
+		fun = dlsym(RTLD_NEXT, "malloc");
+	return (fun(len));
+}
+
+void	libc_free(void *addr) {
+	static void	(*fun)(void *);
+
+	if (fun == NULL)
+		fun = dlsym(RTLD_NEXT, "free");
+	fun(addr);
+}
 
 size_t	tlib_mockmalloc_lookup(void *addr) {
 	t_alloc	**list;

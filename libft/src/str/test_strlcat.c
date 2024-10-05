@@ -3,11 +3,11 @@
 static void	test_strlcat_testone(char *dst, char *src, size_t dstsize, char *start_value, char *expected_value) {
 	size_t	expected_size;
 
-	if (dstsize >= tlib_aux_strlen(start_value))
-		expected_size = tlib_aux_strlen(start_value) + tlib_aux_strlen(src);
+	if (dstsize >= tlib_str_len(start_value))
+		expected_size = tlib_str_len(start_value) + tlib_str_len(src);
 	else
-		expected_size = dstsize + tlib_aux_strlen(src);
-	tlib_aux_strcpy(dst, start_value);
+		expected_size = dstsize + tlib_str_len(src);
+	tlib_str_cpy(dst, start_value);
 	tlib_testresult_size(ft_strlcat(dst, src, dstsize), expected_size, "ft_strlcat(%S, %S, %z)", start_value, src, dstsize);
 	tlib_testresult_str(dst, expected_value, "ft_strlcat(%S, %S, %z)", start_value, src, dstsize);
 }
