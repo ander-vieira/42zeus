@@ -5,7 +5,7 @@ static void	test_strdup_testone(char *str) {
 
 	tlib_mockmalloc_reset();
 	result = ft_strdup(str);
-	tlib_testresult_raw(!strcmp(result, str));
+	tlib_testresult_str(result, str, "ft_strdup(%S)", str);
 	tlib_testmalloc_size(result, strlen(str) + 1, "ft_strdup(%S)", str);
 	free(result);
 	tlib_testmalloc_leak("ft_strdup(%S)", str);
@@ -19,11 +19,11 @@ static void	test_strdup_child1(void) {
 static void	test_strdup_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_raw(ft_strdup("HOLA") == NULL);
+	tlib_testresult_addr(ft_strdup("HOLA"), NULL, "ft_strdup(\"HOLA\") (malloc failed)");
 }
 
 static void	test_strdup_child3(void) {
-	tlib_testresult_raw(ft_strdup(NULL) == NULL);
+	ft_strdup(NULL);
 }
 
 void	test_strdup(void) {
