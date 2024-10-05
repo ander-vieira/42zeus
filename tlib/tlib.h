@@ -31,6 +31,7 @@ void	tlib_testresult_true(int value, char *call, ...);
 void	tlib_testresult_false(int value, char *call, ...);
 void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...);
 void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...);
+void	tlib_testresult_size(size_t actual_value, size_t expected_value, char *call, ...);
 void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, ...);
 void	tlib_testresult_notnull(void *value, char *call, ...);
 void	tlib_testprocess_ok(void (*fun)(void));

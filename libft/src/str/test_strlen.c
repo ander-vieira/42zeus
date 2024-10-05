@@ -1,10 +1,14 @@
 #include "test.h"
 
+static void test_strlen_testone(char *str, size_t expected) {
+	tlib_testresult_size(ft_strlen(str), expected, "ft_strlen(%S)", str);
+}
+
 static void	test_strlen_child1(void) {
 	tlib_mockmalloc_reset();
-	tlib_testresult_raw(ft_strlen("ASDFG") == 5);
-	tlib_testresult_raw(ft_strlen("AAA BBB CCC") == 11);
-	tlib_testresult_raw(ft_strlen("") == 0);
+	test_strlen_testone("HOLA", 4);
+	test_strlen_testone("HOLA MUNDO", 10);
+	test_strlen_testone("", 0);
 	tlib_testmalloc_leak(NULL);
 }
 
