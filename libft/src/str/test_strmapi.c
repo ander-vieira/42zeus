@@ -2,12 +2,12 @@
 
 //TODO upgrade tests
 
-static char			*g_str;
-static unsigned int	g_i;
+static char			*strmapi_str;
+static unsigned int	strmapi_called;
 
 static char	test_strmapi_fun1(unsigned int i, char c) {
-	tlib_testresult_raw(i == g_i && c == g_str[g_i]);
-	g_i++;
+	tlib_testresult_raw(i == strmapi_called && c == strmapi_str[strmapi_called]);
+	strmapi_called++;
 	if (i == 0)
 		return (c + 1);
 	return (c);
@@ -21,8 +21,8 @@ static char	test_strmapi_fun2(unsigned int i, char c) {
 static void	test_strmapi_testone(char *str) {
 	char	*str2;
 
-	g_str = str;
-	g_i = 0;
+	strmapi_str = str;
+	strmapi_called = 0;
 	tlib_mockmalloc_reset();
 	str2 = ft_strmapi(str, &test_strmapi_fun1);
 	if (strlen(str) == 0)
