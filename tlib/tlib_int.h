@@ -43,6 +43,20 @@ typedef struct s_amock {
 	size_t			timer;
 }	t_amock;
 
+/****** GLOBAL ******/
+
+extern t_bool	tlib_islogging;
+extern int		tlib_logfd;
+extern char		*tlib_section;
+extern t_bool	tlib_newsection;
+
+extern t_alloc	*tlib_allocs;
+extern t_amock	*tlib_mocks;
+
+extern t_bool	tlib_ischild;
+extern t_bool	tlib_testfailed;
+extern int		print_pipe[2];
+
 /****** LOG ******/
 
 void	tlib_log_print(char *format, ...);

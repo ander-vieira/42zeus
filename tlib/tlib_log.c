@@ -6,16 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 09:53:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/03 19:27:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:00:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tlib_int.h"
-
-t_bool	tlib_islogging;
-int		tlib_logfd;
-char	*tlib_section;
-t_bool	tlib_newsection;
 
 void	tlib_log_end(void) {
 	if (tlib_islogging)

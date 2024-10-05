@@ -11,9 +11,9 @@ fi
 status=0
 
 echo -en "${blue}"
-echo "+---------------------------+"
-echo "|   libft: MANDATORY PART   |"
-echo "+---------------------------+"
+echo "+-----------+"
+echo "|   libft   |"
+echo "+-----------+"
 echo -en "${nocolor}"
 
 echo "+----------------+"
@@ -25,6 +25,12 @@ if [ $? -ne 0 ]
 then
 	status=1
 fi
+
+echo -en "${blue}"
+echo "+---------------------------+"
+echo "|   libft: MANDATORY PART   |"
+echo "+---------------------------+"
+echo -en "${nocolor}"
 
 echo "+---------------------+"
 echo "|   COMPILE LIBRARY   |"

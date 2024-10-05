@@ -1,8 +1,5 @@
 #include "tlib_int.h"
 
-t_alloc	*tlib_allocs;
-t_amock	*tlib_mocks;
-
 /****** Static functions ******/
 
 static void	tlib_mockmalloc_add(void *addr, size_t size) {

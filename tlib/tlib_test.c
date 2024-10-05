@@ -1,9 +1,5 @@
 #include "tlib_int.h"
 
-t_bool	tlib_ischild;
-t_bool	tlib_testfailed;
-int		print_pipe[2];
-
 static void	tlib_test_setfail() {
 	if (tlib_ischild)
 		kill(getppid(), SIGUSR1);
