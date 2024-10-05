@@ -58,7 +58,7 @@ static void	test_split_child3(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(g_mocked);
 	tlib_testresult_raw(ft_split("AB CD", ' ') == NULL);
-	tlib_testmalloc_leak("ft_split(\"AB CD\", ' ') (malloc %z fail)", g_mocked);
+	tlib_testmalloc_leak("ft_split(\"AB CD\", ' ') (with malloc %z fail)", g_mocked);
 }
 
 static void	test_split_child4(void) {

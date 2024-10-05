@@ -22,7 +22,7 @@ static void	test_itoa_child1(void) {
 static void	test_itoa_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_addr(ft_itoa(5), NULL, "ft_itoa(5) (malloc fail)");
+	tlib_testresult_addr(ft_itoa(5), NULL, "ft_itoa(5) (with malloc fail)");
 }
 
 void	test_itoa(void) {

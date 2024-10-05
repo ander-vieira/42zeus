@@ -19,7 +19,7 @@ static void	test_strdup_child1(void) {
 static void	test_strdup_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_addr(ft_strdup("HOLA"), NULL, "ft_strdup(\"HOLA\") (malloc failed)");
+	tlib_testresult_addr(ft_strdup("HOLA"), NULL, "ft_strdup(\"HOLA\") (with malloc fail)");
 }
 
 static void	test_strdup_child3(void) {

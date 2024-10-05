@@ -15,7 +15,7 @@ static void	test_calloc_child1(void) {
 static void	test_calloc_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
-	tlib_testresult_addr(ft_calloc(3, 2), NULL, "ft_calloc(3, 2) (malloc fail)");
+	tlib_testresult_addr(ft_calloc(3, 2), NULL, "ft_calloc(3, 2) (with malloc fail)");
 }
 
 void	test_calloc(void) {
