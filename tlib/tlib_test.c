@@ -55,7 +55,7 @@ void	tlib_testresult_false(int value, char *call, ...) {
 	if (!condition) {
 		__tlib_log_call(call);
 		tlib_log_print(" has returned an incorrect value\n");
-		tlib_log_print("- (expected: 0, returned: nonzero)\n");
+		tlib_log_print("- (expected: 0, returned: %d)\n", value);
 	}
 }
 
@@ -92,6 +92,18 @@ void	tlib_testresult_size(size_t actual_value, size_t expected_value, char *call
 		__tlib_log_call(call);
 		tlib_log_print(" has returned an incorrect value\n");
 		tlib_log_print("- (expected: %z, returned: %z)\n", expected_value, actual_value);
+	}
+}
+
+void	tlib_testresult_str(char *actual_value, char *expected_value, char *call, ...) {
+	t_bool	condition;
+
+	condition = tlib_aux_strcmp(actual_value, expected_value);
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(call);
+		tlib_log_print(" has returned an incorrect string\n");
+		tlib_log_print("- (expected: %S, returned: %S)\n", expected_value, actual_value);
 	}
 }
 

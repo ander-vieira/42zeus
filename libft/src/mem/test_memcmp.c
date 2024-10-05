@@ -10,12 +10,11 @@ static void	test_memcmp_testdiff(char *s1, char *s2, size_t n) {
 
 static void	test_memcmp_child1(void) {
 	tlib_mockmalloc_reset();
-	test_memcmp_testequal("ASDFG", "ASDFG", 5);
-	test_memcmp_testdiff("ASDFG", "ASDFH", 5);
-	test_memcmp_testdiff("ASDFG", "ASFFG", 5);
-	test_memcmp_testequal("ASDFG", "ASDFH", 4);
-	test_memcmp_testequal("ASDFG", "ASD", 3);
-	test_memcmp_testequal("ASD", "ASDFG", 3);
+	test_memcmp_testequal("HOLA", "HOLA", 5);
+	test_memcmp_testdiff("HOLA", "HOLE", 5);
+	test_memcmp_testdiff("HOLA", "HALA", 5);
+	test_memcmp_testequal("HOLA", "HOLE", 3);
+	test_memcmp_testdiff("HOLA", "HALA", 3);
 	tlib_testmalloc_leak(NULL);
 }
 

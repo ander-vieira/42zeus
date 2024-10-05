@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:53:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/05 11:31:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/05 12:26:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	tlib_aux_memcpy(void *dst, void *src, size_t n) {
 t_bool	tlib_aux_strcmp(char *str1, char *str2) {
 	size_t	i;
 
+	if (str1 == NULL && str2 == NULL)
+		return (TRUE);
+	if (str1 == NULL || str2 == NULL)
+		return (FALSE);
 	i = 0;
 	while (str1[i] != '\0' || str2[i] != '\0') {
 		if (str1[i] != str2[i])
