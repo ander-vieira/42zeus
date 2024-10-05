@@ -1,18 +1,22 @@
 #include "test.h"
 
+static void	test_memchr_testone(char *str, int c, size_t n, char *expected) {
+	tlib_testresult_addr(ft_memchr(str, c, n), expected, "ft_memchr(%S (%p), %c (%d), %z)", str, str, c, c, n);
+}
+
 static void	test_memchr_child1(void) {
-	char	buf[5];
+	char	*str;
 
 	tlib_mockmalloc_reset();
-	memcpy(buf, "ASD\0G", 5);
-	tlib_testresult_addr(ft_memchr(buf, 'A', 5), buf, "ft_memchr(%p, 'A', 5)", buf);
-	tlib_testresult_addr(ft_memchr(buf, '\0', 5), buf + 3, "ft_memchr(%p, '\\0', 5)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'G', 5), buf + 4, "ft_memchr(%p, 'G', 5)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'G', 3), NULL, "ft_memchr(%p, 'G', 3)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'H', 5), NULL, "ft_memchr(%p, 'H', 5)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'A', 0), NULL, "ft_memchr(%p, 'A', 0)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'A' + 256, 5), buf, "ft_memchr(%p, 'A' + 256, 5)", buf);
-	tlib_testresult_addr(ft_memchr(buf, 'H' + 256, 5), NULL, "ft_memchr(%p, 'H' + 256, 5)", buf);
+	str = "HOLA";
+	test_memchr_testone(str, 'H', 5, str);
+	test_memchr_testone(str, 'L', 5, str + 2);
+	test_memchr_testone(str, '\0', 5, str + 4);
+	test_memchr_testone(str, 'L', 2, NULL);
+	test_memchr_testone(str, 'F', 5, NULL);
+	test_memchr_testone(str, 'H', 0, NULL);
+	test_memchr_testone(str, 'H' + 256, 5, str);
+	test_memchr_testone(str, 'F' + 256, 5, NULL);
 	tlib_testmalloc_leak(NULL);
 }
 
