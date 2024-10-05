@@ -13,6 +13,7 @@ typedef enum e_bool {
 t_bool	tlib_aux_memisset(void *addr, size_t n, unsigned char c);
 t_bool	tlib_aux_memcmp(void *addr1, void *addr2, size_t n);
 t_bool	tlib_aux_strcmp(char *str1, char *str2);
+void	tlib_aux_strcpy(char *dst, char *src);
 size_t	tlib_aux_strlen(char *str);
 
 /****** LOG ******/
@@ -42,6 +43,7 @@ void	tlib_testresult_str(char *actual_value, char *expected_value, char *call, .
 void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, ...);
 void	tlib_testresult_notnull(void *value, char *call, ...);
 void	tlib_testresult_mem(void *addr, size_t n, unsigned char c, char *call, ...);
+void	tlib_testresult_custom(t_bool condition, char *message, ...);
 void	tlib_testprocess_ok(void (*fun)(void));
 void	tlib_testprocess_segfault(void (*fun)(void));
 int		tlib_test_results(void);

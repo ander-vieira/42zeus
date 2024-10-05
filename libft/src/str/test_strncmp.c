@@ -12,38 +12,38 @@ static void	test_strncmp_testdiff(char *s1, char *s2, size_t n) {
 
 static void	test_strncmp_child1(void) {
 	tlib_mockmalloc_reset();
-	test_strncmp_testequal("ASDFG", "ASDFG", 5);
-	test_strncmp_testequal("ASDFG", "ASDFG", 10);
-	test_strncmp_testequal("ASDFG", "ASDFG", 3);
-	test_strncmp_testdiff("ASDFG", "ASDFH", 5);
-	test_strncmp_testdiff("ASDFG", "ASDFH", 10);
-	test_strncmp_testequal("ASDFG", "ASDFH", 3);
-	test_strncmp_testdiff("ASDFG", "SSDFG", 5);
-	test_strncmp_testdiff("ASDFG", "ASD", 5);
-	test_strncmp_testequal("ASDFG", "ASD", 3);
-	test_strncmp_testdiff("ASD", "ASDFG", 5);
-	test_strncmp_testequal("ASD", "ASDFG", 3);
-	test_strncmp_testdiff("", "ASDFG", 5);
-	test_strncmp_testequal("ASDFG", "SSDFG", 0);
-	test_strncmp_testequal("ASDFG", "", 0);
-	test_strncmp_testequal("", "SSDFG", 0);
+	test_strncmp_testequal("HOLA", "HOLA", 4);
+	test_strncmp_testequal("HOLA", "HOLA", 7);
+	test_strncmp_testdiff("HOLA", "HOLE", 4);
+	test_strncmp_testequal("HOLA", "HOLE", 2);
+	test_strncmp_testdiff("HOLA", "HALA", 4);
+	test_strncmp_testdiff("HOLA", "HALA", 2);
+	test_strncmp_testdiff("HOLA", "HO", 4);
+	test_strncmp_testdiff("HO", "HOLA", 4);
+	test_strncmp_testequal("HOLA", "HO", 2);
+	test_strncmp_testequal("HO", "HOLA", 2);
+	test_strncmp_testdiff("HOLA", "", 4);
+	test_strncmp_testdiff("", "HOLA", 4);
+	test_strncmp_testequal("HOLA", "", 0);
+	test_strncmp_testequal("", "HOLA", 0);
+	test_strncmp_testequal("", "", 4);
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strncmp_child2(void) {
 	tlib_mockmalloc_reset();
-	test_strncmp_testequal(NULL, "ASDFG", 0);
-	test_strncmp_testequal("ASDFG", NULL, 0);
+	test_strncmp_testequal(NULL, "HOLA", 0);
+	test_strncmp_testequal("HOLA", NULL, 0);
 	test_strncmp_testequal(NULL, NULL, 0);
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strncmp_child3(void) {
-	ft_strncmp("ASDFG", NULL, 5);
+	ft_strncmp("HOLA", NULL, 5);
 }
 
 static void	test_strncmp_child4(void) {
-	ft_strncmp(NULL, "ASDFG", 5);
+	ft_strncmp(NULL, "HOLA", 5);
 }
 
 void	test_strncmp(void) {

@@ -130,6 +130,13 @@ void	tlib_testresult_mem(void *addr, size_t n, unsigned char expected_c, char *c
 	}
 }
 
+void	tlib_testresult_custom(t_bool condition, char *message, ...) {
+	tlib_testresult_raw(condition);
+	if (!condition) {
+		__tlib_log_call(message);
+	}
+}
+
 void	tlib_testmalloc_leak(char *call, ...) {
 	size_t	count;
 

@@ -1,32 +1,34 @@
 #include "test.h"
 
-static void	test_strlcat_testone(char *str1, char *str2, char *expected) {
-	char	buf[5];
+static void	test_strlcat_testone(char *dst, char *src, size_t dstsize, char *start_value, char *expected_value) {
+	size_t	expected_size;
 
-	tlib_mockmalloc_reset();
-	strcpy(buf, str1);
-	tlib_testresult_raw(ft_strlcat(buf, str2, 5) == strlen(str1) + strlen(str2));
-	tlib_testresult_raw(!strcmp(buf, expected));
+	if (dstsize >= tlib_aux_strlen(start_value))
+		expected_size = tlib_aux_strlen(start_value) + tlib_aux_strlen(src);
+	else
+		expected_size = dstsize + tlib_aux_strlen(src);
+	tlib_aux_strcpy(dst, start_value);
+	tlib_testresult_size(ft_strlcat(dst, src, dstsize), expected_size, "ft_strlcat(%S, %S, %z)", start_value, src, dstsize);
+	tlib_testresult_str(dst, expected_value, "ft_strlcat(%S, %S, %z)", start_value, src, dstsize);
 }
 
 static void	test_strlcat_child1(void) {
-	test_strlcat_testone("AB", "CD", "ABCD");
-	test_strlcat_testone("", "ABC", "ABC");
-	test_strlcat_testone("AB", "CDE", "ABCD");
-	test_strlcat_testone("", "ABCDE", "ABCD");
+	char	buf[11];
+
+	test_strlcat_testone(buf, " MUNDO", 11, "HOLA", "HOLA MUNDO");
+	test_strlcat_testone(buf, "", 11, "HOLA", "HOLA");
+	test_strlcat_testone(buf, "MUNDO", 11, "", "MUNDO");
+	test_strlcat_testone(buf, " MUNDO", 8, "HOLA", "HOLA MU");
+	test_strlcat_testone(buf, "MUNDO", 4, "", "MUN");
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_strlcat_child2(void) {
-	char	buf[5];
+	char	buf[11];
 
 	tlib_mockmalloc_reset();
-	strcpy(buf, "AB");
-	tlib_testresult_raw(ft_strlcat(buf, "C", 1) == 2);
-	tlib_testresult_raw(!strcmp(buf, "AB"));
-	strcpy(buf, "AB");
-	tlib_testresult_raw(ft_strlcat(buf, "C", 0) == 1);
-	tlib_testresult_raw(!strcmp(buf, "AB"));
+	test_strlcat_testone(buf, " MUNDO", 3, "HOLA", "HOLA");
+	test_strlcat_testone(buf, " MUNDO", 0, "HOLA", "HOLA");
 	tlib_testmalloc_leak(NULL);
 }
 

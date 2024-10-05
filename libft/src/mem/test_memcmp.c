@@ -22,18 +22,18 @@ static void	test_memcmp_child1(void) {
 
 static void	test_memcmp_child2(void) {
 	tlib_mockmalloc_reset();
-	test_memcmp_testequal(NULL, "ASDFG", 0);
-	test_memcmp_testequal("ASDFG", NULL, 0);
+	test_memcmp_testequal(NULL, "HOLA", 0);
+	test_memcmp_testequal("HOLA", NULL, 0);
 	test_memcmp_testequal(NULL, NULL, 0);
 	tlib_testmalloc_leak(NULL);
 }
 
 static void	test_memcmp_child3(void) {
-	ft_memcmp(NULL, "ASDFG", 5);
+	ft_memcmp(NULL, "HOLA", 5);
 }
 
 static void	test_memcmp_child4(void) {
-	ft_memcmp("ASDFG", NULL, 5);
+	ft_memcmp("HOLA", NULL, 5);
 }
 
 void	test_memcmp(void) {

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:53:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/05 12:26:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:33:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ t_bool	tlib_aux_memcmp(void *addr1, void *addr2, size_t n) {
 	return (TRUE);
 }
 
-void	tlib_aux_memcpy(void *dst, void *src, size_t n) {
+void	tlib_aux_strcpy(char *dst, char *src) {
 	size_t	i;
 
 	i = 0;
-	while (i < n) {
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+	while (src[i] != '\0') {
+		dst[i] = src[i];
 		i++;
 	}
+	dst[i] = '\0';
 }
 
 t_bool	tlib_aux_strcmp(char *str1, char *str2) {
