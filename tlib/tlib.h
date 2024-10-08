@@ -10,6 +10,7 @@ typedef enum e_bool {
 
 /****** AUX ******/
 
+t_bool	tlib_isalloc(void *addr);
 t_bool	tlib_mem_isset(void *addr, size_t n, unsigned char c);
 t_bool	tlib_mem_cmp(void *addr1, void *addr2, size_t n);
 char	*tlib_readall(int fd);

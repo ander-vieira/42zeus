@@ -3,30 +3,19 @@
 //TODO upgrade tests
 
 static void	test_lstlast_child1(void) {
-	t_list	*l1;
-	t_list	*l2;
-	t_list	*l3;
+	t_list	*l;
 
 	tlib_mockmalloc_reset();
-	l1 = taux_lstnew(NULL);
-	l2 = taux_lstnew(NULL);
-	l3 = taux_lstnew(NULL);
-	l1->next = l2;
-	l2->next = l3;
-	tlib_testresult_raw(ft_lstlast(l1) == l3);
-	tlib_testresult_raw(ft_lstlast(l2) == l3);
-	tlib_testresult_raw(ft_lstlast(l3) == l3);
-	tlib_testmalloc_size(l1, sizeof(t_list), NULL);
-	tlib_testmalloc_size(l2, sizeof(t_list), NULL);
-	tlib_testmalloc_size(l3, sizeof(t_list), NULL);
-	free(l1);
-	free(l2);
-	free(l3);
-	tlib_testmalloc_leak(NULL);
+	l = taux_lstbuild(3, NULL, NULL, NULL);
+	tlib_testresult_addr(ft_lstlast(l), l->next->next, "ft_lstlast(%p)", l);
+	taux_free(l);
+	tlib_testmalloc_leak("ft_lstlast(%p)", l);
 }
 
 static void	test_lstlast_child2(void) {
-	tlib_testresult_raw(ft_lstlast(NULL) == NULL);
+	tlib_mockmalloc_reset();
+	tlib_testresult_addr(ft_lstlast(NULL), NULL, "ft_lstlast(NULL)");
+	tlib_testmalloc_leak("ft_lstlast(NULL)");
 }
 
 void	test_lstlast(void) {

@@ -6,11 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 10:53:33 by andeviei          #+#    #+#             */
-/*   Updated: 2024/10/05 15:55:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/10/08 21:31:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tlib_int.h"
+
+/****** Static functions ******/
 
 static char	*tlib_readall_join(char *result_old, char *buf) {
 	char	*result;
@@ -26,6 +28,12 @@ static char	*tlib_readall_join(char *result_old, char *buf) {
 	tlib_str_cpy(result + old_len, buf);
 	libc_free(result_old);
 	return (result);
+}
+
+/****** Exposed functions ******/
+
+t_bool	tlib_isalloc(void *addr) {
+	return (tlib_mockmalloc_lookup(addr) != 0);
 }
 
 t_bool	tlib_mem_isset(void *addr, size_t n, unsigned char c) {

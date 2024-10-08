@@ -57,6 +57,9 @@ typedef struct s_pget {
 }	t_pget;
 
 t_list	*taux_lstnew(void *content);
+t_list	*taux_lstbuild(size_t n, ...);
+void	taux_free(t_list *l);
+t_bool	taux_lstcheck(t_list *l, size_t n, ...);
 void	taux_parg_init(t_parg *parg, size_t len, ...);
 void	taux_parg_check(t_parg *parg, void *p);
 t_bool	taux_parg_ok(t_parg parg);
