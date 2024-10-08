@@ -33,8 +33,13 @@ void	tlib_mockmalloc_setmock(size_t timer);
 /* Test: printing test results                                                */
 
 void	tlib_testmalloc_leak(char *call, ...);
+void	tlib_testmalloc_notfreed(void *addr, char *call, ...);
 void	tlib_testmalloc_size(void *addr, size_t size, char *call, ...);
 void	tlib_testmissing(void (*test)(void), void *fun, char *section);
+void	tlib_testprint_capture(void);
+void	tlib_testprint_get(char *expected, char *call, ...);
+void	tlib_testprocess_ok(void (*fun)(void));
+void	tlib_testprocess_segfault(void (*fun)(void));
 void	tlib_testresult_raw(t_bool ok);
 void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...);
 void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...);
@@ -45,10 +50,6 @@ void	tlib_testresult_addr(void *actual_value, void *expected_value, char *call, 
 void	tlib_testresult_notnull(void *value, char *call, ...);
 void	tlib_testresult_mem(void *addr, size_t n, unsigned char c, char *call, ...);
 void	tlib_testresult_custom(t_bool condition, char *message, ...);
-void	tlib_testprint_capture(void);
-void	tlib_testprint_get(char *expected, char *call, ...);
-void	tlib_testprocess_ok(void (*fun)(void));
-void	tlib_testprocess_segfault(void (*fun)(void));
 int		tlib_test_results(void);
 
 #endif
