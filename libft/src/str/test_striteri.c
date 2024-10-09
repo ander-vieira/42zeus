@@ -3,7 +3,7 @@
 static t_bool	striteri_testing;
 static char		*striteri_str;
 static size_t	striteri_str_len;
-static char		striteri_checked[10];
+static char		striteri_checked[FUNPTR_CHECKED];
 static size_t	striteri_called;
 
 static void	test_striteri_start(char *str) {
@@ -12,7 +12,7 @@ static void	test_striteri_start(char *str) {
 	striteri_str = str;
 	striteri_str_len = tlib_str_len(str);
 	i = 0;
-	while (i < striteri_str_len) {
+	while (i < FUNPTR_CHECKED) {
 		striteri_checked[i] = 0;
 		i++;
 	}
@@ -31,7 +31,7 @@ static void	test_striteri_fun(unsigned int i, char *c) {
 		"ft_striteri(%S, %p) has been called with an out of bounds index (%d)\n", striteri_str, &test_striteri_fun, i);
 	tlib_testresult_custom(c == striteri_str + i,
 		"ft_striteri(%S, %p) has been called with an incorrect parameter\n- (expected: %p, actual: %p)\n", striteri_str, &test_striteri_fun, striteri_str + i, c);
-	if (i < striteri_str_len) {
+	if (i < FUNPTR_CHECKED) {
 		tlib_testresult_custom(striteri_checked[i] == 0,
 			"ft_striteri(%S, %p) has been called multiple times on position %u\n", striteri_str, &test_striteri_fun, i);
 		striteri_checked[i] = 1;

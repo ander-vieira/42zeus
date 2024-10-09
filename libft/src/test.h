@@ -8,6 +8,8 @@
 
 # include "../../tlib/tlib.h"
 
+# define FUNPTR_CHECKED	10
+
 /* ************************************************************************** */
 /* Weak declarations to check for missing functions                           */
 

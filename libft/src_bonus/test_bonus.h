@@ -7,6 +7,8 @@
 
 # include "../../tlib/tlib.h"
 
+# define FUNPTR_CHECKED	10
+
 /* ************************************************************************** */
 /* Fake definition to get VSCode dependency detection working                */
 
@@ -58,8 +60,10 @@ typedef struct s_pget {
 
 t_list	*taux_lstnew(void *content);
 t_list	*taux_lstbuild(size_t n, ...);
+t_list	*taux_lstbuild_range(size_t n, char *addr);
 void	taux_free(t_list *l);
 t_bool	taux_lstcheck(t_list *l, size_t n, ...);
+t_bool	taux_lstcheck_range(t_list *l, size_t n, char *addr);
 void	taux_parg_init(t_parg *parg, size_t len, ...);
 void	taux_parg_check(t_parg *parg, void *p);
 t_bool	taux_parg_ok(t_parg parg);

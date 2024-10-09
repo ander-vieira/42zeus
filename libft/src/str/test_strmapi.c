@@ -4,7 +4,7 @@ static t_bool	strmapi_testing;
 static char		*strmapi_str;
 static size_t	strmapi_str_len;
 static char		*strmapi_expected;
-static char		strmapi_checked[10];
+static char		strmapi_checked[FUNPTR_CHECKED];
 static size_t	strmapi_called;
 
 static void	test_strmapi_start(char *str, char *expected) {
@@ -14,7 +14,7 @@ static void	test_strmapi_start(char *str, char *expected) {
 	strmapi_str_len = tlib_str_len(str);
 	strmapi_expected = expected;
 	i = 0;
-	while (i < strmapi_str_len) {
+	while (i < FUNPTR_CHECKED) {
 		strmapi_checked[i] = 0;
 		i++;
 	}
@@ -33,7 +33,7 @@ static char	test_strmapi_fun(unsigned int i, char c) {
 		"ft_strmapi(%S, %p) has been called with an out of bounds index (%d)\n", strmapi_str, &test_strmapi_fun, i);
 	tlib_testresult_custom(c == strmapi_str[i],
 		"ft_strmapi(%S, %p) has been called with an incorrect parameter\n- (expected: %c, actual: %c)\n", strmapi_str, &test_strmapi_fun, strmapi_str[i], c);
-	if (i < strmapi_str_len) {
+	if (i < FUNPTR_CHECKED) {
 		tlib_testresult_custom(strmapi_checked[i] == 0,
 			"ft_strmapi(%S, %p) has been called multiple times on position %u\n", strmapi_str, &test_strmapi_fun, i);
 		strmapi_checked[i] = 1;
