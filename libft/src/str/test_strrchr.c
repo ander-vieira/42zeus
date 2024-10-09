@@ -23,6 +23,6 @@ static void	test_strrchr_child2(void) {
 }
 
 void	test_strrchr(void) {
-	tlib_testprocess_ok(&test_strrchr_child1);
-	tlib_testprocess_segfault(&test_strrchr_child2);
+	tlib_testprocess_ok(&test_strrchr_child1, NULL);
+	tlib_testprocess_segfault(&test_strrchr_child2, NULL);
 }

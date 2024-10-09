@@ -38,6 +38,6 @@ static void	test_strnstr_child2(void) {
 }
 
 void	test_strnstr(void) {
-	tlib_testprocess_ok(&test_strnstr_child1);
-	tlib_testprocess_ok(&test_strnstr_child2);
+	tlib_testprocess_ok(&test_strnstr_child1, NULL);
+	tlib_testprocess_ok(&test_strnstr_child2, NULL);
 }

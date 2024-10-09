@@ -78,14 +78,14 @@ static void	test_split_child4(void) {
 
 static void	test_split_testmock(size_t mocked) {
 	split_mocked = mocked;
-	tlib_testprocess_ok(&test_split_child3);
+	tlib_testprocess_ok(&test_split_child3, NULL);
 }
 
 void	test_split(void) {
-	tlib_testprocess_ok(&test_split_child1);
-	tlib_testprocess_ok(&test_split_child2);
+	tlib_testprocess_ok(&test_split_child1, NULL);
+	tlib_testprocess_ok(&test_split_child2, NULL);
 	test_split_testmock(1);
 	test_split_testmock(2);
 	test_split_testmock(3);
-	tlib_testprocess_ok(&test_split_child4);
+	tlib_testprocess_ok(&test_split_child4, NULL);
 }

@@ -11,6 +11,15 @@ static void	handle_sigusr(int signal) {
 	tlib_test_setfail();
 }
 
+static void	tlib_testresult_raw(t_bool ok) {
+	if (ok)
+		tlib_print(STDOUT_FILENO, "%g[OK]%n");
+	else {
+		tlib_test_setfail();
+		tlib_print(STDOUT_FILENO, "%r[KO]%n");
+	}
+}
+
 void	tlib_testmalloc_leak(char *call, ...) {
 	size_t	count;
 
@@ -113,7 +122,7 @@ static int	tlib_testprocess_run(void (*fun)(void)) {
 	return (status);
 }
 
-void	tlib_testprocess_ok(void (*fun)(void)) {
+void	tlib_testprocess_ok(void (*fun)(void), char *call, ...) {
 	int		status;
 
 	status = tlib_testprocess_run(fun);
@@ -122,39 +131,32 @@ void	tlib_testprocess_ok(void (*fun)(void)) {
 	} else if (WIFSIGNALED(status) && WTERMSIG(status) == 11) {
 		tlib_test_setfail();
 		tlib_print(STDOUT_FILENO, "%r[SEGFAULT]%n");
-		tlib_log_print("A function call caused a segmentation fault\n");
-		tlib_log_print("- This is likely caused by a missing null check\n");
+		__tlib_log_call(call);
+		tlib_log_print(" caused a segmentation fault\n");
 	} else {
 		tlib_test_setfail();
 		tlib_print(STDOUT_FILENO, "%r[CRASH]%n");
-		tlib_log_print("A function call crashed in an unexpected way (status code: %d)\n", status);
+		__tlib_log_call(call);
+		tlib_log_print(" crashed in an unexpected way (status code: %d)\n", status);
 	}
 }
 
-void	tlib_testprocess_segfault(void (*fun)(void)) {
+void	tlib_testprocess_segfault(void (*fun)(void), char *call, ...) {
 	int		status;
 
 	status = tlib_testprocess_run(fun);
 	if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
 		tlib_test_setfail();
 		tlib_print(STDOUT_FILENO, "%r[NO CRASH]%n");
-		tlib_log_print("A function call should have caused a segmentation fault, but didn't\n");
-		tlib_log_print("This is likely caused by an unnecessary null check\n");
+		__tlib_log_call(call);
+		tlib_log_print(" should have caused a segmentation fault, but didn't\n");
 	} else if (WIFSIGNALED(status) && WTERMSIG(status) == 11) {
 		tlib_print(STDOUT_FILENO, "%g[OK]%n");
 	} else {
 		tlib_test_setfail();
 		tlib_print(STDOUT_FILENO, "%r[CRASH]%n");
-		tlib_log_print("A function call crashed in an unexpected way (status code: %d)\n", status);
-	}
-}
-
-void	tlib_testresult_raw(t_bool ok) {
-	if (ok)
-		tlib_print(STDOUT_FILENO, "%g[OK]%n");
-	else {
-		tlib_test_setfail();
-		tlib_print(STDOUT_FILENO, "%r[KO]%n");
+		__tlib_log_call(call);
+		tlib_log_print(" crashed in an unexpected way (status code: %d)\n", status);
 	}
 }
 

@@ -43,6 +43,6 @@ static void	test_atoi_child2(void) {
 }
 
 void	test_atoi(void) {
-	tlib_testprocess_ok(&test_atoi_child1);
-	tlib_testprocess_segfault(&test_atoi_child2);
+	tlib_testprocess_ok(&test_atoi_child1, NULL);
+	tlib_testprocess_segfault(&test_atoi_child2, "ft_atoi(NULL)");
 }

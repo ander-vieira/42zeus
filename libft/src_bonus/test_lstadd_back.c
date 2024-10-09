@@ -63,9 +63,9 @@ static void	test_lstadd_back_child5(void) {
 }
 
 void	test_lstadd_back(void) {
-	tlib_testprocess_ok(&test_lstadd_back_child1);
-	tlib_testprocess_ok(&test_lstadd_back_child2);
-	tlib_testprocess_ok(&test_lstadd_back_child3);
-	tlib_testprocess_ok(&test_lstadd_back_child4);
-	tlib_testprocess_ok(&test_lstadd_back_child5);
+	tlib_testprocess_ok(&test_lstadd_back_child1, NULL);
+	tlib_testprocess_ok(&test_lstadd_back_child2, NULL);
+	tlib_testprocess_ok(&test_lstadd_back_child3, NULL);
+	tlib_testprocess_ok(&test_lstadd_back_child4, NULL);
+	tlib_testprocess_ok(&test_lstadd_back_child5, NULL);
 }

@@ -44,8 +44,8 @@ static void	test_strtrim_child4(void) {
 }
 
 void	test_strtrim(void) {
-	tlib_testprocess_ok(&test_strtrim_child1);
-	tlib_testprocess_ok(&test_strtrim_child2);
-	tlib_testprocess_ok(&test_strtrim_child3);
-	tlib_testprocess_ok(&test_strtrim_child4);
+	tlib_testprocess_ok(&test_strtrim_child1, NULL);
+	tlib_testprocess_ok(&test_strtrim_child2, NULL);
+	tlib_testprocess_ok(&test_strtrim_child3, NULL);
+	tlib_testprocess_ok(&test_strtrim_child4, NULL);
 }

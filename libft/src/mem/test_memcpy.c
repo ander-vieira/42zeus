@@ -34,8 +34,8 @@ static void	test_memcpy_child4(void) {
 }
 
 void	test_memcpy(void) {
-	tlib_testprocess_ok(&test_memcpy_child1);
-	tlib_testprocess_ok(&test_memcpy_child2);
-	tlib_testprocess_segfault(&test_memcpy_child3);
-	tlib_testprocess_segfault(&test_memcpy_child4);
+	tlib_testprocess_ok(&test_memcpy_child1, NULL);
+	tlib_testprocess_ok(&test_memcpy_child2, NULL);
+	tlib_testprocess_segfault(&test_memcpy_child3, NULL);
+	tlib_testprocess_segfault(&test_memcpy_child4, NULL);
 }

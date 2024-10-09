@@ -161,12 +161,12 @@ static void	test_lstmap_child6(void) {
 	test_lstmap_start(l1);
 	l2 = ft_lstmap(l1, NULL, &test_lstmap_del);
 	test_lstmap_stop();
-	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, NULL, %p)", l1, &test_lstmap_del);
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(<list(1)>, NULL, %p)", &test_lstmap_del);
 	tlib_testresult_custom(lstmap_del_called == 0,
-		"ft_lstmap(%p, NULL, %p) called its function del an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", l1, &test_lstmap_del, lstmap_del_called);
+		"ft_lstmap(<list(1)>, NULL, %p) called its function del an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", &test_lstmap_del, lstmap_del_called);
 	taux_free(l1);
 	taux_free(l2);
-	tlib_testmalloc_leak("ft_lstmap(%p, NULL, %p)", l1, &test_lstmap_del);
+	tlib_testmalloc_leak("ft_lstmap(<list(1)>, NULL, %p)", &test_lstmap_del);
 }
 
 static void	test_lstmap_child7(void) {
@@ -177,20 +177,20 @@ static void	test_lstmap_child7(void) {
 	test_lstmap_start(l1);
 	l2 = ft_lstmap(l1, &test_lstmap_fun, NULL);
 	test_lstmap_stop();
-	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, %p, NULL)", l1, &test_lstmap_fun);
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(<list(1)>, %p, NULL)", &test_lstmap_fun);
 	tlib_testresult_custom(lstmap_fun_called == 0,
-		"ft_lstmap(%p, %p, NULL) called its function fun an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", l1, &test_lstmap_fun, lstmap_fun_called);
+		"ft_lstmap(<list(1)>, %p, NULL) called its function fun an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", &test_lstmap_fun, lstmap_fun_called);
 	taux_free(l1);
 	taux_free(l2);
-	tlib_testmalloc_leak("ft_lstmap(%p, %p, NULL)", l1, &test_lstmap_fun);
+	tlib_testmalloc_leak("ft_lstmap(<list(1)>, %p, NULL)", &test_lstmap_fun);
 }
 
 void	test_lstmap(void) {
-	tlib_testprocess_ok(&test_lstmap_child1);
-	tlib_testprocess_ok(&test_lstmap_child2);
-	tlib_testprocess_ok(&test_lstmap_child3);
-	tlib_testprocess_ok(&test_lstmap_child4);
-	tlib_testprocess_ok(&test_lstmap_child5);
-	tlib_testprocess_ok(&test_lstmap_child6);
-	tlib_testprocess_ok(&test_lstmap_child7);
+	tlib_testprocess_ok(&test_lstmap_child1, NULL);
+	tlib_testprocess_ok(&test_lstmap_child2, NULL);
+	tlib_testprocess_ok(&test_lstmap_child3, NULL);
+	tlib_testprocess_ok(&test_lstmap_child4, NULL);
+	tlib_testprocess_ok(&test_lstmap_child5, NULL);
+	tlib_testprocess_ok(&test_lstmap_child6, "ft_lstmap(<list(1)>, NULL, %p)", &test_lstmap_del);
+	tlib_testprocess_ok(&test_lstmap_child7, "ft_lstmap(<list(1)>, %p, NULL)", &test_lstmap_fun);
 }

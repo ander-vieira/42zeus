@@ -37,8 +37,8 @@ static void	test_memmove_child4(void) {
 }
 
 void	test_memmove(void) {
-	tlib_testprocess_ok(&test_memmove_child1);
-	tlib_testprocess_ok(&test_memmove_child2);
-	tlib_testprocess_segfault(&test_memmove_child3);
-	tlib_testprocess_segfault(&test_memmove_child4);
+	tlib_testprocess_ok(&test_memmove_child1, NULL);
+	tlib_testprocess_ok(&test_memmove_child2, NULL);
+	tlib_testprocess_segfault(&test_memmove_child3, NULL);
+	tlib_testprocess_segfault(&test_memmove_child4, NULL);
 }

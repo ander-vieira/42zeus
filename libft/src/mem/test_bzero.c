@@ -5,8 +5,8 @@ static void	test_bzero_child1(void) {
 
 	tlib_mockmalloc_reset();
 	ft_bzero(buf, 5);
-	tlib_testresult_mem(buf, 5, '\0', "ft_bzero(%p, 5)", buf);
-	tlib_testmalloc_leak(NULL);
+	tlib_testresult_mem(buf, 5, '\0', "ft_bzero(*, 5)");
+	tlib_testmalloc_leak("ft_bzero(*, 5)");
 }
 
 static void	test_bzero_child2(void) {
@@ -14,13 +14,13 @@ static void	test_bzero_child2(void) {
 
 	tlib_mockmalloc_reset();
 	ft_bzero(buf, 0);
-	tlib_testmalloc_leak(NULL);
+	tlib_testmalloc_leak("ft_bzero(*, 0)");
 }
 
 static void	test_bzero_child3(void) {
 	tlib_mockmalloc_reset();
 	ft_bzero(NULL, 0);
-	tlib_testmalloc_leak(NULL);
+	tlib_testmalloc_leak("ft_bzero(NULL, 0)");
 }
 
 static void	test_bzero_child4(void) {
@@ -28,8 +28,8 @@ static void	test_bzero_child4(void) {
 }
 
 void	test_bzero(void) {
-	tlib_testprocess_ok(&test_bzero_child1);
-	tlib_testprocess_ok(&test_bzero_child2);
-	tlib_testprocess_ok(&test_bzero_child3);
-	tlib_testprocess_segfault(&test_bzero_child4);
+	tlib_testprocess_ok(&test_bzero_child1, "ft_bzero(*, 5)");
+	tlib_testprocess_ok(&test_bzero_child2, "ft_bzero(*, 0)");
+	tlib_testprocess_ok(&test_bzero_child3, "ft_bzero(NULL, 0)");
+	tlib_testprocess_segfault(&test_bzero_child4, "ft_bzero(NULL, 5)");
 }

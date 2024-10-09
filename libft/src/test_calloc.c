@@ -19,6 +19,6 @@ static void	test_calloc_child2(void) {
 }
 
 void	test_calloc(void) {
-	tlib_testprocess_ok(&test_calloc_child1);
-	tlib_testprocess_ok(&test_calloc_child2);
+	tlib_testprocess_ok(&test_calloc_child1, "ft_calloc(3, 2)");
+	tlib_testprocess_ok(&test_calloc_child2, "ft_calloc(3, 2) (with malloc fail)");
 }

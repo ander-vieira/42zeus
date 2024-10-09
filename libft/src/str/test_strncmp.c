@@ -47,8 +47,8 @@ static void	test_strncmp_child4(void) {
 }
 
 void	test_strncmp(void) {
-	tlib_testprocess_ok(&test_strncmp_child1);
-	tlib_testprocess_ok(&test_strncmp_child2);
-	tlib_testprocess_segfault(&test_strncmp_child3);
-	tlib_testprocess_segfault(&test_strncmp_child4);
+	tlib_testprocess_ok(&test_strncmp_child1, NULL);
+	tlib_testprocess_ok(&test_strncmp_child2, NULL);
+	tlib_testprocess_segfault(&test_strncmp_child3, NULL);
+	tlib_testprocess_segfault(&test_strncmp_child4, NULL);
 }

@@ -17,6 +17,6 @@ static void	test_strlen_child2(void) {
 }
 
 void	test_strlen(void) {
-	tlib_testprocess_ok(&test_strlen_child1);
-	tlib_testprocess_segfault(&test_strlen_child2);
+	tlib_testprocess_ok(&test_strlen_child1, NULL);
+	tlib_testprocess_segfault(&test_strlen_child2, NULL);
 }

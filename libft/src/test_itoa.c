@@ -26,6 +26,6 @@ static void	test_itoa_child2(void) {
 }
 
 void	test_itoa(void) {
-	tlib_testprocess_ok(&test_itoa_child1);
-	tlib_testprocess_ok(&test_itoa_child2);
+	tlib_testprocess_ok(&test_itoa_child1, NULL);
+	tlib_testprocess_ok(&test_itoa_child2, "ft_itoa(0) (with malloc fail)");
 }

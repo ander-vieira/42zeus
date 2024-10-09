@@ -75,8 +75,4 @@ size_t	tlib_mockmalloc_count(void);
 void	tlib_print(int fd, char *format, ...);
 void	tlib_vaprint(int fd, char *format, va_list args);
 
-/****** TEST ******/
-
-void	tlib_testresult_raw(t_bool ok);
-
 #endif

@@ -87,8 +87,8 @@ static void	test_lstiter_child4(void) {
 }
 
 void	test_lstiter(void) {
-	tlib_testprocess_ok(&test_lstiter_child1);
-	tlib_testprocess_ok(&test_lstiter_child2);
-	tlib_testprocess_ok(&test_lstiter_child3);
-	tlib_testprocess_ok(&test_lstiter_child4);
+	tlib_testprocess_ok(&test_lstiter_child1, NULL);
+	tlib_testprocess_ok(&test_lstiter_child2, NULL);
+	tlib_testprocess_ok(&test_lstiter_child3, NULL);
+	tlib_testprocess_ok(&test_lstiter_child4, NULL);
 }

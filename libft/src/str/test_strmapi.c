@@ -88,8 +88,8 @@ static void	test_strmapi_child4(void) {
 }
 
 void	test_strmapi(void) {
-	tlib_testprocess_ok(&test_strmapi_child1);
-	tlib_testprocess_ok(&test_strmapi_child2);
-	tlib_testprocess_ok(&test_strmapi_child3);
-	tlib_testprocess_ok(&test_strmapi_child4);
+	tlib_testprocess_ok(&test_strmapi_child1, NULL);
+	tlib_testprocess_ok(&test_strmapi_child2, NULL);
+	tlib_testprocess_ok(&test_strmapi_child3, NULL);
+	tlib_testprocess_ok(&test_strmapi_child4, NULL);
 }

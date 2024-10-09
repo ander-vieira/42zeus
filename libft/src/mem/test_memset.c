@@ -30,8 +30,8 @@ static void	test_memset_child3(void) {
 }
 
 void	test_memset(void) {
-	tlib_testprocess_ok(&test_memset_child1);
-	tlib_testprocess_ok(&test_memset_child2);
-	tlib_testprocess_segfault(&test_memset_child3);
+	tlib_testprocess_ok(&test_memset_child1, NULL);
+	tlib_testprocess_ok(&test_memset_child2, NULL);
+	tlib_testprocess_segfault(&test_memset_child3, NULL);
 	tlib_mockmalloc_reset();
 }
