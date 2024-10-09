@@ -58,19 +58,11 @@ typedef struct s_pget {
 	t_bool	err;
 }	t_pget;
 
-t_list	*taux_lstnew(void *content);
 t_list	*taux_lstbuild(size_t n, ...);
 t_list	*taux_lstbuild_range(size_t n, char *addr);
 void	taux_free(t_list *l);
 t_bool	taux_lstcheck(t_list *l, size_t n, ...);
 t_bool	taux_lstcheck_range(t_list *l, size_t n, char *addr);
-void	taux_parg_init(t_parg *parg, size_t len, ...);
-void	taux_parg_check(t_parg *parg, void *p);
-t_bool	taux_parg_ok(t_parg parg);
-void	taux_pget_init(t_pget *pget, size_t len, ...);
-void	*taux_pget_get(t_pget *pget);
-void	taux_pget_check(t_pget *pget, void *p);
-t_bool	taux_pget_ok(t_pget pget);
 
 /* ************************************************************************** */
 /* Test functions                                                             */

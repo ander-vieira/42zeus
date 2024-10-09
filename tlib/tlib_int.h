@@ -62,19 +62,21 @@ extern int		print_pipe[2];
 void	tlib_log_print(char *format, ...);
 void	tlib_log_vaprint(char *format, va_list args);
 
-/* ************************************************************************** */
-/* Alloc: managing lists of memory allocations                                */
-
+/****** MOCKMALLOC ******/
 
 void	*libc_malloc(size_t len);
 void	libc_free(void *addr);
 size_t	tlib_mockmalloc_lookup(void *addr);
 size_t	tlib_mockmalloc_count(void);
 
-/* ************************************************************************** */
-/* Printf: making my own version for portability                              */
+
+/****** PRINT ******/
 
 void	tlib_print(int fd, char *format, ...);
 void	tlib_vaprint(int fd, char *format, va_list args);
+
+/****** TEST ******/
+
+void	tlib_testresult_raw(t_bool ok);
 
 #endif

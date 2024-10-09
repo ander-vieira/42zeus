@@ -94,7 +94,7 @@ static void	test_lstclear_child4(void) {
 	ft_lstclear(NULL, &test_lstclear_del);
 	test_lstclear_stop();
 	tlib_testresult_custom(lstclear_called == 0,
-		"ft_lstclear(NULL, %p) called its function an incorrect number of times\n- (expected: 0 calls, actual: %z calls)", &test_lstclear_del, lstclear_called);
+		"ft_lstclear(NULL, %p) called its function an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", &test_lstclear_del, lstclear_called);
 	tlib_testmalloc_leak("ft_lstclear(NULL, %p)", &test_lstclear_del);
 }
 

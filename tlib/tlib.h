@@ -24,14 +24,12 @@ void	tlib_log_end(void);
 void	tlib_log_section(char *section);
 void	tlib_log_start(t_bool clear);
 
-/* ************************************************************************** */
-/* Alloc: managing lists of memory allocations                                */
+/****** MOCKMALLOC ******/
 
 void	tlib_mockmalloc_reset(void);
 void	tlib_mockmalloc_setmock(size_t timer);
 
-/* ************************************************************************** */
-/* Test: printing test results                                                */
+/****** TEST ******/
 
 void	tlib_testmalloc_leak(char *call, ...);
 void	tlib_testmalloc_notfreed(void *addr, char *call, ...);
@@ -41,7 +39,6 @@ void	tlib_testprint_capture(void);
 void	tlib_testprint_get(char *expected, char *call, ...);
 void	tlib_testprocess_ok(void (*fun)(void));
 void	tlib_testprocess_segfault(void (*fun)(void));
-void	tlib_testresult_raw(t_bool ok);
 void	tlib_testresult_char(int actual_value, int expected_value, char *call, ...);
 void	tlib_testresult_int(int actual_value, int expected_value, char *call, ...);
 void	tlib_testresult_nonzero(int value, char *call, ...);

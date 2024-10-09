@@ -91,7 +91,7 @@ static void	test_lstdelone_child4(void) {
 	l = taux_lstbuild(1, NULL);
 	ft_lstdelone(l, NULL);
 	tlib_testresult_custom(tlib_isalloc(l),
-		"ft_lstdelone(%p, NULL) freed %p", l, l);
+		"ft_lstdelone(%p, NULL) freed %p\n", l, l);
 	taux_free(l);
 	tlib_testmalloc_leak("ft_lstdelone(%p, NULL)", l);
 }

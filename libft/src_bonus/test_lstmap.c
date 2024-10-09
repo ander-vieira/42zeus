@@ -83,109 +83,114 @@ static void	test_lstmap_child1(void) {
 	tlib_testmalloc_leak("ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
 }
 
-// static void	test_lstmap_child2(void) {
-// 	t_list	*l;
-// 	t_list	*l1;
-// 	t_list	*l2;
+static void	test_lstmap_child2(void) {
+	t_list	*l1, *l2;
 
-// 	tlib_mockmalloc_reset();
-// 	taux_parg_init(&g_parg, 2, &l1, &l2);
-// 	taux_pget_init(&g_pget, 2, &l, &l + 1);
-// 	l1 = taux_lstnew(&l1);
-// 	l2 = taux_lstnew(&l2);
-// 	l1->next = l2;
-// 	tlib_mockmalloc_setmock(1);
-// 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-// 	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
-// 	tlib_testresult_raw(l == NULL);
-// 	tlib_testresult_raw(taux_parg_ok(g_parg));
-// 	tlib_testresult_raw(taux_pget_ok(g_pget));
-// 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
-// 	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
-// 	free(l1);
-// 	free(l2);
-// 	tlib_testmalloc_leak(NULL);
-// }
+	tlib_mockmalloc_reset();
+	l1 = taux_lstbuild_range(3, lstmap_fun_checked);
+	test_lstmap_start(l1);
+	l2 = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
+	test_lstmap_stop();
+	tlib_testresult_notnull(l2, "ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testresult_custom(taux_lstcheck_range(l2, 3, lstmap_del_checked),
+		"ft_lstmap(%p, %p, %p) did not return the correct list\n");
+	tlib_testresult_custom(lstmap_fun_called == 3,
+		"ft_lstmap(%p, %p, %p) called its function fun an incorrect number of times\n- (expected: 1 calls, actual: %z calls)\n", l1, &test_lstmap_fun, &test_lstmap_del, lstmap_fun_called);
+	tlib_testresult_custom(lstmap_del_called == 0,
+		"ft_lstmap(%p, %p, %p) called its function del an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", l1, &test_lstmap_fun, &test_lstmap_del, lstmap_del_called);
+	taux_free(l1);
+	taux_free(l2);
+	tlib_testmalloc_leak("ft_lstmap(%p, %p, %p)", l1, &test_lstmap_fun, &test_lstmap_del);
+}
 
-// static void	test_lstmap_child3(void) {
-// 	t_list	*l;
-// 	t_list	*l1;
-// 	t_list	*l2;
+static void	test_lstmap_child3(void) {
+	t_list	*l1, *l2;
 
-// 	tlib_mockmalloc_reset();
-// 	taux_parg_init(&g_parg, 2, &l1, &l2);
-// 	taux_pget_init(&g_pget, 2, &l, &l + 1);
-// 	l1 = taux_lstnew(&l1);
-// 	l2 = taux_lstnew(&l2);
-// 	l1->next = l2;
-// 	tlib_mockmalloc_setmock(2);
-// 	l = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
-// 	tlib_testresult_raw(l1->next == l2 && l2->next == NULL);
-// 	tlib_testresult_raw(l == NULL);
-// 	tlib_testresult_raw(taux_parg_ok(g_parg));
-// 	tlib_testresult_raw(taux_pget_ok(g_pget));
-// 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
-// 	tlib_testmalloc_size(l2, sizeof(t_list), "ft_lstmap(TODO)");
-// 	free(l1);
-// 	free(l2);
-// 	tlib_testmalloc_leak(NULL);
-// }
+	tlib_mockmalloc_reset();
+	l1 = taux_lstbuild_range(3, lstmap_fun_checked);
+	test_lstmap_start(l1);
+	tlib_mockmalloc_setmock(1);
+	l2 = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
+	test_lstmap_stop();
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, %p, %p) (with malloc 1 fail)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testresult_custom(lstmap_fun_called == lstmap_del_called,
+		"ft_lstmap(%p, %p, %p) (with malloc 1 fail) didn't call its function del for every time it called fun\n- (fun: %z calls, del: %z calls)\n", l1, &test_lstmap_fun, &test_lstmap_del, lstmap_fun_called, lstmap_del_called);
+	taux_free(l1);
+	taux_free(l2);
+	tlib_testmalloc_leak("ft_lstmap(%p, %p, %p) (with malloc 1 fail)", l1, &test_lstmap_fun, &test_lstmap_del);
+}
 
-// static void	test_lstmap_child4(void) {
-// 	t_list	*l;
+static void	test_lstmap_child4(void) {
+	t_list	*l1, *l2;
 
-// 	tlib_mockmalloc_reset();
-// 	taux_parg_init(&g_parg, 0);
-// 	taux_pget_init(&g_pget, 0);
-// 	l = ft_lstmap(NULL, &test_lstmap_fun, &test_lstmap_del);
-// 	tlib_testresult_raw(l == NULL);
-// 	tlib_testresult_raw(taux_parg_ok(g_parg));
-// 	tlib_testresult_raw(g_parg.i == 0);
-// 	tlib_testresult_raw(taux_pget_ok(g_pget));
-// 	tlib_testmalloc_leak(NULL);
-// }
+	tlib_mockmalloc_reset();
+	l1 = taux_lstbuild_range(3, lstmap_fun_checked);
+	test_lstmap_start(l1);
+	tlib_mockmalloc_setmock(2);
+	l2 = ft_lstmap(l1, &test_lstmap_fun, &test_lstmap_del);
+	test_lstmap_stop();
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, %p, %p) (with malloc 2 fail)", l1, &test_lstmap_fun, &test_lstmap_del);
+	tlib_testresult_custom(lstmap_fun_called == lstmap_del_called,
+		"ft_lstmap(%p, %p, %p) (with malloc 2 fail) didn't call its function del for every time it called fun\n- (fun: %z calls, del: %z calls)\n", l1, &test_lstmap_fun, &test_lstmap_del, lstmap_fun_called, lstmap_del_called);
+	taux_free(l1);
+	taux_free(l2);
+	tlib_testmalloc_leak("ft_lstmap(%p, %p, %p) (with malloc 2 fail)", l1, &test_lstmap_fun, &test_lstmap_del);
+}
 
-// static void	test_lstmap_child5(void) {
-// 	t_list	*l;
-// 	t_list	*l1;
+static void	test_lstmap_child5(void) {
+	t_list	*l;
 
-// 	tlib_mockmalloc_reset();
-// 	taux_pget_init(&g_pget, 0);
-// 	l1 = taux_lstnew(&l1);
-// 	l = ft_lstmap(l1, NULL, &test_lstmap_del);
-// 	tlib_testresult_raw(l1->next == NULL);
-// 	tlib_testresult_raw(l == NULL);
-// 	tlib_testresult_raw(taux_pget_ok(g_pget));
-// 	tlib_testresult_raw(g_pget.j == 0);
-// 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
-// 	free(l1);
-// 	tlib_testmalloc_leak(NULL);
-// }
+	tlib_mockmalloc_reset();
+	test_lstmap_start(NULL);
+	l = ft_lstmap(NULL, &test_lstmap_fun, &test_lstmap_del);
+	test_lstmap_stop();
+	tlib_testresult_addr(l, NULL, "ft_lstmap(NULL, %p, %p)", &test_lstmap_fun, &test_lstmap_del);
+	tlib_testresult_custom(lstmap_fun_called == 0,
+		"ft_lstmap(NULL, %p, %p) called its function fun an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", &test_lstmap_fun, &test_lstmap_del, lstmap_fun_called);
+	tlib_testresult_custom(lstmap_del_called == 0,
+		"ft_lstmap(NULL, %p, %p) called its function del an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", &test_lstmap_fun, &test_lstmap_del, lstmap_del_called);
+	taux_free(l);
+	tlib_testmalloc_leak("ft_lstmap(NULL, %p, %p)", &test_lstmap_fun, &test_lstmap_del);
+}
 
-// static void	test_lstmap_child6(void) {
-// 	t_list	*l;
-// 	t_list	*l1;
+static void	test_lstmap_child6(void) {
+	t_list	*l1, *l2;
 
-// 	tlib_mockmalloc_reset();
-// 	taux_parg_init(&g_parg, 0);
-// 	taux_pget_init(&g_pget, 0);
-// 	l1 = taux_lstnew(&l1);
-// 	l = ft_lstmap(l1, &test_lstmap_fun, NULL);
-// 	tlib_testresult_raw(l1->next == NULL);
-// 	tlib_testresult_raw(l == NULL);
-// 	tlib_testresult_raw(taux_parg_ok(g_parg));
-// 	tlib_testresult_raw(g_parg.i == 0);
-// 	tlib_testresult_raw(taux_pget_ok(g_pget));
-// 	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstmap(TODO)");
-// 	free(l1);
-// 	tlib_testmalloc_leak(NULL);
-// }
+	tlib_mockmalloc_reset();
+	l1 = taux_lstbuild_range(1, lstmap_fun_checked);
+	test_lstmap_start(l1);
+	l2 = ft_lstmap(l1, NULL, &test_lstmap_del);
+	test_lstmap_stop();
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, NULL, %p)", l1, &test_lstmap_del);
+	tlib_testresult_custom(lstmap_del_called == 0,
+		"ft_lstmap(%p, NULL, %p) called its function del an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", l1, &test_lstmap_del, lstmap_del_called);
+	taux_free(l1);
+	taux_free(l2);
+	tlib_testmalloc_leak("ft_lstmap(%p, NULL, %p)", l1, &test_lstmap_del);
+}
+
+static void	test_lstmap_child7(void) {
+	t_list	*l1, *l2;
+
+	tlib_mockmalloc_reset();
+	l1 = taux_lstbuild_range(1, lstmap_fun_checked);
+	test_lstmap_start(l1);
+	l2 = ft_lstmap(l1, &test_lstmap_fun, NULL);
+	test_lstmap_stop();
+	tlib_testresult_addr(l2, NULL, "ft_lstmap(%p, %p, NULL)", l1, &test_lstmap_fun);
+	tlib_testresult_custom(lstmap_fun_called == 0,
+		"ft_lstmap(%p, %p, NULL) called its function fun an incorrect number of times\n- (expected: 0 calls, actual: %z calls)\n", l1, &test_lstmap_fun, lstmap_fun_called);
+	taux_free(l1);
+	taux_free(l2);
+	tlib_testmalloc_leak("ft_lstmap(%p, %p, NULL)", l1, &test_lstmap_fun);
+}
 
 void	test_lstmap(void) {
 	tlib_testprocess_ok(&test_lstmap_child1);
-	// tlib_testprocess_ok(&test_lstmap_child2);
-	// tlib_testprocess_ok(&test_lstmap_child3);
-	// tlib_testprocess_ok(&test_lstmap_child4);
-	// tlib_testprocess_ok(&test_lstmap_child5);
-	// tlib_testprocess_ok(&test_lstmap_child6);
+	tlib_testprocess_ok(&test_lstmap_child2);
+	tlib_testprocess_ok(&test_lstmap_child3);
+	tlib_testprocess_ok(&test_lstmap_child4);
+	tlib_testprocess_ok(&test_lstmap_child5);
+	tlib_testprocess_ok(&test_lstmap_child6);
+	tlib_testprocess_ok(&test_lstmap_child7);
 }

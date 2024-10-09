@@ -56,12 +56,12 @@ static void	test_lstiter_child2(void) {
 	t_list	*l;
 
 	tlib_mockmalloc_reset();
-	l = taux_lstbuild_range(2, lstiter_checked);
+	l = taux_lstbuild_range(3, lstiter_checked);
 	test_lstiter_start(l);
 	ft_lstiter(l, &test_lstiter_fun);
 	test_lstiter_stop();
-	tlib_testresult_custom(lstiter_called == 2,
-		"ft_lstiter(%p, %p) called its function an incorrect number of times\n- (expected: 2 calls, actual: %z calls)\n", l, &test_lstiter_fun, lstiter_called);
+	tlib_testresult_custom(lstiter_called == 3,
+		"ft_lstiter(%p, %p) called its function an incorrect number of times\n- (expected: 3 calls, actual: %z calls)\n", l, &test_lstiter_fun, lstiter_called);
 	taux_free(l);
 	tlib_testmalloc_leak("ft_lstiter(%p, %p)", l, &test_lstiter_fun);
 }
