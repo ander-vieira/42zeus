@@ -48,9 +48,9 @@ static void	test_lstdelone_child2(void) {
 	ft_lstdelone(l1, &test_lstdelone_del);
 	test_lstdelone_stop();
 	tlib_testresult_custom(!tlib_isalloc(l1),
-		"ft_lstdelone(%p, %p) did not free %p\n", l1, &test_lstdelone_del, l1);
+		"ft_lstdelone(%p, %p) did not free the argument node\n", l1, &test_lstdelone_del);
 	tlib_testresult_custom(tlib_isalloc(l2),
-		"ft_lstdelone(%p, %p) freed the next element after %p\n", l1, &test_lstdelone_del, l1);
+		"ft_lstdelone(%p, %p) freed the next node after argument node\n", l1, &test_lstdelone_del);
 	tlib_testresult_custom(lstdelone_called == 1,
 		"ft_lstdelone(%p, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)", l1, &test_lstdelone_del, lstdelone_called);
 	taux_free(l1);

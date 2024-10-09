@@ -1,64 +1,98 @@
 #include "test_bonus.h"
 
-static t_parg	g_parg;
+static t_bool	lstclear_testing;
+static t_list	**lstclear_l;
+static size_t	lstclear_called;
+
+static void	test_lstclear_start(t_list **l) {
+	lstclear_l = l;
+	lstclear_called = 0;
+	lstclear_testing = TRUE;
+}
+
+static void	test_lstclear_stop() {
+	lstclear_testing = FALSE;
+}
 
 static void	test_lstclear_del(void *p) {
-	taux_parg_check(&g_parg, p);
+	if (!lstclear_testing)
+		return ;
+	tlib_testresult_custom(p == &lstclear_called,
+		"ft_lstclear(%p, %p) called its function with an incorrect parameter\n- (expected: %p, actual: %p)", lstclear_l, &test_lstclear_del, &lstclear_called, p);
+	lstclear_called += 1;
 }
 
 static void	test_lstclear_child1(void) {
-	t_list	*l;
-	t_list	*l1;
-	t_list	*l2;
+	t_list	*l, *l1;
 
 	tlib_mockmalloc_reset();
-	taux_parg_init(&g_parg, 2, &l1, &l2);
-	l1 = taux_lstnew(&l1);
-	l2 = taux_lstnew(&l2);
+	l1 = taux_lstbuild(1, &lstclear_called);
 	l = l1;
-	l->next = l2;
+	test_lstclear_start(&l);
 	ft_lstclear(&l, &test_lstclear_del);
-	tlib_testresult_raw(l == NULL);
-	tlib_testresult_raw(taux_parg_ok(g_parg));
-	tlib_testresult_raw(g_parg.i == 2);
-	tlib_testmalloc_size(l1, 0, "ft_lstclear(%p, %p)", &l, &test_lstclear_del);
-	tlib_testmalloc_size(l2, 0, "ft_lstclear(%p, %p)", &l, &test_lstclear_del);
+	test_lstclear_stop();
+	tlib_testresult_addr(l, NULL, "ft_lstclear(%p, %p)", &l, &test_lstclear_del);
+	tlib_testresult_custom(!tlib_isalloc(l1),
+		"ft_lstclear(%p, %p) did not free the argument list\n", &l, &test_lstclear_del);
+	tlib_testresult_custom(lstclear_called == 1,
+		"ft_lstclear(%p, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)", &l, &test_lstclear_del, lstclear_called);
+	taux_free(l1);
 	tlib_testmalloc_leak("ft_lstclear(%p, %p)", &l, &test_lstclear_del);
-	free(l1);
-	free(l2);
 }
 
-static void	test_lstclear_child2(void) {
-	t_list	*l;
+static void test_lstclear_child2(void) {
+	t_list	*l, *l1;
 
 	tlib_mockmalloc_reset();
-	taux_parg_init(&g_parg, 0);
-	l = NULL;
+	l1 = taux_lstbuild(2, &lstclear_called, &lstclear_called);
+	l = l1;
+	test_lstclear_start(&l);
 	ft_lstclear(&l, &test_lstclear_del);
-	tlib_testresult_raw(l == NULL);
-	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_leak(NULL);
+	test_lstclear_stop();
+	tlib_testresult_addr(l, NULL, "ft_lstclear(%p, %p)", &l, &test_lstclear_del);
+	tlib_testresult_custom(!tlib_isalloc(l1),
+		"ft_lstclear(%p, %p) did not free the argument list\n", &l, &test_lstclear_del);
+	tlib_testresult_custom(lstclear_called == 2,
+		"ft_lstclear(%p, %p) called its function an incorrect number of times\n- (expected: 2 calls, actual: %z calls)", &l, &test_lstclear_del, lstclear_called);
+	taux_free(l1);
+	tlib_testmalloc_leak("ft_lstclear(%p, %p)", &l, &test_lstclear_del);
 }
 
 static void	test_lstclear_child3(void) {
+	t_list	*l;
+
 	tlib_mockmalloc_reset();
-	taux_parg_init(&g_parg, 0);
-	ft_lstclear(NULL, &test_lstclear_del);
-	tlib_testresult_raw(g_parg.i == 0);
-	tlib_testmalloc_leak(NULL);
+	l = NULL;
+	test_lstclear_start(&l);
+	ft_lstclear(&l, &test_lstclear_del);
+	test_lstclear_stop();
+	tlib_testresult_addr(l, NULL, "ft_lstclear(%p, %p)", &l, &test_lstclear_del);
+	tlib_testresult_custom(lstclear_called == 0,
+		"ft_lstclear(%p, %p) called its function an incorrect number of times\n- (expected: 0 calls, actual: %z calls)", &l, &test_lstclear_del, lstclear_called);
+	tlib_testmalloc_leak("ft_lstclear(%p, %p)", &l, &test_lstclear_del);
 }
 
 static void	test_lstclear_child4(void) {
-	t_list	*l;
-	t_list	*l1;
+	tlib_mockmalloc_reset();
+	test_lstclear_start(NULL);
+	ft_lstclear(NULL, &test_lstclear_del);
+	test_lstclear_stop();
+	tlib_testresult_custom(lstclear_called == 0,
+		"ft_lstclear(NULL, %p) called its function an incorrect number of times\n- (expected: 0 calls, actual: %z calls)", &test_lstclear_del, lstclear_called);
+	tlib_testmalloc_leak("ft_lstclear(NULL, %p)", &test_lstclear_del);
+}
+
+static void	test_lstclear_child5(void) {
+	t_list	*l, *l1;
 
 	tlib_mockmalloc_reset();
-	l1 = taux_lstnew(NULL);
+	l1 = taux_lstbuild(1, &lstclear_called);
 	l = l1;
 	ft_lstclear(&l, NULL);
-	tlib_testresult_raw(l == l1 && l->next == NULL);
-	tlib_testmalloc_size(l1, sizeof(t_list), "ft_lstclear(%p, NULL)", &l);
-	free(l1);
+	tlib_testresult_notnull(l, "ft_lstclear(%p, NULL)", &l);
+	tlib_testresult_custom(tlib_isalloc(l1),
+		"ft_lstclear(%p, NULL) freed the argument list\n", &l);
+	taux_free(l1);
 	tlib_testmalloc_leak("ft_lstclear(%p, NULL)", &l);
 }
 
@@ -67,4 +101,5 @@ void	test_lstclear(void) {
 	tlib_testprocess_ok(&test_lstclear_child2);
 	tlib_testprocess_ok(&test_lstclear_child3);
 	tlib_testprocess_ok(&test_lstclear_child4);
+	tlib_testprocess_ok(&test_lstclear_child5);
 }
