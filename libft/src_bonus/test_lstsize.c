@@ -5,9 +5,9 @@ static void	test_lstsize_child1(void) {
 
 	tlib_mockmalloc_reset();
 	l = taux_lstbuild(3, NULL, NULL, NULL);
-	tlib_testresult_int(ft_lstsize(l), 3, "ft_lstsize(%p)", l);
+	tlib_testresult_int(ft_lstsize(l), 3, "ft_lstsize(<list(3)>)");
 	taux_free(l);
-	tlib_testmalloc_leak("ft_lstsize(%p)", l);
+	tlib_testmalloc_leak("ft_lstsize(<list(3)>)");
 }
 
 static void	test_lstsize_child2(void) {
@@ -17,6 +17,6 @@ static void	test_lstsize_child2(void) {
 }
 
 void	test_lstsize(void) {
-	tlib_testprocess_ok(&test_lstsize_child1, NULL);
-	tlib_testprocess_ok(&test_lstsize_child2, NULL);
+	tlib_testprocess_ok(&test_lstsize_child1, "ft_lstsize(<list(3)>)");
+	tlib_testprocess_ok(&test_lstsize_child2, "ft_lstsize(NULL)");
 }

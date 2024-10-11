@@ -47,11 +47,11 @@ static void	test_lstdelone_child1(void) {
 	ft_lstdelone(l, &test_lstdelone_del);
 	test_lstdelone_stop();
 	tlib_testresult_custom(!tlib_isalloc(l),
-		"ft_lstdelone(%p, %p) did not free %p\n", l, &test_lstdelone_del, l);
+		"ft_lstdelone(<list(1)>, %p) did not free the argument node\n", &test_lstdelone_del);
 	tlib_testresult_custom(lstdelone_called == 1,
-		"ft_lstdelone(%p, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)\n", l, &test_lstdelone_del, lstdelone_called);
+		"ft_lstdelone(<list(1)>, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)\n", &test_lstdelone_del, lstdelone_called);
 	taux_free(l);
-	tlib_testmalloc_leak("ft_lstdelone(%p, %p)", l, &test_lstdelone_del);
+	tlib_testmalloc_leak("ft_lstdelone(<list(1)>, %p)", &test_lstdelone_del);
 }
 
 static void	test_lstdelone_child2(void) {
@@ -64,14 +64,14 @@ static void	test_lstdelone_child2(void) {
 	ft_lstdelone(l1, &test_lstdelone_del);
 	test_lstdelone_stop();
 	tlib_testresult_custom(!tlib_isalloc(l1),
-		"ft_lstdelone(%p, %p) did not free the argument node\n", l1, &test_lstdelone_del);
+		"ft_lstdelone(<list(2)>, %p) did not free the argument node\n", &test_lstdelone_del);
 	tlib_testresult_custom(tlib_isalloc(l2),
-		"ft_lstdelone(%p, %p) freed the next node after argument node\n", l1, &test_lstdelone_del);
+		"ft_lstdelone(<list(2)>, %p) freed the next node after argument node\n", &test_lstdelone_del);
 	tlib_testresult_custom(lstdelone_called == 1,
-		"ft_lstdelone(%p, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)\n", l1, &test_lstdelone_del, lstdelone_called);
+		"ft_lstdelone(<list(2)>, %p) called its function an incorrect number of times\n- (expected: 1 calls, actual: %z calls)\n", &test_lstdelone_del, lstdelone_called);
 	taux_free(l1);
 	taux_free(l2);
-	tlib_testmalloc_leak("ft_lstdelone(%p, %p)", l1, &test_lstdelone_del);
+	tlib_testmalloc_leak("ft_lstdelone(<list(2)>, %p)", &test_lstdelone_del);
 }
 
 static void	test_lstdelone_child3(void) {
@@ -91,14 +91,14 @@ static void	test_lstdelone_child4(void) {
 	l = taux_lstbuild(1, NULL);
 	ft_lstdelone(l, NULL);
 	tlib_testresult_custom(tlib_isalloc(l),
-		"ft_lstdelone(%p, NULL) freed %p\n", l, l);
+		"ft_lstdelone(<list(1)>, NULL) freed its argument node\n");
 	taux_free(l);
-	tlib_testmalloc_leak("ft_lstdelone(%p, NULL)", l);
+	tlib_testmalloc_leak("ft_lstdelone(<list(1)>, NULL)");
 }
 
 void	test_lstdelone(void) {
-	tlib_testprocess_ok(&test_lstdelone_child1, NULL);
-	tlib_testprocess_ok(&test_lstdelone_child2, NULL);
-	tlib_testprocess_ok(&test_lstdelone_child3, NULL);
-	tlib_testprocess_ok(&test_lstdelone_child4, NULL);
+	tlib_testprocess_ok(&test_lstdelone_child1, "ft_lstdelone(<list(1)>, %p)", &test_lstdelone_del);
+	tlib_testprocess_ok(&test_lstdelone_child2, "ft_lstdelone(<list(2)>, %p)", &test_lstdelone_del);
+	tlib_testprocess_ok(&test_lstdelone_child3, "ft_lstdelone(NULL, %p)", &test_lstdelone_del);
+	tlib_testprocess_ok(&test_lstdelone_child4, "ft_lstdelone(<list(1)>, NULL)");
 }
