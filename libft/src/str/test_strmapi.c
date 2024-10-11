@@ -89,7 +89,7 @@ static void	test_strmapi_child4(void) {
 
 void	test_strmapi(void) {
 	tlib_testprocess_ok(&test_strmapi_child1, NULL);
-	tlib_testprocess_ok(&test_strmapi_child2, NULL);
-	tlib_testprocess_ok(&test_strmapi_child3, NULL);
-	tlib_testprocess_ok(&test_strmapi_child4, NULL);
+	tlib_testprocess_ok(&test_strmapi_child2, "ft_strmapi(\"HOLA\", %p) (with malloc fail)", &test_strmapi_fun);
+	tlib_testprocess_ok(&test_strmapi_child3, "ft_strmapi(NULL, %p)", &test_strmapi_fun);
+	tlib_testprocess_ok(&test_strmapi_child4, "ft_strmapi(\"HOLA\", NULL)");
 }

@@ -34,7 +34,7 @@ static void	test_strjoin_child4(void) {
 
 void	test_strjoin(void) {
 	tlib_testprocess_ok(&test_strjoin_child1, NULL);
-	tlib_testprocess_ok(&test_strjoin_child2, NULL);
-	tlib_testprocess_ok(&test_strjoin_child3, NULL);
-	tlib_testprocess_ok(&test_strjoin_child4, NULL);
+	tlib_testprocess_ok(&test_strjoin_child2, "ft_strjoin(\"HOLA\", \" MUNDO\") (with malloc fail)");
+	tlib_testprocess_ok(&test_strjoin_child3, "ft_strjoin(NULL, \" MUNDO\")");
+	tlib_testprocess_ok(&test_strjoin_child4, "ft_strjoin(\"HOLA\", NULL)");
 }

@@ -78,7 +78,7 @@ static void	test_split_child4(void) {
 
 static void	test_split_testmock(size_t mocked) {
 	split_mocked = mocked;
-	tlib_testprocess_ok(&test_split_child3, NULL);
+	tlib_testprocess_ok(&test_split_child3, "ft_split(\"HOLA MUNDO\", ' ') (with malloc %z fail)", split_mocked);
 }
 
 void	test_split(void) {

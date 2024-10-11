@@ -34,6 +34,6 @@ static void	test_substr_child3(void) {
 
 void	test_substr(void) {
 	tlib_testprocess_ok(&test_substr_child1, NULL);
-	tlib_testprocess_ok(&test_substr_child2, NULL);
-	tlib_testprocess_ok(&test_substr_child3, NULL);
+	tlib_testprocess_ok(&test_substr_child2, "ft_substr(\"HOLA\", 0, 2) (with malloc fail)");
+	tlib_testprocess_ok(&test_substr_child3, "ft_substr(NULL, 0, 2)");
 }

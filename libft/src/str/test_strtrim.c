@@ -33,19 +33,24 @@ static void	test_strtrim_child2(void) {
 	tlib_mockmalloc_reset();
 	tlib_mockmalloc_setmock(1);
 	tlib_testresult_addr(ft_strtrim("HOLA", " "), NULL, "ft_strtrim(\"HOLA\", \" \") (with malloc fail)");
+	tlib_testmalloc_leak("ft_strtrim(\"HOLA\", \" \") (with malloc fail)");
 }
 
 static void	test_strtrim_child3(void) {
+	tlib_mockmalloc_reset();
 	tlib_testresult_addr(ft_strtrim(NULL, " "), NULL, "ft_strtrim(NULL, \" \")");
+	tlib_testmalloc_leak("ft_strtrim(NULL, \" \")");
 }
 
 static void	test_strtrim_child4(void) {
+	tlib_mockmalloc_reset();
 	tlib_testresult_addr(ft_strtrim("HOLA", NULL), NULL, "ft_strtrim(\"HOLA\", NULL)");
+	tlib_testmalloc_leak("ft_strtrim(\"HOLA\", NULL)");
 }
 
 void	test_strtrim(void) {
 	tlib_testprocess_ok(&test_strtrim_child1, NULL);
-	tlib_testprocess_ok(&test_strtrim_child2, NULL);
-	tlib_testprocess_ok(&test_strtrim_child3, NULL);
-	tlib_testprocess_ok(&test_strtrim_child4, NULL);
+	tlib_testprocess_ok(&test_strtrim_child2, "ft_strtrim(\"HOLA\", \" \") (with malloc fail)");
+	tlib_testprocess_ok(&test_strtrim_child3, "ft_strtrim(NULL, \" \")");
+	tlib_testprocess_ok(&test_strtrim_child4, "ft_strtrim(\"HOLA\", NULL)");
 }
