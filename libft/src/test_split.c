@@ -83,9 +83,9 @@ static void	test_split_testmock(size_t mocked) {
 
 void	test_split(void) {
 	tlib_testprocess_ok(&test_split_child1, NULL);
-	tlib_testprocess_ok(&test_split_child2, NULL);
+	tlib_testprocess_ok(&test_split_child2, "ft_split(\"HOLA MUNDO\", '\0')");
 	test_split_testmock(1);
 	test_split_testmock(2);
 	test_split_testmock(3);
-	tlib_testprocess_ok(&test_split_child4, NULL);
+	tlib_testprocess_ok(&test_split_child4, "ft_split(NULL, ' ')");
 }
