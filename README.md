@@ -20,7 +20,7 @@ Ultimately, 42zeus is just a tool; whether it is used to add value to your exper
 
 ## Installing and updating
 
-42Zeus is compatible with both Mac and Linux systems (tested on Ubuntu 22.04). In particular, it should work on the computers used in 42 facilities, as it is built on the same technologies used for most official projects.
+42Zeus is compatible with both Mac and Linux systems (tested on Ubuntu 22.04). In particular, it should work on the computers used in 42 facilities, as it is built on the same technologies used for most official projects. If working on a personal computer, you will also need to have curl and git installed (these are provided by default on 42 computers).
 
 Running the following command will install 42zeus for the current user (it does not require root access):
 
