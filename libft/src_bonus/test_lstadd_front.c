@@ -7,7 +7,8 @@ static void	test_lstadd_front_child1(void) {
 	l1 = taux_lstbuild(1, &l);
 	l = NULL;
 	ft_lstadd_front(&l, l1);
-	tlib_testresult_custom(taux_lstcheck(l, 1, &l), "ft_lstadd_front(&NULL, <list(1)>) did not return the correct list\n");
+	tlib_testresult_custom(taux_lstcheck(l, 1, &l),
+		"ft_lstadd_front(&NULL, <list(1)>) did not return the correct list\n");
 	taux_free(l1);
 	tlib_testmalloc_leak("ft_lstadd_front(&NULL, <list(1)>)");
 }
@@ -20,7 +21,8 @@ static void	test_lstadd_front_child2(void) {
 	l2 = taux_lstbuild(1, &l + 1);
 	l = l1;
 	ft_lstadd_front(&l, l2);
-	tlib_testresult_custom(taux_lstcheck(l, 2, &l + 1, &l), "ft_lstadd_front(&<list(1)>, <list(1)>) did not return the correct list\n");
+	tlib_testresult_custom(taux_lstcheck(l, 2, &l + 1, &l),
+		"ft_lstadd_front(&<list(1)>, <list(1)>) did not return the correct list\n");
 	taux_free(l1);
 	taux_free(l2);
 	tlib_testmalloc_leak("ft_lstadd_front(&<list(1)>, <list(1)>)");
@@ -34,7 +36,8 @@ static void	test_lstadd_front_child3(void) {
 	l2 = taux_lstbuild(1, &l + 2);
 	l = l1;
 	ft_lstadd_front(&l, l2);
-	tlib_testresult_custom(taux_lstcheck(l, 3, &l + 2, &l, &l + 1), "ft_lstadd_front(&<list(2)>, <list(1)>) did not return the correct list\n");
+	tlib_testresult_custom(taux_lstcheck(l, 3, &l + 2, &l, &l + 1),
+		"ft_lstadd_front(&<list(2)>, <list(1)>) did not return the correct list\n");
 	taux_free(l1);
 	taux_free(l2);
 	tlib_testmalloc_leak("ft_lstadd_front(&<list(2)>, <list(1)>)");
@@ -57,7 +60,8 @@ static void	test_lstadd_front_child5(void) {
 	l1 = taux_lstbuild(1, &l);
 	l = l1;
 	ft_lstadd_front(&l, NULL);
-	tlib_testresult_custom(taux_lstcheck(l, 1, &l), "ft_lstadd_front(&<list(1)>, NULL) did not return the correct list\n");
+	tlib_testresult_custom(taux_lstcheck(l, 1, &l),
+		"ft_lstadd_front(&<list(1)>, NULL) did not return the correct list\n");
 	taux_free(l1);
 	tlib_testmalloc_leak("ft_lstadd_front(&<list(1)>, NULL)");
 }
