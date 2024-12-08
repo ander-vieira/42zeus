@@ -107,19 +107,26 @@ static int	tlib_testprocess_run(void (*fun)(void)) {
 	pid_t	pid;
 	int		status;
 	void	(*sighandler)(int);
+	int		fd[2];
 
 	sighandler = signal(SIGUSR1, &handle_sigusr);
+	pipe(fd);
 	pid = fork();
 	if (pid == -1)
 		return (-1);
 	else if (pid == 0) {
 		tlib_ischild = TRUE;
+		close(fd[0]);
 		fun();
 		tlib_log_end();
+		write(fd[1], &tlib_newsection, sizeof(t_bool));
 		exit(0);
 	}
+	close(fd[1]);
 	waitpid(pid, &status, 0);
 	signal(SIGUSR1, sighandler);
+	read(fd[0], &tlib_newsection, sizeof(t_bool));
+	close(fd[0]);
 	return (status);
 }
 
