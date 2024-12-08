@@ -4,10 +4,6 @@
 
 42zeus is an automated testing tool intended to help find problems in official 42 projects. It is designed to be lightweight and simple to use, while providing valuable assistance during the bugfixing and refining phases of development.
 
-## How to reach me
-
-If you want to ask a question related to using the tester, suggest potential improvements or report a bug, please use [this form](https://docs.google.com/forms/d/e/1FAIpQLSfgFV0nSfFGWceP5wzzIVTjGXh11UNQ4Jc6lTAjJKGVnKsQQQ/viewform?usp=dialog).
-
 ## What is 42
 
 42 is a programming school with an innovative pedagogical approach, which involves peer-learning as the main drive in improving one's abilities.
