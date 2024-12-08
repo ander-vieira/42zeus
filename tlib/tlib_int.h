@@ -55,7 +55,7 @@ extern t_amock	*tlib_mocks;
 
 extern t_bool	tlib_ischild;
 extern t_bool	tlib_testfailed;
-extern int		print_pipe[2];
+extern int		tlib_testprint_pipe[2];
 
 /****** LOG ******/
 

@@ -72,34 +72,35 @@ void	tlib_testmissing(void (*test)(void), void *fun, char *section) {
 	tlib_print(STDOUT_FILENO, "\n");
 }
 
-void	tlib_testprint_capture(void) {
+void	tlib_testprint_capture(int fd) {
 	int	fd_out;
 
-	pipe(print_pipe);
-	fd_out = dup(STDOUT_FILENO);
-	dup2(print_pipe[1], STDOUT_FILENO);
-	close(print_pipe[1]);
-	print_pipe[1] = fd_out;
+	pipe(tlib_testprint_pipe);
+	fd_out = dup(fd);
+	dup2(tlib_testprint_pipe[1], fd);
+	close(tlib_testprint_pipe[1]);
+	tlib_testprint_pipe[1] = fd_out;
 }
 
-void	tlib_testprint_get(char *expected, char *call, ...) {
+void	tlib_testprint_get(int fd, char *expected, char *call, ...) {
 	char	*printed;
 	t_bool	condition;
 
-	dup2(print_pipe[1], STDOUT_FILENO);
-	close(print_pipe[1]);
+	close(fd);
+	dup2(tlib_testprint_pipe[1], fd);
+	close(tlib_testprint_pipe[1]);
 	if (expected != NULL) {
-		printed = tlib_readall(print_pipe[0]);
+		printed = tlib_readall(tlib_testprint_pipe[0]);
 		condition = tlib_str_cmp(printed, expected);
 		tlib_testresult_raw(condition);
 		if (!condition) {
 			__tlib_log_call(call);
-			tlib_log_print(" has printed an incorrect output\n");
+			tlib_log_print(" has printed an incorrect output on file descriptor %d\n", fd);
 			tlib_log_print("- (expected: %S, printed: %S)\n", expected, printed);
 		}
 		free(printed);
 	}
-	close(print_pipe[0]);
+	close(tlib_testprint_pipe[0]);
 }
 
 static int	tlib_testprocess_run(void (*fun)(void)) {

@@ -1,20 +1,21 @@
 #include "test.h"
 
-static void	test_putstr_fd_testone(char *str) {
+static void	test_putstr_fd_testone(char *str, int fd) {
 	tlib_mockmalloc_reset();
-	tlib_testprint_capture();
-	ft_putstr_fd(str, STDOUT_FILENO);
-	tlib_testprint_get(str, "ft_putstr_fd(%S, 1)", str);
-	tlib_testmalloc_leak("ft_putstr_fd(%S, 1)", str);
+	tlib_testprint_capture(fd);
+	ft_putstr_fd(str, fd);
+	tlib_testprint_get(fd, str, "ft_putstr_fd(%S, %d)", str, fd);
+	tlib_testmalloc_leak("ft_putstr_fd(%S, %d)", str, fd);
 }
 
 static void	test_putstr_fd_child1(void) {
-	test_putstr_fd_testone("HOLA MUNDO");
-	test_putstr_fd_testone("");
+	test_putstr_fd_testone("HOLA MUNDO", 1);
+	test_putstr_fd_testone("HOLA MUNDO", 100);
+	test_putstr_fd_testone("", 1);
 }
 
 static void	test_putstr_fd_child2(void) {
-	test_putstr_fd_testone(NULL);
+	test_putstr_fd_testone(NULL, 1);
 }
 
 void	test_putstr_fd(void) {
