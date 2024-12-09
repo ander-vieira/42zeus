@@ -4,6 +4,7 @@ if [ -t 1 ]
 then
 	red="\033[0;31m"
 	green="\033[0;32m"
+	yellow="\033[0;33m"
 	blue="\033[1;36m"
 	nocolor="\033[0m"
 fi
@@ -14,14 +15,6 @@ then
 	testdir=$1
 else
 	testdir=.
-fi
-
-if [ $testdir == "--update" ]
-then
-	mv -f ~/42zeus ~/.42zeus_tmp
-	curl https://raw.githubusercontent.com/ander-vieira/42zeus/master/setup | bash
-	rm -rf ~/.42zeus_tmp
-	exit 0
 fi
 
 echo -en "${blue}"
@@ -37,7 +30,37 @@ echo "|      ░░░░░  ░░░░░░░░░░    ░░░░░�
 echo "+---------------------------------------------------------------------------+";
 echo -en "${nocolor}"
 
-echo -e "${green}Version $(cat $(dirname $0)/version.txt)${nocolor}"
+version=$(cat $(dirname $0)/version.txt)
+
+echo -e "${green}Version ${version}${nocolor}"
+
+if [ $testdir == "--update" ]
+then
+	echo -e "${green}Attempting to update...${nocolor}"
+	cd $(dirname $0)
+	git checkout master --quiet
+	git pull --quiet
+	if [ $? -ne 0 ]
+	then
+		echo -e "${red}Could not successfully update; consider deleting directory ~/.42zeus and reinstalling${nocolor}"
+		exit 1
+	else
+		newversion=$(cat $(dirname $0)/version.txt)
+		if [ "$newversion" != "$version" ]
+		then
+			echo -e "${green}Successfully updated to version $(cat $(dirname $0)/version.txt)!${nocolor}"
+		else
+			echo -e "${yellow}No updates found for version $version${nocolor}"
+		fi
+		exit 0
+	fi
+fi
+
+latestversion=$(curl -s https://raw.githubusercontent.com/ander-vieira/42zeus/refs/heads/master/version.txt)
+if [ $? -eq 0 -a "$latestversion" != "$version" ]
+then
+	echo -e "${yellow}New version ${latestversion} is available; to update, run \"zeus --update\"${nocolor}"
+fi
 
 if [ ! -d $testdir ]
 then
