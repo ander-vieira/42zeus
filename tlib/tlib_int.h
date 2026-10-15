@@ -20,7 +20,6 @@
 # define COLORCODE_YELLOW	"\033[0;33m"
 
 # define ERRORLOG_FILE		"errors.log"
-# define ERRORLOG_FULLFILE	"~/42zeus/"ERRORLOG_FILE
 
 # define __tlib_log_call(call) \
 if (call == NULL)\
@@ -59,6 +58,7 @@ extern int		tlib_testprint_pipe[2];
 
 /****** LOG ******/
 
+char	*tlib_errorlog_path(void);
 void	tlib_log_print(char *format, ...);
 void	tlib_log_vaprint(char *format, va_list args);
 

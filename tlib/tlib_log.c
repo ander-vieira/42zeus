@@ -1,5 +1,16 @@
 #include "tlib_int.h"
 
+char	*tlib_errorlog_path(void) {
+	static char	path[4096];
+	char		*dir;
+
+	dir = getenv("ZEUS_LAUNCH_DIR");
+	if (dir == NULL || dir[0] == '\0')
+		dir = ".";
+	snprintf(path, sizeof(path), "%s/%s", dir, ERRORLOG_FILE);
+	return (path);
+}
+
 void	tlib_log_end(void) {
 	if (tlib_islogging)
 		close(tlib_logfd);
@@ -25,9 +36,9 @@ void	tlib_log_start(t_bool clear) {
 	if (tlib_islogging)
 		return ;
 	if (clear)
-		tlib_logfd = open(ERRORLOG_FILE, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		tlib_logfd = open(tlib_errorlog_path(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else
-		tlib_logfd = open(ERRORLOG_FILE, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		tlib_logfd = open(tlib_errorlog_path(), O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (tlib_logfd != -1)
 		tlib_islogging = TRUE;
 }

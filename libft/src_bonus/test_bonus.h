@@ -67,6 +67,7 @@ t_bool	taux_lstcheck_range(t_list *l, size_t n, char *addr);
 /* ************************************************************************** */
 /* Test functions                                                             */
 
+void	test_bonus(void);
 void	test_lstnew(void);
 void	test_lstadd_front(void);
 void	test_lstsize(void);

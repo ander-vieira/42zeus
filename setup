@@ -21,29 +21,28 @@ echo "|      ░░░░░  ░░░░░░░░░░    ░░░░░�
 echo "+---------------------------------------------------------------------------+";
 echo -en "${nocolor}"
 
-# Don't mess with existing directories :)
+# clonar o actualizar
 if [ -e ~/42zeus ]
 then
-	echo -e "${green}42Zeus is already installed, attempting to update!${nocolor}"
-	git -C ~/42zeus pull
+    echo -e "${green}42Zeus is already installed, attempting to update!${nocolor}"
+    git -C ~/42zeus pull
 	if [ $? -ne 0 ]
 	then
-		echo -e "${red}Error while updating repository; please delete/rename directory ~/42zeus and try again.${nocolor}"
-		exit 1
-	fi
-	echo -e "${green}42Zeus updated successfully!${nocolor}"
-	exit 0
-fi
-
-echo -e "${green}Attempting to install 42Zeus!${nocolor}"
+        echo -e "${red}Error while updating repository; please delete/rename directory ~/42zeus and try again.${nocolor}"
+        exit 1
+    fi
+    echo -e "${green}42Zeus updated successfully!${nocolor}"
+else
+    echo -e "${green}Attempting to install 42Zeus!${nocolor}"
 
 # Clone the tester
-echo "Cloning git repository into directory ~/42zeus"
-git clone https://github.com/ander-vieira/42zeus.git ~/42zeus
+    echo "Cloning git repository into directory ~/42zeus"
+    git clone https://github.com/ander-vieira/42zeus ~/42zeus
 if [ $? -ne 0 ]
 then
-	echo -e "${red}Error while cloning repository.${nocolor}"
-	exit 1
+        echo -e "${red}Error while cloning repository.${nocolor}"
+        exit 1
+    fi
 fi
 
 # Build binaries
@@ -51,25 +50,25 @@ echo "Building 42Zeus binaries..."
 make -s -C ~/42zeus/tools
 if [ $? -ne 0 ]
 then
-	echo -e "${red}Error while building binaries.${nocolor}"
-	exit 1
+    echo -e "${red}Error while building binaries.${nocolor}"
+    exit 1
 fi
 
 # Add aliases
 echo "Adding aliases for zeus command"
 if [ ! -e ~/.bashrc ] || [ $(cat ~/.bashrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
-	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.bashrc
-	echo -e "${green}Alias added successfully! (bash)${nocolor}"
+    echo "alias zeus=$HOME/42zeus/zeus" >> ~/.bashrc
+    echo -e "${green}Alias added successfully! (bash)${nocolor}"
 else
-	echo -e "${green}Alias already exists! (bash)${nocolor}"
+    echo -e "${green}Alias already exists! (bash)${nocolor}"
 fi
 if [ ! -e ~/.zshrc ] || [ $(cat ~/.zshrc | grep "alias zeus" | wc -l) -eq 0 ]
 then
-	echo "alias zeus=$HOME/42zeus/zeus" >> ~/.zshrc
-	echo -e "${green}Alias added successfully! (zsh)${nocolor}"
+    echo "alias zeus=$HOME/42zeus/zeus" >> ~/.zshrc
+    echo -e "${green}Alias added successfully! (zsh)${nocolor}"
 else
-	echo -e "${green}Alias already exists! (zsh)${nocolor}"
+    echo -e "${green}Alias already exists! (zsh)${nocolor}"
 fi
 
 echo "+----------------+"

@@ -1,4 +1,5 @@
 #include "test.h"
+#include "../src_bonus/test_bonus.h"
 
 int	main(void) {
 	tlib_log_start(TRUE);
@@ -36,6 +37,7 @@ int	main(void) {
 	tlib_testmissing(&test_putstr_fd, &ft_putstr_fd, "putstr_fd");
 	tlib_testmissing(&test_putendl_fd, &ft_putendl_fd, "putendl_fd");
 	tlib_testmissing(&test_putnbr_fd, &ft_putnbr_fd, "putnbr_fd");
+	test_bonus();
 	tlib_log_end();
 	return (tlib_test_results());
 }

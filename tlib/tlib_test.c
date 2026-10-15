@@ -277,7 +277,7 @@ int	tlib_test_results(void) {
 		tlib_print(STDOUT_FILENO, "%gAll tests OK!\n%n");
 		return (EXIT_SUCCESS);
 	} else {
-		tlib_print(STDOUT_FILENO, "%rErrors detected; for detailed error messages, see %s\n%n", ERRORLOG_FULLFILE);
+		tlib_print(STDOUT_FILENO, "%rErrors detected; see %s\n%n", tlib_errorlog_path());
 		return (EXIT_FAILURE);
 	}
 }

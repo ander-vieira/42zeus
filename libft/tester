@@ -10,12 +10,6 @@ fi
 
 status=0
 
-echo -en "${blue}"
-echo "+-----------+"
-echo "|   libft   |"
-echo "+-----------+"
-echo -en "${nocolor}"
-
 echo "+----------------+"
 echo "|   NORMINETTE   |"
 echo "+----------------+"
@@ -27,16 +21,22 @@ then
 fi
 
 echo -en "${blue}"
-echo "+---------------------------+"
-echo "|   libft: MANDATORY PART   |"
-echo "+---------------------------+"
+echo "+------------+"
+echo "|   libft:   |"
+echo "+------------+"
 echo -en "${nocolor}"
 
 echo "+---------------------+"
 echo "|   COMPILE LIBRARY   |"
 echo "+---------------------+"
 
-make -s -C repo/ all clean
+lib_target=all
+if grep -qE '^[[:space:]]*bonus[[:space:]]*:' repo/Makefile
+then
+	lib_target=bonus
+fi
+
+make -s -C repo/ "$lib_target" clean
 if [ $? -ne 0 ]
 then
 	echo -e "${red}Errors while compiling the library${nocolor}"
@@ -49,6 +49,13 @@ fi
 echo "+---------------------+"
 echo "|   CHECK SYMBOLS     |"
 echo "+---------------------+"
+
+make -s -C tools/ all
+if [ $? -ne 0 ]
+then
+	echo -e "${red}Errors while compiling symbol tools${nocolor}"
+	exit 1
+fi
 
 tools/symbolcheck repo/libft.a libft/symbols/functions libft/symbols/externals
 
@@ -77,60 +84,3 @@ then
 fi
 
 make -s -C libft/ fclean
-
-if [ $(tools/bonuscheck) == yes ]
-then
-	echo -en "${blue}"
-	echo "+-----------------------+"
-	echo "|   libft: BONUS PART   |"
-	echo "+-----------------------+"
-	echo -en "${nocolor}"
-
-	echo "+-----------------------------+"
-	echo "|   COMPILE LIBRARY (BONUS)   |"
-	echo "+-----------------------------+"
-
-	make -s -C repo/ bonus clean
-	if [ $? -ne 0 ]
-	then
-		echo -e "${red}Errors while compiling the library${nocolor}"
-		make -s -C repo/ fclean
-		exit 1
-	else
-		echo -e "${green}Library compiled successfully!${nocolor}"
-	fi
-
-	echo "+-----------------------------+"
-	echo "|   CHECK SYMBOLS (BONUS)     |"
-	echo "+-----------------------------+"
-
-	tools/symbolcheck repo/libft.a libft/symbols/functions_bonus libft/symbols/externals
-
-	echo "+---------------------------+"
-	echo "|   COMPILE TESTS (BONUS)   |"
-	echo "+---------------------------+"
-
-	make -s  -C libft/ bonus clean
-	if [ $? -ne 0 ]
-	then
-		echo -e "${red}Errors while compiling tests${nocolor}"
-		make -s -C libft/ fclean
-		exit 1
-	else
-		echo -e "${green}Tests compiled successfully!${nocolor}"
-	fi
-
-	echo "+-------------------+"
-	echo "|   TESTS (BONUS)   |"
-	echo "+-------------------+"
-
-	libft/test_bonus.out
-	if [ $? -ne 0 ]
-	then
-		status=1
-	fi
-
-	make -s -C libft/ fclean
-else
-	echo -e "${green}Bonus part not found!${nocolor}"
-fi
